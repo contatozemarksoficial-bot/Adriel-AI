@@ -15,7 +15,59 @@ if "resposta_cacador" not in st.session_state:
 if "resposta_presell" not in st.session_state:
     st.session_state.resposta_presell = ""
 
-# Barra Lateral Esquerda - Menu de Navegação Idêntico ao Painel
+# Auto-Detecção do Modelo Ativo para evitar Erro 404
+modelo_ativo = "models/gemini-1.5-flash"
+try:
+    genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
+    for m in genai.list_models():
+        if 'generateContent' in m.supported_generation_methods:
+            modelo_ativo = m.name
+            break
+except Exception:
+    pass
+
+# =====================================================================================================================
+# FUNÇÕES DE INTELIGÊNCIA ISOLADAS (PROTEÇÃO ABSOLUTA CONTRA ERROS DE SINTAXE)
+# =====================================================================================================================
+def executar_auditoria(produto):
+    try:
+        model = genai.GenerativeModel(modelo_ativo)
+        prompt = f"Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faça uma análise estratégica em português sobre o produto {produto}. Estruture sua resposta dividida nestes 4 tópicos em negrito: 1. BENEFÍCIOS DO PRODUTO 2. DORES DO COMPRADOR 3. MELHOR PAÍS PARA ANUNCIAR 4. ESTIMATIVA DE CUSTO POR CLIQUE (CPC). Seja curto."
+        resposta = model.generate_content(prompt)
+        return resposta.text
+    except Exception as e:
+        return f"Aguarde o resfriamento da cota de IA: {e}"
+
+def executar_gerador(produto):
+    try:
+        model = genai.GenerativeModel(modelo_ativo)
+        prompt = f"Generate a Google Ads campaign structure in perfect English for '{produto}'. Provide 4 headlines under 30 chars, 4 descriptions under 90 chars, and list exactly 15 phrase match with quotes, 15 exact match with brackets, and 15 broad match keywords using the product name. No Portuguese."
+        resposta = model.generate_content(prompt)
+        return resposta.text
+    except Exception as e:
+        return f"Aguarde o resfriamento da cota de IA: {e}"
+
+def executar_cacador():
+    try:
+        model = genai.GenerativeModel(modelo_ativo)
+        prompt = "Simule um relatório completo em português de 3 produtos recém-lançados nas plataformas gringas. Para cada produto, traga: 1. Nome do Produto 2. Por que ele é uma OPORTUNIDADE 3. Onde é melhor começar 4. TERMÔMETRO DO LANÇAMENTO (0 a 100). Seja direto."
+        resposta = model.generate_content(prompt)
+        return resposta.text
+    except Exception as e:
+        return f"Aguarde o resfriamento da cota de IA: {e}"
+
+def executar_presell(produto):
+    try:
+        model = genai.GenerativeModel(modelo_ativo)
+        prompt = f"Crie uma estrutura de pre-sell blindada em inglês para o produto {produto} contendo Headline, Subheadline, linha de frete local com emoji e rodapé legal com disclaimer médico obrigatório."
+        resposta = model.generate_content(prompt)
+        return resposta.text
+    except Exception as e:
+        return f"Aguarde o resfriamento da cota de IA: {e}"
+
+# =====================================================================================================================
+# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO
+# =====================================================================================================================
 st.sidebar.title("🎛️ Adriel AI")
 st.sidebar.markdown("**SISTEMA OPERACIONAL INTEGRAÇÃO 2026**")
 st.sidebar.write("---")
@@ -37,19 +89,8 @@ st.sidebar.markdown("Status: **Sistema Online** 🟢")
 st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
-# Configuração Segura e Auto-Detecção do Modelo Ativo para evitar Erro 404
-modelo_ativo = "models/gemini-1.5-flash"
-try:
-    genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-    for m in genai.list_models():
-        if 'generateContent' in m.supported_generation_methods:
-            modelo_ativo = m.name
-            break
-except Exception:
-    pass
-
 # =====================================================================================================================
-# 1. MÓDULO: RADAR DE PRODUTOS (ENTRE 20 A 30 PRODUTOS COM TOP 10 FIXO E ISOLADO DE ERROS)
+# 1. MÓDULO: RADAR DE PRODUTOS
 # =====================================================================================================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]")
@@ -110,52 +151,20 @@ elif menu == "🛡️ Auditor de Mercado":
     
     prod_auditar = st.text_input("✍️ Nome do Produto para Auditoria:", value="Sugar Defender")
     if st.button("🔍 Iniciar Auditoria de Mercado"):
-        st.info(f"Escaneando dados de leilão e comportamento de mercado para '{prod_auditar}'...")
-        try:
-            model = genai.GenerativeModel(modelo_ativo)
-            p_auditoria = f"Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faça uma análise estratégica em português sobre o produto {prod_auditar}. Estruture sua resposta dividida nestes 4 tópicos em negrito: 1. BENEFÍCIOS DO PRODUTO 2. DORES DO COMPRADOR 3. MELHOR PAÍS PARA ANUNCIAR 4. ESTIMATIVA DE CUSTO POR CLIQUE (CPC). Seja curto."
-            resposta = model.generate_content(p_auditoria)
-            st.session_state.resposta_auditoria = resposta.text
-            st.success("Auditoria realizada!")
-        except Exception as e:
-            st.error(f"Aguarde o resfriamento da cota de IA: {e}")
+        st.info(f"Escaneando dados de leilão para '{prod_auditar}'...")
+        st.session_state.resposta_auditoria = executar_auditoria(prod_auditar)
+        st.success("Auditoria realizada!")
             
     if st.session_state.resposta_auditoria:
         st.write(st.session_state.resposta_auditoria)
 
 # =====================================================================================================================
-# 3. MÓDULO: GERADOR DE ANÚNCIOS (COMPLETAMENTE ALINHADO À PAREDE ESQUERDA CONTRA ERROS)
+# 3. MÓDULO: GERADOR DE ANÚNCIOS
 # =====================================================================================================================
 elif menu == "✍️ Gerador de Anúncios":
     st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & SUPER BLINDAGEM")
     st.markdown("Gere a estrutura completa do anúncio com 15 palavras-chave por bloco em inglês:")
     
     produto_alvo = st.text_input("✍️ Nome do Produto Gringo:", value="Sugar Defender")
-    
     if st.button("Core Inteligência - Fabricar Anúncio Blindado"):
-        st.info("Montando estrutura e aplicando regras de segurança contra bloqueios...")
-        try:
-            model = genai.GenerativeModel(modelo_ativo)
-            p_gerador = f"Generate a Google Ads campaign structure in perfect English for '{produto_alvo}'. Provide 4 headlines under 30 chars, 4 descriptions under 90 chars, and list exactly 15 phrase match with quotes, 15 exact match with brackets, and 15 broad match keywords using the product name. No Portuguese."
-            resposta = model.generate_content(p_gerador)
-            st.session_state.resposta_gerador = resposta.text
-            st.success("Anúncio estruturado com sucesso!")
-        except Exception as e:
-            st.error(f"Aguarde o resfriamento da cota de IA: {e}")
-            
-    if st.session_state.resposta_gerador:
-        st.text_area("📋 Copie a estrutura completa para o seu Google Ads:", value=st.session_state.resposta_gerador, height=500)
-
-# =====================================================================================================================
-# 4. MÓDULO: CAÇADOR DE LANÇAMENTOS (CORRIGIDO E TRANCADO)
-# =====================================================================================================================
-elif menu == "🛰️ Caçador de Lançamentos":
-    st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS NA GRINGA")
-    st.markdown("Faça uma varredura nas plataformas gringas em tempo real em busca de oportunidades com leilão vazio:")
-    
-    if st.button("🔍 Rodar Escaneamento de Servidores Externos"):
-        st.info("Escaneando servidores da ClickBank, BuyGoods e Digistore24...")
-        try:
-            model = genai.GenerativeModel(modelo_ativo)
-            p_cacador = "Simule um relatório completo em português de 3 produtos recém-lançados nas plataformas gringas. Para cada produto, traga: 1. Nome do Produto 2. Por que ele é uma OPORTUNIDADE 3. Onde é melhor começar 4. TERMÔMETRO DO LANÇAMENTO (0 a 100). Seja direto."
-            resposta = model.generate_content(p_cacador)
+        st.info("Montando estrutura e aplicando regras de segurança...")
