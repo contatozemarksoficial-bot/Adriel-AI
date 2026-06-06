@@ -1,50 +1,30 @@
 import streamlit as st
 import pandas as pd
-import google.generativeai as genai
 
-# Configuração Global
-st.set_page_config(page_title="Painel de Elite", layout="wide")
+# Configuração de Layout
+st.set_page_config(page_title="Leonardo AI - Painel de Controle", layout="wide")
 
-# Estilo para deixar com cara de painel profissional
-st.markdown("""
-    <style>
-    .main {background-color: #0e1117;}
-    .stButton>button {width: 100%; border-radius: 5px; font-weight: bold;}
-    </style>
-    """, unsafe_allow_html=True)
+# Título do Painel
+st.title("👑 Painel de Comando Leonardo AI")
+st.markdown("---")
 
-# Cabeçalho com status
-col1, col2 = st.columns([3, 1])
-with col1:
-    st.title("👑 Painel de Comando Leonardo AI")
-with col2:
-    st.info("Status: Sistema Online")
+# Abas do Sistema
+tab1, tab2, tab3 = st.tabs(["📊 Radar de Produtos", "🎭 Gerador de Anúncios", "⚙️ Configurações"])
 
-# Dados
-produtos = pd.DataFrame([
-    {"Produto": "Puravive", "Comissão": "$142", "Risco": "Baixo"},
-    {"Produto": "Sugar Defender", "Comissão": "$127", "Risco": "Baixo"}
-])
+with tab1:
+    st.subheader("Radar de Oportunidades")
+    # Tabela de exemplo
+    dados = {"Produto": ["Puravive", "Sugar Defender"], "Comissão": ["$142", "$127"]}
+    st.table(pd.DataFrame(dados))
 
-# Estrutura em Abas Visuais
-aba1, aba2, aba3 = st.tabs(["📊 Radar de Produtos", "🎭 Gerador de Anúncios", "⚙️ Configurações"])
+with tab2:
+    st.subheader("Gerador de Anúncios Master")
+    produto = st.text_input("Qual o produto gringo?")
+    if st.button("Gerar Estratégia de Vendas"):
+        st.success(f"A IA está processando o criativo para: {produto}")
+        st.text_area("Resultado:", "Aqui aparecerá o copy e o roteiro do seu anúncio após a integração com a API.")
 
-with aba1:
-    st.subheader("Radar de Oportunidades [Filtro Xeque-Mate]")
-    st.dataframe(produtos, use_container_width=True)
-
-with aba2:
-    col_a, col_b = st.columns(2)
-    with col_a:
-        st.subheader("Entrada de Dados")
-        prod_escolhido = st.selectbox("Escolha o produto:", produtos["Produto"])
-        nicho = st.text_input("Resumo do Nicho/Dores:")
-    with col_b:
-        st.subheader("Ações Rápidas")
-        if st.button("🚀 Gerar Anúncios Master"):
-            st.success("Criativo pronto!")
-            st.text_area("Resultado:", "Aqui entrará o copy gerado pela IA...")
-
-with aba3:
+with tab3:
     st.subheader("Configurações do Sistema")
-    st.write("Chave API: Ativa ✅")
+    st.info("Chave API do Gemini: Ativa ✅")
+    st.write("Versão do Sistema: 2026.06.06")
