@@ -55,4 +55,8 @@ def gerar_anuncio(produto):
 
 def caçador_lançamentos():
     return [
-        {"Produto": "Produto
+        {"Produto": "Produto X", "Oportunidade": "Alta demanda, baixa concorrência.", "Termômetro": "85/100"},
+        {"Produto": "Produto Y", "Oportunidade": "Bom potencial de vendas.", "Termômetro": "78/100"}
+    ]
+
+def gerar_presell(prod
