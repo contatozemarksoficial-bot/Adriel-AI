@@ -1,46 +1,35 @@
 import streamlit as st
-import pandas as pd
 import google.generativeai as genai
 
-# 1. Configuração da API
+# 1. Configuração da página e dos segredos
+st.set_page_config(page_title="Super Cérebro Supremo Unificado V3", layout="wide")
+
 try:
-    genai.configure(api_key=st.secrets["GEMINI_KEY"])
-    model = genai.GenerativeModel(model_name="gemini-1.5-flash")
-except:
+    api_key = st.secrets["GEMINI_KEY"]
+    genai.configure(api_key=api_key)
+except KeyError:
     st.error("Erro: Configure a chave GEMINI_KEY nas Secrets do Streamlit.")
+    st.stop()
 
-# 2. Configuração da página
-st.set_page_config(page_title="Super Cérebro V3", layout="wide")
-st.title("👑 Super Cérebro Supremo Unificado V3")
-
-# 3. Dados
-produtos_mercado = [
-    {"Produto": "Puravive", "Plataforma": "ClickBank", "Comissão": "$142.10"},
-    {"Produto": "Sugar Defender", "Plataforma": "BuyGoods", "Comissão": "$127.30"}
-]
-
-# 4. Definição das Abas (Aqui o tab1, tab2, tab3 são criados!)
+# 2. Definição da estrutura de abas
 tab1, tab2, tab3 = st.tabs(["📊 Filtro", "🎭 Avatar", "⚙️ Máquina de Ads"])
 
+# 3. Conteúdo da aba Filtro
 with tab1:
-    st.subheader("📊 Filtro Xeque-Mate")
-    st.table(pd.DataFrame(produtos_mercado))
+    st.header("Filtro Xeque-Mate")
+    # Aqui vai a lógica da sua tabela e filtros
+    data = {
+        "Produto": ["Puravive", "Sugar Defender"],
+        "Plataforma": ["ClickBank", "BuyGoods"],
+        "Comissão": ["$142.10", "$127.30"]
+    }
+    st.table(data)
 
+# 4. Conteúdo das outras abas
 with tab2:
-    st.subheader("🎭 Modo Avatar Real")
-    produto_sel = st.selectbox("Selecione o produto:", [p["Produto"] for p in produtos_mercado])
-    if st.button("Gerar Roteiro"):
-        res = model.generate_content(f"Crie um roteiro em inglês para {produto_sel}")
-        st.markdown(res.text)
+    st.header("Avatar")
+    st.write("Configurações do Avatar aqui...")
 
 with tab3:
-    st.subheader("⚙️ Máquina de Ads")
-    prod_ads = st.text_input("Qual o produto?")
-    if "res_ads" not in st.session_state: st.session_state.res_ads = None
-    
-    if st.button("Gerar Estrutura"):
-        st.session_state.res_ads = model.generate_content(f"Campanha de Ads para {prod_ads}")
-        st.code(st.session_state.res_ads.text)
-    
-    if st.session_state.res_ads:
-        st.download_button("📥 Baixar", st.session_state.res_ads.text, file_name="campanha.txt")
+    st.header("Máquina de Ads")
+    st.write("Configurações da Máquina de Ads aqui...")
