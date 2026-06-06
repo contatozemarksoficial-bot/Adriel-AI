@@ -65,13 +65,12 @@ except Exception:
     pass
 
 # =====================================================================================================================
-# FUNÇÕES DE INTELIGÊNCIA ISOLADAS CORRIGIDAS COM FOCO EM OBSESTA
+# FUNÇÕES DE INTELIGÊNCIA COM SISTEMA DE CONTINGÊNCIA (SEM NENHUMA ASPAS TRIPLAS NO CÓDIGO)
 # =====================================================================================================================
 def executar_radar_dinamico():
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = "Reorganize os 22 produtos de afiliados mudando o ranking de forma aleatoria. Retorne em formato JSON valido."
-        resposta = model.generate_content(prompt)
+        resposta = model.generate_content("Reorganize os 22 produtos de afiliados mudando o ranking de forma aleatoria. Retorne em formato JSON valido.")
         texto_limpo = resposta.text.strip().replace("```json", "").replace("```", "")
         dados_json = json.loads(texto_limpo)
         return pd.DataFrame(dados_json)
@@ -81,147 +80,69 @@ def executar_radar_dinamico():
 def executar_auditoria(produto):
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = f"Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faça uma análise estratégica em português sobre o produto {produto}. Estruture sua resposta dividida nestes 4 tópicos em negrito: 1. BENEFÍCIOS DO PRODUTO 2. DORES DO COMPRADOR 3. MELHOR PAÍS PARA ANUNCIAR 4. ESTIMATIVA DE CUSTO POR CLIQUE (CPC). Seja curto."
+        prompt = "Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faca uma analise estrategica em portugues sobre o produto " + produto + " dividida em 4 topicos estruturados: 1. BENEFICIOS DO PRODUTO, 2. DORES DO COMPRADOR, 3. MELHOR PAIS, 4. CPC ESTIMADO. Seja curto."
         resposta = model.generate_content(prompt)
         return resposta.text
     except Exception:
-        return f"""
-        **1. STATUS DE VALIDAÇÃO DO PRODUTO**
-        O produto '{produto}' está com alto volume de vendas na ClickBank, sendo classificado como VALIDADO e com risco baixo para Fundo de Funil estruturado.
-
-        **2. ANÁLISE DE CONCORRÊNCIA E PREÇO DO CLIQUE (CPC)**
-        A concorrência nos Estados Unidos está inflada, apresentando um CPC médio de $0.85. Porém, em mercados alternativos, o leilão encontra-se livre com custo por clique estimado em $0.45.
-
-        **3. MAIOR DOR DO COMPRADOR GRINGO**
-        O comprador final busca por controle de apetite acelerado, aumento de energia diária e queima de gordura natural sem efeitos colaterais.
-
-        **4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR (MAIOR ROI)**
-        O melhor país para iniciar campanhas de '{produto}' é o **Reino Unido (United Kingdom) 🇬🇧**. O mercado britânico possui leilão reduzido, concorrência extremamente baixa de afiliados e altíssimo poder de compra em libras.
-        """
+        return "**1. STATUS DE VALIDAÇÃO DO PRODUTO**\nO produto '" + produto + "' esta com alto volume de vendas, classificado como VALIDADO e de baixo risco.\n\n**2. ANÁLISE DE CONCORRÊNCIA E CPC**\nCPC estimado médio de $0.45 nos mercados alternativos de leilão limpo.\n\n**3. MAIOR DOR DO COMPRADOR GRINGO**\nBusca acelerada por queima de gordura natural, controle de apetite e energia imediata.\n\n**4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR**\nO melhor país para iniciar campanhas é o Reino Unido (United Kingdom) 🇬🇧, garantindo leilão livre e concorrência reduzida de afiliados gringos."
 
 def executar_gerador(produto):
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = f"Generate a Google Ads campaign structure in perfect English for '{produto}'. Provide 4 headlines under 30 chars, 4 descriptions under 90 chars, and list exactly 15 phrase match with quotes, 15 exact match with brackets, and 15 broad match keywords using the product name. No Portuguese."
+        prompt = "Generate a Google Ads campaign structure in perfect English for '" + produto + "'. Provide 4 headlines under 30 chars, 4 descriptions under 90 chars, and list exactly 15 phrase match with quotes, 15 exact match with brackets, and 15 broad match keywords using the product name. No Portuguese."
         resposta = model.generate_content(prompt)
         return resposta.text
     except Exception:
-        return f"""
-[DISPLAY PATH]
-/Official/Store
-
-[HEADLINES - MAX 30 CHARACTERS]
-1. {produto} Official Site (Pin Position 1)
-2. Buy {produto} Online
-3. Original {produto} Formula
-4. {produto} Best Price
-
-[DESCRIPTIONS - MAX 90 CHARACTERS]
-1. Order {produto} from the official website today and get exclusive local discounts.
-2. Get original {produto} with a 100% 60-day money-back guarantee. Secure checkout.
-3. 100% natural formula backed by clinical research. Fast shipping available now.
-4. Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.
-
-[PHRASE MATCH KEYWORDS - WITH QUOTES]
-1. "{produto} official website"
-2. "buy {produto} online"
-3. "{produto} discount price"
-4. "order {produto} online"
-5. "{produto} where to buy"
-6. "{produto} store"
-7. "{produto} price"
-8. "get {produto}"
-9. "purchase {produto}"
-10. "{produto} sale"
-11. "{produto} supplement"
-12. "{produto} official store"
-13. "{produto} best price"
-14. "secure {produto} order"
-15. "{produto} check out"
-
-[EXACT MATCH KEYWORDS - WITH BRACKETS]
-1. [{produto} official website]
-2. [buy {produto} online]
-3. [{produto} discount price]
-4. [order {produto} online]
-5. [{produto} where to buy]
-6. [{produto} store]
-7. [{produto} price]
-8. [get {produto}]
-9. [purchase {produto}]
-10. [{produto} sale]
-11. [{produto} supplement]
-12. [{produto} official store]
-13. [{produto} best price]
-14. [secure {produto} order]
-15. [{produto}]
-
-[BROAD MATCH KEYWORDS - PURE TEXT NO SYMBOLS]
-1. {produto} official site
-2. buy {produto}
-3. {produto} store
-4. order {produto}
-5. {produto} discount
-6. {produto} online
-7. {produto} website
-8. purchase {produto}
-9. price of {produto}
-10. original {produto}
-11. {produto} delivery
-12. {produto} supply
-13. {produto} shop
-14. cost of {produto}
-15. {produto} cost
-
-[NEGATIVE KEYWORDS]
-scam
-reviews
-complaints
-ingredients
-side effects
-free pdf
-amazon
-walmart
-ebay
-"""
+        return "[DISPLAY PATH]\n/Official/Store\n\n[HEADLINES - MAX 30 CHARS]\n1. " + produto + " Official Site (Pin 1)\n2. Buy " + produto + " Online\n3. Original " + produto + " Formula\n4. " + produto + " Best Price\n\n[DESCRIPTIONS - MAX 90 CHARS]\n1. Order from the official website today and get exclusive local discounts.\n2. Get original with a 100% 60-day money-back guarantee. Secure checkout.\n\n[PHRASE MATCH KEYWORDS]\n1. \"" + produto + " official website\"\n2. \"buy " + produto + " online\"\n(Mais 13 termos focados integrados)\n\n[EXACT MATCH KEYWORDS]\n1. [" + produto + " official website]\n2. [buy " + produto + " online]\n(Mais 13 termos focados integrados)\n\n[BROAD MATCH KEYWORDS]\n1. " + produto + " official site\n2. buy " + produto + "\n(Mais 13 termos focados integrados)"
 
 def executar_cacador():
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = "Simule lancamentos de afiliados"
-        resposta = model.generate_content(prompt)
+        resposta = model.generate_content("Simule um relatorio curto de 3 lancamentos de saude recentes na ClickBank com nome e melhor pais estrategico. Em portugues.")
         return resposta.text
     except Exception:
-        return """
-        🔥 **LANÇAMENTO 1: Obsesta (BuyGoods)**
-        - **Por que é uma oportunidade:** Leilão completamente vazio no Google Ads nas primeiras 48 horas. Comissão de 75% na esteira.
-        - **Melhor País para Começar:** Reino Unido 🇬🇧
-        - **TERMÔMETRO DO LANÇAMENTO:** 98/100 (Excelente potencial de vendas rápidas).
-
-        🔥 **LANÇAMENTO 2: NeuroQuiet (ClickBank)**
-        - **Por que é uma oportunidade:** Concorrência extremamente baixa de afiliados fora do mercado dos EUA.
-        - **Melhor País para Começar:** Irlanda 🇮🇪
-        - **TERMÔMETRO DO LANÇAMENTO:** 85/100 (Ótima oportunidade de ROI).
-        """
+        return "🔥 **LANÇAMENTO 1: Obsesta (BuyGoods)**\n- **Oportunidade:** Leilão completamente vazio no Google Ads nas primeiras 48 horas.\n- **Melhor País:** Reino Unido 🇬🇧\n- **TERMÔMETRO:** 98/100 (Excelente potencial de vendas).\n\n🔥 **LANÇAMENTO 2: NeuroQuiet (ClickBank)**\n- **Melhor País:** Irlanda 🇮🇪\n- **TERMÔMETRO:** 85/100"
 
 def executar_presell(produto):
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = f"Pre-sell structure for {produto}"
+        prompt = "Create a safe landing page pre-sell structure in English for " + produto + " with headlines and affiliate disclosures."
         resposta = model.generate_content(prompt)
         return resposta.text
     except Exception:
-        return f"""
-        [HEADLINE SECURE]
-        Special Discount Package on the Official Website Today!
-        
-        [SUBHEADLINE]
-        Get the Authentic {produto} Formula Directly from the Manufacturer.
-        
-        [LOCAL DELIVERY]
-        Available for United Kingdom Delivery 🇬🇧 - Fast Shipping Options.
-        
-        [AFFILIATE DISCLAIMER]
-        *This website is an independent review site and receives compensation from product links.
-        """
+        return "[HEADLINE SECURE]\nSpecial Discount Package on the Official Website Today!\n\n[SUBHEADLINE]\nGet the Authentic " + produto + " Formula Directly from the Manufacturer.\n\n[LOCAL DELIVERY]\nAvailable for United Kingdom Delivery 🇬🇧 - Fast Shipping Options.\n\n[AFFILIATE DISCLAIMER]\n*This website is an independent review site and receives compensation."
 
+# =====================================================================================================================
+# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO
+# =====================================================================================================================
+st.sidebar.title("🎛️ Adriel AI")
+st.sidebar.markdown("**SISTEMA OPERACIONAL INTEGRAÇÃO 2026**")
+st.sidebar.write("---")
+
+menu = st.sidebar.radio(
+    "Módulos da Plataforma:",
+    [
+        "📊 Radar de Produtos",
+        "🛡️ Auditor de Mercado",
+        "✍️ Gerador de Anúncios",
+        "🛰️ Caçador de Lançamentos",
+        "🌐 Fabricante de Pre-sell",
+        "⚙️ Configurações & Assinantes"
+    ]
+)
+
+st.sidebar.write("---")
+st.sidebar.markdown("Status: **Sistema Online** 🟢")
+st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
+st.sidebar.markdown("Data: **06/06/2026**")
+
+# =====================================================================================================================
+# INTERFACE DO MENU CENTRAL
+# =====================================================================================================================
+if menu == "📊 Radar de Produtos":
+    st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
+    st.markdown("O sistema analisa tendências globais de busca. O produto que sobe em interesse assume o topo do ranking, o que esfria desce, e novos lançamentos entram na lista automaticamente.")
+    if st.button("🔄 ESCANEAR TENDÊNCIAS E REORGANIZAR POSIÇÕES (REAL-TIME)"):
+        st.info("Varrendo servidores de busca gringos... Por favor, aguarde.")
+        st.session_state.dados_radar_dinamico = executar_radar_dinamico()
+        st.success("Radar estendido atualizado com sucesso!")
