@@ -27,10 +27,15 @@ st.sidebar.markdown("Status: **Sistema Online** 🟢")
 st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
-# Configuração Segura da API do Google puxando dos Secrets
+# Configuração Segura e Auto-Detecção do Modelo Ativo para evitar Erro 404
+modelo_ativo = "models/gemini-1.5-flash"
 try:
     genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    # Faz a varredura automática para pegar o nome oficial aceito pelo servidor
+    for m in genai.list_models():
+        if 'generateContent' in m.supported_generation_methods:
+            modelo_ativo = m.name
+            break
 except Exception:
     st.sidebar.error("⚠️ Configurar GOOGLE_API_KEY nos Secrets!")
 
@@ -62,6 +67,7 @@ elif menu == "🛡️ Auditor de Mercado":
     if st.button("🔍 Iniciar Auditoria de Mercado"):
         st.info(f"Analisando dados globais para {prod_auditar}...")
         try:
+            model = genai.GenerativeModel(modelo_ativo)
             prompt = f"Faça uma auditoria curta de fundo de funil sobre o produto {prod_auditar}. Diga se está validado (Sim ou Não), a maior dor do cliente gringo e o melhor país com leilão barato no Google Ads. Seja direto e escreva em português."
             resposta = model.generate_content(prompt)
             st.success("Auditoria Concluída!")
@@ -81,6 +87,7 @@ elif menu == "✍️ Gerador de Anúncios":
     if st.button("🟢 (A) GERAR ANÚNCIOS ADSMASTER (Copy + Roteiro Vídeo)"):
         st.info("Processando Inteligência Artificial... Por favor, aguarde.")
         try:
+            model = genai.GenerativeModel(modelo_ativo)
             prompt = f"Crie um anúncio de fundo de funil perfeito para {produto_alvo} baseado em {resumo_niche}. Traga 3 títulos de 30 caracteres e 2 descrições de 90 caracteres. Sem repetições. Adicione também o roteiro do vídeo de 10 segundos com a seta apontando para baixo."
             resposta = model.generate_content(prompt)
             st.success("🎯 Material gerado com sucesso!")
@@ -98,6 +105,7 @@ elif menu == "🛰️ Caçador de Lançamentos":
     if st.button("🔍 Roda Escaneamento de Plataformas (ClickBank/BuyGoods)"):
         st.info("Buscando lançamentos recentes nos servidores gringos...")
         try:
+            model = genai.GenerativeModel(modelo_ativo)
             prompt = "Simule um relatório rápido dos 3 produtos de saúde mais recentes lançados na ClickBank ou BuyGoods. Traga Nome, Comissão estimada e o melhor país de língua inglesa com leilão vazio. Escreva em português."
             resposta = model.generate_content(prompt)
             st.success("Varredura Concluída!")
@@ -116,6 +124,7 @@ elif menu == "🌐 Fabricante de Pre-sell":
     if st.button("🟢 (B) FABRICAR PRE-SELL (Landing Page Text)"):
         st.info("Montando estrutura compliance com aviso de afiliado...")
         try:
+            model = genai.GenerativeModel(modelo_ativo)
             prompt = f"Crie o texto de uma página de pre-sell blindada para o Google Ads para o produto {prod_presell}. Escreva em inglês. Inclua uma Headline segura, Subheadline, uma linha escrito 'Available for United Kingdom Delivery' com emoji de bandeira, e o rodapé de privacidade obrigatório. Coloque explicações em português de onde colar cada bloco."
             resposta = model.generate_content(prompt)
             st.success("Pre-sell Estruturada com Sucesso!")
