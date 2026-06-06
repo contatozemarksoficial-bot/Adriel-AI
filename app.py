@@ -2,47 +2,39 @@ import streamlit as st
 import pandas as pd
 import google.generativeai as genai
 
-# 1. Configuração da API (Aqui o motor liga)
-try:
-    genai.configure(api_key=st.secrets["GEMINI_KEY"])
-    model = genai.GenerativeModel("gemini-1.5-flash")
-except:
-    st.error("Erro: Chave API não configurada nas Secrets.")
-
-st.set_page_config(page_title="Adriel AI - Painel", layout="wide")
+# Configuração da Página
+st.set_page_config(page_title="Adriel AI", layout="wide")
 st.title("🚀 Adriel AI - Painel de Comando")
 
-# 2. Definição das Abas
+# Tentar carregar a chave
+try:
+    api_key = st.secrets["GEMINI_KEY"]
+    genai.configure(api_key=api_key)
+    model = genai.GenerativeModel("gemini-1.5-flash")
+    status_api = "Conectado ✅"
+except:
+    status_api = "Chave API não configurada ou inválida ❌"
+
 tab1, tab2, tab3 = st.tabs(["📊 Radar de Produtos", "🎭 Gerador de Anúncios", "⚙️ Configurações"])
 
-# 3. Lógica do Radar (Tab 1)
 with tab1:
-    st.subheader("Radar de Produtos Xeque-Mate")
-    df = pd.DataFrame({
-        "Produto": ["Puravive", "Sugar Defender", "Prod. Gringo X"],
-        "Comissão": ["$140", "$125", "$90"],
-        "Veredito": ["APROVADO", "APROVADO", "REVISAR"]
-    })
-    st.table(df)
+    st.subheader("Radar de Oportunidades")
+    st.table(pd.DataFrame({"Produto": ["Puravive", "Sugar Defender"], "Comissão": ["$142", "$127"]}))
 
-# 4. Lógica do Gerador de Anúncios (Tab 2)
 with tab2:
     st.subheader("Gerador de Anúncios Master")
-    produto_alvo = st.text_input("Qual o nome do produto?")
-    if st.button("Gerar Anúncios e Roteiro"):
-        if produto_alvo:
-            with st.spinner("Conectando com o motor de IA..."):
-                prompt = f"Crie um roteiro de vendas e 3 títulos para anúncios no Google Ads para o produto {produto_alvo}."
-                resultado = model.generate_content(prompt)
-                st.markdown(resultado.text)
+    produto = st.text_input("Qual o produto gringo?")
+    if st.button("Gerar Estratégia de Vendas"):
+        if 'model' in globals():
+            with st.spinner("IA criando seu criativo de alta conversão..."):
+                try:
+                    response = model.generate_content(f"Crie um roteiro de vendas para o produto {produto}")
+                    st.markdown(response.text)
+                except Exception as e:
+                    st.error(f"Erro ao gerar conteúdo: {e}")
         else:
-            st.warning("Por favor, digite o nome de um produto.")
+            st.error("O motor de IA não está conectado. Verifique as configurações.")
 
-# 5. Configurações (Tab 3)
 with tab3:
-    st.subheader("Configurações do Sistema")
-    st.write("Status do Motor: Ativo ✅")
-    st.write("Chave Gemini: Conectada ✅")
-    if st.button("Limpar Cache do Sistema"):
-        st.cache_data.clear()
-        st.success("Sistema limpo!")
+    st.subheader("Configurações")
+    st.write(f"Status da API: {status_api}")
