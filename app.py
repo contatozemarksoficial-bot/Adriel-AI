@@ -65,12 +65,12 @@ except Exception:
     pass
 
 # =====================================================================================================================
-# FUNÇÕES DE INTELIGÊNCIA ISOLADAS CORRIGIDAS COM FOCO EM OBSESTA
+# FUNÇÕES DE INTELIGÊNCIA ISOLADAS CORRIGIDAS COM PROMPT SEGURO (LIVRE DE ERROS DE COLCHETES)
 # =====================================================================================================================
 def executar_radar_dinamico():
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = "Reorganize os 22 produtos em formato JSON de forma aleatória."
+        prompt = "Reorganize os 22 produtos de afiliados mudando o ranking de forma aleatoria. Retorne em formato JSON valido."
         resposta = model.generate_content(prompt)
         texto_limpo = resposta.text.strip().replace("```json", "").replace("```", "")
         dados_json = json.loads(texto_limpo)
@@ -81,7 +81,7 @@ def executar_radar_dinamico():
 def executar_auditoria(produto):
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = f"Faça uma análise do produto {produto} em 4 tópicos."
+        prompt = f"Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faça uma análise estratégica em português sobre o produto {produto}. Estruture sua resposta dividida nestes 4 tópicos em negrito: 1. BENEFÍCIOS DO PRODUTO 2. DORES DO COMPRADOR 3. MELHOR PAÍS PARA ANUNCIAR 4. ESTIMATIVA DE CUSTO POR CLIQUE (CPC). Seja curto."
         resposta = model.generate_content(prompt)
         return resposta.text
     except Exception:
@@ -102,7 +102,7 @@ def executar_auditoria(produto):
 def executar_gerador(produto):
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = f"Generate Google Ads structure for {produto}"
+        prompt = f"Generate a Google Ads campaign structure in perfect English for '{produto}'. Provide 4 headlines under 30 chars, 4 descriptions under 90 chars, and list exactly 15 phrase match with quotes, 15 exact match with brackets, and 15 broad match keywords using the product name. No Portuguese."
         resposta = model.generate_content(prompt)
         return resposta.text
     except Exception:
@@ -188,7 +188,7 @@ ebay
 def executar_cacador():
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = "Simule lançamentos"
+        prompt = "Simule lancamentos de afiliados"
         resposta = model.generate_content(prompt)
         return resposta.text
     except Exception:
@@ -222,18 +222,3 @@ def executar_presell(produto):
         Available for United Kingdom Delivery 🇬🇧 - Fast Shipping Options.
         
         [AFFILIATE DISCLAIMER]
-        *This website is an independent review site and receives compensation from product links.
-        """
-
-# =====================================================================================================================
-# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO
-# =====================================================================================================================
-st.sidebar.title("🎛️ Adriel AI")
-st.sidebar.markdown("**SISTEMA OPERACIONAL INTEGRAÇÃO 2026**")
-st.sidebar.write("---")
-
-menu = st.sidebar.radio(
-    "Módulos da Plataforma:",
-    [
-        "📊 Radar de Produtos",
-        "🛡️ Auditor de Mercado",
