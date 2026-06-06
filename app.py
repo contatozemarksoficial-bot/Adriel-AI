@@ -59,7 +59,7 @@ if menu == "📊 Radar de Produtos":
         "Ranking": [f"Top {i}" for i in range(1, 11)],
         "Product Name": ["Sugar Defender", "ProDentim", "GlucoBerry", "Citrus Burn", "LeanBliss", "Puravive", "Java Burn", "Alpilean", "LivPure", "Cortexi"],
         "Status de Validação": ["VALIDADO - Alta Demanda"] * 10,
-        "Melhor País para Anunciar": ["Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Nova Zelândia 🇳🇿", "Estados Unidos 🇺🇸", "Canadá 🇨🇦", "Reino Unido 🇬🇧", "Austrália 🇦🇺", "Canadá 🇨🇦", "Estados Unidos 🇺🇸", "Reino Unido 🇬🇧"],
+        "Melhor País para Anunciar": ["Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Nova Zelândia 🇳🇿", "Estados Unidos 🇺🇸", "Canadá (Canada) 🇨🇦", "Reino Unido 🇬🇧", "Austrália 🇦🇺", "Canadá (Canada) 🇨🇦", "Estados Unidos 🇺🇸", "Reino Unido 🇬🇧"],
         "CPC Médio Est. ($)": ["$0.42", "$0.55", "$0.38", "$0.65", "$0.48", "$0.50", "$0.45", "$0.52", "$0.60", "$0.47"],
         "Por que anunciar aqui?": [
             "Leilão de baixo custo no Reino Unido, fugindo da briga de afiliados americanos.",
@@ -102,7 +102,7 @@ if menu == "📊 Radar de Produtos":
     st.button("📥 BAIXAR PLANILHA COMPLETA DE INTELIGÊNCIA (.CSV)")
 
 # =====================================================================================================================
-# 2. MÓDULO: AUDITOR DE MERCADO (4 PILARES E INFORMAÇÕES CLARAS DE PAÍS E CUSTO)
+# 2. MÓDULO: AUDITOR DE MERCADO
 # =====================================================================================================================
 elif menu == "🛡️ Auditor de Mercado":
     st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
@@ -113,30 +113,22 @@ elif menu == "🛡️ Auditor de Mercado":
         st.info(f"Escaneando dados de leilão e comportamento de mercado para '{prod_auditar}'...")
         try:
             model = genai.GenerativeModel(modelo_ativo)
-            prompt = f"""
-            Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faça uma análise estratégica em português sobre o produto '{prod_auditar}'.
-            Estruture sua resposta estritamente dividida nestes 4 tópicos em negrito:
-            1. BENEFÍCIOS DO PRODUTO (Explique resumidamente o que ele faz)
-            2. DORES DO COMPRADOR (Por que as pessoas precisam dele e compram com cartão na mão)
-            3. MELHOR PAÍS PARA ANUNCIAR (Diga categoricamente qual país tem menor concorrência e maior resultado)
-            4. ESTIMATIVA DE CUSTO POR CLIQUE (CPC) (Informe o custo aproximado do clique de fundo de funil para esse produto no país indicado)
-            Seja direto e profissional.
-            """
-            resposta = model.generate_content(prompt)
+            p_auditoria = f"Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faça uma análise estratégica em português sobre o produto '{prod_auditar}'. Estruture sua resposta estritamente dividida nestes 4 tópicos em negrito: 1. BENEFÍCIOS DO PRODUTO 2. DORES DO COMPRADOR 3. MELHOR PAÍS PARA ANUNCIAR 4. ESTIMATIVA DE CUSTO POR CLIQUE (CPC). Seja direto."
+            resposta = model.generate_content(p_auditoria)
             st.session_state.resposta_auditoria = resposta.text
             st.success("Auditoria realizada!")
         except Exception as e:
-            st.error(f"Erro na IA (Aguarde a liberação de cota do servidor): {e}")
+            st.error(f"Erro na IA: {e}")
             
     if st.session_state.resposta_auditoria:
         st.write(st.session_state.resposta_auditoria)
 
 # =====================================================================================================================
-# 3. MÓDULO: GERADOR DE ANÚNCIOS (SUPER BLINDAGEM, 15 FRASES POR BLOCO E EXTENSÃO DE 90 CARACTERES)
+# 3. MÓDULO: GERADOR DE ANÚNCIOS (COMPLETAMENTE ALINHADO À PAREDE ESQUERDA CONTRA ERROS)
 # =====================================================================================================================
 elif menu == "✍️ Gerador de Anúncios":
     st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & SUPER BLINDAGEM")
-    st.markdown("Gere a estrutura completa do anúncio (Caminho, Títulos de 30 e Descrições de 90 caracteres) com 15 palavras-chave por bloco em inglês:")
+    st.markdown("Gere a estrutura completa do anúncio com 15 palavras-chave por bloco em inglês:")
     
     produto_alvo = st.text_input("✍️ Nome do Produto Gringo:", value="Sugar Defender")
     
@@ -144,28 +136,43 @@ elif menu == "✍️ Gerador de Anúncios":
         st.info("Montando estrutura e aplicando regras de segurança contra bloqueios...")
         try:
             model = genai.GenerativeModel(modelo_ativo)
-            prompt = f"""
-            Generate a Google Ads campaign structure in perfect English for '{produto_alvo}'. 
-            All text must follow Google Ads policy strictly (NO promises of medical cure, NO aggressive words). Apply maximum safety shielding.
             
-            Deliver the result exactly with these sections:
-            [DISPLAY PATH]
-            Must provide Camino 1 and Camino 2 (like /Official/Store)
+# PROMPT TRAVADO NA PAREDE CONTRA TRAVAMENTOS DE SYNTAXERROR DO STREAMLIT
+            p_gerador = f"""
+Generate a Google Ads campaign structure in perfect English for '{produto_alvo}'. 
+All text must follow Google Ads policy strictly (NO promises of medical cure, NO aggressive words). Apply maximum safety shielding.
+
+Deliver the result exactly with these sections:
+[DISPLAY PATH]
+Must provide Camino 1 and Camino 2 (like /Official/Store)
+
+[HEADLINES - MAX 30 CHARACTERS]
+Provide 4 headlines containing the product name. Mark Headline 1 to pin on position 1.
+
+[DESCRIPTIONS - MAX 90 CHARACTERS]
+Provide 4 descriptions focused on secure checkout, discount, and official site shipping guarantees.
+
+[PHRASE MATCH KEYWORDS - WITH QUOTES]
+List exactly 15 unique phrase match keywords with quotes using the name '{produto_alvo}'.
+
+[EXACT MATCH KEYWORDS - WITH BRACKETS]
+List exactly 15 unique exact match keywords with brackets using the name '{produto_alvo}'.
+
+[BROAD MATCH KEYWORDS - PURE TEXT]
+List exactly 15 unique buyer intent broad match keywords as pure text without symbols using the name '{produto_alvo}'.
+
+[NEGATIVE KEYWORDS]
+List 10 essential negative terms (scam, reviews, free pdf, etc).
+"""
+            resposta = model.generate_content(p_gerador)
+            st.session_state.resposta_gerador = resposta.text
+            st.success("Anúncio estruturado com sucesso!")
+        except Exception as e:
+            st.error(f"Erro na IA: {e}")
             
-            [HEADLINES - MAX 30 CHARACTERS]
-            Provide 4 headlines containing the product name. Mark Headline 1 to pin on position 1.
-            
-            [DESCRIPTIONS - MAX 90 CHARACTERS]
-            Provide 4 descriptions focused on secure checkout, discount, and official site shipping guarantees.
-            
-            [PHRASE MATCH KEYWORDS - WITH QUOTES]
-            List exactly 15 unique phrase match keywords with quotes using the name '{produto_alvo}'.
-            
-            [EXACT MATCH KEYWORDS - WITH BRACKETS]
-            List exactly 15 unique exact match keywords with brackets using the name '{produto_alvo}'.
-            
-            [BROAD MATCH KEYWORDS - PURE TEXT]
-            List exactly 15 unique buyer intent broad match keywords as pure text without symbols using the name '{produto_alvo}'.
-            
-            [NEGATIVE KEYWORDS]
-            List 10 essential negative terms (scam, reviews, free pdf, etc).
+    if st.session_state.resposta_gerador:
+        st.text_area("📋 Copie a estrutura completa para o seu Google Ads:", value=st.session_state.resposta_gerador, height=500)
+
+# =====================================================================================================================
+# 4. MÓDULO: CAÇADOR DE LANÇAMENTOS
+# =====================================================================================================================
