@@ -4,9 +4,8 @@ import pandas as pd
 # Configuração da página
 st.set_page_config(page_title="Adriel AI - Plataforma Master", layout="wide")
 
-# Funções para cada módulo
+# Função para gerar dados de radar
 def gerar_dados_radar():
-    # Simulação dos dados do radar
     dados_radar = pd.DataFrame({
         "Ranking": [f"Top {i}" for i in range(1, 11)] + [f"Produto {i}" for i in range(11, 31)],
         "Nome do Produto": [
@@ -23,8 +22,8 @@ def gerar_dados_radar():
     })
     return dados_radar
 
+# Função para auditoria de produto
 def auditoria_produto(produto):
-    # Simulação de dados de auditoria
     return {
         "Produto": produto,
         "Status de Validação": "Validado com alta demanda.",
@@ -34,6 +33,7 @@ def auditoria_produto(produto):
         "CPC Estimado": "$0.55"
     }
 
+# Função para gerar anúncios
 def gerar_anuncio(produto):
     return {
         "Títulos": [
@@ -53,12 +53,14 @@ def gerar_anuncio(produto):
         "Palavras Negativas": ["grátis", "barato", "fake"]
     }
 
+# Função para caçador de lançamentos
 def caçador_lançamentos():
     return [
         {"Produto": "Produto X", "Oportunidade": "Alta demanda, baixa concorrência.", "Termômetro": "85/100"},
         {"Produto": "Produto Y", "Oportunidade": "Bom potencial de vendas.", "Termômetro": "78/100"}
     ]
 
+# Função para gerar pré-venda
 def gerar_presell(produto):
     return {
         "Título": f"Oferta Especial para {produto}!",
@@ -70,14 +72,8 @@ def gerar_presell(produto):
 # Menu lateral
 menu = st.sidebar.radio(
     "Módulos da Plataforma:",
-    [
-        "📊 Radar de Produtos", 
-        "🛡️ Auditor de Mercado", 
-        "✍️ Gerador de Anúncios", 
-        "🛰️ Caçador de Lançamentos", 
-        "🌐 Fabricante de Pre-sell", 
-        "⚙️ Configurações"
-    ]
+    ["📊 Radar de Produtos", "🛡️ Auditor de Mercado", "✍️ Gerador de Anúncios", 
+     "🛰️ Caçador de Lançamentos", "🌐 Fabricante de Pre-sell", "⚙️ Configurações"]
 )
 
 # Radar de Produtos
