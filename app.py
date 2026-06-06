@@ -39,13 +39,12 @@ except Exception:
     st.sidebar.error("⚠️ Configurar GOOGLE_API_KEY nos Secrets!")
 
 # ==========================================
-# 1. ABA: RADAR DE PRODUTOS (7 PRODUTOS + VALIDAÇÃO + PAÍS ALVO)
+# 1. ABA: RADAR DE PRODUTOS
 # ==========================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]")
     st.markdown("Abaixo estão os 7 principais produtos gringos altamente validados e os melhores mercados para anúncios:")
     
-    # Tabela fixa afirmando a validação e o país ideal com leilão de baixo custo
     dados_radar = {
         "Product Name": [
             "Sugar Defender", 
@@ -101,7 +100,7 @@ elif menu == "🛡️ Auditor de Mercado":
             st.error(f"Erro na IA: {e}")
         
 # ==========================================
-# 3. ABA: GERADOR DE ANÚNCIOS (15 PALAVRAS SEM CORTE)
+# 3. ABA: GERADOR DE ANÚNCIOS
 # ==========================================
 elif menu == "✍️ Gerador de Anúncios":
     st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & CARACTERÍSTICAS")
@@ -114,7 +113,6 @@ elif menu == "✍️ Gerador de Anúncios":
         st.info("Processando Características de Campanha Gringa... Por favor, aguarde.")
         try:
             model = genai.GenerativeModel(modelo_ativo)
-            
             prompt = f"""
             You are the ROBO MÁQUINA DE ANÚNCIOS PERFEITO, an expert in Google Ads buyer intent keywords.
             Generate the campaign structure for the affiliate product '{produto_alvo}' based on this info: {resumo_niche}.
@@ -158,14 +156,10 @@ elif menu == "✍️ Gerador de Anúncios":
             walmart
             ebay
             """
-            
             resposta = model.generate_content(prompt)
-            texto_bruto = resposta.text
-            
             st.success("🎯 Características gringas estruturadas com sucesso!")
             st.write("### 📌 ESTRUTURA COMPREENSIVA DO PRODUTO (100% INGLÊS)")
-            st.text_area("📋 Material Pronto para Copiar e Colar no Google Ads:", value=texto_bruto, height=550)
-            
+            st.text_area("📋 Material Pronto para Copiar e Colar no Google Ads:", value=resposta.text, height=550)
         except Exception as e:
             st.error(f"Erro na IA: {e}")
 
@@ -199,7 +193,7 @@ elif menu == "🌐 Fabricante de Pre-sell":
         st.info("Montando estrutura compliance com aviso de afiliado...")
         try:
             model = genai.GenerativeModel(modelo_ativo)
-            prompt = f"Crie o texto de uma página de pre-sell blindada para o Google Ads para o produto {prod_presell}. Escreva em inglês. Inclua uma Headline segura, Subheadline, uma linha escrito 'Available for United Kingdom Delivery' com emoji de bandeira, o aviso obrigatório de afiliado e o rodapé de privacidade legal. Coloque explicações em português de onde colar cada bloco."
+            prompt = f"Crie o texto de uma página de pre-sell blindada para o Google Ads para o product {prod_presell}. Escreva em inglês. Inclua uma Headline segura, Subheadline, uma linha escrito 'Available for United Kingdom Delivery' com emoji de bandeira, o aviso obrigatório de afiliado e o rodapé de privacidade legal. Coloque explicações em português de onde colar cada bloco."
             resposta = model.generate_content(prompt)
             st.success("Pre-sell Estruturada com Sucesso!")
             st.text_area("📋 Copie a estrutura para o Elementor:", value=resposta.text, height=350)
@@ -210,3 +204,6 @@ elif menu == "🌐 Fabricante de Pre-sell":
 # 6. ABA: CONFIGURAÇÕES
 # ==========================================
 elif menu == "⚙️ Configurações":
+    st.title("⚙️ Configurações do Sistema")
+    st.text_input("🔑 Chave API Google ativa nos bastidores:", value="CONFIGURADA_NOS_SECRETS", type="password", disabled=True)
+    st.selectbox("🤖 Motor Inteligente Padrão:", ["gemini-1.5-flash", "gemini-1.5-pro"])
