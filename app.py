@@ -31,7 +31,6 @@ st.sidebar.markdown("Data: **06/06/2026**")
 modelo_ativo = "models/gemini-1.5-flash"
 try:
     genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-    # Faz a varredura automática para pegar o nome oficial aceito pelo servidor
     for m in genai.list_models():
         if 'generateContent' in m.supported_generation_methods:
             modelo_ativo = m.name
@@ -79,19 +78,57 @@ elif menu == "🛡️ Auditor de Mercado":
 # 3. ABA: GERADOR DE ANÚNCIOS
 # ==========================================
 elif menu == "✍️ Gerador de Anúncios":
-    st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS MASTER")
+    st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & CARACTERÍSTICAS")
+    st.markdown("Gere o arsenal completo estruturado rigidamente em blocos de cópia e colagem:")
     
     produto_alvo = st.text_input("✍️ Nome do Produto Gringo:", value="Sugar Defender")
     resumo_niche = st.text_area("📋 Resumo do Produto (Nicho/Dores):", value="Suplemento natural para equilíbrio do metabolismo.")
     
-    if st.button("🟢 (A) GERAR ANÚNCIOS ADSMASTER (Copy + Roteiro Vídeo)"):
-        st.info("Processando Inteligência Artificial... Por favor, aguarde.")
+    if st.button("Core Inteligência - Gerar Arsenal"):
+        st.info("Processando Características de Campanha... Por favor, aguarde.")
         try:
             model = genai.GenerativeModel(modelo_ativo)
-            prompt = f"Crie um anúncio de fundo de funil perfeito para {produto_alvo} baseado em {resumo_niche}. Traga 3 títulos de 30 caracteres e 2 descrições de 90 caracteres. Sem repetições. Adicione também o roteiro do vídeo de 10 segundos com a seta apontando para baixo."
+            
+            # Engenharia reversa para forçar a formatação perfeita em blocos
+            prompt = f"""
+            Você é o ROBO MÁQUINA DE ANÚNCIOS PERFEITO. Monte a estrutura exata do produto '{produto_alvo}' baseado em: {resumo_niche}.
+            Siga as políticas do Google Ads (sem promessas de cura médica).
+
+            Entregue o resultado estritamente dividido nos seguintes blocos separados por rótulos claros:
+            
+            [CAMINHO]
+            Crie no formato: /Official/Store
+            
+            [TITULOS]
+            Traga 4 títulos comerciais curtos com menos de 30 caracteres cada, com o nome do produto, sem repetições. Exemplo: 1. {produto_alvo} Official Site
+            
+            [DESCRICOES]
+            Traga 4 descrições persuasivas com menos de 90 caracteres cada, focadas em frete e desconto.
+            
+            [ASPAS]
+            Traga uma lista de 5 palavras-chave com aspas utilizando apenas o nome do produto. Exemplo: "{produto_alvo} buy online"
+            
+            [COLCHETES]
+            Traga uma lista de 5 palavras-chave com colchetes utilizando apenas o nome do produto. Exemplo: [{produto_alvo}]
+            
+            [LIVRES]
+            Traga uma lista de 5 palavras-chave abertas sem símbolos utilizando apenas o nome do produto. Exemplo: {produto_alvo} store
+            
+            [NEGATIVAS]
+            Traga 10 palavras negativas essenciais separadas por quebra de linha.
+            """
+            
             resposta = model.generate_content(prompt)
-            st.success("🎯 Material gerado com sucesso!")
-            st.text_area("📋 Copie o resultado abaixo:", value=resposta.text, height=350)
+            texto_bruto = resposta.text
+            
+            st.success("🎯 Características estruturadas com sucesso!")
+            
+            # Bloco de Código Streamlit que organiza visualmente o resultado para o usuário
+            st.write("### 📌 ESTRUTURA COMPREENSIVA DO PRODUTO")
+            st.markdown("Copie cada seção abaixo diretamente para o seu bloco de notas ou painel do Google Ads:")
+            
+            st.text_area("📋 Material Completo de Cópia Organizado:", value=texto_bruto, height=500)
+            
         except Exception as e:
             st.error(f"Erro na IA: {e}")
 
@@ -125,7 +162,7 @@ elif menu == "🌐 Fabricante de Pre-sell":
         st.info("Montando estrutura compliance com aviso de afiliado...")
         try:
             model = genai.GenerativeModel(modelo_ativo)
-            prompt = f"Crie o texto de uma página de pre-sell blindada para o Google Ads para o produto {prod_presell}. Escreva em inglês. Inclua uma Headline segura, Subheadline, uma linha escrito 'Available for United Kingdom Delivery' com emoji de bandeira, e o rodapé de privacidade obrigatório. Coloque explicações em português de onde colar cada bloco."
+            prompt = f"Crie o texto de uma página de pre-sell blindada para o Google Ads para o produto {prod_presell}. Escreva em inglês. Inclua uma Headline segura, Subheadline, uma linha escrito 'Available for United Kingdom Delivery' com emoji de bandeira, o aviso obrigatório de afiliado e o rodapé de privacidade legal. Coloque explicações em português de onde colar cada bloco."
             resposta = model.generate_content(prompt)
             st.success("Pre-sell Estruturada com Sucesso!")
             st.text_area("📋 Copie a estrutura para o Elementor:", value=resposta.text, height=350)
