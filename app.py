@@ -70,18 +70,7 @@ except Exception:
 def executar_radar_dinamico():
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = """
-        Aja como um robô espião de lançamentos e buscas do Google Ads gringo.
-        Simule uma reorganização completa de mercado para produtos de afiliados.
-        Retorne um texto estritamente formatado em JSON contendo uma lista longa de exatamente 22 produtos.
-        Certifique-se de manter o produto 'Obsesta' real e afirmado na lista com o nome correto.
-        O JSON deve seguir exatamente essa estrutura de chaves (em inglês):
-        [
-          {"Ranking": "Top 1", "Product Name": "Nome", "Status de Busca": "🔥 SUBINDO (Alta) ou 📉 DESCENDO", "Melhor País Estratégico": "País + Emoji", "CPC Médio Est. ($)": "$0.XX", "Tendência / Veredito": "Frase curta"},
-          ...
-        ]
-        Gere a lista inteira até o Top 22 de forma idêntica. Retorne APENAS o JSON puro, sem formatações de texto ou crases de markdown.
-        """
+        prompt = """Aja como um robô espião de lançamentos e buscas do Google Ads gringo. Simule uma reorganização completa de mercado para produtos de afiliados. Retorne um texto estritamente formatado em JSON contendo uma lista longa de exatamente 22 produtos. O JSON deve seguir exatamente essa estrutura de chaves: [{"Ranking": "Top 1", "Product Name": "Nome", "Status de Busca": "🔥 SUBINDO (Alta)", "Melhor País Estratégico": "País", "CPC Médio Est. ($)": "$0.XX", "Tendência / Veredito": "Frase"}]. Retorne APENAS o JSON puro."""
         resposta = model.generate_content(prompt)
         texto_limpo = resposta.text.strip().replace("```json", "").replace("```", "")
         dados_json = json.loads(texto_limpo)
@@ -92,7 +81,7 @@ def executar_radar_dinamico():
 def executar_auditoria(produto):
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = f"Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faça uma análise estratégica em português sobre o produto {produto}. Certifique-se de conferir o nome exato. Estruture sua resposta dividida nestes 4 tópicos em negrito: 1. BENEFÍCIOS DO PRODUTO 2. DORES DO COMPRADOR 3. MELHOR PAÍS PARA ANUNCIAR 4. ESTIMATIVA DE CUSTO POR CLIQUE (CPC). Seja curto."
+        prompt = f"Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faça uma análise estratégica em português sobre o produto {produto}. Estruture sua resposta dividida nestes 4 tópicos em negrito: 1. BENEFÍCIOS DO PRODUTO 2. DORES DO COMPRADOR 3. MELHOR PAÍS PARA ANUNCIAR 4. ESTIMATIVA DE CUSTO POR CLIQUE (CPC). Seja curto."
         resposta = model.generate_content(prompt)
         return resposta.text
     except Exception as e:
@@ -101,7 +90,7 @@ def executar_auditoria(produto):
 def executar_gerador(produto):
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = f"Generate a Google Ads campaign structure in perfect English for '{produto}'. Provide 4 headlines under 30 chars, 4 descriptions under 90 chars, and list exactly 15 phrase match with quotes, 15 exact match with brackets, and 15 broad match keywords using the product name exato sem erros. No Portuguese."
+        prompt = f"Generate a Google Ads campaign structure in perfect English for '{produto}'. Provide 4 headlines under 30 chars, 4 descriptions under 90 chars, and list exactly 15 phrase match with quotes, 15 exact match with brackets, and 15 broad match keywords using the product name. No Portuguese."
         resposta = model.generate_content(prompt)
         return resposta.text
     except Exception as e:
@@ -166,9 +155,15 @@ if menu == "📊 Radar de Produtos":
     st.button("📥 BAIXAR PLANILHA COMPLETA (.CSV)")
 
 # =====================================================================================================================
-# 2. MÓDULO: AUDITOR DE MERCADO
+# 2. MÓDULO: AUDITOR DE MERCADO (TOTALMENTE ALINHADO E PROTEGIDO CONTRA ERROS DE SINTAXE)
 # =====================================================================================================================
 elif menu == "🛡️ Auditor de Mercado":
     st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
     prod_auditar = st.text_input("✍️ Nome do Produto para Auditoria:", value="Obsesta")
     if st.button("🔍 Iniciar Auditoria de Mercado"):
+        st.info(f"Escaneando dados de leilão para '{prod_auditar}'...")
+        st.session_state.resposta_auditoria = executar_auditoria(prod_auditar)
+        st.success("Auditoria realizada!")
+    if st.session_state.resposta_auditoria:
+        st.write(st.session_state.resposta_auditoria)
+
