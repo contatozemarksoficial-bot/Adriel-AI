@@ -1,30 +1,22 @@
 import streamlit as st
 import pandas as pd
+import google.generativeai as genai
 
-# Configuração de Layout
-st.set_page_config(page_title="Leonardo AI - Painel de Controle", layout="wide")
+# Configuração da API
+genai.configure(api_key=st.secrets["GEMINI_KEY"])
+model = genai.GenerativeModel("gemini-1.5-flash")
 
-# Título do Painel
+st.set_page_config(page_title="Leonardo AI", layout="wide")
 st.title("👑 Painel de Comando Leonardo AI")
-st.markdown("---")
 
-# Abas do Sistema
 tab1, tab2, tab3 = st.tabs(["📊 Radar de Produtos", "🎭 Gerador de Anúncios", "⚙️ Configurações"])
-
-with tab1:
-    st.subheader("Radar de Oportunidades")
-    # Tabela de exemplo
-    dados = {"Produto": ["Puravive", "Sugar Defender"], "Comissão": ["$142", "$127"]}
-    st.table(pd.DataFrame(dados))
 
 with tab2:
     st.subheader("Gerador de Anúncios Master")
     produto = st.text_input("Qual o produto gringo?")
     if st.button("Gerar Estratégia de Vendas"):
-        st.success(f"A IA está processando o criativo para: {produto}")
-        st.text_area("Resultado:", "Aqui aparecerá o copy e o roteiro do seu anúncio após a integração com a API.")
-
-with tab3:
-    st.subheader("Configurações do Sistema")
-    st.info("Chave API do Gemini: Ativa ✅")
-    st.write("Versão do Sistema: 2026.06.06")
+        with st.spinner("IA criando seu criativo de alta conversão..."):
+            prompt = f"Crie um roteiro de vendas e anúncios para o produto {produto} focado em afiliados."
+            response = model.generate_content(prompt)
+            st.success("Criativo gerado com sucesso!")
+            st.markdown(response.text)
