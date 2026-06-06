@@ -1,46 +1,31 @@
 import streamlit as st
-import pandas as pd
 import google.generativeai as genai
 
-# 1. Configuração da API
-try:
-    genai.configure(api_key=st.secrets["GEMINI_KEY"])
-    model = genai.GenerativeModel(model_name="gemini-1.5-flash")
-except:
-    st.error("Erro: Configure a chave GEMINI_KEY nas Secrets do Streamlit.")
+# Configuração da sua Chave
+genai.configure(api_key="SUA_CHAVE_AQUI")
+model = genai.GenerativeModel('gemini-1.5-flash')
 
-# 2. Configuração da página
-st.set_page_config(page_title="Super Cérebro V3", layout="wide")
-st.title("👑 Super Cérebro Supremo Unificado V3")
+st.title("🚀 Adriel-AI: Painel de Controle de Afiliados")
 
-# 3. Dados
-produtos_mercado = [
-    {"Produto": "Puravive", "Plataforma": "ClickBank", "Comissão": "$142.10"},
-    {"Produto": "Sugar Defender", "Plataforma": "BuyGoods", "Comissão": "$127.30"}
-]
-
-# 4. Definição das Abas (Aqui o tab1, tab2, tab3 são criados!)
-tab1, tab2, tab3 = st.tabs(["📊 Filtro", "🎭 Avatar", "⚙️ Máquina de Ads"])
+tab1, tab2, tab3 = st.tabs(["📊 Consultoria & Estratégia", "🎭 Criativos (Avatar)", "💰 Máquina de Ads"])
 
 with tab1:
-    st.subheader("📊 Filtro Xeque-Mate")
-    st.table(pd.DataFrame(produtos_mercado))
+    st.subheader("Consultoria Estratégica")
+    pergunta = st.text_area("O que você quer perguntar para o Robô 3?")
+    if st.button("Consultar"):
+        # Lógica do Robô 3 aqui
+        st.write("Analisando estratégias...")
 
 with tab2:
-    st.subheader("🎭 Modo Avatar Real")
-    produto_sel = st.selectbox("Selecione o produto:", [p["Produto"] for p in produtos_mercado])
-    if st.button("Gerar Roteiro"):
-        res = model.generate_content(f"Crie um roteiro em inglês para {produto_sel}")
-        st.markdown(res.text)
+    st.subheader("Criador de Anúncios Avatar")
+    produto = st.selectbox("Selecione o produto:", ["Puravive", "Sugar Defender", "Java Burn"])
+    if st.button("Gerar Roteiro e Prompt"):
+        # Lógica do Avatar Real aqui
+        st.success("Criativo pronto!")
 
 with tab3:
-    st.subheader("⚙️ Máquina de Ads")
-    prod_ads = st.text_input("Qual o produto?")
-    if "res_ads" not in st.session_state: st.session_state.res_ads = None
-    
-    if st.button("Gerar Estrutura"):
-        st.session_state.res_ads = model.generate_content(f"Campanha de Ads para {prod_ads}")
-        st.code(st.session_state.res_ads.text)
-    
-    if st.session_state.res_ads:
-        st.download_button("📥 Baixar", st.session_state.res_ads.text, file_name="campanha.txt")
+    st.subheader("Máquina de Ads (Download)")
+    prod_ads = st.text_input("Nome do Produto para a Campanha")
+    if st.button("Criar Campanha"):
+        # Lógica de geração de campanha e st.download_button aqui
+        st.download_button("Baixar Campanha", "Conteúdo do arquivo", file_name="campanha.txt")
