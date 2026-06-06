@@ -1,42 +1,41 @@
 import streamlit as st
-import google.generativeai as genai
 import pandas as pd
+import google.generativeai as genai
 
-# Configuração da Página
-st.set_page_config(page_title="Leonardo AI - Painel Oficial", layout="wide")
+# Configuração da API (A chave vem das Secrets do Streamlit)
+try:
+    genai.configure(api_key=st.secrets["GEMINI_KEY"])
+    model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+except Exception as e:
+    st.error("Erro na API. Verifique se a 'GEMINI_KEY' foi salva nas Secrets.")
 
-# Sidebar - Navegação
-st.sidebar.title("Leonardo AI")
-st.sidebar.markdown("---")
-pagina = st.sidebar.radio("Navegação", ["Dashboard", "Radar de Produtos", "Gerador de Anúncios", "Consultor"])
+# Layout do Painel
+st.set_page_config(page_title="Painel de Elite", layout="wide")
+st.title("👑 Super Cérebro - Painel de Controle")
 
-# Configuração da IA (Use as Secrets do Streamlit para segurança depois)
-genai.configure(api_key="SUA_CHAVE_AQUI")
-model = genai.GenerativeModel("gemini-1.5-flash")
+# Dados do Filtro
+produtos_mercado = [
+    {"Produto": "Puravive", "Comissão": "$142.10", "Veredito": "APROVADO"},
+    {"Produto": "Sugar Defender", "Comissão": "$127.30", "Veredito": "APROVADO"}
+]
 
-# --- LÓGICA DO DASHBOARD ---
-if pagina == "Dashboard":
-    st.title("Bem-vindo, Comandante!")
-    st.write("Status: Sistema Online | Chave Mestre Ativa")
-    st.info("Use o menu lateral para acessar os módulos de inteligência.")
+# Abas do sistema
+tab1, tab2, tab3 = st.tabs(["📊 Filtro Xeque-Mate", "🎭 Avatar Real", "⚙️ Máquina de Ads"])
 
-# --- LÓGICA DO RADAR (Parte 1) ---
-elif pagina == "Radar de Produtos":
-    st.subheader("📊 Radar de Produtos [Filtro Xeque-Mate]")
-    # Aqui entra a sua lista de produtos
-    produtos = [{"Produto": "Sugar Defender", "CPC": "$0.42", "Veredito": "APROVADO"}]
-    st.table(pd.DataFrame(produtos))
-    if st.button("Baixar Planilha .CSV"):
-        st.download_button("Download", data="csv_data", file_name="produtos.csv")
+with tab1:
+    st.subheader("Radar de Produtos")
+    st.table(pd.DataFrame(produtos_mercado))
 
-# --- LÓGICA DO GERADOR DE ADS (Parte 4) ---
-elif pagina == "Gerador de Anúncios":
-    st.subheader("🎭 Gerador de Anúncios Master")
-    produto = st.text_input("Produto:")
-    resumo = st.text_area("Resumo/Dores:")
-    
-    if st.button("🚀 Gerar Estrutura de Anúncio"):
-        with st.spinner("Leonardo está processando..."):
-            prompt = f"Crie anúncios para {produto} sobre {resumo}. Siga a estrutura de headlines, descrições e keywords."
-            resposta = model.generate_content(prompt)
-            st.text_area("Resultado:", value=resposta.text, height=300)
+with tab2:
+    st.subheader("Gerador de Criativos")
+    produto_sel = st.selectbox("Selecione o produto:", [p["Produto"] for p in produtos_mercado])
+    if st.button("Gerar Roteiro"):
+        res = model.generate_content(f"Crie um roteiro de vendas para {produto_sel}")
+        st.write(res.text)
+
+with tab3:
+    st.subheader("Máquina de Ads")
+    prod_ads = st.text_input("Qual o produto para a campanha?")
+    if st.button("Gerar Estrutura"):
+        res_ads = model.generate_content(f"Crie uma campanha de Google Ads para {prod_ads}")
+        st.code(res_ads.text)
