@@ -57,7 +57,7 @@ except Exception:
     pass
 
 # =====================================================================================================================
-# FUNÇÕES DE INTELIGÊNCIA ISOLADAS CORRIGIDAS COM PROMPT SEGURO (MOCK DATA INTEGRADO ANTI-ERRO 429)
+# FUNÇÕES DE INTELIGÊNCIA ISOLADAS CORRIGIDAS COM PROMPT SEGURO (MOCK DATA INTEGRADO ANTI-ERRO DE COTA)
 # =====================================================================================================================
 def executar_auditoria(produto):
     try:
@@ -119,7 +119,7 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # =====================================================================================================================
-# INTERFACE DO MENU CENTRAL (ESTRUTURA DE RENDERIZAÇÃO IMEDIATA ANTI-PÁGINA EM BRANCO)
+# INTERFACE DO MENU CENTRAL (ESTRUTURA DE RENDERIZAÇÃO SEGUINDO SEU MODELO)
 # =====================================================================================================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
