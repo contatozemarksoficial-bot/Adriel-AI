@@ -28,18 +28,28 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # ==========================================
-# 1. ABA: RADAR DE PRODUTOS (100% ISOLADA E LOCAL)
+# 1. ABA: RADAR DE PRODUTOS (100% ISOLADA, LOCAL E COMPREENSIVA)
 # ==========================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]")
-    st.markdown("Abaixo estão os 7 principais produtos gringos altamente validados e os melhores mercados para anúncios:")
+    st.markdown("Abaixo está o mapa completo com as métricas e a estratégia exata dos 7 produtos líderes de Fundo de Funil:")
     
+    # Tabela ultra detalhada afirmando as características comerciais e a estratégia exata de cada produto
     dados_radar = {
         "Product Name": ["Sugar Defender", "ProDentim", "GlucoBerry", "Citrus Burn", "LeanBliss", "Puravive", "Java Burn"],
-        "Comissão Média": ["75%", "85%", "70%", "80%", "75%", "80%", "70%"],
-        "Ganho Estimado ($)": ["$127.30", "$142.00", "$135.00", "$115.00", "$105.00", "$138.00", "$120.00"],
         "Veredito de Mercado": ["VALIDADO (Risco Baixo)", "VALIDADO (Risco Baixo)", "VALIDADO (Risco Baixo)", "VALIDADO (Risco Baixo)", "VALIDADO (Risco Médio)", "VALIDADO (Risco Baixo)", "VALIDADO (Risco Baixo)"],
-        "Melhor País Estratégico": ["Reino Unido (United Kingdom) 🇬🇧", "Irlanda (Ireland) 🇮🇪", "Nova Zelândia (New Zealand) 🇳🇿", "Estados Unidos (Mobile Only) 🇺🇸", "Canadá (Canada) 🇨🇦", "Reino Unido (United Kingdom) 🇬🇧", "Austrália (Australia) 🇦🇺"]
+        "Melhor País Estratégico": ["Reino Unido (UK) 🇬🇧", "Irlanda (Ireland) 🇮🇪", "Nova Zelândia 🇳🇿", "Estados Unidos 🇺🇸", "Canadá (Canada) 🇨🇦", "Reino Unido (UK) 🇬🇧", "Austrália (Australia) 🇦🇺"],
+        "CPC Médio Est. ($)": ["$0.42", "$0.55", "$0.38", "$0.65", "$0.48", "$0.50", "$0.45"],
+        "Ganho Estimado ($)": ["$127.30", "$142.00", "$135.00", "$115.00", "$105.00", "$138.00", "$120.00"],
+        "Estratégia Recomendada": [
+            "Fundo de Funil + Vídeo de 10s com seta amarela e Pre-sell com bandeira local para máxima conversão.",
+            "Correspondência ampla qualificada para destravar o leilão, evitando termos genéricos de dor de dente.",
+            "Oceano Azul puro para fugir da briga de afiliados dos EUA e garantir cliques ultra baratos.",
+            "Travar exclusão de computadores nas configurações e rodar anúncio focado 100% em celulares gringos.",
+            "Campanha de rede de pesquisa focada em pacotes de 6 frascos usando copy sem promessas agressivas.",
+            "Estrutura com aviso obrigatório de afiliado no topo para passar direto pela conformidade da Europa.",
+            "Anúncio direto para os termos de compra exatos aproveitando o forte poder de consumo dos australianos."
+        ]
     }
     df = pd.DataFrame(dados_radar)
     st.dataframe(df, use_container_width=True)
@@ -130,5 +140,5 @@ else:
     elif menu == "⚙️ Configurações":
         st.title("⚙️ Configurações do Sistema")
         st.text_input("🔑 Chave API Google ativa nos bastidores:", value="CONFIGURADA_NOS_SECRETS", type="password", disabled=True)
-        st.selectbox("🤖 Motor Inteligente Padrão:", ["gemini-1.5-flash"])
+        st.selectbox("🤖 Modelo de IA Ativo:", ["gemini-1.5-flash"])
         st.success("Infraestrutura de dados integrada com sucesso!")
