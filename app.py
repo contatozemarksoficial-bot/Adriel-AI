@@ -24,7 +24,6 @@ def gerar_dados_radar():
     return dados_radar
 
 def auditoria_produto(produto):
-    # Simulação de dados de auditoria
     return {
         "Produto": produto,
         "Status de Validação": "Validado com alta demanda.",
@@ -105,12 +104,4 @@ elif menu == "🛰️ Caçador de Lançamentos":
 # Fabricante de Pre-sell
 elif menu == "🌐 Fabricante de Pre-sell":
     st.title("🌐 MÓDULO: FABRICANTE DE PRE-SELL")
-    produto_presell = st.text_input("Digite o nome do produto para criar a pré-venda:")
-    if st.button("Gerar Pré-venda"):
-        presell = gerar_presell(produto_presell)
-        st.json(presell)
-
-# Configurações
-elif menu == "⚙️ Configurações":
-    st.title("⚙️ MÓDULO: CONFIGURAÇÕES")
-    st.write("Área de Configurações em desenvolvimento.")
+    produto_presell = st.text_input
