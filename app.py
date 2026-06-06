@@ -79,55 +79,66 @@ elif menu == "🛡️ Auditor de Mercado":
 # ==========================================
 elif menu == "✍️ Gerador de Anúncios":
     st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & CARACTERÍSTICAS")
-    st.markdown("Gere o arsenal completo estruturado rigidamente em blocos de cópia e colagem:")
+    st.markdown("Gere o arsenal de anúncios e palavras-chave de Fundo de Funil 100% em inglês comercial gringo:")
     
     produto_alvo = st.text_input("✍️ Nome do Produto Gringo:", value="Sugar Defender")
     resumo_niche = st.text_area("📋 Resumo do Produto (Nicho/Dores):", value="Suplemento natural para equilíbrio do metabolismo.")
     
     if st.button("Core Inteligência - Gerar Arsenal"):
-        st.info("Processando Características de Campanha... Por favor, aguarde.")
+        st.info("Processando Características de Campanha Gringa... Por favor, aguarde.")
         try:
             model = genai.GenerativeModel(modelo_ativo)
             
-            # Engenharia reversa para forçar a formatação perfeita em blocos
             prompt = f"""
-            Você é o ROBO MÁQUINA DE ANÚNCIOS PERFEITO. Monte a estrutura exata do produto '{produto_alvo}' baseado em: {resumo_niche}.
-            Siga as políticas do Google Ads (sem promessas de cura médica).
+            You are the ROBO MÁQUINA DE ANÚNCIOS PERFEITO, an expert in Google Ads buyer intent keywords.
+            Generate the campaign structure for the affiliate product '{produto_alvo}' based on this info: {resumo_niche}.
+            ALL TEXT MUST BE WRITTEN IN PERFECT ENGLISH FOR THE UK/USA MARKET. DO NOT WRITE IN PORTUGUESE.
+            Follow Google Ads policies strictly (no health or cure claims).
 
-            Entregue o resultado estritamente dividido nos seguintes blocos separados por rótulos claros:
+            Format the response exactly with these labels and structures:
             
-            [CAMINHO]
-            Crie no formato: /Official/Store
+            [DISPLAY PATH]
+            /Official/Store
             
-            [TITULOS]
-            Traga 4 títulos comerciais curtos com menos de 30 caracteres cada, com o nome do produto, sem repetições. Exemplo: 1. {produto_alvo} Official Site
+            [HEADLINES - MAX 30 CHARACTERS EACH]
+            1. {produto_alvo} Official Site
+            2. Buy {produto_alvo} Online
+            3. Official {produto_alvo}
+            4. {produto_alvo} Best Price
             
-            [DESCRICOES]
-            Traga 4 descrições persuasivas com menos de 90 caracteres cada, focadas em frete e desconto.
+            [DESCRIPTIONS - MAX 90 CHARACTERS EACH]
+            1. Order {produto_alvo} from the official website today and get exclusive discounts.
+            2. Get the original {produto_alvo} formula with a 100% 60-day money-back guarantee.
+            3. 100% natural formula backed by clinical research. Fast shipping available.
+            4. Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.
             
-            [ASPAS]
-            Traga uma lista de 5 palavras-chave com aspas utilizando apenas o nome do produto. Exemplo: "{produto_alvo} buy online"
+            [PHRASE MATCH KEYWORDS - WITH QUOTES - CREATE AT LEAST 15 UNIQUE KEYWORDS]
+            Create exactly 15 unique, different buyer intent keywords with quotes using the product name '{produto_alvo}'. Example: "{produto_alvo} official website", "{produto_alvo} buy online", etc.
             
-            [COLCHETES]
-            Traga uma lista de 5 palavras-chave com colchetes utilizando apenas o nome do produto. Exemplo: [{produto_alvo}]
+            [EXACT MATCH KEYWORDS - WITH BRACKETS - CREATE AT LEAST 15 UNIQUE KEYWORDS]
+            Create exactly 15 unique, different buyer intent keywords with brackets using the product name '{produto_alvo}'. Example: [{produto_alvo} official website], [buy {produto_alvo} online], etc.
             
-            [LIVRES]
-            Traga uma lista de 5 palavras-chave abertas sem símbolos utilizando apenas o nome do produto. Exemplo: {produto_alvo} store
+            [BROAD MATCH KEYWORDS - PURE TEXT NO SYMBOLS - CREATE AT LEAST 15 UNIQUE KEYWORDS]
+            Create exactly 15 unique, different buyer intent keywords as pure text without symbols using the product name '{produto_alvo}'. Example: {produto_alvo} official site, buy {produto_alvo}, etc.
             
-            [NEGATIVAS]
-            Traga 10 palavras negativas essenciais separadas por quebra de linha.
+            [NEGATIVE KEYWORDS]
+            scam
+            reviews
+            complaints
+            ingredients
+            side effects
+            free pdf
+            amazon
+            walmart
+            ebay
             """
             
             resposta = model.generate_content(prompt)
             texto_bruto = resposta.text
             
-            st.success("🎯 Características estruturadas com sucesso!")
-            
-            # Bloco de Código Streamlit que organiza visualmente o resultado para o usuário
-            st.write("### 📌 ESTRUTURA COMPREENSIVA DO PRODUTO")
-            st.markdown("Copie cada seção abaixo diretamente para o seu bloco de notas ou painel do Google Ads:")
-            
-            st.text_area("📋 Material Completo de Cópia Organizado:", value=texto_bruto, height=500)
+            st.success("🎯 Características gringas estruturadas com sucesso!")
+            st.write("### 📌 ESTRUTURA COMPREENSIVA DO PRODUTO (100% INGLÊS)")
+            st.text_area("📋 Material Pronto para Copiar e Colar no Google Ads:", value=texto_bruto, height=500)
             
         except Exception as e:
             st.error(f"Erro na IA: {e}")
@@ -162,7 +173,7 @@ elif menu == "🌐 Fabricante de Pre-sell":
         st.info("Montando estrutura compliance com aviso de afiliado...")
         try:
             model = genai.GenerativeModel(modelo_ativo)
-            prompt = f"Crie o texto de uma página de pre-sell blindada para o Google Ads para o produto {prod_presell}. Escreva em inglês. Inclua uma Headline segura, Subheadline, uma linha escrito 'Available for United Kingdom Delivery' com emoji de bandeira, o aviso obrigatório de afiliado e o rodapé de privacidade legal. Coloque explicações em português de onde colar cada bloco."
+            prompt = f"Crie o texto de uma página de pre-sell blindada para o Google Ads para o produto {prod_presell}. Escreva em inglês. Inclua uma Headline segura, Subheadline, uma linha escrito 'Available for United Kingdom Delivery' com emoji de bandeira, o aviso obrigatório de afiliado and o rodapé de privacidade legal. Coloque explicações em português de onde colar cada bloco."
             resposta = model.generate_content(prompt)
             st.success("Pre-sell Estruturada com Sucesso!")
             st.text_area("📋 Copie a estrutura para o Elementor:", value=resposta.text, height=350)
