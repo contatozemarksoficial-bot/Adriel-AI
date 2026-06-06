@@ -6,9 +6,7 @@ st.set_page_config(page_title="Adriel AI - Plataforma Master", layout="wide")
 
 # Função para gerar dados de radar
 def gerar_dados_radar():
-    # Aqui definimos o comprimento desejado
     num_produtos = 30
-    # Simulação dos dados do radar
     dados_radar = pd.DataFrame({
         "Ranking": [f"Top {i}" for i in range(1, 11)] + [f"Produto {i}" for i in range(11, num_produtos + 1)],
         "Nome do Produto": [
@@ -28,54 +26,4 @@ def gerar_dados_radar():
     return dados_radar
 
 # Função para auditoria de produto
-def auditoria_produto(produto):
-    return {
-        "Produto": produto,
-        "Status de Validação": "Validado com alta demanda.",
-        "Benefícios": "Melhora a saúde, aumenta energia.",
-        "Dores": "Falta de energia, dificuldade em emagrecer.",
-        "Melhor País": "Reino Unido 🇬🇧",
-        "CPC Estimado": "$0.55"
-    }
-
-# Função para gerar anúncios
-def gerar_anuncio(produto):
-    return {
-        "Títulos": [
-            f"Compre {produto} Agora!",
-            f"Descontos em {produto}!",
-            f"Produto Oficial {produto}",
-            f"Melhor Preço para {produto}"
-        ],
-        "Descrições": [
-            "Obtenha descontos exclusivos ao comprar hoje.",
-            "Garantia de 60 dias na compra do produto."
-        ],
-        "Palavras-Chave": [
-            f'"{produto} oficial"', f'"comprar {produto}"', f'"{produto} desconto"',
-            f'"{produto} online"', f'"{produto} reviews"'
-        ],
-        "Palavras Negativas": ["grátis", "barato", "fake"]
-    }
-
-# Função para caçador de lançamentos
-def caçador_lançamentos():
-    return [
-        {"Produto": "Produto X", "Oportunidade": "Alta demanda, baixa concorrência.", "Termômetro": "85/100"},
-        {"Produto": "Produto Y", "Oportunidade": "Bom potencial de vendas.", "Termômetro": "78/100"}
-    ]
-
-# Função para gerar pré-venda
-def gerar_presell(produto):
-    return {
-        "Título": f"Oferta Especial para {produto}!",
-        "Descrição": f"Garanta sua saúde com {produto}.",
-        "Chamada para Ação": "Compre Agora!",
-        "Link de Criação": "https://www.hostinger.com/br?REFERRALCODE=VBMCONTAT7WC"
-    }
-
-# Menu lateral
-menu = st.sidebar.radio(
-    "Módulos da Plataforma:",
-    ["📊 Radar de Produtos", "🛡️ Auditor de Mercado", "✍️ Gerador de Anúncios", 
-     "🛰️ Caçador de Lanç
+def auditoria
