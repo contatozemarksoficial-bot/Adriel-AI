@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 import random
 
-# Configuração premium de página - Limpa e expandida
+# Configuração premium de página - Ampla e profissional Black
 st.set_page_config(page_title="Adriel AI - Plataforma Master", layout="wide")
 
-# Gerenciador de Memória Nativo - Segura os dados na tela central entre cliques
+# Inicialização limpa da memória de sessão para fixar os dados na tela central
 if "resposta_auditoria" not in st.session_state:
     st.session_state.resposta_auditoria = ""
 if "resposta_gerador" not in st.session_state:
@@ -15,7 +15,7 @@ if "resposta_cacador" not in st.session_state:
 if "resposta_presell" not in st.session_state:
     st.session_state.resposta_presell = ""
 
-# Banco de dados nativo de 22 produtos campeões gringos validados (Com Obsesta no Top 2)
+# Lista fixa oficial de 22 PRODUTOS GRINGOS VALIDADOS (Rica em Informações)
 dados_fixos_radar = pd.DataFrame({
     "Ranking": [f"Top {i}" for i in range(1, 23)],
     "Product Name": [
@@ -52,7 +52,7 @@ dados_fixos_radar = pd.DataFrame({
 })
 
 # =====================================================================================================================
-# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO INTERNO
+# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO COMPLETO
 # =====================================================================================================================
 st.sidebar.title("🎛️ Adriel AI")
 st.sidebar.markdown("**SISTEMA OPERACIONAL INTEGRAÇÃO 2026**")
@@ -76,11 +76,11 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # =====================================================================================================================
-# LIGAÇÃO DIRETA DOS BOTÕES - CENTRALIZADO E TOTALMENTE LIVRE DE ERROS DE IDENTAÇÃO
+# INTERFACE DO MENU CENTRAL - TOTALMENTE RESTRUTURADA CONTRA BLOQUEIOS E TELAS EM BRANCO
 # =====================================================================================================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
-    st.markdown("O sistema analisa tendências globais de busca. O produto que sobe em interesse assume o topo do ranking, o que esfria desce, e novos lançamentos entram na lista automaticamente de forma estruturada.")
+    st.markdown("O sistema analisa tendências globais de busca. O produto que sobe em interesse assume o topo do ranking, o que esfria desce, e novos lançamentos entram na lista automaticamente.")
     st.markdown("### 🏆 POSIÇÕES DO MERCADO ATUALIZADAS (MÍNIMO 20 PRODUTOS ATIVOS)")
     st.dataframe(dados_fixos_radar, use_container_width=True, height=550)
     csv_data = dados_fixos_radar.to_csv(index=False).encode('utf-8')
@@ -92,7 +92,17 @@ elif menu == "🛡️ Auditor de Mercado":
     if st.button("Executar Auditoria"):
         if produto:
             st.info("Escaneando dados de leilão... Por favor, aguarde.")
-            st.session_state.resposta_auditoria = "**1. STATUS DE VALIDAÇÃO DO PRODUTO**\nO produto '" + produto + "' está 100% VALIDADO no mercado internacional de afiliados, registrando alto volume de buscas exatas e baixíssima taxa de reembolso, sendo ideal para estratégias agressivas de Fundo de Funil.\n\n**2. ANÁLISE DE CONCORRÊNCIA E PREÇO DO CLIQUE (CPC)**\nNos Estados Unidos a concorrência está saturada com CPC batendo $0.85. Porém, no Reino Unido e Irlanda, o leilão encontra-se livre de grandes afiliados gringos, apresentando um CPC médio real e estimado em excelentes $0.45.\n\n**3. MAIOR DOR DO COMPRADOR GRINGO**\nO cliente final gringo busca por regulação rápida do metabolismo, controle severo de apetite por doces, perda de peso natural sem efeito sanfona e aumento massivo da disposição diária.\n\n**4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR (MAIOR ROI)**\nO melhor país para iniciar a campanha é o Reino Unido (United Kingdom) 🇬🇧. O leilão local em libras oferece menor concorrência, cliques muito mais baratos e alto poder de conversão se associado a uma Pre-sell blindada com aviso de bandeira local."
+            st.session_state.resposta_auditoria = """**1. STATUS DE VALIDAÇÃO DO PRODUTO**
+O produto 'Obsesta' está 100% VALIDADO no mercado internacional de afiliados, registrando alto volume de buscas exatas e baixíssima taxa de reembolso, sendo ideal para estratégias agressivas de Fundo de Funil.
+
+**2. ANÁLISE DE CONCORRÊNCIA E PREÇO DO CLIQUE (CPC)**
+Nos Estados Unidos a concorrência está saturada com CPC batendo $0.85. Porém, no Reino Unido e Irlanda, o leilão encontra-se livre de grandes afiliados gringos, apresentando um CPC médio real e estimado em excelentes $0.45.
+
+**3. MAIOR DOR DO COMPRADOR GRINGO**
+O cliente final gringo busca por regulação rápida do metabolismo, controle severo de apetite por doces, perda de peso natural sem efeito sanfona e aumento massivo da disposição diária.
+
+**4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR (MAIOR ROI)**
+O melhor país para iniciar a campanha é o Reino Unido (United Kingdom) 🇬🇧. O leilão local em libras oferece menor concorrência, cliques muito mais baratos e alto poder de conversão se associado a uma Pre-sell blindada com aviso de bandeira local."""
             st.success("Auditoria concluída com sucesso!")
         else:
             st.warning("Por favor, insira um nome de produto.")
@@ -105,7 +115,75 @@ elif menu == "✍️ Gerador de Anúncios":
     if st.button("Gerar Anúncios"):
         if produto:
             st.info("Montando estrutura e aplicando regras de segurança...")
-            st.session_state.resposta_gerador = "[DISPLAY PATH]\n/Official/Store\n/Secure/Order\n\n[HEADLINES - MAX 30 CHARACTERS]\n1. " + produto + " Official Site (Pin Position 1)\n2. Buy " + produto + " Online\n3. Original " + produto + " Formula\n4. " + produto + " Best Price\n\n[DESCRIPTIONS - MAX 90 CHARACTERS]\n1. Order " + produto + " from the official website today and get exclusive package discounts.\n2. Get the original " + produto + " with a 100% 60-day money-back guarantee. Secure checkout.\n3. 100% natural formula backed by clinical research. Fast shipping options available.\n4. Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.\n\n[PHRASE MATCH KEYWORDS - WITH QUOTES - EXACTLY 15 UNIQUE TERMS]\n1. \"" + produto + " official website\"\n2. \"buy " + produto + " online\"\n3. \"" + produto + " discount price\"\n4. \"order " + produto + " online\"\n5. \"" + produto + " where to buy\"\n6. \"" + produto + " store\"\n7. \"" + produto + " price\"\n8. \"get " + produto + "\"\n9. \"purchase " + produto + "\"\n10. \"" + produto + " sale\"\n11. \"" + produto + " supplement\"\n12. \"" + produto + " official store\"\n13. \"" + produto + " best price\"\n14. \"secure " + produto + " order\"\n15. \"" + produto + " check out\"\n\n[EXACT MATCH KEYWORDS - WITH BRACKETS - EXACTLY 15 UNIQUE TERMS]\n1. [" + produto + " official website]\n2. [buy " + produto + " online]\n3. [" + produto + " discount price]\n4. [order " + produto + " online]\n5. [" + produto + " where to buy]\n6. [" + produto + " store]\n7. [" + produto + " price]\n8. [get " + produto + "]\n9. [purchase " + produto + "]\n10. [" + produto + " sale]\n11. [" + produto + " supplement]\n12. [" + produto + " official store]\n13. [" + produto + " best price]\n14. [secure " + produto + " order]\n15. [" + produto + "]\n\n[BROAD MATCH KEYWORDS - PURE TEXT NO SYMBOLS - EXACTLY 15 UNIQUE TERMS]\n1. " + produto + " official site\n2. buy " + produto + "\n3. " + produto + " store\n4. order " + produto + "\n5. " + produto + " discount\n6. " + produto + " online\n7. " + produto + " website\n8. purchase " + produto + "\n9. price of " + produto + "\n10. original " + produto + "\n11. " + produto + " delivery\n12. " + produto + " supply\n13. " + produto + " shop\n14. cost of " + produto + "\n15. " + produto + " cost\n\n[NEGATIVE KEYWORDS]\nscam, reviews, complaints, ingredients, side effects, free pdf, amazon, walmart, ebay, discount code, coupon, target, refund"
+            st.session_state.resposta_gerador = """[DISPLAY PATH]
+/Official/Store
+/Secure/Order
+
+[HEADLINES - MAX 30 CHARACTERS]
+1. Obsesta Official Site (Pin Position 1)
+2. Buy Obsesta Online
+3. Original Obsesta Formula
+4. Obsesta Best Price
+
+[DESCRIPTIONS - MAX 90 CHARACTERS]
+1. Order Obsesta from the official website today and get exclusive package discounts.
+2. Get the original Obsesta with a 100% 60-day money-back guarantee. Secure checkout.
+3. 100% natural formula backed by clinical research. Fast shipping options available.
+4. Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.
+
+[PHRASE MATCH KEYWORDS - WITH QUOTES - EXACTLY 15 UNIQUE TERMS]
+1. "obsesta official website"
+2. "buy obsesta online"
+3. "obsesta discount price"
+4. "order obsesta online"
+5. "obsesta where to buy"
+6. "obsesta store"
+7. "obsesta price"
+8. "get obsesta"
+9. "purchase obsesta"
+10. "obsesta sale"
+11. "obsesta supplement"
+12. "obsesta official store"
+13. "obsesta best price"
+14. "secure obsesta order"
+15. "obsesta check out"
+
+[EXACT MATCH KEYWORDS - WITH BRACKETS - EXACTLY 15 UNIQUE TERMS]
+1. [obsesta official website]
+2. [buy obsesta online]
+3. [obsesta discount price]
+4. [order obsesta online]
+5. [obsesta where to buy]
+6. [obsesta store]
+7. [obsesta price]
+8. [get obsesta]
+9. [purchase obsesta]
+10. [obsesta sale]
+11. [obsesta supplement]
+12. [obsesta official store]
+13. [obsesta best price]
+14. [secure obsesta order]
+15. [obsesta]
+
+[BROAD MATCH KEYWORDS - PURE TEXT NO SYMBOLS - EXACTLY 15 UNIQUE TERMS]
+1. obsesta official site
+2. buy obsesta
+3. obsesta store
+4. order obsesta
+5. obsesta discount
+6. obsesta online
+7. obsesta website
+8. purchase obsesta
+9. price of obsesta
+10. original obsesta
+11. obsesta delivery
+12. obsesta supply
+13. obsesta shop
+14. cost of obsesta
+15. obsesta cost
+
+[NEGATIVE KEYWORDS]
+scam, reviews, complaints, ingredients, side effects, free pdf, amazon, walmart, ebay, discount code, coupon, target, refund"""
             st.success("Anuncio gerado com sucesso!")
         else:
             st.warning("Por favor, insira um nome de produto.")
@@ -116,3 +194,10 @@ elif menu == "🛰️ Caçador de Lançamentos":
     st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS")
     if st.button("Simular Lançamentos"):
         st.info("Varrendo servidores internacionais de ofertas...")
+        st.session_state.resposta_cacador = """🔥 **LANÇAMENTO 1: Obsesta (BuyGoods)**
+- **Por que e uma oportunidade:** Produto recém-lançado com leilão completamente vazio nas primeiras 48 horas no Google Ads. Baixíssima concorrência e alta comissão por venda.
+- **Melhor País para Começar:** Reino Unido 🇬🇧
+- **TERMÔMETRO DO LANÇAMENTO:** 98/100 (Potencial máximo de lucro rápido).
+
+🔥 **LANÇAMENTO 2: NeuroQuiet (ClickBank)**
+- **Por que e uma oportunidade:** Nicho de saúde mental e foco em plena ascensão na Europa, com leilão limpo de concorrentes.
