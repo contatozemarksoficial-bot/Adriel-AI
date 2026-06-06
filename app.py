@@ -87,7 +87,9 @@ elif menu == "✍️ Gerador de Anúncios":
     if st.button("Core Inteligência - Gerar Arsenal"):
         st.info("Processando Características de Campanha Gringa... Por favor, aguarde.")
         try:
-            model = genai.GenerativeModel(modelo_ativo)
+            # 🕹️ DESTRAVA DE MEMÓRIA PARA RESPONDER TEXTOS LONGOS SEM CORTAR
+            config_ia = genai.types.GenerationConfig(max_output_tokens=1200)
+            model = genai.GenerativeModel(modelo_ativo, generation_config=config_ia)
             
             prompt = f"""
             You are the ROBO MÁQUINA DE ANÚNCIOS PERFEITO, an expert in Google Ads buyer intent keywords.
@@ -112,14 +114,56 @@ elif menu == "✍️ Gerador de Anúncios":
             3. 100% natural formula backed by clinical research. Fast shipping available.
             4. Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.
             
-            [PHRASE MATCH KEYWORDS - WITH QUOTES - CREATE AT LEAST 15 UNIQUE KEYWORDS]
-            Create exactly 15 unique, different buyer intent keywords with quotes using the product name '{produto_alvo}'. Example: "{produto_alvo} official website", "{produto_alvo} buy online", etc.
+            [PHRASE MATCH KEYWORDS - WITH QUOTES - LIST EXACTLY 15 UNIQUE ITEMS]
+            1. "{produto_alvo} official website"
+            2. "buy {produto_alvo} online"
+            3. "{produto_alvo} discount price"
+            4. "order {produto_alvo} online"
+            5. "{produto_alvo} where to buy"
+            6. "{produto_alvo} store"
+            7. "{produto_alvo} price"
+            8. "get {produto_alvo}"
+            9. "purchase {produto_alvo}"
+            10. "{produto_alvo} sale"
+            11. "{produto_alvo} supplement"
+            12. "{produto_alvo} official store"
+            13. "{produto_alvo} best price"
+            14. "secure {produto_alvo} order"
+            15. "{produto_alvo} check out"
             
-            [EXACT MATCH KEYWORDS - WITH BRACKETS - CREATE AT LEAST 15 UNIQUE KEYWORDS]
-            Create exactly 15 unique, different buyer intent keywords with brackets using the product name '{produto_alvo}'. Example: [{produto_alvo} official website], [buy {produto_alvo} online], etc.
+            [EXACT MATCH KEYWORDS - WITH BRACKETS - LIST EXACTLY 15 UNIQUE ITEMS]
+            1. [{produto_alvo} official website]
+            2. [buy {produto_alvo} online]
+            3. [{produto_alvo} discount price]
+            4. [order {produto_alvo} online]
+            5. [{produto_alvo} where to buy]
+            6. [{produto_alvo} store]
+            7. [{produto_alvo} price]
+            8. [get {produto_alvo}]
+            9. [purchase {produto_alvo}]
+            10. [{produto_alvo} sale]
+            11. [{produto_alvo} supplement]
+            12. [{produto_alvo} official store]
+            13. [{produto_alvo} best price]
+            14. [secure {produto_alvo} order]
+            15. [{produto_alvo}]
             
-            [BROAD MATCH KEYWORDS - PURE TEXT NO SYMBOLS - CREATE AT LEAST 15 UNIQUE KEYWORDS]
-            Create exactly 15 unique, different buyer intent keywords as pure text without symbols using the product name '{produto_alvo}'. Example: {produto_alvo} official site, buy {produto_alvo}, etc.
+            [BROAD MATCH KEYWORDS - PURE TEXT NO SYMBOLS - LIST EXACTLY 15 UNIQUE ITEMS]
+            1. {produto_alvo} official site
+            2. buy {produto_alvo}
+            3. {produto_alvo} store
+            4. order {produto_alvo}
+            5. {produto_alvo} discount
+            6. {produto_alvo} online
+            7. {produto_alvo} website
+            8. purchase {produto_alvo}
+            9. price of {produto_alvo}
+            10. original {produto_alvo}
+            11. {produto_alvo} delivery
+            12. {produto_alvo} supply
+            13. {produto_alvo} shop
+            14. cost of {produto_alvo}
+            15. {produto_alvo} cost
             
             [NEGATIVE KEYWORDS]
             scam
@@ -138,7 +182,7 @@ elif menu == "✍️ Gerador de Anúncios":
             
             st.success("🎯 Características gringas estruturadas com sucesso!")
             st.write("### 📌 ESTRUTURA COMPREENSIVA DO PRODUTO (100% INGLÊS)")
-            st.text_area("📋 Material Pronto para Copiar e Colar no Google Ads:", value=texto_bruto, height=500)
+            st.text_area("📋 Material Pronto para Copiar e Colar no Google Ads:", value=texto_bruto, height=550)
             
         except Exception as e:
             st.error(f"Erro na IA: {e}")
@@ -173,18 +217,3 @@ elif menu == "🌐 Fabricante de Pre-sell":
         st.info("Montando estrutura compliance com aviso de afiliado...")
         try:
             model = genai.GenerativeModel(modelo_ativo)
-            prompt = f"Crie o texto de uma página de pre-sell blindada para o Google Ads para o produto {prod_presell}. Escreva em inglês. Inclua uma Headline segura, Subheadline, uma linha escrito 'Available for United Kingdom Delivery' com emoji de bandeira, o aviso obrigatório de afiliado and o rodapé de privacidade legal. Coloque explicações em português de onde colar cada bloco."
-            resposta = model.generate_content(prompt)
-            st.success("Pre-sell Estruturada com Sucesso!")
-            st.text_area("📋 Copie a estrutura para o Elementor:", value=resposta.text, height=350)
-        except Exception as e:
-            st.error(f"Erro na IA: {e}")
-
-# ==========================================
-# 6. ABA: CONFIGURAÇÕES
-# ==========================================
-elif menu == "⚙️ Configurações":
-    st.title("⚙️ Configurações do Sistema")
-    st.text_input("🔑 Chave API Google ativa nos bastidores:", value="CONFIGURADA_NOS_SECRETS", type="password", disabled=True)
-    st.selectbox("🤖 Motor Inteligente Padrão:", ["gemini-1.5-flash", "gemini-1.5-pro"])
-    st.success("Infraestrutura de dados integrada com sucesso!")
