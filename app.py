@@ -5,6 +5,14 @@ import pandas as pd
 # Configuração da página para modo amplo e estilo profissional
 st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide")
 
+# Inicialização da Memória do Aplicativo (Session State) para evitar re-chamadas e erro 429
+if "resposta_auditoria" not in st.session_state:
+    st.session_state.resposta_auditoria = ""
+if "resposta_gerador" not in st.session_state:
+    st.session_state.resposta_gerador = ""
+if "resposta_presell" not in st.session_state:
+    st.session_state.resposta_presell = ""
+
 # Barra Lateral Esquerda - Menu de Navegação Idêntico ao Painel
 st.sidebar.title("🎛️ Adriel AI")
 st.sidebar.markdown("**PAINEL DE CONTROLE**")
@@ -28,7 +36,7 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # ==========================================
-# 1. ABA: RADAR DE PRODUTOS (100% ISOLADA, LOCAL E COMPREENSIVA)
+# 1. ABA: RADAR DE PRODUTOS (100% LOCAL E ISOLADA)
 # ==========================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]")
@@ -54,7 +62,7 @@ if menu == "📊 Radar de Produtos":
     st.dataframe(df, use_container_width=True)
     st.button("📥 BAIXAR PLANILHA DE INTELIGÊNCIA (.CSV)")
 
-# CONEXÃO COM A API SÓ OCORRE SE ENTRAR NOS MÓDULOS DE IA
+# SÓ DISPARA CONEXÃO EXTERNA SE NÃO FOR O RADAR LOCAL
 else:
     modelo_ativo = "models/gemini-1.5-flash"
     try:
@@ -67,7 +75,7 @@ else:
         pass
 
     # ==========================================
-    # 2. ABA: AUDITOR DE MERCADO (ESTRUTURA CIRÚRGICA PADRONIZADA)
+    # 2. ABA: AUDITOR DE MERCADO
     # ==========================================
     if menu == "🛡️ Auditor de Mercado":
         st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
@@ -78,8 +86,6 @@ else:
             st.info(f"Analisando dados globais de leilão e concorrência para '{prod_auditar}'...")
             try:
                 model = genai.GenerativeModel(modelo_ativo)
-                
-                # Prompt de engenharia reversa travando os 4 blocos de respostas obrigatórias
                 prompt = f"""
                 Você é o AUDITOR DE MERCADO XEQUE-MATE, especialista em análise de concorrência e custos de leilão no Google Ads para afiliados internacionais.
                 Faça uma análise estratégica precisa do produto de afiliado gringo '{prod_auditar}'.
@@ -99,12 +105,15 @@ else:
 
                 Escreva toda a resposta em português claro, direto, profissional e direto ao ponto, sem enrolação.
                 """
-                
                 resposta = model.generate_content(prompt)
+                st.session_state.resposta_auditoria = resposta.text
                 st.success("Auditoria Estratégica Concluída com Sucesso!")
-                st.write(resposta.text)
             except Exception as e:
-                st.error(f"Erro na IA (Se necessário, aguarde 1 minuto para resetar a cota): {e}")
+                st.error(f"Erro na IA (Aguarde 1 minuto para resetar a cota): {e}")
+        
+        # Mantém a resposta impressa em tela de forma fixa sem re-disparar o erro
+        if st.session_state.resposta_auditoria:
+            st.write(st.session_state.resposta_auditoria)
             
     # ==========================================
     # 3. ABA: GERADOR DE ANÚNCIOS
@@ -113,16 +122,21 @@ else:
         st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & CARACTERÍSTICAS")
         produto_alvo = st.text_input("✍️ Nome do Produto Gringo:", value="Sugar Defender")
         resumo_niche = st.text_area("📋 Resumo do Produto (Nicho/Dores):", value="Suplemento natural para equilíbrio do metabolismo.")
+        
         if st.button("Core Inteligência - Gerar Arsenal"):
             st.info("Processando Características de Campanha Gringa... Por favor, aguarde.")
             try:
                 model = genai.GenerativeModel(modelo_ativo)
                 prompt = f'Generate a Google Ads campaign structure in perfect English for "{produto_alvo}" based on: {resumo_niche}. Provide 4 headlines (max 30 chars), 4 descriptions (max 90 chars), and exactly 15 phrase match with quotes, 15 exact match with brackets, and 15 broad match keywords. No Portuguese.'
                 resposta = model.generate_content(prompt)
+                st.session_state.resposta_gerador = resposta.text
                 st.success("🎯 Características gringas estruturadas com sucesso!")
-                st.text_area("📋 Material Pronto para Copiar e Colar:", value=resposta.text, height=500)
             except Exception as e:
                 st.error(f"Erro na IA (Aguarde 1 minuto para resetar a cota): {e}")
+                
+        if st.session_state.resposta_gerador:
+            st.write("### 📌 ESTRUTURA COMPREENSIVA DO PRODUTO (100% INGLÊS)")
+            st.text_area("📋 Material Pronto para Copiar e Colar:", value=st.session_state.resposta_gerador, height=500)
 
     # ==========================================
     # 4. ABA: CAÇADOR DE LANÇAMENTOS
@@ -150,16 +164,5 @@ else:
             try:
                 model = genai.GenerativeModel(modelo_ativo)
                 resposta = model.generate_content(f"Crie uma pre-sell em inglês para {prod_presell} com headline, subheadline, 'Available for UK Delivery' e rodapé legal.")
+                st.session_state.resposta_presell = resposta.text
                 st.success("Pre-sell Estruturada com Sucesso!")
-                st.text_area("📋 Copie para o Elementor:", value=resposta.text, height=350)
-            except Exception as e:
-                st.error(f"Erro na IA: {e}")
-
-    # ==========================================
-    # 6. ABA: CONFIGURAÇÕES
-    # ==========================================
-    elif menu == "⚙️ Configurações":
-        st.title("⚙️ Configurações do Sistema")
-        st.text_input("🔑 Chave API Google ativa nos bastidores:", value="CONFIGURADA_NOS_SECRETS", type="password", disabled=True)
-        st.selectbox("🤖 Modelo de IA Ativo:", ["gemini-1.5-flash"])
-        st.success("Infraestrutura de dados integrada com sucesso!")
