@@ -57,7 +57,7 @@ except Exception:
     pass
 
 # =====================================================================================================================
-# FUNÇÕES DE INTELIGÊNCIA COM SISTEMA DE CONTINGÊNCIA (MOCK DATA ANTI-ERRO 429)
+# FUNÇÕES DE INTELIGÊNCIA ISOLADAS
 # =====================================================================================================================
 def executar_auditoria(produto):
     try:
@@ -83,7 +83,7 @@ def executar_cacador():
         resposta = model.generate_content("Simule lancamentos de afiliados de saude")
         return resposta.text
     except Exception:
-        return "🔥 **LANÇAMENTO 1: Obsesta (BuyGoods)**\n- **Oportunidade:** Leilão completamente vazio no Google Ads nas primeiras 48 horas.\n- **Melhor País:** Reino Unido 🇬🇧\n- **TERMÔMETRO:** 98/100 (Excelente potencial de vendas).\n\n🔥 **LANÇAMENTO 2: NeuroQuiet (ClickBank)**\n- **Melhor País:** Irlanda 🇮🇪\n- **TERMÔMETRO:** 85/100"
+        return "🔥 **LANÇAMENTO 1: Obsesta (BuyGoods)**\n- **Oportunidade:** Leilão completamente vazio no Google Ads nas primeiras 48 hours.\n- **Melhor País:** Reino Unido 🇬🇧\n- **TERMÔMETRO:** 98/100 (Excelente potencial de vendas).\n\n🔥 **LANÇAMENTO 2: NeuroQuiet (ClickBank)**\n- **Melhor País:** Irlanda 🇮🇪\n- **TERMÔMETRO:** 85/100"
 
 def executar_presell(produto):
     try:
@@ -119,11 +119,12 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # =====================================================================================================================
-# INTERFACE DO MENU CENTRAL (ESTRUTURA CORRIGIDA SEGUINDO SUAS INDICAÇÕES)
+# INTERFACE DO MENU CENTRAL (ADICIONADO RECUO DE TOPO CONTRA CORTE DE TELA)
 # =====================================================================================================================
 if menu == "📊 Radar de Produtos":
+    st.write("") # Empurra para baixo
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
-    st.markdown("O sistema analisa tendências globais de busca. O produto que sobe em interesse assume o topo do ranking, o que esfria desce, e novos lançamentos entram na lista automaticamente de forma estruturada.")
+    st.markdown("O sistema analisa tendências globais de busca. O produto que sobe em interesse assume o topo do ranking, o que esfria desce, e novos lançamentos entram na lista automaticamente.")
     st.markdown("### 🏆 POSIÇÕES DO MERCADO ATUALIZADAS (MÍNIMO 20 PRODUTOS ATIVOS)")
     st.dataframe(dados_fixos_radar, use_container_width=True, height=550)
     
