@@ -30,33 +30,4 @@ def auditoria_produto(produto):
         "Status de Validação": "Validado com alta demanda.",
         "Benefícios": "Melhora a saúde, aumenta energia.",
         "Dores": "Falta de energia, dificuldade em emagrecer.",
-        "Melhor País": "Reino Unido 🇬🇧",
-        "CPC Estimado": "$0.55"
-    }
-
-def gerar_anuncio(produto):
-    return {
-        "Títulos": [
-            f"Compre {produto} Agora!",
-            f"Descontos em {produto}!",
-            f"Produto Oficial {produto}",
-            f"Melhor Preço para {produto}"
-        ],
-        "Descrições": [
-            "Obtenha descontos exclusivos ao comprar hoje.",
-            "Garantia de 60 dias na compra do produto."
-        ],
-        "Palavras-Chave": [
-            f'"{produto} oficial"', f'"comprar {produto}"', f'"{produto} desconto"',
-            f'"{produto} online"', f'"{produto} reviews"'
-        ],
-        "Palavras Negativas": ["grátis", "barato", "fake"]
-    }
-
-def caçador_lançamentos():
-    return [
-        {"Produto": "Produto X", "Oportunidade": "Alta demanda, baixa concorrência.", "Termômetro": "85/100"},
-        {"Produto": "Produto Y", "Oportunidade": "Bom potencial de vendas.", "Termômetro": "78/100"}
-    ]
-
-def gerar_presell(prod
+        "Melhor
