@@ -41,7 +41,7 @@ if "dados_radar_dinamico" not in st.session_state:
         ],
         "CPC Médio Est. ($)": [
             "$0.42", "$0.45", "$0.55", "$0.38", "$0.65", "$0.48", "$0.50", "$0.45", "$0.52", "$0.60", 
-            $0.47, "$0.35", "$0.38", "$0.44", "$0.40", "$0.42", "$0.36", "$0.39", "$0.41", "$0.50", 
+            "$0.47", "$0.35", "$0.38", "$0.44", "$0.40", "$0.42", "$0.36", "$0.39", "$0.41", "$0.50", 
             "$0.46", "$0.48"
         ],
         "Tendência / Veredito": [
@@ -77,7 +77,7 @@ def executar_radar_dinamico():
         Certifique-se de manter o produto 'Obsesta' real e afirmado na lista com o nome correto.
         O JSON deve seguir exatamente essa estrutura de chaves (em inglês):
         [
-          {"Ranking": "Top 1", "Product Name": "Nome", "Status de Busca": "🔥 SUBINDO (Alta) ou 📉 DESCENDO", "Melhor País Estratégico": "País + Emoji", "CPC Médio Est. ($)": "$0.XX", "Tendência / Veredito": "Frase corta"},
+          {"Ranking": "Top 1", "Product Name": "Nome", "Status de Busca": "🔥 SUBINDO (Alta) ou 📉 DESCENDO", "Melhor País Estratégico": "País + Emoji", "CPC Médio Est. ($)": "$0.XX", "Tendência / Veredito": "Frase curta"},
           ...
         ]
         Gere a lista inteira até o Top 22 de forma idêntica. Retorne APENAS o JSON puro, sem formatações de texto ou crases de markdown.
