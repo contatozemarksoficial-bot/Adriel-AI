@@ -111,7 +111,6 @@ else:
             except Exception as e:
                 st.error(f"Erro na IA (Aguarde 1 minuto para resetar a cota): {e}")
         
-        # Mantém a resposta impressa em tela de forma fixa sem re-disparar o erro
         if st.session_state.resposta_auditoria:
             st.write(st.session_state.resposta_auditoria)
             
@@ -154,7 +153,7 @@ else:
                 st.error(f"Erro na IA: {e}")
 
     # ==========================================
-    # 5. ABA: FABRICANTE DE PRE-SELL
+    # 5. ABA: FABRICANTE DE PRE-SELL (CORRIGIDO)
     # ==========================================
     elif menu == "🌐 Fabricante de Pre-sell":
         st.title("🌐 MÓDULO: FABRICANTE DE PRE-SELL MASTER")
@@ -166,3 +165,5 @@ else:
                 resposta = model.generate_content(f"Crie uma pre-sell em inglês para {prod_presell} com headline, subheadline, 'Available for UK Delivery' e rodapé legal.")
                 st.session_state.resposta_presell = resposta.text
                 st.success("Pre-sell Estruturada com Sucesso!")
+            except Exception as e:
+                st.error(f"Erro na IA: {e}")
