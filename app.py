@@ -14,7 +14,7 @@ if "resposta_cacador" not in st.session_state:
 if "resposta_presell" not in st.session_state:
     st.session_state.resposta_presell = ""
 
-# Lista fixa oficial de 22 PRODUTOS GRINGOS VALIDADOS (Segurança Local)
+# Lista fixa oficial de 22 PRODUTOS GRINGOS VALIDADOS (Rica em Informações)
 dados_fixos_radar = pd.DataFrame({
     "Ranking": [f"Top {i}" for i in range(1, 23)],
     "Product Name": [
@@ -22,7 +22,13 @@ dados_fixos_radar = pd.DataFrame({
         "Java Burn", "Alpilean", "LivPure", "Cortexi", "NeuroQuiet", "ZenCortex", "FitsPresso", "Sync", 
         "Kerassentials", "Metanail", "Amiclear", "Serolean", "Alpha Tonic", "TonicGreens", "Ikaria Juice"
     ],
-    "Status de Busca": ["🔥 SUBINDO (Alta)"] * 3 + ["穩定 ESTÁVEL"] + ["🔥 SUBINDO (Alta)"] * 2 + ["稳定 ESTÁVEL"] + ["🔥 SUBINDO (Alta)"] * 15,
+    "Nicho do Produto": [
+        "Diabetes / Açúcar", "Perda de Peso", "Saúde Dental", "Açúcar no Sangue", "Queima de Gordura",
+        "Controle de Peso", "Emagrecimento", "Café Termogênico", "Perda de Peso", "Detox Hepático",
+        "Audição / Foco", "Saúde Mental / Sono", "Foco / Memória", "Energia / Metabolismo", "Metabolismo",
+        "Saúde da Pele / Unhas", "Fungos / Unhas", "Diabetes / Açúcar", "Perda de Peso", "Saúde Masculina",
+        "Imunidade / Antioxidante", "Suplemento Líquido"
+    ],
     "Melhor País Estratégico": [
         "Reino Unido 🇬🇧", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Nova Zelândia 🇳🇿", "Estados Unidos 🇺🇸", 
         "Canadá 🇨🇦", "Reino Unido 🇬🇧", "Austrália 🇦🇺", "Canadá 🇨🇦", "Estados Unidos 🇺🇸", 
@@ -45,7 +51,7 @@ dados_fixos_radar = pd.DataFrame({
 })
 
 # =====================================================================================================================
-# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO
+# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO (TRAVADO SEM CARACTERES ESPECIAIS CONFLITANTES)
 # =====================================================================================================================
 st.sidebar.title("🎛️ Adriel AI")
 st.sidebar.markdown("**SISTEMA OPERACIONAL INTEGRAÇÃO 2026**")
@@ -59,7 +65,7 @@ menu = st.sidebar.radio(
         "✍️ Gerador de Anúncios",
         "🛰️ Caçador de Lançamentos",
         "🌐 Fabricante de Pre-sell",
-        "⚙️ Configurações & Assinantes"
+        "⚙️ Area de Assinantes"
     ]
 )
 
@@ -109,4 +115,3 @@ elif menu == "✍️ Gerador de Anúncios":
 elif menu == "🛰️ Caçador de Lançamentos":
     st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS")
     if st.button("Simular Lançamentos"):
-        st.info("Varrendo servidores internacionais de ofertas...")
