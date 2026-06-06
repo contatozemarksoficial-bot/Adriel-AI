@@ -51,7 +51,7 @@ dados_fixos_radar = pd.DataFrame({
 })
 
 # =====================================================================================================================
-# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO (TRAVADO SEM CARACTERES ESPECIAIS CONFLITANTES)
+# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO
 # =====================================================================================================================
 st.sidebar.title("🎛️ Adriel AI")
 st.sidebar.markdown("**SISTEMA OPERACIONAL INTEGRAÇÃO 2026**")
@@ -115,3 +115,4 @@ elif menu == "✍️ Gerador de Anúncios":
 elif menu == "🛰️ Caçador de Lançamentos":
     st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS")
     if st.button("Simular Lançamentos"):
+        st.info("Varrendo servidores internacionais de ofertas...")
