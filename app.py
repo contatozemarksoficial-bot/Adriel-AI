@@ -67,18 +67,17 @@ except Exception:
     pass
 
 # =====================================================================================================================
-# FUNÇÕES DE INTELIGÊNCIA ISOLADAS (CORRIGIDAS COM AS SUAS INDICAÇÕES DE ELITE)
+# FUNÇÕES DE INTELIGÊNCIA ISOLADAS
 # =====================================================================================================================
 def executar_radar_dinamico():
     try:
         model = genai.GenerativeModel(modelo_ativo)
         prompt = "Reorganize os 22 produtos de afiliados mudando o ranking de forma aleatoria. Retorne em formato JSON valido."
         resposta = model.generate_content(prompt)
-        # CORREÇÃO DA VARIÁVEL PROPOSTA POR VOCÊ PARA EVITAR ERRO DE SINTAXE
         texto_limpo = resposta.text.strip().replace("```json", "").replace("```", "")
         dados_json = json.loads(texto_limpo)
         return pd.DataFrame(dados_json)
-    except Exception as e:
+    except Exception:
         return dados_fixos_radar
 
 def executar_auditoria(produto):
@@ -97,7 +96,7 @@ def executar_gerador(produto):
         resposta = model.generate_content(prompt)
         return resposta.text
     except Exception:
-        return "[DISPLAY PATH]\n/Official/Store\n\n[HEADLINES - MAX 30 CHARS]\n1. " + produto + " Official Site (Pin 1)\n2. Buy " + produto + " Online\n3. Original " + produto + " Formula\n4. " + produto + " Best Price\n\n[DESCRIPTIONS - MAX 90 CHARS]\n1. Order from the official website today and get exclusive local discounts.\n2. Get original with a 100% 60-day money-back guarantee. Secure checkout.\n\n[PHRASE MATCH KEYWORDS]\n1. \"" + produto + " official website\"\n2. \"buy " + produto + " online\"\n(Mais 13 termos focados integrados)\n\n[EXACT MATCH KEYWORDS]\n1. [" + produto + " official website]\n2. [buy " + produto + " online]\n(Mais 13 termos focados integrados)\n\n[BROAD MATCH KEYWORDS]\n1. " + produto + " official site\n2. buy " + produto + "\n(Mais 13 termos focados integrados)"
+        return "[DISPLAY PATH]\n/Official/Store\n\n[HEADLINES - MAX 30 CHARS]\n1. " + produto + " Official Site (Pin 1)\n2. Buy " + produto + " Online\n3. Original " + produto + " Formula\n4. " + produto + " Best Price\n\n[DESCRIPTIONS - MAX 90 CHARS]\n1. Order from the official website today and get exclusive local discounts.\n2. Get original with a 100% 60-day money-back guarantee. Secure checkout.\n\n[PHRASE MATCH KEYWORDS]\n1. \"" + produto + " official website\"\n2. \"buy " + produto + " online\"\n\n[EXACT MATCH KEYWORDS]\n1. [" + produto + " official website]\n2. [buy " + produto + " online]\n\n[BROAD MATCH KEYWORDS]\n1. " + produto + " official site\n2. buy " + produto + ""
 
 def executar_cacador():
     try:
@@ -155,8 +154,9 @@ if menu == "📊 Radar de Produtos":
     st.markdown("### 🏆 POSIÇÕES DO MERCADO ATUALIZADAS (MÍNIMO 20 PRODUTOS ATIVOS)")
     st.dataframe(st.session_state.dados_radar_dinamico, use_container_width=True, height=550)
     
-    # INTERNAÇÃO DO BOTÃO DE DOWNLOAD REAL SUGERIDO POR VOCÊ
-    csv = st.session_state.dados_radar_dinamico.to_csv(index=False).encode('utf-8')
-    st.download_button(
-        label="📥 BAIXAR PLANILHA COMPLETA (.CSV)",
-        data=csv,
+    # 📥 LINHA DO BOTÃO DE DOWNLOAD COMPACTADA E TOTALMENTE CORRIGIDA CONTRA ERROS DE SINTAXE
+    csv_data = st.session_state.dados_radar_dinamico.to_csv(index=False).encode('utf-8')
+    st.download_button(label="📥 BAIXAR PLANILHA COMPLETA (.CSV)", data=csv_data, file_name="radar_produtos.csv", mime="text/csv")
+
+elif menu == "🛡️ Auditor de Mercado":
+    st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
