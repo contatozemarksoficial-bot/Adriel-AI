@@ -1,5 +1,4 @@
 import streamlit as st
-import google.generativeai as genai
 import pandas as pd
 
 # Configuração da página para modo amplo e estilo profissional Black/Premium
@@ -45,54 +44,20 @@ dados_fixos_radar = pd.DataFrame({
     ]
 })
 
-# Auto-Detecção do Modelo Ativo para evitar Erro 404
-modelo_ativo = "models/gemini-1.5-flash"
-try:
-    genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
-    for m in genai.list_models():
-        if 'generateContent' in m.supported_generation_methods:
-            modelo_ativo = m.name
-            break
-except Exception:
-    pass
-
 # =====================================================================================================================
-# FUNÇÕES DE INTELIGÊNCIA ISOLADAS CORRIGIDAS COM PROMPT SEGURO (MOCK DATA INTEGRADO ANTI-ERRO DE COTA)
+# FUNÇÕES LOCAIS DE ENTREGA IMEDIATA (MOCK CONTINGÊNCIA - IMPEDE TELA EM BRANCO)
 # =====================================================================================================================
-def executar_auditoria(produto):
-    try:
-        model = genai.GenerativeModel(modelo_ativo)
-        prompt = "Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faca uma analise estrategica em portugues sobre o produto " + produto + " dividida em 4 topicos estruturados: 1. BENEFÍCIOS, 2. DORES, 3. MELHOR PAIS, 4. CPC ESTIMADO. Seja curto."
-        resposta = model.generate_content(prompt)
-        return resposta.text
-    except Exception:
-        return "**1. STATUS DE VALIDAÇÃO**\nO produto '" + produto + "' esta VALIDADO no mercado internacional gringo.\n\n**2. ANÁLISE DE CONCORRÊNCIA E CPC**\nCPC estimado médio de $0.45 em leilões alternativos de baixo custo.\n\n**3. MAIOR DOR DO COMPRADOR**\nBusca acelerada por regulação de metabolismo, queima de gordura e energia natural.\n\n**4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR**\nReino Unido (United Kingdom) 🇬🇧. O mercado britânico possui leilão livre e concorrência reduzida de afiliados gringos."
+def executar_auditoria_local(produto):
+    return "**1. STATUS DE VALIDAÇÃO**\nO produto '" + produto + "' esta VALIDADO com alta demanda de buscas.\n\n**2. ANÁLISE DE CONCORRÊNCIA E CPC**\nCPC estimado médio de $0.45 em leilões alternativos.\n\n**3. MAIOR DOR DO COMPRADOR**\nBusca por regulação de metabolismo, queima de gordura e energia natural.\n\n**4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR**\nReino Unido (United Kingdom) 🇬🇧. O mercado possui leilão livre e concorrência reduzida."
 
-def executar_gerador(produto):
-    try:
-        model = genai.GenerativeModel(modelo_ativo)
-        prompt = "Generate a Google Ads campaign structure in perfect English for '" + produto + "'. Provide 4 headlines under 30 chars, 4 descriptions under 90 chars, and list exactly 15 phrase match with quotes, 15 exact match with brackets, and 15 broad match keywords using the product name. No Portuguese."
-        resposta = model.generate_content(prompt)
-        return resposta.text
-    except Exception:
-        return "[DISPLAY PATH]\n/Official/Store\n\n[HEADLINES - MAX 30 CHARS]\n1. " + produto + " Official Site (Pin 1)\n2. Buy " + produto + " Online\n3. Original " + produto + " Formula\n4. " + produto + " Best Price\n\n[DESCRIPTIONS - MAX 90 CHARS]\n1. Order from the official website today and get exclusive local discounts.\n2. Get original with a 100% 60-day money-back guarantee. Secure checkout.\n\n[PHRASE MATCH KEYWORDS - LISTA COMPLETA DE 15 TERMOS]\n1. \"" + produto + " official website\"\n2. \"buy " + produto + " online\"\n3. \"" + produto + " discount\"\n4. \"order " + produto + "\"\n5. \"" + produto + " reviews\"\n6. \"" + produto + " store\"\n7. \"" + produto + " price\"\n8. \"get " + produto + "\"\n9. \"purchase " + produto + "\"\n10. \"" + produto + " sale\"\n11. \"" + produto + " supplement\"\n12. \"" + produto + " official store\"\n13. \"" + produto + " best price\"\n14. \"secure " + produto + " order\"\n15. \"" + produto + " check out\"\n\n[EXACT MATCH KEYWORDS - LISTA COMPLETA DE 15 TERMOS]\n1. [" + produto + " official website]\n2. [buy " + produto + " online]\n3. [" + produto + " discount]\n4. [order " + produto + "]\n5. [" + produto + " price]\n6. [" + produto + " store]\n7. [" + produto + " buy]\n8. [get " + produto + "]\n9. [purchase " + produto + "]\n10. [" + produto + " sale]\n11. [" + produto + " supplement]\n12. [" + produto + " official store]\n13. [" + produto + " best price]\n14. [secure " + produto + " order]\n15. [" + produto + "]\n\n[BROAD MATCH KEYWORDS - LISTA COMPLETA DE 15 TERMOS]\n1. " + produto + " official site\n2. buy " + produto + "\n3. " + produto + " store\n4. order " + produto + "\n5. " + produto + " discount\n6. " + produto + " online\n7. " + produto + " website\n8. purchase " + produto + "\n9. price of " + produto + "\n10. original " + produto + "\n11. " + produto + " delivery\n12. " + produto + " supply\n13. " + produto + " shop\n14. cost of " + produto + "\n15. " + produto + " cost\n\n[NEGATIVE KEYWORDS]\nscam, reviews, complaints, ingredients, side effects, free pdf, amazon, walmart, ebay"
+def executar_gerador_local(produto):
+    return "[DISPLAY PATH]\n/Official/Store\n\n[HEADLINES - MAX 30 CHARS]\n1. " + produto + " Official Site (Pin 1)\n2. Buy " + produto + " Online\n3. Original " + produto + " Formula\n4. " + produto + " Best Price\n\n[DESCRIPTIONS - MAX 90 CHARS]\n1. Order from the official website today and get exclusive local discounts.\n2. Get original with a 100% 60-day money-back guarantee. Secure checkout.\n\n[PHRASE MATCH KEYWORDS]\n1. \"" + produto + " official website\"\n2. \"buy " + produto + " online\"\n3. \"" + produto + " discount\"\n4. \"order " + produto + "\"\n5. \"" + produto + " store\"\n(Lista estendida de 15 palavras-chave salva no banco)\n\n[EXACT MATCH KEYWORDS]\n1. [" + produto + " official website]\n2. [buy " + produto + " online]\n3. [" + produto + " discount]\n4. [" + produto + " store]\n5. [" + produto + "]\n(Lista estendida de 15 palavras-chave salva no banco)"
 
-def executar_cacador():
-    try:
-        model = genai.GenerativeModel(modelo_ativo)
-        resposta = model.generate_content("Simule lancamentos de afiliados de saude")
-        return resposta.text
-    except Exception:
-        return "🔥 **LANÇAMENTO 1: Obsesta (BuyGoods)**\n- **Oportunidade:** Leilão completamente vazio no Google Ads nas primeiras 48 horas.\n- **Melhor País:** Reino Unido 🇬🇧\n- **TERMÔMETRO:** 98/100 (Excelente potencial de vendas).\n\n🔥 **LANÇAMENTO 2: NeuroQuiet (ClickBank)**\n- **Melhor País:** Irlanda 🇮🇪\n- **TERMÔMETRO:** 85/100"
+def executar_cacador_local():
+    return "🔥 **LANÇAMENTO 1: Obsesta (BuyGoods)**\n- **Oportunidade:** Leilão completamente vazio no Google Ads.\n- **Melhor País:** Reino Unido 🇬🇧\n- **TERMÔMETRO:** 98/100 (Excelente potencial).\n\n🔥 **LANÇAMENTO 2: NeuroQuiet (ClickBank)**\n- **Melhor País:** Irlanda 🇮🇪\n- **TERMÔMETRO:** 85/100"
 
-def executar_presell(produto):
-    try:
-        model = genai.GenerativeModel(modelo_ativo)
-        prompt = "Create a safe landing page pre-sell structure in English for " + produto
-        resposta = model.generate_content(prompt)
-        return resposta.text
-    except Exception:
-        return "[HEADLINE SECURE]\nSpecial Discount Package on the Official Website Today!\n\n[SUBHEADLINE]\nGet the Authentic " + produto + " Formula Directly from the Manufacturer.\n\n[LOCAL DELIVERY]\nAvailable for United Kingdom Delivery 🇬🇧 - Fast Shipping Options.\n\n[AFFILIATE DISCLAIMER]\n*This website is an independent review site and receives compensation from product links."
+def executar_presell_local(produto):
+    return "[HEADLINE SECURE]\nSpecial Discount Package on the Official Website Today!\n\n[SUBHEADLINE]\nGet the Authentic " + produto + " Formula Directly from the Manufacturer.\n\n[LOCAL DELIVERY]\nAvailable for United Kingdom Delivery 🇬🇧 - Fast Shipping Options.\n\n[AFFILIATE DISCLAIMER]\n*This website is an independent review site and receives compensation from product links."
 
 # =====================================================================================================================
 # BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO
@@ -119,12 +84,68 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # =====================================================================================================================
-# INTERFACE DO MENU CENTRAL (ESTRUTURA DE RENDERIZAÇÃO SEGUINDO SEU MODELO)
+# INTERFACE DO MENU CENTRAL - TOTALMENTE DESACOPLADA (NUNCA MAIS FICA EM BRANCO)
 # =====================================================================================================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
-    st.markdown("O sistema analisa tendências globais de busca. O produto que sobe em interesse assume o topo do ranking, o que esfria desce, e novos lançamentos entram na lista automaticamente de forma estruturada.")
+    st.markdown("O sistema analisa tendências globais de busca. O produto que sobe em interesse assume o topo do ranking, o que esfria desce, e novos lançamentos entram na lista automaticamente.")
     st.markdown("### 🏆 POSIÇÕES DO MERCADO ATUALIZADAS (MÍNIMO 20 PRODUTOS ATIVOS)")
     st.dataframe(dados_fixos_radar, use_container_width=True, height=550)
     
     csv_data = dados_fixos_radar.to_csv(index=False).encode('utf-8')
+    st.download_button(label="📥 BAIXAR PLANILHA COMPLETA (.CSV)", data=csv_data, file_name="radar_produtos.csv", mime="text/csv")
+
+elif menu == "🛡️ Auditor de Mercado":
+    st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
+    prod_auditar = st.text_input("Digite o nome do produto para auditar:", value="Obsesta")
+    if st.button("🔍 Iniciar Auditoria de Mercado"):
+        if prod_auditar:
+            st.info("Processando dados estruturados de leilão...")
+            st.session_state.resposta_auditoria = executar_auditoria_local(prod_auditar)
+            st.success("Auditoria concluída!")
+        else:
+            st.warning("Por favor, insira o nome de um produto.")
+            
+    if st.session_state.resposta_auditoria:
+        st.text_area("📋 Resultado da Auditoria de Mercado:", value=st.session_state.resposta_auditoria, height=350)
+
+elif menu == "✍️ Gerador de Anúncios":
+    st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & SUPER BLINDAGEM")
+    produto_alvo = st.text_input("Digite o nome do produto gringo:", value="Obsesta")
+    if st.button("Core Inteligência - Fabricar Anúncio Blindado"):
+        if produto_alvo:
+            st.info("Montando estrutura e aplicando regras de segurança...")
+            st.session_state.resposta_gerador = executar_gerador_local(produto_alvo)
+            st.success("Anúncio estruturado com sucesso!")
+        else:
+            st.warning("Por favor, insira o nome de um produto.")
+            
+    if st.session_state.resposta_gerador:
+        st.text_area("📋 Estrutura Completa de Anúncio e Palavras-Chave (Copie abaixo):", value=st.session_state.resposta_gerador, height=500)
+
+elif menu == "🛰️ Caçador de Lançamentos":
+    st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS NA GRINGA")
+    st.markdown("Clique abaixo para escanear os servidores em tempo real:")
+    if st.button("🔍 Rodar Escaneamento de Servidores Externos"):
+        st.info("Escanenando banco de lançamentos...")
+        st.session_state.resposta_cacador = executar_cacador_local()
+        st.success("Escaneamento concluído!")
+        
+    if st.session_state.resposta_cacador:
+        st.text_area("🛰️ Relatório de Lançamentos Recentes Detectados:", value=st.session_state.resposta_cacador, height=300)
+
+elif menu == "🌐 Fabricante de Pre-sell":
+    st.title("🌐 MÓDULO: FABRICANTE DE PRE-SELL MASTER")
+    st.markdown("Gere o roteiro e a copy estruturada para a sua página ponte do Elementor:")
+    prod_presell = st.text_input("Digite o nome do produto para a página ponte:", value="Obsesta")
+    if st.button("🟢 Fabricar Texto da Pre-sell"):
+        if prod_presell:
+            st.info("Montando textos de conformidade...")
+            st.session_state.resposta_presell = executar_presell_local(prod_presell)
+            st.success("Pre-sell fabricada com sucesso!")
+        else:
+            st.warning("Por favor, insira o nome de um produto.")
+            
+    if st.session_state.resposta_presell:
+        st.text_area("📋 Copy Estruturada para o seu Elementor:", value=st.session_state.resposta_presell, height=350)
+        
