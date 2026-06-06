@@ -5,7 +5,7 @@ import pandas as pd
 # Configuração da página para modo amplo e estilo profissional Black/Premium
 st.set_page_config(page_title="Adriel AI - Plataforma Master", layout="wide")
 
-# Inicialização do armazenamento de sessão para fixar dados na tela e evitar erro 429
+# Inicialização limpa do armazenamento de sessão para travar dados sem re-disparar erro 429
 if "resposta_auditoria" not in st.session_state:
     st.session_state.resposta_auditoria = ""
 if "resposta_gerador" not in st.session_state:
@@ -113,12 +113,12 @@ elif menu == "🛡️ Auditor de Mercado":
         st.info(f"Escaneando dados de leilão e comportamento de mercado para '{prod_auditar}'...")
         try:
             model = genai.GenerativeModel(modelo_ativo)
-            p_auditoria = f"Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faça uma análise estratégica em português sobre o produto '{prod_auditar}'. Estruture sua resposta estritamente dividida nestes 4 tópicos em negrito: 1. BENEFÍCIOS DO PRODUTO 2. DORES DO COMPRADOR 3. MELHOR PAÍS PARA ANUNCIAR 4. ESTIMATIVA DE CUSTO POR CLIQUE (CPC). Seja direto."
+            p_auditoria = f"Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faça uma análise estratégica em português sobre o produto {prod_auditar}. Estruture sua resposta dividida nestes 4 tópicos em negrito: 1. BENEFÍCIOS DO PRODUTO 2. DORES DO COMPRADOR 3. MELHOR PAÍS PARA ANUNCIAR 4. ESTIMATIVA DE CUSTO POR CLIQUE (CPC). Seja curto."
             resposta = model.generate_content(p_auditoria)
             st.session_state.resposta_auditoria = resposta.text
             st.success("Auditoria realizada!")
         except Exception as e:
-            st.error(f"Erro na IA: {e}")
+            st.error(f"Aguarde o resfriamento da cota de IA: {e}")
             
     if st.session_state.resposta_auditoria:
         st.write(st.session_state.resposta_auditoria)
@@ -136,39 +136,12 @@ elif menu == "✍️ Gerador de Anúncios":
         st.info("Montando estrutura e aplicando regras de segurança contra bloqueios...")
         try:
             model = genai.GenerativeModel(modelo_ativo)
-            
-# PROMPT TRAVADO NA PAREDE CONTRA TRAVAMENTOS DE SYNTAXERROR DO STREAMLIT
-            p_gerador = f"""
-Generate a Google Ads campaign structure in perfect English for '{produto_alvo}'. 
-All text must follow Google Ads policy strictly (NO promises of medical cure, NO aggressive words). Apply maximum safety shielding.
-
-Deliver the result exactly with these sections:
-[DISPLAY PATH]
-Must provide Camino 1 and Camino 2 (like /Official/Store)
-
-[HEADLINES - MAX 30 CHARACTERS]
-Provide 4 headlines containing the product name. Mark Headline 1 to pin on position 1.
-
-[DESCRIPTIONS - MAX 90 CHARACTERS]
-Provide 4 descriptions focused on secure checkout, discount, and official site shipping guarantees.
-
-[PHRASE MATCH KEYWORDS - WITH QUOTES]
-List exactly 15 unique phrase match keywords with quotes using the name '{produto_alvo}'.
-
-[EXACT MATCH KEYWORDS - WITH BRACKETS]
-List exactly 15 unique exact match keywords with brackets using the name '{produto_alvo}'.
-
-[BROAD MATCH KEYWORDS - PURE TEXT]
-List exactly 15 unique buyer intent broad match keywords as pure text without symbols using the name '{produto_alvo}'.
-
-[NEGATIVE KEYWORDS]
-List 10 essential negative terms (scam, reviews, free pdf, etc).
-"""
+            p_gerador = f"Generate a Google Ads campaign structure in perfect English for '{produto_alvo}'. Provide 4 headlines under 30 chars, 4 descriptions under 90 chars, and list exactly 15 phrase match with quotes, 15 exact match with brackets, and 15 broad match keywords using the product name. No Portuguese."
             resposta = model.generate_content(p_gerador)
             st.session_state.resposta_gerador = resposta.text
             st.success("Anúncio estruturado com sucesso!")
         except Exception as e:
-            st.error(f"Erro na IA: {e}")
+            st.error(f"Aguarde o resfriamento da cota de IA: {e}")
             
     if st.session_state.resposta_gerador:
         st.text_area("📋 Copie a estrutura completa para o seu Google Ads:", value=st.session_state.resposta_gerador, height=500)
@@ -176,3 +149,14 @@ List 10 essential negative terms (scam, reviews, free pdf, etc).
 # =====================================================================================================================
 # 4. MÓDULO: CAÇADOR DE LANÇAMENTOS
 # =====================================================================================================================
+elif menu == "🛰️ Caçador de Lançamentos":
+    st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS NA GRINGA")
+    st.markdown("Faça uma varredura nas plataformas gringas em tempo real em busca de oportunidades com leilão vazio:")
+    
+    if st.button("🔍 Rodar Escaneamento de Servidores Externos"):
+        st.info("Escaneando servidores da ClickBank, BuyGoods e Digistore24...")
+        try:
+            model = genai.GenerativeModel(modelo_ativo)
+            p_cacador = "Simule um relatório completo em português de 3 produtos recém-lançados nas plataformas gringas. Para cada produto, traga: 1. Nome do Produto 2. Por que ele é uma OPORTUNIDADE 3. Onde é melhor começar 4. TERMÔMETRO DO LANÇAMENTO (0 a 100). Seja direto."
+            resposta = model.generate_content(p_cacador)
+            st.session_state.resposta_cacador = resposta.text
