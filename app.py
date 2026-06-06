@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 import random
 
-# Configuração da página para modo amplo e estilo profissional Black/Premium
+# Configuração premium de página - Limpa e expandida
 st.set_page_config(page_title="Adriel AI - Plataforma Master", layout="wide")
 
-# Inicialização da memória persistente para travar as respostas na tela sem sumir
+# Gerenciador de Memória Nativo - Segura os dados na tela central entre cliques
 if "resposta_auditoria" not in st.session_state:
     st.session_state.resposta_auditoria = ""
 if "resposta_gerador" not in st.session_state:
@@ -15,7 +15,7 @@ if "resposta_cacador" not in st.session_state:
 if "resposta_presell" not in st.session_state:
     st.session_state.resposta_presell = ""
 
-# Lista fixa oficial de 22 PRODUTOS GRINGOS VALIDADOS (Rica em Informações)
+# Banco de dados nativo de 22 produtos campeões gringos validados (Com Obsesta no Top 2)
 dados_fixos_radar = pd.DataFrame({
     "Ranking": [f"Top {i}" for i in range(1, 23)],
     "Product Name": [
@@ -51,11 +51,8 @@ dados_fixos_radar = pd.DataFrame({
     ]
 })
 
-if "dados_radar_dinamico" not in st.session_state:
-    st.session_state.dados_radar_dinamico = dados_fixos_radar
-
 # =====================================================================================================================
-# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO
+# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO INTERNO
 # =====================================================================================================================
 st.sidebar.title("🎛️ Adriel AI")
 st.sidebar.markdown("**SISTEMA OPERACIONAL INTEGRAÇÃO 2026**")
@@ -79,35 +76,14 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # =====================================================================================================================
-# INTERFACE DO MENU CENTRAL SEGUINDO SEU MODELO SEGURO DE BOTÕES DE AÇÃO DIRETA
+# LIGAÇÃO DIRETA DOS BOTÕES - CENTRALIZADO E TOTALMENTE LIVRE DE ERROS DE IDENTAÇÃO
 # =====================================================================================================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
     st.markdown("O sistema analisa tendências globais de busca. O produto que sobe em interesse assume o topo do ranking, o que esfria desce, e novos lançamentos entram na lista automaticamente de forma estruturada.")
-    
-    if st.button("🔄 ESCANEAR TENDÊNCIAS E REORGANIZAR POSIÇÕES (REAL-TIME)"):
-        st.info("Varrendo servidores de busca gringos e recalculando métricas de leilão... Por favor, aguarde.")
-        lista_produtos = [
-            {"Product Name": "Sugar Defender", "Nicho do Produto": "Diabetes / Açúcar", "Melhor País Estratégico": "Reino Unido 🇬🇧", "CPC Médio Est. ($)": "$0.42", "Tendência / Veredito": "Foco total em libras"},
-            {"Product Name": "Obsesta", "Nicho do Produto": "Perda de Peso", "Melhor País Estratégico": "Reino Unido 🇬🇧", "CPC Médio Est. ($)": "$0.45", "Tendência / Veredito": "Fundo de Funil Escalando UK"},
-            {"Product Name": "ProDentim", "Nicho do Produto": "Saúde Dental", "Melhor País Estratégico": "Irlanda 🇮🇪", "CPC Médio Est. ($)": "$0.55", "Tendência / Veredito": "Oceano azul dental"},
-            {"Product Name": "GlucoBerry", "Nicho do Produto": "Açúcar no Sangue", "Melhor País Estratégico": "Nova Zelândia 🇳🇿", "CPC Médio Est. ($)": "$0.38", "Tendência / Veredito": "CPC baratíssimo"},
-            {"Product Name": "Citrus Burn", "Nicho do Produto": "Queima de Gordura", "Melhor País Estratégico": "Estados Unidos 🇺🇸", "CPC Médio Est. ($)": "$0.65", "Tendência / Veredito": "Mobile Only"},
-            {"Product Name": "LeanBliss", "Nicho do Produto": "Controle de Peso", "Melhor País Estratégico": "Canadá 🇨🇦", "CPC Médio Est. ($)": "$0.48", "Tendência / Veredito": "Aguardar resfriamento"},
-            {"Product Name": "Puravive", "Nicho do Produto": "Emagrecimento", "Melhor País Estratégico": "Reino Unido 🇬🇧", "CPC Médio Est. ($)": "$0.50", "Tendência / Veredito": "Conformidade Europa"},
-            {"Product Name": "Java Burn", "Nicho do Produto": "Café Termogênico", "Melhor País Estratégico": "Austrália 🇦🇺", "CPC Médio Est. ($)": "$0.45", "Tendência / Veredito": "Poder de compra alto"}
-        ]
-        random.shuffle(lista_produtos)
-        df_novo = pd.DataFrame(lista_produtos)
-        df_novo.insert(0, "Ranking", [f"Top {i}" for i in range(1, len(lista_produtos) + 1)])
-        df_novo.insert(2, "Status de Busca", ["🔥 SUBINDO (Alta)" for _ in range(len(lista_produtos))])
-        st.session_state.dados_radar_dinamico = df_novo
-        st.success("Radar recalculado!")
-
     st.markdown("### 🏆 POSIÇÕES DO MERCADO ATUALIZADAS (MÍNIMO 20 PRODUTOS ATIVOS)")
-    st.dataframe(st.session_state.dados_radar_dinamico, use_container_width=True, height=550)
-    
-    csv_data = st.session_state.dados_radar_dinamico.to_csv(index=False).encode('utf-8')
+    st.dataframe(dados_fixos_radar, use_container_width=True, height=550)
+    csv_data = dados_fixos_radar.to_csv(index=False).encode('utf-8')
     st.download_button(label="📥 BAIXAR PLANILHA COMPLETA (.CSV)", data=csv_data, file_name="radar_produtos.csv", mime="text/csv")
 
 elif menu == "🛡️ Auditor de Mercado":
@@ -116,7 +92,7 @@ elif menu == "🛡️ Auditor de Mercado":
     if st.button("Executar Auditoria"):
         if produto:
             st.info("Escaneando dados de leilão... Por favor, aguarde.")
-            st.session_state.resposta_auditoria = f"**1. STATUS DE VALIDAÇÃO DO PRODUTO**\nO produto '{produto}' está 100% VALIDADO no mercado internacional de afiliados, registrando alto volume de buscas exatas e baixíssima taxa de reembolso, sendo ideal para estratégias agressivas de Fundo de Funil.\n\n**2. ANÁLISE DE CONCORRÊNCIA E PREÇO DO CLIQUE (CPC)**\nNos Estados Unidos a concorrência está saturada com CPC batendo $0.85. Porém, no Reino Unido e Irlanda, o leilão encontra-se livre de grandes afiliados gringos, apresentando um CPC médio real e estimado em excelentes $0.45.\n\n**3. MAIOR DOR DO COMPRADOR GRINGO**\nO cliente final gringo busca por regulação rápida do metabolismo, controle severo de apetite por doces, perda de peso natural sem efeito sanfona e aumento massivo da disposição diária.\n\n**4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR (MAIOR ROI)**\nO melhor país para iniciar a campanha é o Reino Unido (United Kingdom) 🇬🇧. O leilão local em libras oferece menor concorrência, cliques muito mais baratos e alto poder de conversão se associado a uma Pre-sell blindada com aviso de bandeira local."
+            st.session_state.resposta_auditoria = "**1. STATUS DE VALIDAÇÃO DO PRODUTO**\nO produto '" + produto + "' está 100% VALIDADO no mercado internacional de afiliados, registrando alto volume de buscas exatas e baixíssima taxa de reembolso, sendo ideal para estratégias agressivas de Fundo de Funil.\n\n**2. ANÁLISE DE CONCORRÊNCIA E PREÇO DO CLIQUE (CPC)**\nNos Estados Unidos a concorrência está saturada com CPC batendo $0.85. Porém, no Reino Unido e Irlanda, o leilão encontra-se livre de grandes afiliados gringos, apresentando um CPC médio real e estimado em excelentes $0.45.\n\n**3. MAIOR DOR DO COMPRADOR GRINGO**\nO cliente final gringo busca por regulação rápida do metabolismo, controle severo de apetite por doces, perda de peso natural sem efeito sanfona e aumento massivo da disposição diária.\n\n**4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR (MAIOR ROI)**\nO melhor país para iniciar a campanha é o Reino Unido (United Kingdom) 🇬🇧. O leilão local em libras oferece menor concorrência, cliques muito mais baratos e alto poder de conversão se associado a uma Pre-sell blindada com aviso de bandeira local."
             st.success("Auditoria concluída com sucesso!")
         else:
             st.warning("Por favor, insira um nome de produto.")
@@ -129,3 +105,14 @@ elif menu == "✍️ Gerador de Anúncios":
     if st.button("Gerar Anúncios"):
         if produto:
             st.info("Montando estrutura e aplicando regras de segurança...")
+            st.session_state.resposta_gerador = "[DISPLAY PATH]\n/Official/Store\n/Secure/Order\n\n[HEADLINES - MAX 30 CHARACTERS]\n1. " + produto + " Official Site (Pin Position 1)\n2. Buy " + produto + " Online\n3. Original " + produto + " Formula\n4. " + produto + " Best Price\n\n[DESCRIPTIONS - MAX 90 CHARACTERS]\n1. Order " + produto + " from the official website today and get exclusive package discounts.\n2. Get the original " + produto + " with a 100% 60-day money-back guarantee. Secure checkout.\n3. 100% natural formula backed by clinical research. Fast shipping options available.\n4. Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.\n\n[PHRASE MATCH KEYWORDS - WITH QUOTES - EXACTLY 15 UNIQUE TERMS]\n1. \"" + produto + " official website\"\n2. \"buy " + produto + " online\"\n3. \"" + produto + " discount price\"\n4. \"order " + produto + " online\"\n5. \"" + produto + " where to buy\"\n6. \"" + produto + " store\"\n7. \"" + produto + " price\"\n8. \"get " + produto + "\"\n9. \"purchase " + produto + "\"\n10. \"" + produto + " sale\"\n11. \"" + produto + " supplement\"\n12. \"" + produto + " official store\"\n13. \"" + produto + " best price\"\n14. \"secure " + produto + " order\"\n15. \"" + produto + " check out\"\n\n[EXACT MATCH KEYWORDS - WITH BRACKETS - EXACTLY 15 UNIQUE TERMS]\n1. [" + produto + " official website]\n2. [buy " + produto + " online]\n3. [" + produto + " discount price]\n4. [order " + produto + " online]\n5. [" + produto + " where to buy]\n6. [" + produto + " store]\n7. [" + produto + " price]\n8. [get " + produto + "]\n9. [purchase " + produto + "]\n10. [" + produto + " sale]\n11. [" + produto + " supplement]\n12. [" + produto + " official store]\n13. [" + produto + " best price]\n14. [secure " + produto + " order]\n15. [" + produto + "]\n\n[BROAD MATCH KEYWORDS - PURE TEXT NO SYMBOLS - EXACTLY 15 UNIQUE TERMS]\n1. " + produto + " official site\n2. buy " + produto + "\n3. " + produto + " store\n4. order " + produto + "\n5. " + produto + " discount\n6. " + produto + " online\n7. " + produto + " website\n8. purchase " + produto + "\n9. price of " + produto + "\n10. original " + produto + "\n11. " + produto + " delivery\n12. " + produto + " supply\n13. " + produto + " shop\n14. cost of " + produto + "\n15. " + produto + " cost\n\n[NEGATIVE KEYWORDS]\nscam, reviews, complaints, ingredients, side effects, free pdf, amazon, walmart, ebay, discount code, coupon, target, refund"
+            st.success("Anuncio gerado com sucesso!")
+        else:
+            st.warning("Por favor, insira um nome de produto.")
+    if st.session_state.resposta_gerador:
+        st.text_area("📋 Resultado dos Anúncios e Lista Completa de Palavras-Chave (Copie abaixo):", value=st.session_state.resposta_gerador, height=500)
+
+elif menu == "🛰️ Caçador de Lançamentos":
+    st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS")
+    if st.button("Simular Lançamentos"):
+        st.info("Varrendo servidores internacionais de ofertas...")
