@@ -24,6 +24,7 @@ def gerar_dados_radar():
     return dados_radar
 
 def auditoria_produto(produto):
+    # Simulação de dados de auditoria
     return {
         "Produto": produto,
         "Status de Validação": "Validado com alta demanda.",
@@ -60,48 +61,3 @@ def caçador_lançamentos():
 
 def gerar_presell(produto):
     return {
-        "Título": f"Oferta Especial para {produto}!",
-        "Descrição": f"Garanta sua saúde com {produto}.",
-        "Chamada para Ação": "Compre Agora!",
-        "Link de Criação": "https://www.hostinger.com/br?REFERRALCODE=VBMCONTAT7WC"
-    }
-
-# Menu lateral
-menu = st.sidebar.radio(
-    "Módulos da Plataforma:",
-    ["📊 Radar de Produtos", "🛡️ Auditor de Mercado", "✍️ Gerador de Anúncios", 
-     "🛰️ Caçador de Lançamentos", "🌐 Fabricante de Pre-sell", "⚙️ Configurações"]
-)
-
-# Radar de Produtos
-if menu == "📊 Radar de Produtos":
-    st.title("📊 MÓDULO: RADAR DE PRODUTOS")
-    produtos = gerar_dados_radar()
-    st.dataframe(produtos)
-
-# Auditor de Mercado
-elif menu == "🛡️ Auditor de Mercado":
-    st.title("🛡️ MÓDULO: AUDITOR DE MERCADO")
-    produto_audit = st.text_input("Digite o nome do produto:")
-    if st.button("🔍 Iniciar Auditoria"):
-        resultado = auditoria_produto(produto_audit)
-        st.json(resultado)
-
-# Gerador de Anúncios
-elif menu == "✍️ Gerador de Anúncios":
-    st.title("✍️ MÓDULO: GERADOR DE ANÚNCIOS")
-    produto_anuncio = st.text_input("Digite o nome do produto:")
-    if st.button("Criar Anúncio"):
-        anuncio = gerar_anuncio(produto_anuncio)
-        st.json(anuncio)
-
-# Caçador de Lançamentos
-elif menu == "🛰️ Caçador de Lançamentos":
-    st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS")
-    resultados = caçador_lançamentos()
-    st.json(resultados)
-
-# Fabricante de Pre-sell
-elif menu == "🌐 Fabricante de Pre-sell":
-    st.title("🌐 MÓDULO: FABRICANTE DE PRE-SELL")
-    produto_presell = st.text_input
