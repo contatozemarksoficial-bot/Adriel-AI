@@ -16,40 +16,40 @@ if "resposta_cacador" not in st.session_state:
 if "resposta_presell" not in st.session_state:
     st.session_state.resposta_presell = ""
 
-# Memória persistente para a tabela dinâmica do Radar com 22 PRODUTOS REAIS (MÍNIMO DE 20 SOLICITADO)
+# Memória persistente para a tabela dinâmica do Radar com 22 PRODUTOS REAIS CORRIGIDOS
 if "dados_radar_dinamico" not in st.session_state:
     st.session_state.dados_radar_dinamico = pd.DataFrame({
         "Ranking": [f"Top {i}" for i in range(1, 23)],
         "Product Name": [
-            "Sugar Defender", "ProDentim", "GlucoBerry", "Citrus Burn", "LeanBliss", "Puravive", "Java Burn", 
-            "Alpilean", "LivPure", "Cortexi", "NeuroQuiet", "ZenCortex", "FitsPresso", "Sync", "Kerassentials", 
-            "Metanail", "Amiclear", "Serolean", "Alpha Tonic", "TonicGreens", "Ikaria Juice", "CustomKeto"
+            "Sugar Defender", "Obsesta", "ProDentim", "GlucoBerry", "Citrus Burn", "LeanBliss", "Puravive", 
+            "Java Burn", "Alpilean", "LivPure", "Cortexi", "NeuroQuiet", "ZenCortex", "FitsPresso", "Sync", 
+            "Kerassentials", "Metanail", "Amiclear", "Serolean", "Alpha Tonic", "TonicGreens", "Ikaria Juice"
         ],
         "Status de Busca": [
-            "🔥 SUBINDO (Alta)", "🔥 SUBINDO (Alta)", "穩定 ESTÁVEL", "🔥 SUBINDO (Alta)", "📉 DESCENDO (Média)", 
-            "穩定 ESTÁVEL", "🔥 SUBINDO (Alta)", "🔥 SUBINDO (Alta)", "穩定 ESTÁVEL", "穩定 ESTÁVEL",
-            "🔥 SUBINDO (Alta)", "穩定 ESTÁVEL", "🔥 SUBINDO (Alta)", "🔥 SUBINDO (Alta)", "📉 DESCENDO (Média)",
-            "穩定 ESTÁVEL", "🔥 SUBINDO (Alta)", "📉 DESCENDO (Média)", "🔥 SUBINDO (Alta)", "穩定 ESTÁVEL",
-            "🔥 SUBINDO (Alta)", "穩定 ESTÁVEL"
+            "🔥 SUBINDO (Alta)", "🔥 SUBINDO (Alta)", "🔥 SUBINDO (Alta)", "穩定 ESTÁVEL", "🔥 SUBINDO (Alta)", 
+            "📉 DESCENDO (Média)", "穩定 ESTÁVEL", "🔥 SUBINDO (Alta)", "🔥 SUBINDO (Alta)", "穩定 ESTÁVEL", 
+            "穩定 ESTÁVEL", "🔥 SUBINDO (Alta)", "穩定 ESTÁVEL", "🔥 SUBINDO (Alta)", "🔥 SUBINDO (Alta)", 
+            "📉 DESCENDO (Média)", "穩定 ESTÁVEL", "🔥 SUBINDO (Alta)", "📉 DESCENDO (Média)", "🔥 SUBINDO (Alta)", 
+            "穩定 ESTÁVEL", "🔥 SUBINDO (Alta)"
         ],
         "Melhor País Estratégico": [
-            "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Nova Zelândia 🇳🇿", "Estados Unidos 🇺🇸", "Canadá 🇨🇦", 
-            "Reino Unido 🇬🇧", "Austrália 🇦🇺", "Canadá 🇨🇦", "Estados Unidos 🇺🇸", "Reino Unido 🇬🇧",
-            "Irlanda 🇮🇪", "Nova Zelândia 🇳🇿", "Austrália 🇦🇺", "Reino Unido 🇬🇧", "Canadá 🇨🇦",
-            "Irlanda 🇮🇪", "Nova Zelândia 🇳🇿", "Reino Unido 🇬🇧", "Austrália 🇦🇺", "Canadá 🇨🇦",
-            "Reino Unido 🇬🇧", "Estados Unidos 🇺🇸"
+            "Reino Unido 🇬🇧", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Nova Zelândia 🇳🇿", "Estados Unidos 🇺🇸", 
+            "Canadá 🇨🇦", "Reino Unido 🇬🇧", "Austrália 🇦🇺", "Canadá 🇨🇦", "Estados Unidos 🇺🇸", 
+            "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Nova Zelândia 🇳🇿", "Austrália 🇦🇺", "Reino Unido 🇬🇧", 
+            "Canadá 🇨🇦", "Irlanda 🇮🇪", "Nova Zelândia 🇳🇿", "Reino Unido 🇬🇧", "Austrália 🇦🇺", 
+            "Canadá 🇨🇦", "Reino Unido 🇬🇧"
         ],
         "CPC Médio Est. ($)": [
-            "$0.42", "$0.55", "$0.38", "$0.65", "$0.48", "$0.50", "$0.45", "$0.52", "$0.60", "$0.47",
-            "$0.35", "$0.38", "$0.44", "$0.40", "$0.42", "$0.36", "$0.39", "$0.41", "$0.50", "$0.46",
-            "$0.48", "$0.58"
+            "$0.42", "$0.45", "$0.55", "$0.38", "$0.65", "$0.48", "$0.50", "$0.45", "$0.52", "$0.60", 
+            $0.47, "$0.35", "$0.38", "$0.44", "$0.40", "$0.42", "$0.36", "$0.39", "$0.41", "$0.50", 
+            "$0.46", "$0.48"
         ],
         "Tendência / Veredito": [
-            "Foco total em libras", "Oceano azul dental", "CPC baratíssimo", "Mobile Only", "Aguardar resfriamento", 
-            "Conformidade Europa", "Poder de compra alto", "Leilão livre no Canadá", "Lista de lances exatos", "Excelente aceitação UK",
-            "Poucos afiliados na Irlanda", "Leilão vazio na NZ", "Alta conversão energia", "Lançamento qualificado", "Forte em público feminino",
-            "Leilão livre na Irlanda", "Correspondência de frase", "Controle de apetite UK", "Saúde masculina AU", "Ótimo engajamento CA",
-            "Consolidado limpo fora EUA", "Excluir palavras curiosas"
+            "Foco total em libras", "Fundo de Funil Escalando UK", "Oceano azul dental", "CPC baratíssimo", "Mobile Only", 
+            "Aguardar resfriamento", "Conformidade Europa", "Poder de compra alto", "Leilão livre no Canadá", "Lista de lances exatos", 
+            "Excelente aceitação UK", "Poucos afiliados na Irlanda", "Leilão vazio na NZ", "Alta conversão energia", "Lançamento qualificado", 
+            "Forte em público feminino", "Leilão livre na Irlanda", "Correspondência de frase", "Controle de apetite UK", "Saúde masculina AU", 
+            "Ótimo engajamento CA", "Consolidado limpo fora EUA"
         ]
     })
 
@@ -65,7 +65,7 @@ except Exception:
     pass
 
 # =====================================================================================================================
-# FUNÇÕES DE INTELIGÊNCIA ISOLADAS
+# FUNÇÕES DE INTELIGÊNCIA ISOLADAS CORRIGIDAS COM FOCO EM OBSESTA
 # =====================================================================================================================
 def executar_radar_dinamico():
     try:
@@ -74,9 +74,10 @@ def executar_radar_dinamico():
         Aja como um robô espião de lançamentos e buscas do Google Ads gringo.
         Simule uma reorganização completa de mercado para produtos de afiliados.
         Retorne um texto estritamente formatado em JSON contendo uma lista longa de exatamente 22 produtos.
+        Certifique-se de manter o produto 'Obsesta' real e afirmado na lista com o nome correto.
         O JSON deve seguir exatamente essa estrutura de chaves (em inglês):
         [
-          {"Ranking": "Top 1", "Product Name": "Nome", "Status de Busca": "🔥 SUBINDO (Alta) ou 📉 DESCENDO", "Melhor País Estratégico": "País + Emoji", "CPC Médio Est. ($)": "$0.XX", "Tendência / Veredito": "Frase curta"},
+          {"Ranking": "Top 1", "Product Name": "Nome", "Status de Busca": "🔥 SUBINDO (Alta) ou 📉 DESCENDO", "Melhor País Estratégico": "País + Emoji", "CPC Médio Est. ($)": "$0.XX", "Tendência / Veredito": "Frase corta"},
           ...
         ]
         Gere a lista inteira até o Top 22 de forma idêntica. Retorne APENAS o JSON puro, sem formatações de texto ou crases de markdown.
@@ -91,7 +92,7 @@ def executar_radar_dinamico():
 def executar_auditoria(produto):
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = f"Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faça uma análise estratégica em português sobre o produto {produto}. Estruture sua resposta dividida nestes 4 tópicos em negrito: 1. BENEFÍCIOS DO PRODUTO 2. DORES DO COMPRADOR 3. MELHOR PAÍS PARA ANUNCIAR 4. ESTIMATIVA DE CUSTO POR CLIQUE (CPC). Seja curto."
+        prompt = f"Aja como o AUDITOR DE MERCADO XEQUE-MATE. Faça uma análise estratégica em português sobre o produto {produto}. Certifique-se de conferir o nome exato. Estruture sua resposta dividida nestes 4 tópicos em negrito: 1. BENEFÍCIOS DO PRODUTO 2. DORES DO COMPRADOR 3. MELHOR PAÍS PARA ANUNCIAR 4. ESTIMATIVA DE CUSTO POR CLIQUE (CPC). Seja curto."
         resposta = model.generate_content(prompt)
         return resposta.text
     except Exception as e:
@@ -100,7 +101,7 @@ def executar_auditoria(produto):
 def executar_gerador(produto):
     try:
         model = genai.GenerativeModel(modelo_ativo)
-        prompt = f"Generate a Google Ads campaign structure in perfect English for '{produto}'. Provide 4 headlines under 30 chars, 4 descriptions under 90 chars, and list exactly 15 phrase match with quotes, 15 exact match with brackets, and 15 broad match keywords using the product name. No Portuguese."
+        prompt = f"Generate a Google Ads campaign structure in perfect English for '{produto}'. Provide 4 headlines under 30 chars, 4 descriptions under 90 chars, and list exactly 15 phrase match with quotes, 15 exact match with brackets, and 15 broad match keywords using the product name exato sem erros. No Portuguese."
         resposta = model.generate_content(prompt)
         return resposta.text
     except Exception as e:
@@ -169,8 +170,5 @@ if menu == "📊 Radar de Produtos":
 # =====================================================================================================================
 elif menu == "🛡️ Auditor de Mercado":
     st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
-    prod_auditar = st.text_input("✍️ Nome do Produto para Auditoria:", value="Sugar Defender")
+    prod_auditar = st.text_input("✍️ Nome do Produto para Auditoria:", value="Obsesta")
     if st.button("🔍 Iniciar Auditoria de Mercado"):
-        st.info(f"Escaneando dados de leilão para '{prod_auditar}'...")
-        st.session_state.resposta_auditoria = executar_auditoria(prod_auditar)
-        st.success("Auditoria realizada!")
