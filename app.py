@@ -8,45 +8,50 @@ st.set_page_config(page_title="Super Cérebro V3", layout="wide")
 genai.configure(api_key=st.secrets["GEMINI_KEY"])
 model = genai.GenerativeModel('gemini-pro')
 
-# --- SIDEBAR: Painel de Controle ---
-st.sidebar.title("⚙️ Painel de Controle")
-st.sidebar.info("Use este painel para configurar sua estratégia de vendas.")
+# --- CABEÇALHO DE IMPACTO (O que o afiliado vê de cara) ---
+st.title("👑 Super Cérebro Supremo Unificado V3")
+st.markdown("---")
+st.success("🚀 Bem-vindo, Afiliado. Você está no painel de alta conversão. Siga os passos abaixo para gerar sua máquina de vendas.")
+
+# --- SIDEBAR: O painel de controle fixo ---
+st.sidebar.header("🎯 Painel de Ação")
 if 'avatar' not in st.session_state:
     st.session_state['avatar'] = "Pessoas buscando renda extra"
 
-# --- Título Principal ---
-st.title("👑 Super Cérebro Supremo Unificado V3")
-
-# --- Estrutura de Abas ---
-tab1, tab2, tab3 = st.tabs(["📊 Filtro Xeque-Mate", "🎭 Configuração de Avatar", "🤖 Máquina de Ads"])
+# --- ESTRUTURA DE ABAS (O fluxo de trabalho) ---
+tab1, tab2, tab3 = st.tabs(["🔎 1. Filtro de Oportunidades", "🎭 2. Definição de Avatar", "📢 3. Máquina de Ads"])
 
 with tab1:
-    st.header("Filtro Xeque-Mate: Produtos Validados")
-    # Tabela de visualização rápida
-    col_a, col_b = st.columns([2, 1])
-    with col_a:
-        st.table({
-            "Produto": ["Puravive", "Sugar Defender", "Lançamento X"],
-            "Plataforma": ["ClickBank", "BuyGoods", "Hotmart"],
-            "Comissão": ["$142.10", "$127.30", "R$ 350.00"]
-        })
-    with col_b:
-        st.success("Produtos prontos para análise de pressão!")
+    st.subheader("Produtos Validados (Xeque-Mate)")
+    st.write("Abaixo estão os produtos que convertem hoje:")
+    st.table({
+        "Produto": ["Puravive", "Sugar Defender", "Lançamento Exclusivo"],
+        "Potencial": ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐⭐⭐"],
+        "Ação": ["Analisar", "Analisar", "Analisar"]
+    })
 
 with tab2:
-    st.header("Configuração do Avatar")
-    st.session_state['avatar'] = st.text_input("Defina o perfil do cliente:", st.session_state['avatar'])
-    st.write(f"Você está focando em: **{st.session_state['avatar']}**")
+    st.subheader("Quem vamos atrair?")
+    st.session_state['avatar'] = st.text_area("Descreva o seu público-alvo para o grupo de estudos:", st.session_state['avatar'])
+    st.info("Dica: Quanto mais específica a dor desse público, maior a pressão do seu anúncio.")
 
 with tab3:
-    st.header("Máquina de Ads")
-    produto_sel = st.selectbox("Escolha o Produto para criar o Ad:", ["Puravive", "Sugar Defender", "Lançamento X"])
+    st.subheader("Gere sua Copy de Alta Pressão")
+    produto_escolhido = st.selectbox("Selecione o produto alvo:", ["Puravive", "Sugar Defender", "Lançamento Exclusivo"])
     
-    if st.button("Gerar Estratégia de Pressão"):
-        prompt = f"Crie um anúncio de alta conversão para o produto {produto_sel} focado em {st.session_state['avatar']}. Use gatilhos mentais, escassez e uma chamada irresistível para o nosso grupo de estudos."
-        with st.spinner("O Cérebro Supremo está criando..."):
-            resposta = model.generate_content(prompt)
-            st.markdown("---")
-            st.write(resposta.text)
-            st.markdown("---")
-            st.success("Copy gerada com sucesso!")
+    if st.button("GERAR ANÚNCIO DE CONVERSÃO"):
+        prompt = f"""
+        Você é um estrategista de marketing de afiliados. Crie um anúncio agressivo e persuasivo 
+        para atrair pessoas para o nosso grupo de estudos exclusivo.
+        
+        - Produto: {produto_escolhido}
+        - Público-Alvo: {st.session_state['avatar']}
+        - Objetivo: Fazer a pessoa sentir que está perdendo uma grande oportunidade se não entrar no grupo agora.
+        
+        Estruture com: Título chamativo, Dor do público, Promessa de solução no grupo e Link de convite.
+        """
+        with st.spinner("Estamos criando sua estratégia de vendas..."):
+            resultado = model.generate_content(prompt)
+            st.markdown("### 📣 Copy Gerada para seu Anúncio:")
+            st.write(resultado.text)
+            st.warning("Copie e cole este texto no seu Gerenciador de Anúncios!")
