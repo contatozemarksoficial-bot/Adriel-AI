@@ -147,7 +147,7 @@ elif menu == "✍️ Gerador de Anúncios":
         st.text_area("📋 Copie a estrutura completa para o seu Google Ads:", value=st.session_state.resposta_gerador, height=500)
 
 # =====================================================================================================================
-# 4. MÓDULO: CAÇADOR DE LANÇAMENTOS
+# 4. MÓDULO: CAÇADOR DE LANÇAMENTOS (CORRIGIDO E TRANCADO)
 # =====================================================================================================================
 elif menu == "🛰️ Caçador de Lançamentos":
     st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS NA GRINGA")
@@ -159,4 +159,3 @@ elif menu == "🛰️ Caçador de Lançamentos":
             model = genai.GenerativeModel(modelo_ativo)
             p_cacador = "Simule um relatório completo em português de 3 produtos recém-lançados nas plataformas gringas. Para cada produto, traga: 1. Nome do Produto 2. Por que ele é uma OPORTUNIDADE 3. Onde é melhor começar 4. TERMÔMETRO DO LANÇAMENTO (0 a 100). Seja direto."
             resposta = model.generate_content(p_cacador)
-            st.session_state.resposta_cacador = resposta.text
