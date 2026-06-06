@@ -70,7 +70,7 @@ if menu == "📊 Radar de Produtos":
             "Passa fácil pela conformidade britânica usando pre-sell com aviso de afiliado.",
             "Australianos têm alto poder de compra para ofertas de queima de gordura.",
             "Mercado canadense está com leilão livre e concorrência reduzida.",
-            "Ideal para focar em listas de lances exatos no mercado americano.",
+            "Ideal para focar em locais de lances exatos no mercado americano.",
             "Excelente aceitação no Reino Unido para nichos de audição e foco."
         ]
     }
