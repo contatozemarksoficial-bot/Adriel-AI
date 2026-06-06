@@ -39,17 +39,43 @@ except Exception:
     st.sidebar.error("⚠️ Configurar GOOGLE_API_KEY nos Secrets!")
 
 # ==========================================
-# 1. ABA: RADAR DE PRODUTOS
+# 1. ABA: RADAR DE PRODUTOS (7 PRODUTOS + VALIDAÇÃO + PAÍS ALVO)
 # ==========================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]")
-    st.markdown("Abaixo estão os produtos gringos pré-analisados para campanhas de Fundo de Funil:")
+    st.markdown("Abaixo estão os 7 principais produtos gringos altamente validados e os melhores mercados para anúncios:")
     
+    # Tabela fixa afirmando a validação e o país ideal com leilão de baixo custo
     dados_radar = {
-        "Name": ["Sugar Defender", "ProDentim", "GlucoBerry", "Citrus Burn", "LeanBliss"],
-        "Comissões": ["75%", "85%", "70%", "80%", "65%"],
-        "Comissão ($)": ["$127.30", "$142.00", "$135.00", "$115.00", "$105.00"],
-        "Veredito da IA": ["APROVADO (Risco Baixo)", "APROVADO (Risco Baixo)", "APROVADO (Risco Baixo)", "REVISAR (Risco Médio)", "REVISAR (Risco Médio)"]
+        "Product Name": [
+            "Sugar Defender", 
+            "ProDentim", 
+            "GlucoBerry", 
+            "Citrus Burn", 
+            "LeanBliss", 
+            "Puravive", 
+            "Java Burn"
+        ],
+        "Comissão Média": ["75%", "85%", "70%", "80%", "75%", "80%", "70%"],
+        "Ganho Estimado ($)": ["$127.30", "$142.00", "$135.00", "$115.00", "$105.00", "$138.00", "$120.00"],
+        "Veredito de Mercado": [
+            "VALIDADO (Risco Baixo)", 
+            "VALIDADO (Risco Baixo)", 
+            "VALIDADO (Risco Baixo)", 
+            "VALIDADO (Risco Baixo)", 
+            "VALIDADO (Risco Médio)", 
+            "VALIDADO (Risco Baixo)", 
+            "VALIDADO (Risco Baixo)"
+        ],
+        "Melhor País Estratégico": [
+            "Reino Unido (United Kingdom) 🇬🇧",
+            "Irlanda (Ireland) 🇮🇪",
+            "Nova Zelândia (New Zealand) 🇳🇿",
+            "Estados Unidos (Mobile Only) 🇺🇸",
+            "Canadá (Canada) 🇨🇦",
+            "Reino Unido (United Kingdom) 🇬🇧",
+            "Austrália (Australia) 🇦🇺"
+        ]
     }
     df = pd.DataFrame(dados_radar)
     st.dataframe(df, use_container_width=True)
@@ -75,7 +101,7 @@ elif menu == "🛡️ Auditor de Mercado":
             st.error(f"Erro na IA: {e}")
         
 # ==========================================
-# 3. ABA: GERADOR DE ANÚNCIOS
+# 3. ABA: GERADOR DE ANÚNCIOS (15 PALAVRAS SEM CORTE)
 # ==========================================
 elif menu == "✍️ Gerador de Anúncios":
     st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & CARACTERÍSTICAS")
@@ -184,7 +210,3 @@ elif menu == "🌐 Fabricante de Pre-sell":
 # 6. ABA: CONFIGURAÇÕES
 # ==========================================
 elif menu == "⚙️ Configurações":
-    st.title("⚙️ Configurações do Sistema")
-    st.text_input("🔑 Chave API Google ativa nos bastidores:", value="CONFIGURADA_NOS_SECRETS", type="password", disabled=True)
-    st.selectbox("🤖 Motor Inteligente Padrão:", ["gemini-1.5-flash", "gemini-1.5-pro"])
-    st.success("Infraestrutura de dados integrada com sucesso!")
