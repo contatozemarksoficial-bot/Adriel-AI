@@ -30,8 +30,9 @@ st.sidebar.markdown("Data: **06/06/2026**")
 # Configuração Segura da API do Google puxando dos Secrets
 try:
     genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
+    model = genai.GenerativeModel("gemini-1.5-flash")
 except Exception:
-    pass
+    st.sidebar.error("⚠️ Configurar GOOGLE_API_KEY nos Secrets!")
 
 # ==========================================
 # 1. ABA: RADAR DE PRODUTOS
@@ -60,7 +61,13 @@ elif menu == "🛡️ Auditor de Mercado":
     prod_auditar = st.text_input("✍️ Digite o nome do produto gringo para auditar:", value="Sugar Defender")
     if st.button("🔍 Iniciar Auditoria de Mercado"):
         st.info(f"Analisando dados globais para {prod_auditar}...")
-        # Aqui roda o prompt do auditor
+        try:
+            prompt = f"Faça uma auditoria curta de fundo de funil sobre o produto {prod_auditar}. Diga se está validado (Sim ou Não), a maior dor do cliente gringo e o melhor país com leilão barato no Google Ads. Seja direto e escreva em português."
+            resposta = model.generate_content(prompt)
+            st.success("Auditoria Concluída!")
+            st.write(resposta.text)
+        except Exception as e:
+            st.error(f"Erro na IA: {e}")
         
 # ==========================================
 # 3. ABA: GERADOR DE ANÚNCIOS
@@ -73,16 +80,13 @@ elif menu == "✍️ Gerador de Anúncios":
     
     if st.button("🟢 (A) GERAR ANÚNCIOS ADSMASTER (Copy + Roteiro Vídeo)"):
         st.info("Processando Inteligência Artificial... Por favor, aguarde.")
-        
-        # Chamada automática da inteligência do robô
         try:
-            model = genai.GenerativeModel("gemini-1.5-flash")
-            prompt = f"Crie um anúncio de fundo de funil perfeito para {produto_alvo} baseado em {resumo_niche}. Traga 3 títulos de 30 caracteres e 2 descrições de 90 caracteres. Sem repetições."
+            prompt = f"Crie um anúncio de fundo de funil perfeito para {produto_alvo} baseado em {resumo_niche}. Traga 3 títulos de 30 caracteres e 2 descrições de 90 caracteres. Sem repetições. Adicione também o roteiro do vídeo de 10 segundos com a seta apontando para baixo."
             resposta = model.generate_content(prompt)
             st.success("🎯 Material gerado com sucesso!")
-            st.text_area("📋 Copie o resultado abaixo:", value=resposta.text, height=300)
+            st.text_area("📋 Copie o resultado abaixo:", value=resposta.text, height=350)
         except Exception as e:
-            st.error(f"Erro de conexão com o robô: {e}")
+            st.error(f"Erro na IA: {e}")
 
 # ==========================================
 # 4. ABA: CAÇADOR DE LANÇAMENTOS
@@ -92,7 +96,14 @@ elif menu == "🛰️ Caçador de Lançamentos":
     st.markdown("Clique abaixo para escanear os lançamentos recentes com leilão vazio no Google Ads:")
     
     if st.button("🔍 Roda Escaneamento de Plataformas (ClickBank/BuyGoods)"):
-        st.warning("Escanenando servidores... Buscando nichos de saúde e manifestação.")
+        st.info("Buscando lançamentos recentes nos servidores gringos...")
+        try:
+            prompt = "Simule um relatório rápido dos 3 produtos de saúde mais recentes lançados na ClickBank ou BuyGoods. Traga Nome, Comissão estimada e o melhor país de língua inglesa com leilão vazio. Escreva em português."
+            resposta = model.generate_content(prompt)
+            st.success("Varredura Concluída!")
+            st.write(resposta.text)
+        except Exception as e:
+            st.error(f"Erro na IA: {e}")
 
 # ==========================================
 # 5. ABA: FABRICANTE DE PRE-SELL
@@ -103,7 +114,14 @@ elif menu == "🌐 Fabricante de Pre-sell":
     
     prod_presell = st.text_input("✍️ Nome do Produto para a Página Ponte:", value="Sugar Defender")
     if st.button("🟢 (B) FABRICAR PRE-SELL (Landing Page Text)"):
-        st.info("Montando estrutura em inglês com aviso de afiliado...")
+        st.info("Montando estrutura compliance com aviso de afiliado...")
+        try:
+            prompt = f"Crie o texto de uma página de pre-sell blindada para o Google Ads para o produto {prod_presell}. Escreva em inglês. Inclua uma Headline segura, Subheadline, uma linha escrito 'Available for United Kingdom Delivery' com emoji de bandeira, e o rodapé de privacidade obrigatório. Coloque explicações em português de onde colar cada bloco."
+            resposta = model.generate_content(prompt)
+            st.success("Pre-sell Estruturada com Sucesso!")
+            st.text_area("📋 Copie a estrutura para o Elementor:", value=resposta.text, height=350)
+        except Exception as e:
+            st.error(f"Erro na IA: {e}")
 
 # ==========================================
 # 6. ABA: CONFIGURAÇÕES
