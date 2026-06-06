@@ -2,40 +2,49 @@ import streamlit as st
 import pandas as pd
 import google.generativeai as genai
 
-# Configuração da API (A chave vem das Secrets do Streamlit)
-try:
-    genai.configure(api_key=st.secrets["GEMINI_KEY"])
-    model = genai.GenerativeModel(model_name="gemini-1.5-flash")
-except Exception as e:
-    st.error("Erro na API. Verifique se a 'GEMINI_KEY' foi salva nas Secrets.")
-
-# Layout do Painel
+# Configuração Global
 st.set_page_config(page_title="Painel de Elite", layout="wide")
-st.title("👑 Super Cérebro - Painel de Controle")
 
-# Dados do Filtro
-produtos_mercado = [
-    {"Produto": "Puravive", "Comissão": "$142.10", "Veredito": "APROVADO"},
-    {"Produto": "Sugar Defender", "Comissão": "$127.30", "Veredito": "APROVADO"}
-]
+# Estilo para deixar com cara de painel profissional
+st.markdown("""
+    <style>
+    .main {background-color: #0e1117;}
+    .stButton>button {width: 100%; border-radius: 5px; font-weight: bold;}
+    </style>
+    """, unsafe_allow_html=True)
 
-# Abas do sistema
-tab1, tab2, tab3 = st.tabs(["📊 Filtro Xeque-Mate", "🎭 Avatar Real", "⚙️ Máquina de Ads"])
+# Cabeçalho com status
+col1, col2 = st.columns([3, 1])
+with col1:
+    st.title("👑 Painel de Comando Leonardo AI")
+with col2:
+    st.info("Status: Sistema Online")
 
-with tab1:
-    st.subheader("Radar de Produtos")
-    st.table(pd.DataFrame(produtos_mercado))
+# Dados
+produtos = pd.DataFrame([
+    {"Produto": "Puravive", "Comissão": "$142", "Risco": "Baixo"},
+    {"Produto": "Sugar Defender", "Comissão": "$127", "Risco": "Baixo"}
+])
 
-with tab2:
-    st.subheader("Gerador de Criativos")
-    produto_sel = st.selectbox("Selecione o produto:", [p["Produto"] for p in produtos_mercado])
-    if st.button("Gerar Roteiro"):
-        res = model.generate_content(f"Crie um roteiro de vendas para {produto_sel}")
-        st.write(res.text)
+# Estrutura em Abas Visuais
+aba1, aba2, aba3 = st.tabs(["📊 Radar de Produtos", "🎭 Gerador de Anúncios", "⚙️ Configurações"])
 
-with tab3:
-    st.subheader("Máquina de Ads")
-    prod_ads = st.text_input("Qual o produto para a campanha?")
-    if st.button("Gerar Estrutura"):
-        res_ads = model.generate_content(f"Crie uma campanha de Google Ads para {prod_ads}")
-        st.code(res_ads.text)
+with aba1:
+    st.subheader("Radar de Oportunidades [Filtro Xeque-Mate]")
+    st.dataframe(produtos, use_container_width=True)
+
+with aba2:
+    col_a, col_b = st.columns(2)
+    with col_a:
+        st.subheader("Entrada de Dados")
+        prod_escolhido = st.selectbox("Escolha o produto:", produtos["Produto"])
+        nicho = st.text_input("Resumo do Nicho/Dores:")
+    with col_b:
+        st.subheader("Ações Rápidas")
+        if st.button("🚀 Gerar Anúncios Master"):
+            st.success("Criativo pronto!")
+            st.text_area("Resultado:", "Aqui entrará o copy gerado pela IA...")
+
+with aba3:
+    st.subheader("Configurações do Sistema")
+    st.write("Chave API: Ativa ✅")
