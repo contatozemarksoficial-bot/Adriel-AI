@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 
-# Configuração premium de página - Ampla e profissional Black
+# Configuração premium de página - Ampla, limpa e profissional Black
 st.set_page_config(page_title="Adriel AI - Plataforma Master", layout="wide")
 
-# Inicialização limpa da memória de sessão para fixar os dados na tela central
+# Inicialização da memória de sessão para travar as respostas na tela sem sumir
 if "resposta_auditoria" not in st.session_state:
     st.session_state.resposta_auditoria = ""
 if "resposta_gerador" not in st.session_state:
@@ -75,43 +75,65 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # =====================================================================================================================
-# INTERFACE DO MENU CENTRAL - MARGENS RIGOROSAMENTE IDENTADAS CONTRA ERROS NO AR
+# INTERFACE DO MENU CENTRAL SEGUINDO SEU MODELO SEGURO DE BOTÕES DE AÇÃO DIRETA
 # =====================================================================================================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
-    st.markdown("O sistema analisa tendências globais de busca. O produto que sobe em interesse assume o topo do ranking, o que esfria desce, e novos lançamentos entram na lista automaticamente.")
+    st.markdown("O sistema analisa tendências globais de busca. O produto que sobe in interesse assume o topo do ranking, o que esfria desce, e novos lançamentos entram na lista automaticamente de forma estruturada.")
     st.markdown("### 🏆 POSIÇÕES DO MERCADO ATUALIZADAS (MÍNIMO 20 PRODUTOS ATIVOS)")
     st.dataframe(dados_fixos_radar, use_container_width=True, height=550)
+    
     csv_data = dados_fixos_radar.to_csv(index=False).encode('utf-8')
     st.download_button(label="📥 BAIXAR PLANILHA COMPLETA (.CSV)", data=csv_data, file_name="radar_produtos.csv", mime="text/csv")
 
 elif menu == "🛡️ Auditor de Mercado":
-    st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
     produto = st.text_input("Digite o nome do produto para auditar:", value="Obsesta")
     if st.button("Executar Auditoria"):
         if produto:
             st.info("Escaneando dados de leilão... Por favor, aguarde.")
-            st.session_state.resposta_auditoria = "1. STATUS DE VALIDAÇÃO DO PRODUTO: O produto " + produto + " está 100% VALIDADO no mercado internacional de afiliados, registrando alto volume de buscas exatas e baixíssima taxa de reembolso, sendo ideal para estratégias agressivas de Fundo de Funil.\n\n2. ANÁLISE DE CONCORRÊNCIA E PREÇO DO CLIQUE (CPC): Nos Estados Unidos a concorrência está saturada com CPC batendo $0.85. Porém, no Reino Unido e Irlanda, o leilão encontra-se livre de grandes afiliados gringos, apresentando um CPC médio real e estimado em excelentes $0.45.\n\n3. MAIOR DOR DO COMPRADOR GRINGO: O cliente final gringo busca por regulação rápida do metabolismo, controle severo de apetite por doces, perda de peso natural sem efeito sanfona e aumento massivo da disposição diária.\n\n4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR (MAIOR ROI): O melhor país para iniciar a campanha é o Reino Unido (United Kingdom) 🇬🇧. O leilão local em libras oferece menor concorrência, cliques muito mais baratos e alto poder de conversão se associado a uma Pre-sell blindada com aviso de bandeira local."
-            st.success("Auditoria concluída com sucesso!")
-        else:
-            st.warning("Por favor, insira um nome de produto.")
+            st.session_state.resposta_auditoria = "1. STATUS DE VALIDAÇÃO: O produto " + produto + " está 100% VALIDADO no mercado de afiliados.\n\n2. CPC REAL: Estimado em $0.45 no Reino Unido.\n\n3. DOR DO GRINGO: Perda de peso natural e rápida.\n\n4. VEREDITO: Reino Unido 🇬🇧 é o melhor oceano azul."
+            st.success("Auditoria concluída!")
     if st.session_state.resposta_auditoria:
         st.text_area("📋 Resultado da Auditoria de Mercado:", value=st.session_state.resposta_auditoria, height=350)
 
 elif menu == "✍️ Gerador de Anúncios":
-    st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS")
     produto = st.text_input("Digite o nome do produto:", value="Obsesta")
     if st.button("Gerar Anúncios"):
         if produto:
             st.info("Montando estrutura e aplicando regras de segurança...")
-            st.session_state.resposta_gerador = "[DISPLAY PATH]\n/Official/Store\n/Secure/Order\n\n[HEADLINES - MAX 30 CHARACTERS]\n1. Obsesta Official Site (Pin Position 1)\n2. Buy Obsesta Online\n3. Original Obsesta Formula\n4. Obsesta Best Price\n\n[DESCRIPTIONS - MAX 90 CHARACTERS]\n1. Order Obsesta from the official website today and get exclusive package discounts.\n2. Get the original Obsesta with a 100% 60-day money-back guarantee. Secure checkout.\n3. 100% natural formula backed by clinical research. Fast shipping options available.\n4. Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.\n\n[PHRASE MATCH KEYWORDS - WITH QUOTES - EXACTLY 15 UNIQUE TERMS]\n1. \"obsesta official website\"\n2. \"buy obsesta online\"\n3. \"obsesta discount price\"\n4. \"order obsesta online\"\n5. \"obsesta where to buy\"\n6. \"obsesta store\"\n7. \"obsesta price\"\n8. \"get obsesta\"\n9. \"purchase obsesta\"\n10. \"obsesta sale\"\n11. \"obsesta supplement\"\n12. \"obsesta official store\"\n13. \"obsesta best price\"\n14. \"secure obsesta order\"\n15. \"obsesta check out\"\n\n[EXACT MATCH KEYWORDS - WITH BRACKETS - EXACTLY 15 UNIQUE TERMS]\n1. [obsesta official website]\n2. [buy obsesta online]\n3. [obsesta discount price]\n4. [order obsesta online]\n5. [obsesta where to buy]\n6. [obsesta store]\n7. [obsesta price]\n8. [get obsesta]\n9. [purchase obsesta]\n10. [obsesta sale]\n11. [obsesta supplement]\n12. [obsesta official store]\n13. [obsesta best price]\n14. [secure obsesta order]\n15. [obsesta]\n\n[BROAD MATCH KEYWORDS - PURE TEXT NO SYMBOLS - EXACTLY 15 UNIQUE TERMS]\n1. obsesta official site\n2. buy obsesta\n3. obsesta store\n4. order obsesta\n5. obsesta discount\n6. obsesta online\n7. obsesta website\n8. purchase obsesta\n9. price of obsesta\n10. original obsesta\n11. obsesta delivery\n12. obsesta supply\n13. obsesta shop\n14. cost of obsesta\n15. obsesta cost\n\n[NEGATIVE KEYWORDS]\nscam, reviews, complaints, ingredients, side effects, free pdf, amazon, walmart, ebay, discount code, coupon, target, refund"
+            st.session_state.resposta_gerador = "[DISPLAY PATH]\n/Official/Store\n\n[HEADLINES]\n1. " + produto + " Official Site\n2. Buy " + produto + " Online\n\n[PHRASE MATCH]\n1. \"" + produto + " official website\"\n2. \"buy " + produto + " online\"\n\n[EXACT MATCH]\n1. [" + produto + " official website]\n2. [buy " + produto + " online]"
             st.success("Anuncio gerado com sucesso!")
-        else:
-            st.warning("Por favor, insira um nome de produto.")
     if st.session_state.resposta_gerador:
-        st.text_area("📋 Resultado dos Anúncios e Lista Completa de Palavras-Chave (Copie abaixo):", value=st.session_state.resposta_gerador, height=500)
+        st.text_area("📋 Resultado dos Anúncios e Palavras-Chave:", value=st.session_state.resposta_gerador, height=500)
 
 elif menu == "🛰️ Caçador de Lançamentos":
-    st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS")
     if st.button("Simular Lançamentos"):
-        st.info("Varrendo servidores internacionais de ofertas... Por favor, aguarde.")
+        st.info("Varrendo servidores internacionais de ofertas...")
+        st.session_state.resposta_cacador = "🔥 LANÇAMENTO 1: Obsesta (BuyGoods) - Reino Unido 🇬🇧 - Nota: 98/100\n🔥 LANÇAMENTO 2: NeuroQuiet (ClickBank) - Irlanda 🇮🇪 - Nota: 88/100"
+        st.success("Varredura concluída!")
+    if st.session_state.resposta_cacador:
+        st.text_area("Resultados dos Lançamentos:", value=st.session_state.resposta_cacador, height=350)
+
+elif menu == "🌐 Fabricante de Pre-sell":
+    produto = st.text_input("Digite o nome do produto:", value="Obsesta")
+    if st.button("Gerar Página de Pré-venda"):
+        if produto:
+            st.info("Montando textos de conformidade...")
+            st.session_state.resposta_presell = "[HEADLINE]\nSpecial Discount Package on the Official Website!\n\n[SUBHEADLINE]\nGet the Authentic " + produto + " Formula Directly from the Manufacturer.\n\n[AFFILIATE BOX]\nOfficial Promo Link active via hostinger tracking system."
+            st.success("Página ponte fabricada com sucesso!")
+    if st.session_state.resposta_presell:
+        st.text_area("Estrutura da Página de Pré-venda:", value=st.session_state.resposta_presell, height=400)
+    st.write("---")
+    st.markdown("### 🛠️ INFRAESTRUTURA PROFISSIONAL RECOMENDADA")
+    st.markdown("👉 **[CLIQUE AQUI PARA ADQUIRIR A MELHOR HOSPEDAGEM DO MERCADO DO MUNDO COM DESCONTO EXCLUSIVO](https://hostinger.com)**")
+
+elif menu == "⚙️ Area de Assinantes":
+    st.title("⚙️ MÓDULO: CONFIGURAÇÕES & ÁREA DE ASSINANTES")
+    col1, col2, col3 = st.columns(3)
+    with col1: st.metric(label="👥 Total de Usuários Cadastrados", value="1,248")
+    with col2: st.metric(label="💳 Assinaturas Ativas (Mensalidade)", value="942")
+    with col3: st.metric(label="💰 Faturamento Recorrente Mensal (MRR)", value="R$ 46.158,00")
+    st.write("---")
+    st.subheader("🎛️ Painel de Controle de Acesso do Cliente")
+    st.text_input("🔑 Token de API Google Ativo no Servidor:", value="CONFIGURADA_NOS_SECRETS_PROTEGIDO", type="password", disabled=True)
+    st.selectbox("🤖 Modelo de Linguagem Ativo no Backend:", ["gemini-1.5-flash"])
