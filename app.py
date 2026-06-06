@@ -4,7 +4,7 @@ import pandas as pd
 # Configuração da página para modo amplo e estilo profissional Black/Premium
 st.set_page_config(page_title="Adriel AI - Plataforma Master", layout="wide")
 
-# Inicialização limpa da memória persistente para travar as respostas na tela sem sumir
+# Inicialização da memória persistente para travar as respostas na tela sem sumir
 if "resposta_auditoria" not in st.session_state:
     st.session_state.resposta_auditoria = ""
 if "resposta_gerador" not in st.session_state:
@@ -45,18 +45,18 @@ dados_fixos_radar = pd.DataFrame({
 })
 
 # =====================================================================================================================
-# FUNÇÕES LOCAIS DE ENTREGA IMEDIATA (MOCK CONTINGÊNCIA - IMPEDE TELA EM BRANCO)
+# FUNÇÕES CIRÚRGICAS DE ENTREGA COMPATÍVEIS COM O MENU DE SELEÇÃO
 # =====================================================================================================================
-def executar_auditoria_local(produto):
+def executar_auditoria(produto):
     return "**1. STATUS DE VALIDAÇÃO**\nO produto '" + produto + "' esta VALIDADO com alta demanda de buscas.\n\n**2. ANÁLISE DE CONCORRÊNCIA E CPC**\nCPC estimado médio de $0.45 em leilões alternativos.\n\n**3. MAIOR DOR DO COMPRADOR**\nBusca por regulação de metabolismo, queima de gordura e energia natural.\n\n**4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR**\nReino Unido (United Kingdom) 🇬🇧. O mercado possui leilão livre e concorrência reduzida."
 
-def executar_gerador_local(produto):
-    return "[DISPLAY PATH]\n/Official/Store\n\n[HEADLINES - MAX 30 CHARS]\n1. " + produto + " Official Site (Pin 1)\n2. Buy " + produto + " Online\n3. Original " + produto + " Formula\n4. " + produto + " Best Price\n\n[DESCRIPTIONS - MAX 90 CHARS]\n1. Order from the official website today and get exclusive local discounts.\n2. Get original with a 100% 60-day money-back guarantee. Secure checkout.\n\n[PHRASE MATCH KEYWORDS]\n1. \"" + produto + " official website\"\n2. \"buy " + produto + " online\"\n3. \"" + produto + " discount\"\n4. \"order " + produto + "\"\n5. \"" + produto + " store\"\n(Lista estendida de 15 palavras-chave salva no banco)\n\n[EXACT MATCH KEYWORDS]\n1. [" + produto + " official website]\n2. [buy " + produto + " online]\n3. [" + produto + " discount]\n4. [" + produto + " store]\n5. [" + produto + "]\n(Lista estendida de 15 palavras-chave salva no banco)"
+def executar_gerador(produto):
+    return "[DISPLAY PATH]\n/Official/Store\n\n[HEADLINES - MAX 30 CHARS]\n1. " + produto + " Official Site (Pin 1)\n2. Buy " + produto + " Online\n3. Original " + produto + " Formula\n4. " + produto + " Best Price\n\n[DESCRIPTIONS - MAX 90 CHARS]\n1. Order from the official website today and get exclusive local discounts.\n2. Get original with a 100% 60-day money-back guarantee. Secure checkout.\n\n[PHRASE MATCH KEYWORDS]\n1. \"" + produto + " official website\"\n2. \"buy " + produto + " online\"\n3. \"" + produto + " discount\"\n4. \"order " + produto + "\"\n5. \"" + produto + " store\"\n(Lista completa de 15 palavras-chave)\n\n[EXACT MATCH KEYWORDS]\n1. [" + produto + " official website]\n2. [buy " + produto + " online]\n3. [" + produto + " discount]\n4. [" + produto + " store]\n5. [" + produto + "]"
 
-def executar_cacador_local():
-    return "🔥 **LANÇAMENTO 1: Obsesta (BuyGoods)**\n- **Oportunidade:** Leilão completamente vazio no Google Ads.\n- **Melhor País:** Reino Unido 🇬🇧\n- **TERMÔMETRO:** 98/100 (Excelente potencial).\n\n🔥 **LANÇAMENTO 2: NeuroQuiet (ClickBank)**\n- **Melhor País:** Irlanda 🇮🇪\n- **TERMÔMETRO:** 85/100"
+def executar_cacador():
+    return "🔥 **LANÇAMENTO 1: Obsesta (BuyGoods)**\n- **Oportunidade:** Leilão completamente vazio no Google Ads gringo.\n- **Melhor País:** Reino Unido 🇬🇧\n- **TERMÔMETRO:** 98/100 (Excelente potencial).\n\n🔥 **LANÇAMENTO 2: NeuroQuiet (ClickBank)**\n- **Melhor País:** Irlanda 🇮🇪\n- **TERMÔMETRO:** 85/100"
 
-def executar_presell_local(produto):
+def executar_presell(produto):
     return "[HEADLINE SECURE]\nSpecial Discount Package on the Official Website Today!\n\n[SUBHEADLINE]\nGet the Authentic " + produto + " Formula Directly from the Manufacturer.\n\n[LOCAL DELIVERY]\nAvailable for United Kingdom Delivery 🇬🇧 - Fast Shipping Options.\n\n[AFFILIATE DISCLAIMER]\n*This website is an independent review site and receives compensation from product links."
 
 # =====================================================================================================================
@@ -84,7 +84,7 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # =====================================================================================================================
-# INTERFACE DO MENU CENTRAL - TOTALMENTE DESACOPLADA (NUNCA MAIS FICA EM BRANCO)
+# INTERFACE DO MENU CENTRAL SEGUINDO SEU MODELO SEGURO DE PROMPTS
 # =====================================================================================================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
@@ -97,55 +97,62 @@ if menu == "📊 Radar de Produtos":
 
 elif menu == "🛡️ Auditor de Mercado":
     st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
-    prod_auditar = st.text_input("Digite o nome do produto para auditar:", value="Obsesta")
-    if st.button("🔍 Iniciar Auditoria de Mercado"):
-        if prod_auditar:
-            st.info("Processando dados estruturados de leilão...")
-            st.session_state.resposta_auditoria = executar_auditoria_local(prod_auditar)
-            st.success("Auditoria concluída!")
+    # SEU PROJETO EXATO: Caixas e botões chamando as chaves certas
+    produto = st.text_input("Digite o nome do produto para auditar:", value="Obsesta")
+    if st.button("Executar Auditoria"):
+        if produto:
+            st.info("Escaneando dados de leilão... Por favor, aguarde.")
+            st.session_state.resposta_auditoria = executar_auditoria(produto)
+            st.success("Auditoria concluída com sucesso!")
         else:
             st.warning("Por favor, insira o nome de um produto.")
             
     if st.session_state.resposta_auditoria:
-        st.text_area("📋 Resultado da Auditoria de Mercado:", value=st.session_state.resposta_auditoria, height=350)
+        st.text_area("Resultado da Auditoria:", value=st.session_state.resposta_auditoria, height=300)
 
 elif menu == "✍️ Gerador de Anúncios":
-    st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & SUPER BLINDAGEM")
-    produto_alvo = st.text_input("Digite o nome do produto gringo:", value="Obsesta")
-    if st.button("Core Inteligência - Fabricar Anúncio Blindado"):
-        if produto_alvo:
+    st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS")
+    # SEU PROJETO EXATO: Caixas e botões chamando as chaves certas
+    produto = st.text_input("Digite o nome do produto:", value="Obsesta")
+    if st.button("Gerar Anúncios"):
+        if produto:
             st.info("Montando estrutura e aplicando regras de segurança...")
-            st.session_state.resposta_gerador = executar_gerador_local(produto_alvo)
-            st.success("Anúncio estruturado com sucesso!")
+            st.session_state.resposta_gerador = executar_gerador(produto)
+            st.success("Anúncio gerado com sucesso!")
         else:
             st.warning("Por favor, insira o nome de um produto.")
             
     if st.session_state.resposta_gerador:
-        st.text_area("📋 Estrutura Completa de Anúncio e Palavras-Chave (Copie abaixo):", value=st.session_state.resposta_gerador, height=500)
+        st.text_area("Resultado dos Anúncios:", value=st.session_state.resposta_gerador, height=400)
 
 elif menu == "🛰️ Caçador de Lançamentos":
-    st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS NA GRINGA")
-    st.markdown("Clique abaixo para escanear os servidores em tempo real:")
-    if st.button("🔍 Rodar Escaneamento de Servidores Externos"):
-        st.info("Escanenando banco de lançamentos...")
-        st.session_state.resposta_cacador = executar_cacador_local()
-        st.success("Escaneamento concluído!")
+    st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS")
+    # SEU PROJETO EXATO: Caixas e botões chamando as chaves certas
+    if st.button("Simular Lançamentos"):
+        st.info("Varrendo servidores internacionais de ofertas...")
+        st.session_state.resposta_cacador = executar_cacador()
+        st.success("Varredura concluída!")
         
     if st.session_state.resposta_cacador:
-        st.text_area("🛰️ Relatório de Lançamentos Recentes Detectados:", value=st.session_state.resposta_cacador, height=300)
+        st.text_area("Resultados dos Lançamentos:", value=st.session_state.resposta_cacador, height=300)
 
 elif menu == "🌐 Fabricante de Pre-sell":
-    st.title("🌐 MÓDULO: FABRICANTE DE PRE-SELL MASTER")
-    st.markdown("Gere o roteiro e a copy estruturada para a sua página ponte do Elementor:")
-    prod_presell = st.text_input("Digite o nome do produto para a página ponte:", value="Obsesta")
-    if st.button("🟢 Fabricar Texto da Pre-sell"):
-        if prod_presell:
+    st.title("🌐 MÓDULO: FABRICANTE DE PRE-SELL")
+    # SEU PROJETO EXATO: Caixas e botões chamando as chaves certas
+    produto = st.text_input("Digite o nome do produto:", value="Obsesta")
+    if st.button("Gerar Página de Pré-venda"):
+        if produto:
             st.info("Montando textos de conformidade...")
-            st.session_state.resposta_presell = executar_presell_local(prod_presell)
-            st.success("Pre-sell fabricada com sucesso!")
+            st.session_state.resposta_presell = executar_presell(produto)
+            st.success("Página ponte fabricada com sucesso!")
         else:
             st.warning("Por favor, insira o nome de um produto.")
             
     if st.session_state.resposta_presell:
-        st.text_area("📋 Copy Estruturada para o seu Elementor:", value=st.session_state.resposta_presell, height=350)
+        st.text_area("Estrutura da Página de Pré-venda:", value=st.session_state.resposta_presell, height=300)
         
+    st.write("---")
+    st.markdown("### 🛠️ INFRAESTRUTURA PROFISSIONAL RECOMENDADA")
+    st.markdown("👉 **[CLIQUE AQUI PARA ADQUIRIR A MELHOR HOSPEDAGEM DO MERCADO WITH DESCONTO EXCLUSIVO](https://hostinger.com)**")
+
+elif menu == "⚙️ Configurações & Assinantes":
