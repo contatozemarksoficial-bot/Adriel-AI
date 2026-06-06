@@ -34,7 +34,6 @@ if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]")
     st.markdown("Abaixo está o mapa completo com as métricas e a estratégia exata dos 7 produtos líderes de Fundo de Funil:")
     
-    # Tabela ultra detalhada afirmando as características comerciais e a estratégia exata de cada produto
     dados_radar = {
         "Product Name": ["Sugar Defender", "ProDentim", "GlucoBerry", "Citrus Burn", "LeanBliss", "Puravive", "Java Burn"],
         "Veredito de Mercado": ["VALIDADO (Risco Baixo)", "VALIDADO (Risco Baixo)", "VALIDADO (Risco Baixo)", "VALIDADO (Risco Baixo)", "VALIDADO (Risco Médio)", "VALIDADO (Risco Baixo)", "VALIDADO (Risco Baixo)"],
@@ -68,22 +67,44 @@ else:
         pass
 
     # ==========================================
-    # 2. ABA: AUDITOR DE MERCADO
+    # 2. ABA: AUDITOR DE MERCADO (ESTRUTURA CIRÚRGICA PADRONIZADA)
     # ==========================================
     if menu == "🛡️ Auditor de Mercado":
-        st.title("🛡️ MÓDULO: AUDITOR DE MERCADO")
-        st.markdown("Verifique se o produto está validado antes de colocar seu orçamento de anúncios:")
+        st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
+        st.markdown("Verifique a viabilidade estratégica e financeira de qualquer produto antes de subir anúncios:")
+        
         prod_auditar = st.text_input("✍️ Digite o nome do produto gringo para auditar:", value="Sugar Defender")
         if st.button("🔍 Iniciar Auditoria de Mercado"):
-            st.info(f"Analisando dados globais para {prod_auditar}...")
+            st.info(f"Analisando dados globais de leilão e concorrência para '{prod_auditar}'...")
             try:
                 model = genai.GenerativeModel(modelo_ativo)
-                prompt = f"Faça uma auditoria curta de fundo de funil sobre o produto {prod_auditar}. Diga se está validado (Sim ou Não), a maior dor do cliente gringo e o melhor país com leilão barato no Google Ads. Seja direto e escreva em português."
+                
+                # Prompt de engenharia reversa travando os 4 blocos de respostas obrigatórias
+                prompt = f"""
+                Você é o AUDITOR DE MERCADO XEQUE-MATE, especialista em análise de concorrência e custos de leilão no Google Ads para afiliados internacionais.
+                Faça uma análise estratégica precisa do produto de afiliado gringo '{prod_auditar}'.
+                Você deve obrigatoriamente estruturar sua resposta dividida exatamente nestes 4 tópicos abaixo (use títulos em letras maiúsculas e negrito):
+
+                **1. STATUS DE VALIDAÇÃO DO PRODUTO**
+                Afirme claramente se o produto '{prod_auditar}' está validado no mercado de afiliados, se possui alta demanda de buscas e se o risco da campanha de fundo de funil é baixo, médio ou alto.
+
+                **2. ANÁLISE DE CONCORRÊNCIA E PREÇO DO CLIQUE (CPC)**
+                Explique o nível de concorrência atual de afiliados brigando por esse termo e informe uma estimativa média de custo por clique (CPC) para o tráfego de fundo de funil.
+
+                **3. MAIOR DOR DO COMPRADOR GRINGO**
+                Diga qual é a principal dor, desejo ou necessidade do cliente final que busca por esse termo e que faz ele comprar o produto com o cartão de crédito na mão.
+
+                **4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR (MAIOR ROI E MENOR CONCORRÊNCIA)**
+                Indique categoricamente qual é o melhor país de língua inglesa com leilão barato, concorrência reduzida e altíssimo poder de compra (como Reino Unido, Irlanda, Canadá, Nova Zelândia ou Austrália) para o afiliado anunciar e obter o maior lucro possível, fugindo da briga cara dos Estados Unidos. Justifique a escolha.
+
+                Escreva toda a resposta em português claro, direto, profissional e direto ao ponto, sem enrolação.
+                """
+                
                 resposta = model.generate_content(prompt)
-                st.success("Auditoria Concluída!")
+                st.success("Auditoria Estratégica Concluída com Sucesso!")
                 st.write(resposta.text)
             except Exception as e:
-                st.error(f"Erro na IA (Aguarde 1 minuto para resetar a cota): {e}")
+                st.error(f"Erro na IA (Se necessário, aguarde 1 minuto para resetar a cota): {e}")
             
     # ==========================================
     # 3. ABA: GERADOR DE ANÚNCIOS
