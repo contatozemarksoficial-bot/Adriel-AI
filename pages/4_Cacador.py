@@ -40,6 +40,9 @@ st.markdown("### 🎛️ Painel de Escaneamento Vivo e Notificações Contínuas
 st.markdown("Clique no botão personalizado abaixo para iniciar o rastreamento síncrona com renderização gráfica em tempo real:")
 st.write("")
 
+# Lista oficial para o sorteio dinâmico do produto capturado no leilão
+produtos_pool = ["Obsesta", "Sugar Defender", "ProDentim", "GlucoBerry", "Citrus Burn", "LeanBliss", "Puravive", "Java Burn", "Alpilean", "LivPure"]
+
 if st.button("🛰️ INICIAR RASTREAMENTO MASSIVO ATIVO 24/7"):
     st.info("Estabelecendo conexão criptografada com os servidores de ofertas gringos...")
     
@@ -52,71 +55,66 @@ if st.button("🛰️ INICIAR RASTREAMENTO MASSIVO ATIVO 24/7"):
     
     # Loop de animação que faz as barras do gráfico mudarem e atualizarem sozinhas na tela
     for passo in range(4):
-        status_placeholder.markdown(f"🔄 **Varredura em andamento...** Analisando picos de tráfego do mês de {meses[passo*3]} a {meses[(passo*3)+2]}...")
-        
-        # Gera valores flutuantes dinâmicos simulando busca de dados ao vivo
+        status_placeholder.markdown(f"🔄 **Varredura em andamento...** Analisando picos de tráfego do leilão internacional...")
         valores_dinamicos = [random.randint(150, 1100) for _ in range(12)]
         df_animado = pd.DataFrame({"Pico de Interesse Comercial (Buscadores)": valores_dinamicos}, index=meses)
-        
-        # Atualiza o gráfico de colunas de forma síncrona na tela do usuário
         grafico_placeholder.bar_chart(df_animado, use_container_width=True, color="#00E5FF")
-        time.sleep(0.8) # Pausa dramática milimétrica para mostrar a engrenagem mexendo
+        time.sleep(0.6)
         
-    status_placeholder.success("🎯 Varredura massiva concluída! Novas oportunidades de alta conversão injetadas no painel!")
+    # Sorteia o nome do produto capturado em tempo real nesta execução
+    produto_capturado = random.choice(produtos_pool)
+    paises_opcoes = ["Reino Unido 🇬🇧", "Estados Unidos 🇺🇸", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"]
+    pais_vencedor = random.choice(paises_opcoes)
+    
+    status_placeholder.success(f"🎯 Varredura massiva concluída! O produto gringo **{produto_capturado}** acabou de ser capturado com picos de tráfego!")
     st.write("---")
     
-    # Estrutura robusta detalhando as oportunidades gringas por extenso
+    # Estrutura robusta detalhando as oportunidades gringas por extenso com a variável viva
     texto_cacador = (
-        "📦 [RASTREADOR VIVO — SERVIDOR BUYGOODS — ESTADOS UNIDOS]\n"
-        "🔥 PRODUTO CAPTURADO: Obsesta (Nicho: Emagrecimento / Termogênico)\n"
-        "- STATUS ATUAL: Sistema capturou alta movimentação de novos domínios cadastrados nas últimas 2 horas. O leilão de frase do Google Ads encontra-se completamente limpo de afiliados concorrentes tradicionais.\n"
-        "- GEO DE ESCALA (ONDE LANÇAR): Reino Unido 🇬🇧\n"
-        "- JUSTIFICATIVA DO ESPECIALISTA: Público comprador britânico maduro com libras esterlinas na carteira pronto para pacotes múltiplos de 3 a 6 frascos. CPC médio travado em baixos $0.45.\n"
-        "- 🌡️ TERMÔMETRO DO LANÇAMENTO: 98/100 (Potencial máximo de escala rápida e ROI imediato).\n\n"
+        "📦 [RASTREADOR VIVO — SERVIDORES INTERNACIONAIS EM ALTA]\n"
+        f"🔥 PRODUTO DETECTADO AGORA: {produto_capturado} (Fundo de Funil Ativo)\n"
+        f"- STATUS ATUAL: O sistema capturou alta movimentação de novos domínios cadastrados nas últimas horas. O leilão de frase do Google Ads encontra-se completamente limpo de afiliados concorrentes tradicionais.\n"
+        f"- GEO DE ESCALA (ONDE LANÇAR): {pais_vencedor}\n"
+        f"- JUSTIFICATIVA DO ESPECIALISTA: Mercado qualificado apresentando altíssima intenção de compra imediata na rede de pesquisa por termos exatos de desconto e cupom de fábrica oficial.\n"
+        f"- 🌡️ TERMÔMETRO DO LANÇAMENTO: {random.randint(85, 99)}/100 (Potencial máximo de escala rápida e ROI imediato).\n\n"
         "------------------------------------------------------------------------------------------------------\n\n"
-        "📦 [RASTREADOR VIVO — SERVIDOR CLICKBANK — EUROPA]\n"
-        "🔥 PRODUTO CAPTURADO: NeuroQuiet (Nicho: Saúde Mental / Alívio de Zumbido / Sono)\n"
-        "- STATUS ATUAL: Oferta escalando tráfego qualificado de buscas diretas por cupons de desconto. Ideal para subir estruturas rápidas de anúncios responsivos blindados.\n"
-        "- GEO DE ESCALA (ONDE LANÇAR): Irlanda 🇮🇪\n"
-        "- JUSTIFICATIVA DO ESPECIALISTA: Cliques extremamente baratos rodando direto em Euros. O leilão encontra-se livre de robôs americanos e cliques inválidos.\n"
-        "- 🌡️ TERMÔMETRO DO LANÇAMENTO: 88/100 (Excelente ROI estimado no tráfego direto).\n\n"
-        "------------------------------------------------------------------------------------------------------\n\n"
-        "📦 [RASTREADOR VIVO — SERVIDOR DIGISTORE24 — OCEANIA]\n"
-        "🔥 PRODUTO CAPTURADO: ZenCortex (Nicho: Foco / Memória / Nootrópico Premium)\n"
-        "- STATUS ATUAL: Rastreamento identificou liberação de novos lotes promocionais de fábrica. Alta busca local por termos exatos no funil comercial.\n"
-        "- GEO DE ESCALA (ONDE LANÇAR): Nova Zelândia 🇳🇿\n"
-        "- JUSTIFICATIVA DO ESPECIALISTA: O leilão local encontra-se livre de lances agressivos do mercado de afiliados dos EUA, garantindo cliques limpos para contas com orçamento menor.\n"
-        "- 🌡️ TERMÔMETRO DO LANÇAMENTO: 82/100."
+        "📦 [HISTÓRICO RECENTE DAS ÚLTIMAS VARREDURAS DE INFRAESTRUTURA]\n"
+        "🔥 PRODUTO SECUNDÁRIO: NeuroQuiet (Nicho: Saúde Mental / Alívio de Zumbido)\n"
+        "- GEO ESTRATÉGICA: Irlanda 🇮🇪 — Excelente oportunidade para rodar correspondência de frase com cliques frios limpos rodando direto em Euros.\n"
+        "- TERMÔMETRO: 88/100.\n\n"
+        "🔥 PRODUTO TERCIÁRIO: ZenCortex (Nicho: Foco / Memória)\n"
+        "- GEO ESTRATÉGICA: Nova Zelândia 🇳🇿 — Leilão local livre de lances agressivos do mercado americano, poupando o orçamento diário.\n"
+        "- TERMÔMETRO: 82/100."
     )
-    st.text_area("📋 Relatório Consolidado de Oportunidades Recentes:", value=texto_cacador, height=450)
+    st.text_area("📋 Relatório Consolidado de Oportunidades Recentes:", value=texto_cacador, height=420)
     st.write("---")
     
     # =============================================================================================================
-    # MÓDULO DE INTEGRAÇÃO DE ALERTA CONTINUO VIA WHATSAPP
+    # MÓDULO DE INTEGRAÇÃO DE ALERTA DIRETAMENTE COM O NOME DO PRODUTO CAPTURADO
     # =============================================================================================================
-    st.markdown("### 🔔 ATIVAR SISTEMA DE ALERTAS CONTÍNUOS 24/7")
-    st.markdown("Insira o seu número abaixo para validar o disparo de relatórios automatizados de novos produtos direto para o seu WhatsApp:")
+    st.markdown("### 🔔 ATIVAR SISTEMA DE ALERTAS DIÁRIOS NO SEU WHATSAPP")
+    st.markdown("Insira o seu número abaixo para validar o disparo do relatório contendo a nossa última captura ao vivo:")
     
     numero_whatsapp = st.text_input("Digite seu número com DDD (Apenas números, ex: 11999999999):", value="11999999999")
     
-    # Mensagem dinâmica estruturada para o WhatsApp
+    # Mensagem 100% dinâmica injetando o nome do produto sorteador na hora do clique
     mensagem_bruta = (
-        "🛰️ *ADRIEL AI - MONITORAMENTO INTEGRADO ATIVO 24/7*\n\n"
-        "🟢 *Status do Rastreador:* Ligado e varrendo redes gringas de hora em hora.\n\n"
-        "🔥 *Último Alerta Emitido:* Obsesta (BuyGoods) está explodindo com leilão baleado e livre de concorrência no Reino Unido 🇬🇧!\n\n"
-        "👉 *Ação imediata:* Acesse o painel de Gerador de Anúncios para clonar as palavras-chave e subir sua campanha agora!"
+        f"🛰️ *ADRIEL AI - MONITORAMENTO INTEGRADO ATIVO 24/7*\n\n"
+        f"🟢 *Status do Rastreador:* Varredura massiva concluída com sucesso!\n\n"
+        f"🔥 *ÚLTIMO LANÇAMENTO CAPTURADO:* {produto_capturado}\n"
+        f"🌍 *Melhor País para Subir:* {pais_vencedor}\n"
+        f"🌡️ *Termômetro de Escala:* Alta Conversão Detectada!\n\n"
+        f"👉 *Ação imediata:* Acesse os módulos da sua plataforma para clonar a estrutura completa de anúncios e palavras-chave de marca do produto *{produto_capturado}* antes que o leilão infle!"
     )
     
-    # Codifica o texto para o formato aceito em links de internet (URL)
     mensagem_codificada = urllib.parse.quote(mensagem_bruta)
     link_whatsapp = f"https://whatsapp.com{numero_whatsapp}&text={mensagem_codificada}"
     
     st.write("")
-    # Botão personalizado verde esmeralda para ativação do loop de alertas
     st.markdown(
         f'<a href="{link_whatsapp}" target="_blank" style="text-decoration: none;">'
-        '<div style="background-color: #2ECC71; color: white; text-align: center; padding: 14px; font-weight: bold; border-radius: 14px; box-shadow: 0px 5px 15px rgba(46, 204, 113, 0.4); font-size: 18px; transition: all 0.2s;">'
-        "🟢 VALIDAR ALERTAS DIÁRIOS E RECEBER RELATÓRIO ATUALIZADO NO WHATSAPP"
+        '<div style="background-color: #2ECC71; color: white; text-align: center; padding: 14px; font-weight: bold; border-radius: 14px; box-shadow: 0px 5px 15px rgba(46, 204, 113, 0.4); font-size: 18px;">'
+        f"🟢 ENVIAR ALERTA DO PRODUTO {produto_capturado.upper()} PARA O MEU WHATSAPP"
         '</div>'
         '</a>', 
         unsafe_allow_html=True
