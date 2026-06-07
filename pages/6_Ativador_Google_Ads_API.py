@@ -69,7 +69,6 @@ if st.session_state.passo_atual == 1:
         produto_atual = st.text_input("Nome do Produto Gringo:", value=st.session_state.produto)
         if produto_atual != st.session_state.produto:
             st.session_state.produto = produto_atual
-            # Reseta as sugestões automáticas se o produto mudar na tela
             st.session_state.t1_val = f"{produto_atual} Official Website"
             st.session_state.t2_val = f"Buy {produto_atual} Online"
             st.session_state.t3_val = f"Original {produto_atual} Formula"
@@ -112,15 +111,14 @@ elif st.session_state.passo_atual == 2:
             st.rerun()
 
 # =============================================================================================================
-# PASSO 3: REDAÇÃO DO ANÚNCIO RESPONSIVO COM AUTO-CORREÇÃO DE POLÍTICAS ENRAIZADA
+# PASSO 3: REDAÇÃO DO ANÚNCIO COM CORREÇÃO DE PALAVRAS INTEIRAS (ANTI-LOOPS)
 # =============================================================================================================
 elif st.session_state.passo_atual == 3:
     st.markdown("### 📝 PASSO 3: REDAÇÃO DO ANÚNCIO (RESPONSIVO RSA) & PROTOCOLO DE COMPLIANCE")
-    st.markdown("Escreva ou modifique os textos abaixo. O scanner Adriel AI caça violações e as corrige de forma estável!")
+    st.markdown("Escreva ou modifique os textos abaixo. O scanner Adriel AI caça violações isoladas e as corrige de forma estável!")
     
     col_t1, col_t2 = st.columns(2)
     with col_t1:
-        # Vinculando as variáveis direto na ID de chaves de estado de re-renderização estável
         t1 = st.text_input("Título Principal 1 (Pin 1):", value=st.session_state.t1_val, key="t1_input_box")
         t2 = st.text_input("Título Principal 2 (Pin 2):", value=st.session_state.t2_val, key="t2_input_box")
         t3 = st.text_input("Título Principal 3 (Pin 3):", value=st.session_state.t3_val, key="t3_input_box")
@@ -151,31 +149,31 @@ elif st.session_state.passo_atual == 3:
     violacao_capital = False
     gatilho_detalhado = ""
     
-    # 1. Caça palavras proibidas de promessas médicas ou milagrosas
+    # 🎯 BLINDAGEM DA API: Varre caçando apenas palavras exatas isoladas usando limites (\b) para não travar em 'Secure'
     for termo_ruim in regras_correcao.keys():
-        if termo_ruim in texto_completo_original:
+        padrao_palavra_exata = r'\b' + re.escape(termo_ruim) + r'\b'
+        if re.search(padrao_palavra_exata, texto_completo_original):
             violacao_termo = True
             gatilho_detalhado = termo_ruim
             break
             
-    # 2. Caça o uso proibido de Letras Maiúsculas Excessivas (BUY NOW)
+    # Varre caçando o uso proibido de Letras Maiúsculas Excessivas (BUY NOW)
     letras_grandes = re.findall(r'\b[A-Z]{3,}\b', t1 + " " + t2 + " " + t3)
     if not violacao_termo and letras_grandes:
         violacao_capital = True
         gatilho_detalhado = f"Letras Maiúsculas Abusivas: {letras_grandes}"
 
-    # Retorno visual inteligente na tela baseado na detecção de violações
+    # Retorno visual inteligente na tela baseado na detecção de violações reais
     if violacao_termo or violacao_capital:
         st.error(f"❌ RISCO DE BLOQUEIO DETECTADO! Motivo: '{gatilho_detalhado}'. Esta estrutura quebra as regras do Google Ads.")
         
         st.markdown("**💡 O Robô Adriel AI estruturou a correção segura para você. Clique abaixo para aplicar:**")
         if st.button("⚡ CORRIGIR TEXTO AUTOMATICAMENTE (ANTI-BLOQUEIO)"):
             
-            # Limpa e substitui todas as palavras ruins pelas seguras
+            # Limpa e substitui todas as palavras ruins isoladas pelas seguras usando sub limite
             for ruim, seguro in regras_correcao.items():
-                st.session_state.t1_val = re.sub(ruim, seguro, st.session_state.t1_val, flags=re.IGNORECASE)
-                st.session_state.t2_val = re.sub(ruim, seguro, st.session_state.t2_val, flags=re.IGNORECASE)
-                st.session_state.t3_val = re.sub(ruim, seguro, st.session_state.t3_val, flags=re.IGNORECASE)
-                st.session_state.d1_val = re.sub(ruim, seguro, st.session_state.d1_val, flags=re.IGNORECASE)
-                st.session_state.d2_val = re.sub(ruim, seguro, st.session_state.d2_val, flags=re.IGNORECASE)
-                
+                padrao_sub = r'\b' + re.escape(ruim) + r'\b'
+                st.session_state.t1_val = re.sub(padrao_sub, seguro, st.session_state.t1_val, flags=re.IGNORECASE)
+                st.session_state.t2_val = re.sub(padrao_sub, seguro, st.session_state.t2_val, flags=re.IGNORECASE)
+                st.session_state.t3_val = re.sub(padrao_sub, seguro, st.session_state.t3_val, flags=re.IGNORECASE)
+                st.session_state.d1_val = re.sub(padrao_sub, seguro, st.session_state.d1_val, flags=re.IGNORECASE)
