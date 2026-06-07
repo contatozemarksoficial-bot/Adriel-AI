@@ -46,7 +46,7 @@ if st.button("🌐 GERAR ESTRUTURA BLINDADA PARA O ELEMENTOR"):
         st.write("---")
         
         # =============================================================================================================
-        # SEU LINK DE INDICAÇÃO OFICIAL FIXADO E DESTACADO COM DADOS DE PLANOS REAIS NO TOPO (MINA DE OURO DO JOSÉ)
+        # SEU LINK DE INDICAÇÃO OFICIAL FIXADO E DESTACADO COM DADOS DE PLANOS REAIS NO TOPO
         # =============================================================================================================
         st.markdown("### 🛠️ 1. INFRAESTRUTURA DE HOSPEDAGEM DO AFILIADO (SUA INDICAÇÃO OFICIAL)")
         st.markdown(
@@ -55,9 +55,8 @@ if st.button("🌐 GERAR ESTRUTURA BLINDADA PARA O ELEMENTOR"):
             "**R$ 10,99/mês (Premium)** ou **R$ 13,99/mês (Business recomendado com NVMe rápido e CDN grátis)** clicando no nosso link oficial comissionado:"
         )
         
-        # O seu link oficial comissionado estrito destacado em um super botão nativo clicável verde de sucesso
         st.markdown(
-            '<a href="https://www.hostinger.com/br?REFERRALCODE=VBMCONTAT7WC" target="_blank" style="text-decoration: none;">'
+            '<a href="https://hostinger.com" target="_blank" style="text-decoration: none;">'
             '<div style="background-color: #2ECC71; color: white; text-align: center; padding: 15px; font-weight: bold; border-radius: 14px; box-shadow: 0px 5px 15px rgba(46, 204, 113, 0.4); font-size: 18px; transition: all 0.2s;">'
             "👉 CLIQUE AQUI PARA COMPRAR SUA HOSPEDAGEM HOSTINGER COM DESCONTO EXCLUSIVO (INDICAÇÃO ADRIEL AI)"
             '</div>'
@@ -85,10 +84,11 @@ if st.button("🌐 GERAR ESTRUTURA BLINDADA PARA O ELEMENTOR"):
             
         with st.expander("🛡️ RODAPÉ BLINDADO ANTI-BLOQUEIO (OBRIGATÓRIO COPIAR COMPLETO)", expanded=True):
             st.markdown(
-                "**⚠️ ATENÇÃO EXTREMA:** Este bloco abaixo contém os textos exatos de Termos de Serviço, Política e Isenções Médicas "
-                "que o Google Ads exige por extenso para **NÃO** derrubar a conta do afiliado. Cole tudo na caixa de texto do rodapé da página ponte:"
+                "**⚠️ ATENÇÃO EXTREMA:** Este bloco abaixo contém a linha mestre exata exigida pelo Google Ads juntando links e avisos de saúde. "
+                "Cole tudo na caixa de texto do rodapé da sua página ponte para blindar a conta contra suspensões:"
             )
             
+            # Injeção cirúrgica da linha exata solicitada com a variável dinâmica do produto
             texto_rodape = (
                 "[RODAPÉ LEGAL COMPLETO — FONTE PEQUENA E FUNDO ESCURO]\n\n"
                 "About " + prod_nome + ": • 100% Natural Formula with carefully selected ingredients. • Easy-to-take liquid dropper format for daily use. • Non-GMO, gluten-free, and manufactured in a secure facility.\n\n"
@@ -96,13 +96,10 @@ if st.button("🌐 GERAR ESTRUTURA BLINDADA PARA O ELEMENTOR"):
                 "FTC DISCLOSURE & AFFILIATE NOTICE:\n"
                 "The links contained on this website page may result in a small financial compensation if you opt to purchase the product advised at no additional cost to you. This helps support our independent research team so we can continue to review high-quality premium products.\n\n"
                 "------------------------------------------------------------------------------------------------------\n"
-                "MEDICAL DISCLAIMER & HEALTH NOTICE:\n"
-                "The content and statements of this website are for informational purposes only and are not intended to replace professional medical advice, diagnosis, or treatment. Always consult with a certified physician or healthcare professional before starting any dietary supplement, making changes to your health routine, or if you have any questions regarding a medical condition. " + prod_nome + " is a registered trademark of its respective owners.\n\n"
+                "LINE-BLINDAGE MANDATORY GOOGLE ADS POLICY:\n"
+                "Privacy Policy | Terms of Service | Disclaimer The content of this site is for informational purposes only and is not intended to replace professional medical advice, diagnosis, or treatment. " + prod_nome + " is a registered trademark of its respective owners.\n\n"
                 "------------------------------------------------------------------------------------------------------\n"
-                "LEGAL LINKS (Obrigatorio criar as paginas ponte no Elementor):\n"
-                "Privacy Policy | Terms of Service | Contact Us | Shipping & Returns\n\n"
-                "------------------------------------------------------------------------------------------------------\n"
-                "[REQUISITO DE INFRAESTRUTURA INTEGRADO — COMPRA RECOMENDADA]\n"
-                "Hospedagem Obrigatória para esta Pre-sell: Hostinger (https://www.hostinger.com/br?REFERRALCODE=VBMCONTAT7WC)"
+                "[REQUISITO DE INFRAESTRUTURA INTEGRADO — ONDE HOSPEDAR]\n"
+                "Hospedagem Recomendada para esta Pre-sell: Hostinger (https://hostinger.com)"
             )
             st.text_area("Massa Bruta do Rodapé de Proteção:", value=texto_rodape, height=380)
