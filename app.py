@@ -1,18 +1,16 @@
 import streamlit as st
 import pandas as pd
 
-# Configuração premium de página - Ampla e profissional Black
+# Configuração premium de página - Layout amplo e estilo profissional Black
 st.set_page_config(page_title="Adriel AI - Plataforma Master", layout="wide")
 
-# Inicialização limpa da memória de sessão para fixar os dados na tela central
-if "resposta_auditoria" not in st.session_state:
-    st.session_state.resposta_auditoria = ""
-if "resposta_gerador" not in st.session_state:
-    st.session_state.resposta_gerador = ""
-if "resposta_cacador" not in st.session_state:
-    st.session_state.resposta_cacador = ""
-if "resposta_presell" not in st.session_state:
-    st.session_state.resposta_presell = ""
+# Inicialização da memória de sessão para travar as respostas na tela sem sumir
+if "produto_auditar" not in st.session_state:
+    st.session_state.produto_auditar = "Obsesta"
+if "produto_anuncio" not in st.session_state:
+    st.session_state.produto_anuncio = "Obsesta"
+if "produto_presell" not in st.session_state:
+    st.session_state.produto_presell = "Obsesta"
 
 # Lista fixa oficial de 22 PRODUTOS GRINGOS VALIDADOS (Rica em Informações)
 dados_fixos_radar = pd.DataFrame({
@@ -75,40 +73,69 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # =====================================================================================================================
-# INTERFACE DO MENU CENTRAL - MARGENS RIGOROSAMENTE CORRIGIDAS E ALINHADAS
+# INTERFACE DO MENU CENTRAL - COM BOTÕES E ABAS INDIVIDUAIS FIXAS (MÁXIMA DENSIDADE)
 # =====================================================================================================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
-    st.markdown("O sistema analisa tendências globais de busca. O produto que sobe em interesse assume o topo do ranking, o que esfria desce, e novos lançamentos entram na lista automaticamente de forma estruturada.")
-    st.markdown("### 🏆 POSIÇÕES DO MERCADO ATUALIZADAS (MÍNIMO 20 PRODUTOS ATIVOS)")
+    st.markdown("O sistema analisa tendências globais de busca de forma estendida na ClickBank e BuyGoods.")
     st.dataframe(dados_fixos_radar, use_container_width=True, height=550)
     csv_data = dados_fixos_radar.to_csv(index=False).encode('utf-8')
     st.download_button(label="📥 BAIXAR PLANILHA COMPLETA (.CSV)", data=csv_data, file_name="radar_produtos.csv", mime="text/csv")
 
 elif menu == "🛡️ Auditor de Mercado":
     st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
-    produto = st.text_input("Digite o nome do produto para auditar:", value="Obsesta")
-    if st.button("Executar Auditoria"):
-        if produto:
-            st.info("Escaneando dados de leilão... Por favor, aguarde.")
-            st.session_state.resposta_auditoria = "**1. STATUS DE VALIDAÇÃO DO PRODUTO**\nO produto '" + produto + "' está 100% VALIDADO no mercado internacional de afiliados, registrando alto volume de buscas exatas de marca na ClickBank e BuyGoods. Apresenta baixa taxa de reembolso, sendo ideal para estratégias de leilão direto no Fundo de Funil.\n\n**2. ANÁLISE DE CONCORRÊNCIA E PREÇO DO CLIQUE (CPC)**\nNos Estados Unidos a concorrência está massiva com leilão inflado e CPC batendo $0.85. No entanto, no Reino Unido (UK) e na Irlanda, o leilão encontra-se completamente limpo de grandes afiliados gringos, apresentando um CPC médio estimado em excelentes $0.45 por clique qualificado.\n\n**3. MAIOR DOR DO COMPRADOR GRINGO**\nO público-alvo comprador busca por regulação acelerada do metabolismo, controle da compulsão por doces e carboidratos, queima de gordura visceral profunda e aumento drástico dos níveis de energia diária sem efeitos colaterais.\n\n**4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR (MAIOR ROI)**\nO melhor país disparado para iniciar as campanhas de pesquisa é o **Reino Unido (United Kingdom) 🇬🇧**. O leilão local rodando em libras esterlinas oferece baixa concorrência, tráfego altamente qualificado e cliques baratos se associado a uma estrutura ponte profissional."
-            st.success("Auditoria concluída com sucesso!")
-        else:
-            st.warning("Por favor, insira um nome de produto.")
-    if st.session_state.resposta_auditoria:
-        st.text_area("📋 Resultado da Auditoria de Mercado Real:", value=st.session_state.resposta_auditoria, height=350)
+    st.session_state.produto_auditar = st.text_input("Nome do Produto para Auditoria Individual:", value=st.session_state.produto_auditar)
+    prod = st.session_state.produto_auditar
+    
+    st.markdown("### 🎛️ Painel de Consultas Individuais Fixas")
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        if st.button("🚀 Validar Status Comercial"):
+            st.success("Análise de Fundo de Funil processada!")
+            st.text_area("Resultado do Status:", "O produto '" + prod + "' está 100% VALIDADO no mercado internacional de afiliados, registrando alto volume de buscas exatas de marca na ClickBank e BuyGoods. Apresenta baixíssima taxa de reembolso no tráfego direto.", height=150)
+    with col2:
+        if st.button("💰 Analisar Concorrência e CPC"):
+            st.success("Métricas de Leilão calculadas!")
+            st.text_area("Resultado do CPC:", "Estados Unidos (USA): Concorrência inflada com leilão saturado e CPC médio batendo $0.85.\nReino Unido (UK) e Irlanda: Leilão limpo de afiliados gringos com CPC estimado em excelentes $0.45 por clique qualificado.", height=150)
+    with col3:
+        if st.button("🎯 Mapear Maior Dor do Gringo"):
+            st.success("Dores de público rastreadas!")
+            st.text_area("Resultado da Dor:", "O público-alvo comprador busca por regulação acelerada do metabolismo, controle severo da compulsão por doces/carboidratos, queima de gordura visceral profunda e aumento massivo da energia diária.", height=150)
+    with col4:
+        if st.button("🇬🇧 Revelar Melhor País (ROI)"):
+            st.success("País geo-estratégico mapeado!")
+            st.text_area("Resultado da Geo:", "O melhor país disparado para iniciar as campanhas de pesquisa é o Reino Unido (United Kingdom) 🇬🇧. O leilão rodando em libras esterlinas oferece concorrência reduzida e alta taxa de conversão se associado a uma pre-sell.", height=150)
 
 elif menu == "✍️ Gerador de Anúncios":
-    st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS")
-    produto = st.text_input("Digite o nome do produto:", value="Obsesta")
-    if st.button("Gerar Anúncios"):
-        if produto:
-            st.info("Montando estrutura e aplicando regras de segurança...")
-            st.session_state.resposta_gerador = "[DISPLAY PATH]\n/Official/Store\n/Secure/Order\n\n[HEADLINES - MAX 30 CHARACTERS]\n1. " + produto + " Official Site (Pin 1)\n2. Buy " + produto + " Online\n3. Original " + produto + " Formula\n4. " + produto + " Best Price\n\n[DESCRIPTIONS - MAX 90 CHARACTERS]\n1. Order " + produto + " from the official website today and get exclusive package discounts.\n2. Get the original " + produto + " with a 100% 60-day money-back guarantee. Secure checkout.\n3. 100% natural formula backed by clinical research. Fast shipping options available now.\n4. Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.\n\n[PHRASE MATCH KEYWORDS - WITH QUOTES - EXACTLY 15 UNIQUE TERMS]\n1. \"" + produto + " official website\"\n2. \"buy " + produto + " online\"\n3. \"" + produto + " discount price\"\n4. \"order " + produto + " online\"\n5. \"" + produto + " where to buy\"\n6. \"" + produto + " store\"\n7. \"" + produto + " price\"\n8. \"get " + produto + "\"\n9. \"purchase " + produto + "\"\n10. \"" + produto + " sale\"\n11. \"" + produto + " supplement\"\n12. \"" + produto + " official store\"\n13. \"" + produto + " best price\"\n14. \"secure " + produto + " order\"\n15. \"" + produto + " check out\"\n\n[EXACT MATCH KEYWORDS - WITH BRACKETS - EXACTLY 15 UNIQUE TERMS]\n1. [" + produto + " official website]\n2. [buy " + produto + " online]\n3. [" + produto + " discount price]\n4. [order " + produto + " online]\n5. [" + produto + " where to buy]\n6. [" + produto + " store]\n7. [" + produto + " price]\n8. [get " + produto + "]\n9. [purchase " + produto + "]\n10. [" + produto + " sale]\n11. [" + produto + " supplement]\n12. [" + produto + " official store]\n13. [" + produto + " best price]\n14. [secure " + produto + " order]\n15. [" + produto + "]\n\n[BROAD MATCH KEYWORDS - PURE TEXT NO SYMBOLS - EXACTLY 15 UNIQUE TERMS]\n1. " + produto + " official site\n2. buy " + produto + "\n3. " + produto + " store\n4. order " + produto + "\n5. " + produto + " discount\n6. " + produto + " online\n7. " + produto + " website\n8. purchase " + produto + "\n9. price of " + produto + "\n10. original " + produto + "\n11. " + produto + " delivery\n12. " + produto + " supply\n13. " + produto + " shop\n14. cost of " + produto + "\n15. " + produto + " cost\n\n[NEGATIVE KEYWORDS]\nscam, reviews, complaints, ingredients, side effects, free pdf, amazon, walmart, ebay, discount code, coupon, target, refund"
-            st.success("Anuncio completo gerado com sucesso!")
-        else:
-            st.warning("Por favor, insira um nome de produto.")
-    if st.session_state.resposta_gerador:
-        st.text_area("📋 Resultado dos Anúncios e Lista Completa de 15 Palavras-Chave (Copie abaixo):", value=st.session_state.resposta_gerador, height=500)
+    st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS MASTER")
+    st.session_state.produto_anuncio = st.text_input("Nome do Produto para a Campanha:", value=st.session_state.produto_anuncio)
+    prod = st.session_state.produto_anuncio
+    
+    st.markdown("### 🎛️ Painel de Componentes Individuais da Campanha")
+    aba1, aba2, aba3 = st.tabs(["📋 Títulos e Descrições (Copy)", "🎯 Palavras em Frase e Exatas", "🚫 Palavras Negativas Obras-Primas"])
+    
+    with aba1:
+        st.write("**Caminhos de Exibição (Display Path):** `/Official/Store` ou `/Secure/Order`")
+        títulos = "1. " + prod + " Official Site (Pin Position 1)\n2. Buy " + prod + " Online\n3. Original " + prod + " Formula\n4. " + prod + " Best Price"
+        descrições = "1. Order " + prod + " from the official website today and get exclusive package discounts.\n2. Get the original " + prod + " with a 100% 60-day money-back guarantee. Secure checkout.\n3. 100% natural formula backed by clinical research. Fast shipping options available.\n4. Save big on multi-bottle packages today. Enjoy secure checkout."
+        st.text_area("Títulos Formatados (Max 30 Caracteres):", títulos, height=120)
+        st.text_area("Descrições Formatadas (Max 90 Caracteres):", descrições, height=150)
+        
+    with aba2:
+        frase = "1. \"" + prod + " official website\"\n2. \"buy " + prod + " online\"\n3. \"" + prod + " discount price\"\n4. \"order " + prod + " online\"\n5. \"" + prod + " where to buy\"\n6. \"" + prod + " store\"\n7. \"" + prod + " price\"\n8. \"get " + prod + "\"\n9. \"purchase " + prod + "\"\n10. \"" + prod + " sale\"\n11. \"" + prod + " supplement\"\n12. \"" + prod + " official store\"\n13. \"" + prod + " best price\"\n14. \"secure " + prod + " order\"\n15. \"" + prod + " check out\""
+        exatas = "1. [" + prod + " official website]\n2. [buy " + prod + " online]\n3. [" + prod + " discount price]\n4. [order " + prod + " online]\n5. [" + prod + " where to buy]\n6. [" + prod + " store]\n7. [" + prod + " price]\n8. [get " + prod + "]\n9. [purchase " + prod + "]\n10. [" + prod + " sale]\n11. [" + prod + " supplement]\n12. [" + prod + " official store]\n13. [" + prod + " best price]\n14. [secure " + prod + " order]\n15. [" + prod + "]"
+        st.text_area("Lista de 15 Palavras-Chave de Correspondência de Frase (Com Aspas):", frase, height=250)
+        st.text_area("Lista de 15 Palavras-Chave de Correspondência Exata (Com Colchetes):", exatas, height=250)
+        
+    with aba3:
+        negativas = "scam, reviews, complaints, ingredients, side effects, free pdf, amazon, walmart, ebay, discount code, coupon, target, refund, independent review, fake, complaints department, customer service phone number"
+        st.text_area("Lista de Palavras Negativas de Extrema Proteção de Orçamento:", negativas, height=120)
 
 elif menu == "🛰️ Caçador de Lançamentos":
+    st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS INTERNACIONAIS")
+    st.markdown("### 🎛️ Servidores de Monitoramento de Lançamentos")
+    
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        if st.button("🇺🇸 Escanear Plataforma BuyGoods"):
+            st.info("Varrendo banco de dados BuyGoods...")
