@@ -131,7 +131,7 @@ if st.session_state.passo_secao >= 3:
         kw_frase = st.text_area("Palavras-Chave de Frase (Use aspas):", value=lista_frase, height=130, key="kw_frase_text")
     with col_kw2:
         if "🇺🇸" in tipo_mercado:
-            lista_negativas = "scam\ncomplaints\ningredients\nside effects\nrefund"
+            lista_negativas = "scam\ncomplaints\ningredients\nside_effects\nrefund"
         else:
             lista_negativas = "gratis\npdf\ndownload\nmercado livre\nreclame aqui\nfunciona mesmo"
         kw_negativa = st.text_area("Palavras-Chave Negativas de Segurança:", value=lista_negativas, height=130, key="kw_neg_text")
