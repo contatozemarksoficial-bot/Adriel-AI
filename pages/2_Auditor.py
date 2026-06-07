@@ -1,10 +1,9 @@
 import streamlit as st
-import pandas as pd
 
-# Configuração premium de página - Layout amplo e profissional Black para o Auditor
-st.set_page_config(page_title="Adriel AI - Auditor de Mercado", layout="wide")
+# Configuração premium de página - Layout amplo e profissional Black para a Pre-sell
+st.set_page_config(page_title="Adriel AI - Fabricante de Pre-sell", layout="wide")
 
-# INJEÇÃO DE CÓDIGO CSS PREMIUM CORRIGIDA PARA O BOTÃO NEON REAL
+# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (PARA BOTÃO NEON REAL)
 st.markdown("""
 <style>
     button[kind="primary"], .stButton > button {
@@ -28,123 +27,59 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
-st.markdown("Protocolo avançado de investigação de viabilidade em tempo real, dores de público-alvo e veredito gráfico de lucratividade.")
+st.title("🌐 MÓDULO: FABRICANTE DE PRE-SELL BLINDADA")
+st.markdown("Estruturação automatizada de páginas de destino (Páginas Ponte) focadas em alta conversão e conformidade com o Google Ads.")
 st.write("---")
 
-# Campo de entrada de dados direto e limpo
-produto_input = st.text_input("Digite o nome do produto internacional para auditar:", value="Citrus Burn")
+# Campos de entrada de dados para moldar a Pre-sell
+produto = st.text_input("Digite o nome do produto gringo para a Pre-sell:", value="Citrus Burn")
 st.write("")
 
-# Lista oficial de produtos premium altamente validados no mercado atual
-produtos_validados_elite = ["obsesta", "sugar defender", "prodentim", "glucoberry", "citrus burn", "leanbliss", "puravive", "java burn", "alpilean", "livpure"]
-
-if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
-    with st.spinner("Conectando aos servidores de leilão e cruzando dados de buscas em tempo real..."):
+if st.button("🌐 GERAR ESTRUTURA DE PRÉ-VENDA COMPLETA"):
+    with st.spinner("Compilando blocos de copy e gerando links de infraestrutura..."):
+        st.success("Estrutura e textos prontos para o Elementor do produto: " + produto)
+        st.write("---")
         
-        # Engenharia de limpeza de hífens para validar formatos variados
-        produto_limpo = produto_input.strip().lower().replace("-", " ")
+        # Módulos informativos e link de indicação direta no topo do relatório
+        st.markdown("### 🛠️ 1. INFRAESTRUTURA DE HOSPEDAGEM PROFISSIONAL (OBRIGATÓRIO)")
+        st.markdown(
+            "Para rodar suas páginas ponte internacionais com velocidade recorde e evitar bloqueios de leilão, "
+            "é fundamental utilizar servidores de alta performance. Clique no link oficial abaixo para garantir "
+            "sua hospedagem profissional com desconto exclusivo da nossa plataforma:"
+        )
         
-        # =============================================================================================================
-        # CASO 1: O PRODUTO É ALTAMENTE LUCRATIVO (POSITIVIDADE MÁXIMA E GEOLOCALIZAÇÃO)
-        # =============================================================================================================
-        if produto_limpo in produtos_validados_elite:
-            st.success("✅ PRODUTO APROVADO! Alta Positividade Detectada para o produto: " + produto_input)
-            st.write("---")
-            
-            # Módulos de métricas rápidas no topo
-            col_m1, col_m2, col_m3 = st.columns(3)
-            with col_m1:
-                st.metric(label="📊 Status de Mercado Real", value="ALTAMENTE LUCRATIVO 🔥")
-            with col_m2:
-                st.metric(label="🌍 Melhor País para Anunciar (ROI)", value="Estados Unidos 🇺🇸" if "citrus" in produto_limpo else "Reino Unido 🇬🇧")
-            with col_m3:
-                st.metric(label="💰 CPC Médio Estimado", value="$0.65" if "citrus" in produto_limpo else "$0.45")
-                
-            st.write("---")
-            
-            # 📊 GRÁFICO HISTÓRICO EM VERDE NEON DE LUCRO
-            st.markdown("### 📊 Painel Histórico de Volume de Buscas (Últimos 12 Meses)")
-            meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-            valores_alta = [140, 180, 290, 420, 510, 680, 720, 810, 890, 920, 960, 1100]
-            
-            df_grafico_completo = pd.DataFrame({"Volume de Cliques de Marca Qualificados": valores_alta}, index=meses)
-            # Aplicando a cor Verde Lucro de forma estável no parâmetro nativo
-            st.bar_chart(df_grafico_completo, use_container_width=True, color="#2ECC71")
-            st.caption("🔥 Análise de Autoridade: Curva ascendente mapeada em colunas VERDES. Sinal de alta tração de tráfego comprador.")
-            st.write("---")
-            
-            # DIVISÃO EM COLUNAS: Laudos detalhados logo abaixo do gráfico de colunas
-            col_l1, col_l2 = st.columns(2)
-            
-            with col_l1:
-                with st.expander("🎯 BENEFÍCIOS REAIS DO PRODUTO (ÂNCORAS DE CÓPIA)", expanded=True):
-                    st.markdown(
-                        "- **Aceleração Metabólica:** Regulação e destrava do metabolismo basal profundo através de compostos concentrados.\n"
-                        "- **Bloqueio de Compulsão:** Controle severo da ansiedade por doces, açúcar e carboidratos refinados ao longo do dia.\n"
-                        "- **Queima Visceral:** Derretimento contínuo de gordura profunda de forma 100% natural e clinicamente testada.\n"
-                        "- **Energia Celular:** Aumento massivo da disposição física e foco mental, eliminando o cansaço ao acordar."
-                    )
-                    
-                with st.expander("🧠 MAIOR DOR DO COMPRADOR GRINGO (PÚBLICO-ALVO)", expanded=True):
-                    st.markdown(
-                        "O cliente final gringo sofre severamente com a **fadiga crônica**, baixa autoestima provocada pelo excesso de peso acumulado "
-                        "e frustração psicológica com o **efeito sanfona** de dietas tradicionais. Apresenta dificuldade metabólica extrema de emagrecer "
-                        "após os 40 anos devido à desaceleração hormonal natural."
-                    )
-                    
-            with col_l2:
-                with st.expander("🌍 VEREDITO DA MELHOR ESTRATÉGIA E POR QUE ANUNCIAR", expanded=True):
-                    if "citrus" in produto_limpo:
-                        st.markdown(
-                            "Para o produto **Citrus Burn**, a melhor estratégia de escala agressiva encontra-se concentrada no mercado dos **Estados Unidos 🇺🇸**. "
-                            "Embora o leilão de lances exatíssimos de marca apresente um CPC de **$0.65**, o volume de buscas mobile local compensa o investimento, "
-                            "sendo crucial segmentar a campanha apenas para dispositivos móveis (smartphones) para otimizar o CTR e evitar cliques frios de bots."
-                        )
-                    else:
-                        st.markdown(
-                            "A melhor estratégia absoluta para divulgar e subir a campanha de rede de pesquisa no Google Ads "
-                            "é o **Reino Unido (United Kingdom) 🇬🇧**. O leilão local rodando em libras esterlinas oferece concorrência reduzida de "
-                            "afiliados concorrentes e um público com altíssimo poder aquisitivo, pronto para comprar pacotes máximos de 3 a 6 frascos em tráfego direto."
-                        )
+        # O seu link oficial comissionado destacado em um botão nativo clicável
+        st.markdown(
+            '<a href="https://hostinger.com" target="_blank" style="text-decoration: none;">'
+            '<div style="background-color: #2ECC71; color: white; text-align: center; padding: 12px; font-weight: bold; border-radius: 8px; box-shadow: 0px 4px 10px rgba(46, 204, 113, 0.3);">'
+            "👉 CLIQUE AQUI PARA ADQUIRIR SUA HOSPEDAGEM HOSTINGER COM DESCONTO EXCLUSIVO"
+            "</div>"
+            "</a>", 
+            unsafe_allow_html=True
+        )
+        st.write("")
+        st.write("---")
         
-        # =============================================================================================================
-        # CASO 2: O PRODUTO É FRACO / SATURADO (ALERTA VERMELHO DE SEGURANÇA CONTRA PERDA DE DINHEIRO)
-        # =============================================================================================================
-        else:
-            st.error("🚨 ALERTA VERMELHO! Risco de Prejuízo Detectado para o produto: " + produto_input)
-            st.write("---")
-            
-            col_a1, col_a2, col_a3 = st.columns(3)
-            with col_a1:
-                st.metric(label="📊 Status de Mercado Real", value="PRODUTO FRACO / BLOQUEADO 🚫")
-            with col_a2:
-                st.metric(label="📉 Tendência de Busca", value="Queda Livre (-64%)")
-            with col_a3:
-                st.metric(label="💸 Taxa de Reembolso Geral", value="Crítica (>18%)")
-                
-            st.write("---")
-            
-            # 📊 GRÁFICO HISTÓRICO EM VERMELHO DE ALERTA DE PREJUÍZO
-            st.markdown("### 📊 Painel Histórico de Declínio de Buscas (Últimos 12 Meses)")
-            meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-            valores_baixa = [980, 850, 710, 590, 480, 320, 210, 140, 90, 50, 20, 10]
-            
-            df_grafico_ruim = pd.DataFrame({"Volume de Pesquisas Globais": valores_baixa}, index=meses)
-            # Aplicando a cor Vermelho Alerta no parâmetro nativo
-            st.bar_chart(df_grafico_ruim, use_container_width=True, color="#E74C3C")
-            st.caption("⚠️ Alerta Vermelho: Colunas VERMELHAS em queda severa. Saturação crônica irreversível detectada no leilão internacional.")
-            st.write("---")
-            
-            st.markdown("### ⚠️ DOSSIÊ DE SEGURANÇA E RECOMENDAÇÃO ADRIEL AI:")
-            st.error(
-                "**❌ CONSELHO CIRÚRGICO: NÃO ENTRE NESTE MERCADO PARA NÃO PERDER DINHEIRO!**\n\n"
-                "O produto **" + produto_input + "** foi classificado como **Inviável ou Altamente Instável** pelo nosso rastreador em tempo real. "
-                "O leilão de lances na gringa encontra-se completamente dominado por cliques falsos de robôs concorrentes, ou o produto perdeu o interesse público "
-                "nas principais plataformas internacionais como ClickBank e BuyGoods.\n\n"
-                "**⚠️ Red flags de risco comercial detectadas:**\n"
-                "- Volume de buscas por chaves exatas insuficiente para cobrir o custo de manutenção da campanha no Google Ads.\n"
-                "- CPC abusivo e inflado artificialmente, inviabilizando margens saudáveis de ROI.\n"
-                "- Alto índice de avaliações negativas e reclamações de clientes fora dos EUA, estourando as taxas de reembolso.\n\n"
-                "**💡 O que fazer?** Abandone este produto imediatamente e selecione um termo listado como 'VALIDADO' ou 'ELITE' no nosso Radar de Produtos para proteger o seu orçamento de anúncios."
-            )
+        st.markdown("### 📐 2. ARQUITETURA DE TEXTOS E COPY PARA O ELEMENTOR")
+        st.markdown("Copie as seções abaixo por extenso e cole dentro dos blocos de texto correspondentes do seu Elementor:")
+        
+        # Estrutura textual densa por extenso com as variáveis limpas do produto
+        prod_nome = produto.strip()
+        texto_presell = (
+            "[BLOCO 1 — TOP BANNER DE CONFORMIDADE — ELEMENTOR SEÇÃO SUPERIOR]\n"
+            "Texto: Special Discount Active on the Official Website Today!\n"
+            "Ação: Use fundo cinza escuro ou preto com letras brancas pequenas para passar autoridade limpa.\n\n"
+            "[BLOCO 2 — HEADLINE SECURE — PERSUASIVE COPY]\n"
+            "Texto Principal: Get the Authentic " + prod_nome + " Formula Directly from the Manufacturer Website and Save Big Today.\n"
+            "Sub-texto: 100% original product backed by a 60-day money-back guarantee. Secure check-out infrastructure enabled.\n\n"
+            "[BLOCO 3 — LOCAL SHIPPING COMPLIANCE BOX — CAIXA DE BANDEIRA LOCAL]\n"
+            "Texto: Available for United Kingdom Delivery 🇬🇧 — Fast Local Shipping & Secure Order Allocation Options Active.\n"
+            "Dica: Altere a bandeira e o país de acordo com a geolocalização vencedora que você localizou no Radar ou no Auditor.\n\n"
+            "[BLOCO 4 — BOTÃO DE CHAMADA PARA AÇÃO (CTA) — SEU LINK DE AFILIADO]\n"
+            "Texto do Botão: CLAIM YOUR EXCLUSIVE OFFICIAL DISCOUNT PACKAGE NOW\n"
+            "Destino: Cole o seu link de afiliado direto da ClickBank ou BuyGoods que redireciona para a página oficial do produtor.\n\n"
+            "[BLOCO 5 — FOOTER LEGAL & DISCLAIMERS — RODAPÉ COMPREENSIVO ANTI-BLOQUEIO]\n"
+            "Texto de Proteção: *This website is an independent review and pre-sell hub. We receive financial compensation from product links. This product is not intended to diagnose, treat, cure or prevent any disease. Privacy Policy | Terms of Service | Contact Us"
+        )
+        
+        st.text_area("Estrutura Pronta da Pre-sell (Copie abaixo):", value=texto_presell, height=450)
