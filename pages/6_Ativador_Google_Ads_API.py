@@ -3,7 +3,7 @@ import pandas as pd
 import time
 import re
 
-# Configuração de layout amplo e profissional Black para o Assistente Guiado
+# Configuração de layout amplo e profissional Black para o Assistente Guiado de Elite
 st.set_page_config(page_title="Adriel AI - Assistente Google Ads", layout="wide")
 
 # INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (BOTÕES NEON DE DISPARO REAL)
@@ -32,12 +32,19 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("🛰️ ASSISTENTE INTELIGENTE: PASSO A PASSO GOOGLE ADS")
-st.markdown("Monte sua campanha etapa por etapa com auditoria de políticas anti-bloqueio integrada em tempo real.")
+st.markdown("Monte sua campanha etapa por etapa com auditoria e autocorreção de políticas anti-bloqueio integradas.")
 st.write("---")
 
 # Inicialização segura das etapas do funil na memória do servidor
 if "passo_atual" not in st.session_state:
     st.session_state.passo_atual = 1
+
+# Inicialização dos campos do anúncio para suportar a reedição e autocorreção via botão
+if "t1_val" not in st.session_state: st.session_state.t1_val = "Citrus Burn Official Website"
+if "t2_val" not in st.session_state: st.session_state.t2_val = "Buy Citrus Burn Online"
+if "t3_val" not in st.session_state: st.session_state.t3_val = "Original Citrus Burn Formula"
+if "d1_val" not in st.session_state: st.session_state.d1_val = "Order Citrus Burn from the official website today and get exclusive package discounts."
+if "d2_val" not in st.session_state: st.session_state.d2_val = "Get the original product with a 100% 60-day money-back guarantee. Secure checkout."
 
 # Barra de progresso visual do funil no topo da página
 progresso_funil = st.progress((st.session_state.passo_atual - 1) / 4)
@@ -53,7 +60,14 @@ if st.session_state.passo_atual == 1:
     col_c1, col_c2 = st.columns(2)
     with col_c1:
         st.session_state.customer_id = st.text_input("Google Ads ID da Conta (Apenas números):", value=st.session_state.get("customer_id", "1234567890"))
-        st.session_state.produto = st.text_input("Nome do Produto Gringo:", value=st.session_state.get("produto", "Citrus Burn"))
+        produto_atual = st.text_input("Nome do Produto Gringo:", value=st.session_state.get("produto", "Citrus Burn"))
+        if produto_atual != st.session_state.get("produto", ""):
+            st.session_state.produto = produto_atual
+            # Atualiza sugestões iniciais se o produto mudar
+            st.session_state.t1_val = f"{produto_atual} Official Website"
+            st.session_state.t2_val = f"Buy {produto_atual} Online"
+            st.session_state.t3_val = f"Original {produto_atual} Formula"
+            st.session_state.d1_val = f"Order {produto_atual} from the official website today and get exclusive package discounts."
     with col_c2:
         st.session_state.pais_alvo = st.selectbox("País de Destino (GEO):", ["Estados Unidos 🇺🇸", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"])
         st.session_state.orcamento = st.number_input("Orçamento Diário da Campanha ($):", value=st.session_state.get("orcamento", 20.0), step=5.0)
@@ -68,7 +82,7 @@ if st.session_state.passo_atual == 1:
 # =============================================================================================================
 elif st.session_state.passo_atual == 2:
     st.markdown("### 🎯 PASSO 2: ENGENHARIA DE PALAVRAS-CHAVE (FRASES E NEGATIVAS)")
-    st.markdown("Configure os termos de pesquisa. O robô já injetou as 20 correspondências exatas e as 30 negativas de segurança.")
+    st.markdown("Configure os termos de pesquisa de leilão.")
     
     prod = st.session_state.produto
     col_kw1, col_kw2 = st.columns(2)
@@ -79,120 +93,92 @@ elif st.session_state.passo_atual == 2:
         st.session_state.kw_frase = kw_frase
         
     with col_kw2:
-        lista_neg_padrao = "scam\ncomplaints\ningredients\side effects\nrefund\nfree pdf\namazon\nebay"
+        lista_neg_padrao = "scam\ncomplaints\ningredients\nside effects\nrefund\nfree pdf\namazon\nebay"
         kw_negativa = st.text_area("✏️ Palavras Negativas de Proteção (Edite se quiser):", value=st.session_state.get("kw_negativa", lista_neg_padrao), height=200)
         st.session_state.kw_negativa = kw_negativa
 
     st.write("")
-    col_btn = st.columns([1, 4, 1])
-    with col_btn[0]:
+    col_btn1, col_btn2 = st.columns([1, 10])
+    with col_btn1:
         if st.button("⬅ Voltar"):
             st.session_state.passo_atual = 1
             st.rerun()
-    with col_btn[2]:
+    with col_btn2:
         if st.button("IR PARA O ANÚNCIO ➔"):
             st.session_state.passo_atual = 3
             st.rerun()
 
 # =============================================================================================================
-# PASSO 3: REDAÇÃO DO ANÚNCIO RESPONSIVO COM RAIO-X DE VIOLAÇÕES REAL-TIME
+# PASSO 3: REDAÇÃO DO ANÚNCIO RESPONSIVO COM AUTO-CORREÇÃO DE POLÍTICAS EM 1 CLIQUE
 # =============================================================================================================
 elif st.session_state.passo_atual == 3:
     st.markdown("### 📝 PASSO 3: REDAÇÃO DO ANÚNCIO (RESPONSIVO RSA) & PROTOCOLO DE COMPLIANCE")
-    st.markdown("Escreva os textos do anúncio abaixo. O scanner da Adriel AI vai analisar as políticas do Google em tempo real!")
-    
-    prod = st.session_state.produto
+    st.markdown("Escreva ou modifique os textos abaixo. O scanner Adriel AI caça violações e as corrige instantaneamente!")
     
     col_t1, col_t2 = st.columns(2)
     with col_t1:
-        t1 = st.text_input("Título Principal 1 (Pin 1):", value=st.session_state.get("t1", f"{prod} Official Website"))
-        t2 = st.text_input("Título Principal 2 (Pin 2):", value=st.session_state.get("t2", f"Buy {prod} Online"))
-        t3 = st.text_input("Título Principal 3 (Pin 3):", value=st.session_state.get("t3", f"Original {prod} Formula"))
+        t1 = st.text_input("Título Principal 1 (Pin 1):", value=st.session_state.t1_val)
+        t2 = st.text_input("Título Principal 2 (Pin 2):", value=st.session_state.t2_val)
+        t3 = st.text_input("Título Principal 3 (Pin 3):", value=st.session_state.t3_val)
     with col_t2:
-        d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=st.session_state.get("d1", f"Order {prod} from the official website today and get exclusive package discounts."), max_chars=90)
-        d2 = st.text_input("Descrição Secundária:", value=st.session_state.get("d2", f"Get the original {prod} with a 100% 60-day money-back guarantee. Secure checkout."), max_chars=90)
+        d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=st.session_state.d1_val, max_chars=90)
+        d2 = st.text_input("Descrição Secundária:", value=st.session_state.d2_val, max_chars=90)
 
-    # Salvando os estados na sessão
-    st.session_state.t1, st.session_state.t2, st.session_state.t3 = t1, t2, t3
-    st.session_state.d1, st.session_state.d2 = d1, d2
+    # Armazena temporariamente o texto digitado na tela pelo usuário
+    st.session_state.t1_val, st.session_state.t2_val, st.session_state.t3_val = t1, t2, t3
+    st.session_state.d1_val, st.session_state.d2_val = d1, d2
 
     st.write("---")
     st.markdown("#### 🔍 DIAGNÓSTICO DO RASTREADOR DE POLÍTICAS (RAIO-X DE BLOQUEIO)")
     
-    # Lista de termos perigosos proibidos pelas regras de publicidade do Google
-    termos_proibidos = ["cure", "heals", "weight loss instantly", "guaranteed results", "anxiety cure", "treat disease"]
-    texto_total_criativo = (t1 + t2 + t3 + d1 + d2).lower()
+    # Dicionário de regras mapeando [Termo Proibido] -> [Substituto Seguro de Compliance]
+    regras_correcao = {
+        "cure": "support formula",
+        "heals": "supports health",
+        "weight loss instantly": "natural weight support",
+        "guaranteed results": "satisfaction guarantee",
+        "anxiety cure": "calm support ritual",
+        "treat disease": "promote wellness lifestyle"
+    }
     
-    violação_detectada = False
-    termo_gatilho = ""
+    texto_completo_original = (t1 + " " + t2 + " " + t3 + " " + d1 + " " + d2).lower()
     
-    # Varre o texto procurando violações médicas ou promessas milagrosas
-    for termo in termos_proibidos:
-        if termo in texto_total_criativo:
-            violação_detectada = True
-            termo_gatilho = termo
+    violacao_termo = False
+    violacao_capital = False
+    gatilho_detalhado = ""
+    
+    # 1. Verifica se há palavras médicas banidas pelo Google
+    for termo_ruim in regras_correcao.keys():
+        if termo_ruim in texto_completo_original:
+            violacao_termo = True
+            gatilho_detalhado = termo_ruim
             break
             
-    # Varre o texto procurando uso excessivo e bizarro de LETRAS MAIÚSCULAS (Regra do Google)
-    if not violação_detectada:
-        letras_grandes = re.findall(r'\b[A-Z]{3,}\b', t1 + t2 + t3)
-        if letras_grandes:
-            violação_detectada = True
-            termo_gatilho = f"Letras Maiúsculas Excessivas ({letras_grandes[0]})"
+    # 2. Verifica se há violação de CAPITALIZAÇÃO EXCESSIVA (Letras maiúsculas travadas como BUY NOW)
+    letras_grandes = re.findall(r'\b[A-Z]{3,}\b', t1 + " " + t2 + " " + t3)
+    if not violacao_termo and letras_grandes:
+        violacao_capital = True
+        gatilho_detalhado = f"Letras Maiúsculas Abusivas: {letras_grandes}"
 
-    # Retorno visual dinâmico do semáforo de compliance do Google
-    if violação_detectada:
-        st.error(f"❌ VIOLAÇÃO DE POLÍTICA DETECTADA! O termo '{termo_gatilho}' quebra as regras de Declarações Enganosas ou Saúde do Google Ads. Corrija o texto para destravar o envio.")
-        botao_bloqueado = True
-    else:
-        st.success("✅ ANÚNCIO 100% LIMPO! Nenhuma violação editorial encontrada nos textos. Padrão de conformidade anti-bloqueio atingido.")
-        botao_bloqueado = False
-
-    st.write("")
-    col_btn = st.columns([1, 4, 1])
-    with col_btn[0]:
-        if st.button("⬅ Voltar"):
-            st.session_state.passo_atual = 2
-            st.rerun()
-    with col_btn[2]:
-        # O botão só executa a mudança de página se o texto estiver totalmente aprovado pelas regras
-        if botao_bloqueado:
-            st.button("IR PARA REVISÃO ➔", disabled=True, help="Corrija a violação de política acima para liberar o avanço.")
-        else:
-            if st.button("IR PARA REVISÃO ➔"):
-                st.session_state.passo_atual = 4
-                st.rerun()
-
-# =============================================================================================================
-# PASSO 4: TELA FINAL DE APROVAÇÃO E TRANSMISSÃO PARA A API
-# =============================================================================================================
-elif st.session_state.passo_atual == 4:
-    st.markdown("### 🚀 PASSO 4: REVISÃO GERAL & AUTORIZAÇÃO DE DISPARO")
-    
-    st.success("🎉 PROTOCOLO ADRIEL AI: PODE SUBIR SUA CAMPANHA, ELA ESTÁ TOTALMENTE APROVADA!")
-    st.write("---")
-    
-    # Resumo executivo estruturado na tela antes do clique final
-    col_r1, col_r2 = st.columns(2)
-    with col_r1:
-        st.info("📊 **Ficha Técnica da Campanha:**")
-        st.markdown(f"- **ID do Cliente Google:** {st.session_state.customer_id}")
-        st.markdown(f"- **Produto Rastreador:** {st.session_state.produto}")
-        st.markdown(f"- **GEO / Segmentação:** {st.session_state.pais_alvo}")
-        st.markdown(f"- **Investimento Definido:** ${st.session_state.orcamento}/dia")
-    with col_r2:
-        st.warning("📝 **Textos Finais Publicados:**")
-        st.markdown(f"- **Título 1:** {st.session_state.t1}")
-        st.markdown(f"- **Título 2:** {st.session_state.t2}")
-        st.markdown(f"- **Descrição 1:** {st.session_state.d1}")
-
-    st.write("---")
-    st.markdown("### 🚀 CLIQUE FINAL PARA PUBLICAÇÃO")
-    st.markdown("Clique no botão abaixo para capturar todo o fluxo e criar o anúncio direto no Google Ads:")
-    st.write("")
-
-    if st.button("🚀 TRANSMITIR CAMPANHA CORRIGIDA DIRETO PARA O GOOGLE ADS"):
-        st.info("Iniciando Handshake seguro com os servidores da API do Google Ads...")
-        time.sleep(1.0)
+    # Retorno visual inteligente na tela baseado na detecção de violações
+    if violacao_termo or violacao_capital:
+        st.error(f"❌ RISCO DE BLOQUEIO DETECTADO! Motivo: '{gatilho_detalhado}'. Esta estrutura viola as diretrizes editoriais ou de alegações médicas do Google Ads.")
         
-        progresso = st.empty()
+        # ⚡ ENGENHARIA DE AUTOCORREÇÃO ATIVADA EM UM CLIQUE DE LUXO
+        st.markdown("**💡 O Robô Adriel AI estruturou a correção segura para você. Clique abaixo para aplicar:**")
+        if st.button("⚡ CORRIGIR TEXTO AUTOMATICAMENTE (ANTI-BLOQUEIO)"):
+            
+            # Corrige palavras médicas substituindo pelos sinônimos seguros
+            for ruim, seguro in regras_correcao.items():
+                st.session_state.t1_val = re.sub(ruim, seguro, st.session_state.t1_val, flags=re.IGNORECASE)
+                st.session_state.t2_val = re.sub(ruim, seguro, st.session_state.t2_val, flags=re.IGNORECASE)
+                st.session_state.t3_val = re.sub(ruim, seguro, st.session_state.t3_val, flags=re.IGNORECASE)
+                st.session_state.d1_val = re.sub(ruim, seguro, st.session_state.d1_val, flags=re.IGNORECASE)
+                st.session_state.d2_val = re.sub(ruim, seguro, st.session_state.d2_val, flags=re.IGNORECASE)
+                
+            # Corrige letras maiúsculas excessivas transformando em Capitalize Padrão (Title Case)
+            if violacao_capital:
+                st.session_state.t1_val = st.session_state.t1_val.title()
+                st.session_state.t2_val = st.session_state.t2_val.title()
+                st.session_state.t3_val = st.session_state.t3_val.title()
+                
