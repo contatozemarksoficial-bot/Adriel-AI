@@ -61,22 +61,23 @@ if st.button("🛰️ INICIAR RASTREAMENTO MASSIVO ATIVO 24/7"):
         grafico_placeholder.bar_chart(df_animado, use_container_width=True, color="#00E5FF")
         time.sleep(0.6)
         
-    # Sorteia o nome do produto capturado em tempo real nesta execução
+    # Sorteia o nome do produto capturado em tempo real nesta execução de forma dinâmica
     produto_capturado = random.choice(produtos_pool)
     paises_opcoes = ["Reino Unido 🇬🇧", "Estados Unidos 🇺🇸", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"]
     pais_vencedor = random.choice(paises_opcoes)
+    nota_termometro = str(random.randint(85, 99))
     
-    status_placeholder.success(f"🎯 Varredura massiva concluída! O produto gringo **{produto_capturado}** acabou de ser capturado com picos de tráfego!")
+    status_placeholder.success("🎯 Varredura massiva concluída! O produto gringo **" + produto_capturado + "** acabou de ser capturado com picos de tráfego!")
     st.write("---")
     
-    # Estrutura robusta detalhando as oportunidades gringas por extenso com a variável viva
+    # CORREÇÃO CRUCIAL AQUI: Injeção da variável produto_capturado em todo o relatório de texto puro
     texto_cacador = (
         "📦 [RASTREADOR VIVO — SERVIDORES INTERNACIONAIS EM ALTA]\n"
-        f"🔥 PRODUTO DETECTADO AGORA: {produto_capturado} (Fundo de Funil Ativo)\n"
-        f"- STATUS ATUAL: O sistema capturou alta movimentação de novos domínios cadastrados nas últimas horas. O leilão de frase do Google Ads encontra-se completamente limpo de afiliados concorrentes tradicionais.\n"
-        f"- GEO DE ESCALA (ONDE LANÇAR): {pais_vencedor}\n"
-        f"- JUSTIFICATIVA DO ESPECIALISTA: Mercado qualificado apresentando altíssima intenção de compra imediata na rede de pesquisa por termos exatos de desconto e cupom de fábrica oficial.\n"
-        f"- 🌡️ TERMÔMETRO DO LANÇAMENTO: {random.randint(85, 99)}/100 (Potencial máximo de escala rápida e ROI imediato).\n\n"
+        "🔥 PRODUTO DETECTADO AGORA: " + produto_capturado + " (Fundo de Funil Ativo)\n"
+        "- STATUS ATUAL: O sistema capturou alta movimentação de novos domínios cadastrados nas últimas horas. O leilão de frase do Google Ads encontra-se completamente limpo de afiliados concorrentes tradicionais.\n"
+        "- GEO DE ESCALA (ONDE LANÇAR): " + pais_vencedor + "\n"
+        "- JUSTIFICATIVA DO ESPECIALISTA: Mercado qualificado apresentando altíssima intenção de compra imediata na rede de pesquisa por termos exatos de desconto e cupom de fábrica oficial.\n"
+        "- 🌡️ TERMÔMETRO DO LANÇAMENTO: " + nota_termometro + "/100 (Potencial máximo de escala rápida e ROI imediato).\n\n"
         "------------------------------------------------------------------------------------------------------\n\n"
         "📦 [HISTÓRICO RECENTE DAS ÚLTIMAS VARREDURAS DE INFRAESTRUTURA]\n"
         "🔥 PRODUTO SECUNDÁRIO: NeuroQuiet (Nicho: Saúde Mental / Alívio de Zumbido)\n"
@@ -99,12 +100,12 @@ if st.button("🛰️ INICIAR RASTREAMENTO MASSIVO ATIVO 24/7"):
     
     # Mensagem 100% dinâmica injetando o nome do produto sorteador na hora do clique
     mensagem_bruta = (
-        f"🛰️ *ADRIEL AI - MONITORAMENTO INTEGRADO ATIVO 24/7*\n\n"
-        f"🟢 *Status do Rastreador:* Varredura massiva concluída com sucesso!\n\n"
-        f"🔥 *ÚLTIMO LANÇAMENTO CAPTURADO:* {produto_capturado}\n"
-        f"🌍 *Melhor País para Subir:* {pais_vencedor}\n"
-        f"🌡️ *Termômetro de Escala:* Alta Conversão Detectada!\n\n"
-        f"👉 *Ação imediata:* Acesse os módulos da sua plataforma para clonar a estrutura completa de anúncios e palavras-chave de marca do produto *{produto_capturado}* antes que o leilão infle!"
+        "🛰️ *ADRIEL AI - MONITORAMENTO INTEGRADO ATIVO 24/7*\n\n"
+        "🟢 *Status do Rastreador:* Varredura massiva concluída com sucesso!\n\n"
+        "🔥 *ÚLTIMO LANÇAMENTO CAPTURADO:* " + produto_capturado + "\n"
+        "🌍 *Melhor País para Subir:* " + pais_vencedor + "\n"
+        "🌡️ *Termômetro de Escala:* Alta Conversão Detectada!\n\n"
+        "👉 *Ação imediata:* Acesse os módulos da sua plataforma para clonar a estrutura completa de anúncios e palavras-chave de marca do produto " + produto_capturado + " antes que o leilão infle!"
     )
     
     mensagem_codificada = urllib.parse.quote(mensagem_bruta)
@@ -114,7 +115,7 @@ if st.button("🛰️ INICIAR RASTREAMENTO MASSIVO ATIVO 24/7"):
     st.markdown(
         f'<a href="{link_whatsapp}" target="_blank" style="text-decoration: none;">'
         '<div style="background-color: #2ECC71; color: white; text-align: center; padding: 14px; font-weight: bold; border-radius: 14px; box-shadow: 0px 5px 15px rgba(46, 204, 113, 0.4); font-size: 18px;">'
-        f"🟢 ENVIAR ALERTA DO PRODUTO {produto_capturado.upper()} PARA O MEU WHATSAPP"
+        "🟢 ENVIAR ALERTA DO PRODUTO " + produto_capturado.upper() + " PARA O MEU WHATSAPP"
         '</div>'
         '</a>', 
         unsafe_allow_html=True
