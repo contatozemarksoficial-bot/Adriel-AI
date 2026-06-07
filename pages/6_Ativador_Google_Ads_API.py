@@ -39,11 +39,17 @@ st.write("---")
 if "passo_atual" not in st.session_state:
     st.session_state.passo_atual = 1
 
-# Inicialização dos campos do anúncio para suportar a reedição e autocorreção via botão
-if "t1_val" not in st.session_state: st.session_state.t1_val = "Citrus Burn Official Website"
-if "t2_val" not in st.session_state: st.session_state.t2_val = "Buy Citrus Burn Online"
-if "t3_val" not in st.session_state: st.session_state.t3_val = "Original Citrus Burn Formula"
-if "d1_val" not in st.session_state: st.session_state.d1_val = "Order Citrus Burn from the official website today and get exclusive package discounts."
+# Inicialização das chaves dinâmicas na memória persistente para suportar a autocorreção real
+if "produto" not in st.session_state: st.session_state.produto = "Citrus Burn"
+if "customer_id" not in st.session_state: st.session_state.customer_id = "1234567890"
+if "pais_alvo" not in st.session_state: st.session_state.pais_alvo = "Estados Unidos 🇺🇸"
+if "orcamento" not in st.session_state: st.session_state.orcamento = 20.0
+
+prod_default = st.session_state.produto
+if "t1_val" not in st.session_state: st.session_state.t1_val = f"{prod_default} Official Website"
+if "t2_val" not in st.session_state: st.session_state.t2_val = f"Buy {prod_default} Online"
+if "t3_val" not in st.session_state: st.session_state.t3_val = f"Original {prod_default} Formula"
+if "d1_val" not in st.session_state: st.session_state.d1_val = f"Order {prod_default} from the official website today and get exclusive package discounts."
 if "d2_val" not in st.session_state: st.session_state.d2_val = "Get the original product with a 100% 60-day money-back guarantee. Secure checkout."
 
 # Barra de progresso visual do funil no topo da página
@@ -59,18 +65,18 @@ if st.session_state.passo_atual == 1:
     
     col_c1, col_c2 = st.columns(2)
     with col_c1:
-        st.session_state.customer_id = st.text_input("Google Ads ID da Conta (Apenas números):", value=st.session_state.get("customer_id", "1234567890"))
-        produto_atual = st.text_input("Nome do Produto Gringo:", value=st.session_state.get("produto", "Citrus Burn"))
-        if produto_atual != st.session_state.get("produto", ""):
+        st.session_state.customer_id = st.text_input("Google Ads ID da Conta (Apenas números):", value=st.session_state.customer_id)
+        produto_atual = st.text_input("Nome do Produto Gringo:", value=st.session_state.produto)
+        if produto_atual != st.session_state.produto:
             st.session_state.produto = produto_atual
-            # Atualiza sugestões iniciais se o produto mudar
+            # Reseta as sugestões automáticas se o produto mudar na tela
             st.session_state.t1_val = f"{produto_atual} Official Website"
             st.session_state.t2_val = f"Buy {produto_atual} Online"
             st.session_state.t3_val = f"Original {produto_atual} Formula"
             st.session_state.d1_val = f"Order {produto_atual} from the official website today and get exclusive package discounts."
     with col_c2:
-        st.session_state.pais_alvo = st.selectbox("País de Destino (GEO):", ["Estados Unidos 🇺🇸", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"])
-        st.session_state.orcamento = st.number_input("Orçamento Diário da Campanha ($):", value=st.session_state.get("orcamento", 20.0), step=5.0)
+        st.session_state.pais_alvo = st.selectbox("País de Destino (GEO):", ["Estados Unidos 🇺🇸", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"], index=["Estados Unidos 🇺🇸", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"].index(st.session_state.pais_alvo))
+        st.session_state.orcamento = st.number_input("Orçamento Diário da Campanha ($):", value=st.session_state.orcamento, step=5.0)
 
     st.write("")
     if st.button("PROSSEGUIR PARA AS PALAVRAS-CHAVE ➔"):
@@ -82,23 +88,20 @@ if st.session_state.passo_atual == 1:
 # =============================================================================================================
 elif st.session_state.passo_atual == 2:
     st.markdown("### 🎯 PASSO 2: ENGENHARIA DE PALAVRAS-CHAVE (FRASES E NEGATIVAS)")
-    st.markdown("Configure os termos de pesquisa de leilão.")
     
     prod = st.session_state.produto
     col_kw1, col_kw2 = st.columns(2)
     
     with col_kw1:
         lista_frase_padrao = f'"{prod} official website"\n"buy {prod} online"\n"{prod} discount price"\n"order {prod} online"'
-        kw_frase = st.text_area("✏️ Palavras-Chave de Frase (Edite se quiser):", value=st.session_state.get("kw_frase", lista_frase_padrao), height=200)
-        st.session_state.kw_frase = kw_frase
+        st.session_state.kw_frase = st.text_area("✏️ Palavras-Chave de Frase (Edite se quiser):", value=st.session_state.get("kw_frase", lista_frase_padrao), height=200)
         
     with col_kw2:
         lista_neg_padrao = "scam\ncomplaints\ningredients\nside effects\nrefund\nfree pdf\namazon\nebay"
-        kw_negativa = st.text_area("✏️ Palavras Negativas de Proteção (Edite se quiser):", value=st.session_state.get("kw_negativa", lista_neg_padrao), height=200)
-        st.session_state.kw_negativa = kw_negativa
+        st.session_state.kw_negativa = st.text_area("✏️ Palavras Negativas de Proteção (Edite se quiser):", value=st.session_state.get("kw_negativa", lista_neg_padrao), height=200)
 
     st.write("")
-    col_btn1, col_btn2 = st.columns([1, 10])
+    col_btn1, col_btn2 = st.columns(2)
     with col_btn1:
         if st.button("⬅ Voltar"):
             st.session_state.passo_atual = 1
@@ -109,22 +112,23 @@ elif st.session_state.passo_atual == 2:
             st.rerun()
 
 # =============================================================================================================
-# PASSO 3: REDAÇÃO DO ANÚNCIO RESPONSIVO COM AUTO-CORREÇÃO DE POLÍTICAS EM 1 CLIQUE
+# PASSO 3: REDAÇÃO DO ANÚNCIO RESPONSIVO COM AUTO-CORREÇÃO DE POLÍTICAS ENRAIZADA
 # =============================================================================================================
 elif st.session_state.passo_atual == 3:
     st.markdown("### 📝 PASSO 3: REDAÇÃO DO ANÚNCIO (RESPONSIVO RSA) & PROTOCOLO DE COMPLIANCE")
-    st.markdown("Escreva ou modifique os textos abaixo. O scanner Adriel AI caça violações e as corrige instantaneamente!")
+    st.markdown("Escreva ou modifique os textos abaixo. O scanner Adriel AI caça violações e as corrige de forma estável!")
     
     col_t1, col_t2 = st.columns(2)
     with col_t1:
-        t1 = st.text_input("Título Principal 1 (Pin 1):", value=st.session_state.t1_val)
-        t2 = st.text_input("Título Principal 2 (Pin 2):", value=st.session_state.t2_val)
-        t3 = st.text_input("Título Principal 3 (Pin 3):", value=st.session_state.t3_val)
+        # Vinculando as variáveis direto na ID de chaves de estado de re-renderização estável
+        t1 = st.text_input("Título Principal 1 (Pin 1):", value=st.session_state.t1_val, key="t1_input_box")
+        t2 = st.text_input("Título Principal 2 (Pin 2):", value=st.session_state.t2_val, key="t2_input_box")
+        t3 = st.text_input("Título Principal 3 (Pin 3):", value=st.session_state.t3_val, key="t3_input_box")
     with col_t2:
-        d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=st.session_state.d1_val, max_chars=90)
-        d2 = st.text_input("Descrição Secundária:", value=st.session_state.d2_val, max_chars=90)
+        d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=st.session_state.d1_val, max_chars=90, key="d1_input_box")
+        d2 = st.text_input("Descrição Secundária:", value=st.session_state.d2_val, max_chars=90, key="d2_input_box")
 
-    # Armazena temporariamente o texto digitado na tela pelo usuário
+    # Salva na memória ativa o que o usuário alterou na hora
     st.session_state.t1_val, st.session_state.t2_val, st.session_state.t3_val = t1, t2, t3
     st.session_state.d1_val, st.session_state.d2_val = d1, d2
 
@@ -147,14 +151,14 @@ elif st.session_state.passo_atual == 3:
     violacao_capital = False
     gatilho_detalhado = ""
     
-    # 1. Verifica se há palavras médicas banidas pelo Google
+    # 1. Caça palavras proibidas de promessas médicas ou milagrosas
     for termo_ruim in regras_correcao.keys():
         if termo_ruim in texto_completo_original:
             violacao_termo = True
             gatilho_detalhado = termo_ruim
             break
             
-    # 2. Verifica se há violação de CAPITALIZAÇÃO EXCESSIVA (Letras maiúsculas travadas como BUY NOW)
+    # 2. Caça o uso proibido de Letras Maiúsculas Excessivas (BUY NOW)
     letras_grandes = re.findall(r'\b[A-Z]{3,}\b', t1 + " " + t2 + " " + t3)
     if not violacao_termo and letras_grandes:
         violacao_capital = True
@@ -162,23 +166,16 @@ elif st.session_state.passo_atual == 3:
 
     # Retorno visual inteligente na tela baseado na detecção de violações
     if violacao_termo or violacao_capital:
-        st.error(f"❌ RISCO DE BLOQUEIO DETECTADO! Motivo: '{gatilho_detalhado}'. Esta estrutura viola as diretrizes editoriais ou de alegações médicas do Google Ads.")
+        st.error(f"❌ RISCO DE BLOQUEIO DETECTADO! Motivo: '{gatilho_detalhado}'. Esta estrutura quebra as regras do Google Ads.")
         
-        # ⚡ ENGENHARIA DE AUTOCORREÇÃO ATIVADA EM UM CLIQUE DE LUXO
         st.markdown("**💡 O Robô Adriel AI estruturou a correção segura para você. Clique abaixo para aplicar:**")
         if st.button("⚡ CORRIGIR TEXTO AUTOMATICAMENTE (ANTI-BLOQUEIO)"):
             
-            # Corrige palavras médicas substituindo pelos sinônimos seguros
+            # Limpa e substitui todas as palavras ruins pelas seguras
             for ruim, seguro in regras_correcao.items():
                 st.session_state.t1_val = re.sub(ruim, seguro, st.session_state.t1_val, flags=re.IGNORECASE)
                 st.session_state.t2_val = re.sub(ruim, seguro, st.session_state.t2_val, flags=re.IGNORECASE)
                 st.session_state.t3_val = re.sub(ruim, seguro, st.session_state.t3_val, flags=re.IGNORECASE)
                 st.session_state.d1_val = re.sub(ruim, seguro, st.session_state.d1_val, flags=re.IGNORECASE)
                 st.session_state.d2_val = re.sub(ruim, seguro, st.session_state.d2_val, flags=re.IGNORECASE)
-                
-            # Corrige letras maiúsculas excessivas transformando em Capitalize Padrão (Title Case)
-            if violacao_capital:
-                st.session_state.t1_val = st.session_state.t1_val.title()
-                st.session_state.t2_val = st.session_state.t2_val.title()
-                st.session_state.t3_val = st.session_state.t3_val.title()
                 
