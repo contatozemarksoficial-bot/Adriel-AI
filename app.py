@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 
-# Configuração premium de página - Ampla, limpa e profissional Black
+# Configuração premium de página - Ampla e profissional Black
 st.set_page_config(page_title="Adriel AI - Plataforma Master", layout="wide")
 
-# Inicialização da memória persistente para travar as respostas na tela sem sumir
+# Inicialização limpa da memória de sessão para fixar os dados na tela central
 if "resposta_auditoria" not in st.session_state:
     st.session_state.resposta_auditoria = ""
 if "resposta_gerador" not in st.session_state:
@@ -75,14 +75,13 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # =====================================================================================================================
-# INTERFACE DO MENU CENTRAL SEGUINDO SEU MODELO SEGURO DE BOTÕES DE AÇÃO DIRETA
+# INTERFACE DO MENU CENTRAL - MARGENS RIGOROSAMENTE CORRIGIDAS E ALINHADAS
 # =====================================================================================================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
     st.markdown("O sistema analisa tendências globais de busca. O produto que sobe em interesse assume o topo do ranking, o que esfria desce, e novos lançamentos entram na lista automaticamente de forma estruturada.")
     st.markdown("### 🏆 POSIÇÕES DO MERCADO ATUALIZADAS (MÍNIMO 20 PRODUTOS ATIVOS)")
     st.dataframe(dados_fixos_radar, use_container_width=True, height=550)
-    
     csv_data = dados_fixos_radar.to_csv(index=False).encode('utf-8')
     st.download_button(label="📥 BAIXAR PLANILHA COMPLETA (.CSV)", data=csv_data, file_name="radar_produtos.csv", mime="text/csv")
 
