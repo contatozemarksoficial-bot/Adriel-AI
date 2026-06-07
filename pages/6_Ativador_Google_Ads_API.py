@@ -50,7 +50,7 @@ tipo_mercado = st.radio(
 
 col_c1, col_c2 = st.columns(2)
 with col_c1:
-    customer_id = st.text_input("Google Ads Customer ID (Somente números):", value="1234567890")
+    customer_id = st.text_input("Google Ads Customer ID (Somente numbers):", value="1234567890")
     if "🇺🇸" in tipo_mercado:
         produto_input = st.text_input("Nome do Produto Gringo:", value="Citrus Burn")
     else:
@@ -108,13 +108,13 @@ with col_kw1:
         lista_frase = f'"{prod} official website"\n"buy {prod} online"\n"{prod} discount price"'
     else:
         lista_frase = f'"{prod} site oficial"\n"comprar {prod} original"\n"{prod} desconto hoje"'
-    kw_frase = st.text_area("✏️ Palavras-Chave de Frase (Use aspas):", value=lista_frase, height=130)
+    kw_frase = st.text_area("Palavras-Chave de Frase (Use aspas):", value=lista_frase, height=130)
 with col_kw2:
     if "🇺🇸" in tipo_mercado:
         lista_negativas = "scam\ncomplaints\ningredients\nside effects\nrefund"
     else:
         lista_negativas = "gratis\npdf\ndownload\nmercado livre\nreclame aqui\nfunciona mesmo"
-    kw_negativa = st.text_area("✏️ Palavras-Chave Negativas de Segurança:", value=lista_negativas, height=130)
+    kw_negativa = st.text_area("Palavras-Chave Negativas de Segurança:", value=lista_negativas, height=130)
 
 st.write("---")
 
@@ -133,14 +133,25 @@ else:
     s_d1 = f"Adquira o {prod} direto no site oficial do fabricante com desconto exclusivo."
     s_d2 = "Garantia de satisfação total ou seu dinheiro de volta. Parcelamento em até 12x no cartão."
 
+# Inicialização das chaves dinâmicas na memória persistente para suportar a reedição estável
+if "t1_val" not in st.session_state: st.session_state.t1_val = s_t1
+if "t2_val" not in st.session_state: st.session_state.t2_val = s_t2
+if "t3_val" not in st.session_state: st.session_state.t3_val = s_t3
+if "d1_val" not in st.session_state: st.session_state.d1_val = s_d1
+if "d2_val" not in st.session_state: st.session_state.d2_val = s_d2
+
 col_t1, col_t2 = st.columns(2)
 with col_t1:
-    t1 = st.text_input("Título Principal 1 (Pin 1):", value=s_t1, key="t1_box")
-    t2 = st.text_input("Título Principal 2 (Pin 2):", value=s_t2, key="t2_box")
-    t3 = st.text_input("Título Principal 3 (Pin 3):", value=s_t3, key="t3_box")
+    t1 = st.text_input("Título Principal 1 (Pin 1):", value=st.session_state.t1_val, key="t1_box")
+    t2 = st.text_input("Título Principal 2 (Pin 2):", value=st.session_state.t2_val, key="t2_box")
+    t3 = st.text_input("Título Principal 3 (Pin 3):", value=st.session_state.t3_val, key="t3_box")
 with col_t2:
-    d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=s_d1, max_chars=90, key="d1_box")
-    d2 = st.text_input("Descrição Secundária:", value=s_d2, max_chars=90, key="d2_box")
+    d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=st.session_state.d1_val, max_chars=90, key="d1_box")
+    d2 = st.text_input("Descrição Secundária:", value=st.session_state.d2_val, max_chars=90, key="d2_box")
+
+# Atualiza os estados na memória a cada modificação na tela
+st.session_state.t1_val, st.session_state.t2_val, st.session_state.t3_val = t1, t2, t3
+st.session_state.d1_val, st.session_state.d2_val = d1, d2
 
 st.write("---")
 
@@ -189,16 +200,3 @@ st.markdown("### 📊 Histórico Volumétrico Estimado Pré-Upload")
 meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
 valores_envio = [180 + (i * 75) for i in range(12)]
 df_envio = pd.DataFrame({"Volume Analisado": valores_envio}, index=meses)
-st.bar_chart(df_envio, use_container_width=True, color="#00E5FF")
-
-st.write("---")
-
-# =============================================================================================================
-# SEÇÃO 6: DISPARO REAL DA CAMPANHA DIRETO FIXADO NO RODAPÉ FINAL (FIM DA TELA DO JOSÉ)
-# =============================================================================================================
-st.markdown("### 🚀 5. TRANSMISSÃO DA CAMPANHA CONFIGURADA")
-st.markdown("Revise todos os blocos acima e clique no botão verde abaixo para empurrar os dados validados:")
-st.write("")
-
-# Força o carregamento do botão final de transmissão de forma fixa, independente de qualquer estado de loop
-if botao_bloqueado:
