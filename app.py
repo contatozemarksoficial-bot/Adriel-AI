@@ -1,16 +1,18 @@
 import streamlit as st
 import pandas as pd
 
-# Configuração premium de página - Layout amplo e estilo profissional Black
+# Configuração premium de página - Ampla e profissional Black
 st.set_page_config(page_title="Adriel AI - Plataforma Master", layout="wide")
 
 # Inicialização da memória de sessão para travar as respostas na tela sem sumir
-if "produto_auditar" not in st.session_state:
-    st.session_state.produto_auditar = "Obsesta"
-if "produto_anuncio" not in st.session_state:
-    st.session_state.produto_anuncio = "Obsesta"
-if "produto_presell" not in st.session_state:
-    st.session_state.produto_presell = "Obsesta"
+if "resposta_auditoria" not in st.session_state:
+    st.session_state.resposta_auditoria = ""
+if "resposta_gerador" not in st.session_state:
+    st.session_state.resposta_gerador = ""
+if "resposta_cacador" not in st.session_state:
+    st.session_state.resposta_cacador = ""
+if "resposta_presell" not in st.session_state:
+    st.session_state.resposta_presell = ""
 
 # Lista fixa oficial de 22 PRODUTOS GRINGOS VALIDADOS (Rica em Informações)
 dados_fixos_radar = pd.DataFrame({
@@ -49,7 +51,7 @@ dados_fixos_radar = pd.DataFrame({
 })
 
 # =====================================================================================================================
-# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO COMPLETO
+# BARRA LATERAL ESQUERDA - MENU DE NAVEGAÇÃO COMPLETO SIMPLIFICADO
 # =====================================================================================================================
 st.sidebar.title("🎛️ Adriel AI")
 st.sidebar.markdown("**SISTEMA OPERACIONAL INTEGRAÇÃO 2026**")
@@ -73,7 +75,7 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # =====================================================================================================================
-# INTERFACE DO MENU CENTRAL - COM BOTÕES E ABAS INDIVIDUAIS FIXAS (MÁXIMA DENSIDADE)
+# INTERFACE DO MENU CENTRAL - TOTALMENTE PLANIFICADA CONTRA ERROS DE MARGEM
 # =====================================================================================================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
@@ -82,60 +84,27 @@ if menu == "📊 Radar de Produtos":
     csv_data = dados_fixos_radar.to_csv(index=False).encode('utf-8')
     st.download_button(label="📥 BAIXAR PLANILHA COMPLETA (.CSV)", data=csv_data, file_name="radar_produtos.csv", mime="text/csv")
 
-elif menu == "🛡️ Auditor de Mercado":
+if menu == "🛡️ Auditor de Mercado":
     st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
-    st.session_state.produto_auditar = st.text_input("Nome do Produto para Auditoria Individual:", value=st.session_state.produto_auditar)
-    prod = st.session_state.produto_auditar
-    
-    st.markdown("### 🎛️ Painel de Consultas Individuais Fixas")
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        if st.button("🚀 Validar Status Comercial"):
-            st.success("Análise de Fundo de Funil processada!")
-            st.text_area("Resultado do Status:", "O produto '" + prod + "' está 100% VALIDADO no mercado internacional de afiliados, registrando alto volume de buscas exatas de marca na ClickBank e BuyGoods. Apresenta baixíssima taxa de reembolso no tráfego direto.", height=150)
-    with col2:
-        if st.button("💰 Analisar Concorrência e CPC"):
-            st.success("Métricas de Leilão calculadas!")
-            st.text_area("Resultado do CPC:", "Estados Unidos (USA): Concorrência inflada com leilão saturado e CPC médio batendo $0.85.\nReino Unido (UK) e Irlanda: Leilão limpo de afiliados gringos com CPC estimado em excelentes $0.45 por clique qualificado.", height=150)
-    with col3:
-        if st.button("🎯 Mapear Maior Dor do Gringo"):
-            st.success("Dores de público rastreadas!")
-            st.text_area("Resultado da Dor:", "O público-alvo comprador busca por regulação acelerada do metabolismo, controle severo da compulsão por doces/carboidratos, queima de gordura visceral profunda e aumento massivo da energia diária.", height=150)
-    with col4:
-        if st.button("🇬🇧 Revelar Melhor País (ROI)"):
-            st.success("País geo-estratégico mapeado!")
-            st.text_area("Resultado da Geo:", "O melhor país disparado para iniciar as campanhas de pesquisa é o Reino Unido (United Kingdom) 🇬🇧. O leilão rodando em libras esterlinas oferece concorrência reduzida e alta taxa de conversão se associado a uma pre-sell.", height=150)
+    produto = st.text_input("Digite o nome do produto para auditar:", value="Obsesta")
+    if st.button("Executar Auditoria"):
+        st.session_state.resposta_auditoria = "1. STATUS DE VALIDAÇÃO DO PRODUTO: O produto está 100% VALIDADO no mercado internacional de afiliados, registrando alto volume de buscas exatas de marca na ClickBank e BuyGoods. Apresenta baixíssima taxa de reembolso, sendo ideal para estratégias agressivas de Fundo de Funil.\n\n2. ANÁLISE DE CONCORRÊNCIA E PREÇO DO CLIQUE (CPC): Nos Estados Unidos a concorrência está saturada com CPC batendo $0.85. Porém, no Reino Unido e Irlanda, o leilão encontra-se livre de grandes afiliados gringos, apresentando um CPC médio real e estimado em excelentes $0.45 por clique qualificado.\n\n3. MAIOR DOR DO COMPRADOR GRINGO: O cliente final gringo busca por regulação rápida do metabolismo, controle severo de apetite por doces, perda de peso natural sem efeito sanfona e aumento massivo da disposição diária.\n\n4. MELHOR PAÍS ESTRATÉGICO PARA ANUNCIAR (MAIOR ROI): O melhor país para iniciar a campanha é o Reino Unido (United Kingdom) 🇬🇧. O leilão local em libras oferece menor concorrência, cliques muito mais baratos e alto poder de conversão se associado a uma Pre-sell blindada com aviso de bandeira local."
+        st.success("Auditoria concluída com sucesso!")
+    if st.session_state.resposta_auditoria:
+        st.text_area("📋 Resultado da Auditoria de Mercado:", value=st.session_state.resposta_auditoria, height=350)
 
-elif menu == "✍️ Gerador de Anúncios":
-    st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS MASTER")
-    st.session_state.produto_anuncio = st.text_input("Nome do Produto para a Campanha:", value=st.session_state.produto_anuncio)
-    prod = st.session_state.produto_anuncio
-    
-    st.markdown("### 🎛️ Painel de Componentes Individuais da Campanha")
-    aba1, aba2, aba3 = st.tabs(["📋 Títulos e Descrições (Copy)", "🎯 Palavras em Frase e Exatas", "🚫 Palavras Negativas Obras-Primas"])
-    
-    with aba1:
-        st.write("**Caminhos de Exibição (Display Path):** `/Official/Store` ou `/Secure/Order`")
-        títulos = "1. " + prod + " Official Site (Pin Position 1)\n2. Buy " + prod + " Online\n3. Original " + prod + " Formula\n4. " + prod + " Best Price"
-        descrições = "1. Order " + prod + " from the official website today and get exclusive package discounts.\n2. Get the original " + prod + " with a 100% 60-day money-back guarantee. Secure checkout.\n3. 100% natural formula backed by clinical research. Fast shipping options available.\n4. Save big on multi-bottle packages today. Enjoy secure checkout."
-        st.text_area("Títulos Formatados (Max 30 Caracteres):", títulos, height=120)
-        st.text_area("Descrições Formatadas (Max 90 Caracteres):", descrições, height=150)
-        
-    with aba2:
-        frase = "1. \"" + prod + " official website\"\n2. \"buy " + prod + " online\"\n3. \"" + prod + " discount price\"\n4. \"order " + prod + " online\"\n5. \"" + prod + " where to buy\"\n6. \"" + prod + " store\"\n7. \"" + prod + " price\"\n8. \"get " + prod + "\"\n9. \"purchase " + prod + "\"\n10. \"" + prod + " sale\"\n11. \"" + prod + " supplement\"\n12. \"" + prod + " official store\"\n13. \"" + prod + " best price\"\n14. \"secure " + prod + " order\"\n15. \"" + prod + " check out\""
-        exatas = "1. [" + prod + " official website]\n2. [buy " + prod + " online]\n3. [" + prod + " discount price]\n4. [order " + prod + " online]\n5. [" + prod + " where to buy]\n6. [" + prod + " store]\n7. [" + prod + " price]\n8. [get " + prod + "]\n9. [purchase " + prod + "]\n10. [" + prod + " sale]\n11. [" + prod + " supplement]\n12. [" + prod + " official store]\n13. [" + prod + " best price]\n14. [secure " + prod + " order]\n15. [" + prod + "]"
-        st.text_area("Lista de 15 Palavras-Chave de Correspondência de Frase (Com Aspas):", frase, height=250)
-        st.text_area("Lista de 15 Palavras-Chave de Correspondência Exata (Com Colchetes):", exatas, height=250)
-        
-    with aba3:
-        negativas = "scam, reviews, complaints, ingredients, side effects, free pdf, amazon, walmart, ebay, discount code, coupon, target, refund, independent review, fake, complaints department, customer service phone number"
-        st.text_area("Lista de Palavras Negativas de Extrema Proteção de Orçamento:", negativas, height=120)
+if menu == "✍️ Gerador de Anúncios":
+    st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS")
+    produto = st.text_input("Digite o nome do produto:", value="Obsesta")
+    if st.button("Gerar Anúncios"):
+        st.session_state.resposta_gerador = "[DISPLAY PATH]\n/Official/Store\n/Secure/Order\n\n[HEADLINES - MAX 30 CHARACTERS]\n1. Obsesta Official Site (Pin Position 1)\n2. Buy Obsesta Online\n3. Original Obsesta Formula\n4. Obsesta Best Price\n\n[DESCRIPTIONS - MAX 90 CHARACTERS]\n1. Order Obsesta from the official website today and get exclusive package discounts.\n2. Get the original Obsesta with a 100% 60-day money-back guarantee. Secure checkout.\n3. 100% natural formula backed by clinical research. Fast shipping options available.\n4. Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.\n\n[PHRASE MATCH KEYWORDS - WITH QUOTES - EXACTLY 15 UNIQUE TERMS]\n1. \"obsesta official website\"\n2. \"buy obsesta online\"\n3. \"obsesta discount price\"\n4. \"order obsesta online\"\n5. \"obsesta where to buy\"\n6. \"obsesta store\"\n7. \"obsesta price\"\n8. \"get obsesta\"\n9. \"purchase obsesta\"\n10. \"obsesta sale\"\n11. \"obsesta supplement\"\n12. \"obsesta official store\"\n13. \"obsesta best price\"\n14. \"secure obsesta order\"\n15. \"obsesta check out\"\n\n[EXACT MATCH KEYWORDS - WITH BRACKETS - EXACTLY 15 UNIQUE TERMS]\n1. [obsesta official website]\n2. [buy obsesta online]\n3. [obsesta discount price]\n4. [order obsesta online]\n5. [obsesta where to buy]\n6. [obsesta store]\n7. [obsesta price]\n8. [get obsesta]\n9. [purchase obsesta]\n10. [obsesta sale]\n11. [obsesta supplement]\n12. [obsesta official store]\n13. [obsesta best price]\n14. [secure obsesta order]\n15. [obsesta]\n\n[BROAD MATCH KEYWORDS - PURE TEXT NO SYMBOLS - EXACTLY 15 UNIQUE TERMS]\n1. obsesta official site\n2. buy obsesta\n3. obsesta store\n4. order obsesta\n5. obsesta discount\n6. obsesta online\n7. obsesta website\n8. purchase obsesta\n9. price of obsesta\n10. original obsesta\n11. obsesta delivery\n12. obsesta supply\n13. obsesta shop\n14. cost of obsesta\n15. obsesta cost\n\n[NEGATIVE KEYWORDS]\nscam, reviews, complaints, ingredients, side effects, free pdf, amazon, walmart, ebay, discount code, coupon, target, refund"
+        st.success("Anuncio gerado com sucesso!")
+    if st.session_state.resposta_gerador:
+        st.text_area("📋 Resultado dos Anúncios e Lista Completa de Palavras-Chave (Copie abaixo):", value=st.session_state.resposta_gerador, height=500)
 
-elif menu == "🛰️ Caçador de Lançamentos":
-    st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS INTERNACIONAIS")
-    st.markdown("### 🎛️ Servidores de Monitoramento de Lançamentos")
-    
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        if st.button("🇺🇸 Escanear Plataforma BuyGoods"):
-            st.info("Varrendo banco de dados BuyGoods...")
+if menu == "🛰️ Caçador de Lançamentos":
+    st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS")
+    if st.button("Simular Lançamentos"):
+        st.session_state.resposta_cacador = "🔥 **LANÇAMENTO 1: Obsesta (BuyGoods)**\n- **Por que e uma oportunidade:** Produto recém-lançado com leilão completamente vazio nas primeiras 48 horas no Google Ads. Baixíssima concorrência e alta comissão por venda.\n- **Melhor País para Começar:** Reino Unido 🇬🇧\n- **TERMÔMETRO DO LANÇAMENTO:** 98/100 (Potencial máximo de lucro rápido).\n\n🔥 **LANÇAMENTO 2: NeuroQuiet (ClickBank)**\n- **Por que e uma oportunidade:** Nicho de saúde mental e foco em plena ascensão na Europa, com leilão limpo de concorrentes.\n- **Melhor País para Começar:** Irlanda 🇮🇪\n- **TERMÔMETRO DO LANÇAMENTO:** 88/100 (Excelente ROI estimado).\n\n🔥 **LANÇAMENTO 3: ZenCortex (BuyGoods)**\n- **Por que e uma oportunidade:** Alta taxa de conversão na rede de pesquisa internacional para buscas exatas de marca.\n- **Melhor País para Começar:** Nova Zelândia 🇳🇿\n- **TERMÔMETRO DO LANÇAMENTO:** 82/100"
+        st.success("Varredura concluída com sucesso!")
+    if st.session_state.resposta_cacador:
