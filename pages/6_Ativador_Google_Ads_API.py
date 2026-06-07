@@ -33,7 +33,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("🚀 MÓDULO 6: CENTRAL DE ATIVAÇÃO GLOBAL & NACIONAL (GOOGLE ADS API)")
-st.markdown("Suba campanhas validadas tanto para o mercado brasileiro quanto para a gringa com segmentação automática de moedas e regras.")
+st.markdown("Suba campaigns validadas tanto para o mercado brasileiro quanto para a gringa com segmentação automática de moedas e regras.")
 st.write("---")
 
 # =============================================================================================================
@@ -131,14 +131,25 @@ else:
     s_d1 = f"Adquira o {prod} direto no site oficial do fabricante com desconto exclusivo."
     s_d2 = "Garantia de satisfação total ou seu dinheiro de volta. Parcelamento em até 12x no cartão."
 
+# Inicialização limpa e inline sem depender de blocos expansivos aninhados perigosos
+if "t1_val" not in st.session_state: st.session_state.t1_val = s_t1
+if "t2_val" not in st.session_state: st.session_state.t2_val = s_t2
+if "t3_val" not in st.session_state: st.session_state.t3_val = s_t3
+if "d1_val" not in st.session_state: st.session_state.d1_val = s_d1
+if "d2_val" not in st.session_state: st.session_state.d2_val = s_d2
+
 col_t1, col_t2 = st.columns(2)
 with col_t1:
-    t1 = st.text_input("Título Principal 1 (Pin 1):", value=s_t1, key="t1_box_edit")
-    t2 = st.text_input("Título Principal 2 (Pin 2):", value=s_t2, key="t2_box_edit")
-    t3 = st.text_input("Título Principal 3 (Pin 3):", value=s_t3, key="t3_box_edit")
+    t1 = st.text_input("Título Principal 1 (Pin 1):", value=st.session_state.t1_val, key="t1_box_edit")
+    t2 = st.text_input("Título Principal 2 (Pin 2):", value=st.session_state.t2_val, key="t2_box_edit")
+    t3 = st.text_input("Título Principal 3 (Pin 3):", value=st.session_state.t3_val, key="t3_box_edit")
 with col_t2:
-    d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=s_d1, max_chars=90, key="d1_box_edit")
-    d2 = st.text_input("Descrição Secundária:", value=s_d2, max_chars=90, key="d2_box_edit")
+    d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=st.session_state.d1_val, max_chars=90, key="d1_box_edit")
+    d2 = st.text_input("Descrição Secundária:", value=st.session_state.d2_val, max_chars=90, key="d2_box_edit")
+
+# Força a atualização da memória imediata
+st.session_state.t1_val, st.session_state.t2_val, st.session_state.t3_val = t1, t2, t3
+st.session_state.d1_val, st.session_state.d2_val = d1, d2
 
 st.write("---")
 
@@ -147,15 +158,8 @@ st.write("---")
 # =============================================================================================================
 st.markdown("#### 🔍 DIAGNÓSTICO DO RASTREADOR DE POLÍTICAS (RAIO-X DE BLOQUEIO)")
 
-# Regras de termos proibidos corrigidas e travadas de forma plana
-regras_correcao = {
-    "cure": "support formula", 
-    "heals": "supports health", 
-    "weight loss instantly": "natural weight support",
-    "cura": "formula de suporte", 
-    "cura mesmo": "auxilia na saude", 
-    "emagrece imediato": "emagrecimento saudavel"
-}
+# Regras de termos proibidos corrigidas e travadas sem nenhuma quebra de linha de dicionário
+regras_correcao = {"cure": "support formula", "heals": "supports health", "weight loss instantly": "natural weight support", "cura": "formula de suporte", "cura mesmo": "auxilia na saude", "emagrece imediato": "emagrecimento saudavel"}
 
 texto_completo_original = (t1 + " " + t2 + " " + t3 + " " + d1 + " " + d2).lower()
 violacao_termo = False
@@ -189,15 +193,3 @@ st.markdown("### 📊 Histórico Volumétrico Estimado Pré-Upload")
 meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
 valores_envio = [180 + (i * 75) for i in range(12)]
 df_envio = pd.DataFrame({"Volume Analisado": valores_envio}, index=meses)
-st.bar_chart(df_envio, use_container_width=True, color="#00E5FF")
-
-st.write("---")
-
-# =============================================================================================================
-# SEÇÃO 6: DISPARO REAL DA CAMPANHA DIRETO FIXADO NO RODAPÉ FINAL
-# =============================================================================================================
-st.markdown("### 🚀 5. TRANSMISSÃO DA CAMPANHA CONFIGURADA")
-st.markdown("Revise todos os blocos acima e clique no botão verde abaixo para empurrar os dados validados:")
-st.write("")
-
-if botao_bloqueado:
