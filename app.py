@@ -1,4 +1,4 @@
-import streamlit as st
+import streamlit st as
 import pandas as pd
 
 # Configuração premium de página - Layout amplo e profissional Black
@@ -42,7 +42,7 @@ dados_fixos_radar = pd.DataFrame({
         "$0.46", "$0.48"
     ],
     "Tendência / Veredito": [
-        "Foco total in libras", "Fundo de Funil Escalando UK", "Oceano azul dental", "CPC baratíssimo", "Mobile Only", 
+        "Foco total em libras", "Fundo de Funil Escalando UK", "Oceano azul dental", "CPC baratíssimo", "Mobile Only", 
         "Aguardar resfriamento", "Conformidade Europa", "Poder de compra alto", "Leilão livre no Canadá", "Lista de lances exatos", 
         "Excelente aceitação UK", "Poucos afiliados na Irlanda", "Leilão vazio na NZ", "Alta conversão energia", "Lançamento qualificado", 
         "Forte em público feminino", "Leilão livre na Irlanda", "Correspondência de frase", "Controle de apetite UK", "Saúde masculina AU", 
@@ -97,10 +97,72 @@ if menu == "✍️ Gerador de Anúncios":
     st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS")
     produto = st.text_input("Digite o nome do produto:", value="Obsesta")
     if st.button("Gerar Anúncios"):
-        st.session_state.resposta_gerador = "[DISPLAY PATH]\n/Official/Store\n/Secure/Order\n\n[HEADLINES - MAX 30 CHARACTERS]\n1. " + produto + " Official Site (Pin 1)\n2. Buy " + produto + " Online\n3. Original " + produto + " Formula\n4. " + produto + " Best Price\n\n[DESCRIPTIONS - MAX 90 CHARACTERS]\n1. Order " + produto + " from the official website today and get exclusive package discounts.\n2. Get the original " + produto + " with a 100% 60-day money-back guarantee. Secure checkout.\n3. 100% natural formula backed by clinical research. Fast shipping options available now.\n4. Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.\n\n[PHRASE MATCH KEYWORDS - WITH QUOTES - EXACTLY 15 UNIQUE TERMS]\n1. \"" + produto + " official website\"\n2. \"buy " + produto + " online\"\n3. \"" + produto + " discount price\"\n4. \"order " + produto + " online\"\n5. \"" + produto + " where to buy\"\n6. \"" + produto + " store\"\n7. \"" + produto + " price\"\n8. \"get " + produto + "\"\n9. \"purchase " + produto + "\"\n10. \"" + produto + " sale\"\n11. \"" + produto + " supplement\"\n12. \"" + produto + " official store\"\n13. \"" + produto + " best price\"\n14. \"secure " + produto + " order\"\n15. \"" + produto + " check out\"\n\n[EXACT MATCH KEYWORDS - WITH BRACKETS - EXACTLY 15 UNIQUE TERMS]\n1. [" + produto + " official website]\n2. [buy " + produto + " online]\n3. [" + produto + " discount price]\n4. [order " + produto + " online]\n5. [" + produto + " where to buy]\n6. [" + produto + " store]\n7. [" + produto + " price]\n8. [get " + produto + "]\n9. [purchase " + produto + "]\n10. [" + produto + " sale]\n11. [" + produto + " supplement]\n12. [" + produto + " official store]\n13. [" + produto + " best price]\n14. [secure " + produto + " order]\n15. [" + produto + "]\n\n[BROAD MATCH KEYWORDS - PURE TEXT NO SYMBOLS]\n1. " + produto + " official site\n2. buy " + produto + "\n3. " + produto + " store\n4. order " + produto + "\n5. " + produto + " discount\n6. " + produto + " online\n7. " + produto + " website\n8. purchase " + produto + "\n9. price of " + produto + "\n10. original " + produto + "\n11. " + produto + " delivery\n12. " + produto + " supply\n13. " + produto + " shop\n14. cost of " + produto + "\n15. " + produto + " cost\n\n[NEGATIVE KEYWORDS]\nscam, reviews, complaints, ingredients, side effects, free pdf, amazon, walmart, ebay, discount code, coupon, target, refund"
+        st.session_state.resposta_gerador = (
+            "[DISPLAY PATH]\n"
+            "/Official/Store\n"
+            "/Secure/Order\n\n"
+            "[HEADLINES - MAX 30 CHARACTERS]\n"
+            "1. " + produto + " Official Site (Pin 1)\n"
+            "2. Buy " + produto + " Online\n"
+            "3. Original " + produto + " Formula\n"
+            "4. " + produto + " Best Price\n\n"
+            "[DESCRIPTIONS - MAX 90 CHARACTERS]\n"
+            "1. Order " + produto + " from the official website today and get exclusive package discounts.\n"
+            "2. Get the original " + produto + " with a 100% 60-day money-back guarantee. Secure checkout.\n"
+            "3. 100% natural formula backed by clinical research. Fast shipping options available now.\n"
+            "4. Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.\n\n"
+            "[PHRASE MATCH KEYWORDS - WITH QUOTES - 15 UNIQUE TERMS]\n"
+            "1. \"" + produto + " official website\"\n"
+            "2. \"buy " + produto + " online\"\n"
+            "3. \"" + produto + " discount price\"\n"
+            "4. \"order " + produto + " online\"\n"
+            "5. \"" + produto + " where to buy\"\n"
+            "6. \"" + produto + " store\"\n"
+            "7. \"" + produto + " price\"\n'
+            '8. \"get " + produto + "\"\n'
+            '9. \"purchase " + produto + "\"\n'
+            '10. \"" + produto + " sale\"\n'
+            '11. \"" + produto + " supplement\"\n'
+            '12. \"" + produto + " official store\"\n'
+            '13. \"" + produto + " best price\"\n'
+            '14. \"secure " + produto + " order\"\n'
+            '15. \"" + produto + " check out\"\n\n'
+            '[EXACT MATCH KEYWORDS - WITH BRACKETS - 15 UNIQUE TERMS]\n'
+            '1. [' + produto + ' official website]\n'
+            '2. [buy ' + produto + ' online]\n'
+            '3. [' + produto + ' discount price]\n'
+            '4. [order ' + produto + ' online]\n'
+            '5. [' + produto + ' where to buy]\n'
+            '6. [' + produto + ' store]\n'
+            '7. [' + produto + ' price]\n'
+            '8. [get ' + produto + ']\n'
+            '9. [purchase ' + produto + ']\n'
+            '10. [' + produto + ' sale]\n'
+            '11. [' + produto + ' supplement]\n'
+            '12. [' + produto + ' official store]\n'
+            '13. [' + produto + ' best price]\n'
+            '14. [secure ' + produto + ' order]\n'
+            '15. [' + produto + ']\n\n'
+            '[NEGATIVE KEYWORDS - LISTA PROFISSIONAL LINHA POR LINHA]\n'
+            '1. scam\n'
+            '2. reviews\n'
+            '3. complaints\n'
+            '4. ingredients\n'
+            '5. side effects\n'
+            '6. free pdf\n'
+            '7. amazon\n'
+            '8. walmart\n'
+            '9. ebay\n'
+            '10. discount code\n'
+            '11. coupon\n'
+            '12. target\n'
+            '13. refund\n'
+            '14. fake\n'
+            '15. wholesale'
+        )
         st.success("Anuncio completo gerado com sucesso!")
     if st.session_state.resposta_gerador:
-        st.text_area("📋 Resultado dos Anúncios e Lista Completa de Palavras-Chave (Copie abaixo):", value=st.session_state.resposta_gerador, height=500)
+        st.text_area("📋 Resultado dos Anúncios e Palavras-Chave Ordenadas:", value=st.session_state.resposta_gerador, height=550)
 
 if menu == "🛰️ Caçador de Lançamentos":
     st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS")
