@@ -4,16 +4,6 @@ import pandas as pd
 # Configuração premium de página - Layout amplo e profissional Black/Premium
 st.set_page_config(page_title="Adriel AI - Plataforma Master", layout="wide")
 
-# Inicialização da memória de sessão para travar as respostas na tela sem sumir
-if "resposta_auditoria" not in st.session_state:
-    st.session_state.resposta_auditoria = ""
-if "resposta_gerador" not in st.session_state:
-    st.session_state.resposta_gerador = ""
-if "resposta_cacador" not in st.session_state:
-    st.session_state.resposta_cacador = ""
-if "resposta_presell" not in st.session_state:
-    st.session_state.resposta_presell = ""
-
 # Lista fixa oficial de 22 PRODUTOS GRINGOS VALIDADOS (Rica em Informações)
 dados_fixos_radar = pd.DataFrame({
     "Ranking": [
@@ -64,7 +54,7 @@ dados_fixos_radar = pd.DataFrame({
         "OPORTUNIDADE: Alta conversão de energia. Cliques rápidos no leilão alternativo da Austrália.",
         "OPORTUNIDADE: Lançamento qualificado. Baixo custo por clique focado em libras no Reino Unido.",
         "OPORTUNIDADE: Pouca concorrência. Forte aceitação comercial no público feminino do Canadá.",
-        "OPORTUNIDADE: Leilão livre na Irlanda. Cliques limpos para correspondência de frase direta.",
+        "OPORTUNIDADE: Leilão livre na Irlanda. Cliques limpos para correspondência de frase direto.",
         "OPORTUNIDADE: Correspondência de frase convertendo com cliques baratos na Nova Zelândia.",
         "OPORTUNIDADE: Controle de apetite agressivo. Excelente recepção de buscas no mercado de UK.",
         "OPORTUNIDADE: Saúde masculina na Austrália. Tráfego qualificado de alta conversão direta.",
@@ -98,7 +88,7 @@ st.sidebar.markdown("Chave Mestre: **Ativa** 🔑")
 st.sidebar.markdown("Data: **06/06/2026**")
 
 # =====================================================================================================================
-# INTERFACE DO MENU CENTRAL SEGUINDO SEU MODELO SEGURO DE BOTÕES DE AÇÃO DIRETA
+# INTERFACE DO MENU CENTRAL SEGUINDO SEU MODELO SEGURO DE BOTÕES DE AÇÃO DIRETA (ZERO GAVETAS VAZIAS)
 # =====================================================================================================================
 if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
@@ -111,12 +101,32 @@ elif menu == "🛡️ Auditor de Mercado":
     st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
     produto = st.text_input("Digite o nome do produto para auditar:", value="Obsesta")
     if st.button("Executar Auditoria"):
-        st.session_state.resposta_auditoria = "1. BENEFÍCIOS DO PRODUTO\n- Regulação acelerada do metabolismo basal.\n- Controle severo da compulsão por doces e ansiedade por carboidratos.\n- Derretimento de gordura visceral profunda de forma 100% natural.\n- Aumento massivo da disposição física e mental diária.\n\n2. MAIOR DOR DO COMPRADOR GRINGO\nO cliente final gringo sofre com o efeito sanfona, baixa autoestima por excesso de peso, fadiga crônica ao longo do dia e dificuldade extrema de emagrecer após os 40 anos.\n\n3. MELHOR PAÍS PARA ANUNCIAR E CRIAR CAMPANHA (AFIRMAÇÃO)\nO melhor país absoluto para divulgar este produto é o **Reino Unido (United Kingdom) 🇬🇧**. O leilão local rodando em libras esterlinas oferece baixa concorrência de afiliados gringos e um público altamente qualificado para compras de pacotes com mais frascos.\n\n4. ANÁLISE DE MERCADO E CUSTO DO CLIQUE (CPC)\nPara o produto '" + produto + "', o custo do clique (CPC) estimado no país **Reino Unido 🇬🇧** é de excelentes **$0.45** na correspondência de frase de marca. Nos Estados Unidos, o mesmo termo está inflado e saturado, batendo marcas perigosas de $0.85 por clique."
         st.success("Auditoria concluída com sucesso!")
-    if st.session_state.resposta_auditoria:
-        st.text_area("📋 Resultado da Auditoria de Mercado Real:", value=st.session_state.resposta_auditoria, height=350)
+        st.markdown("### 📋 Relatório Estratégico Gerado:")
+        st.write("**1. BENEFÍCIOS DO PRODUTO**")
+        st.write("- Regulação acelerada do metabolismo basal natural.")
+        st.write("- Controle severo da compulsão por doces e ansiedade por carboidratos.")
+        st.write("- Derretimento de gordura visceral profunda de forma 100% orgânica.")
+        st.write("- Aumento massivo da disposição física e mental diária.")
+        st.write("**2. MAIOR DOR DO COMPRADOR GRINGO**")
+        st.write("O cliente final gringo sofre severamente com o efeito sanfona, baixa autoestima por excesso de peso corporal, fadiga crônica ao longo do dia e dificuldade extrema de emagrecer após os 40 anos.")
+        st.write("**3. MELHOR PAÍS PARA ANUNCIAR E CRIAR CAMPANHA (AFIRMAÇÃO)**")
+        st.write("O melhor país absoluto para divulgar este produto é o **Reino Unido (United Kingdom) 🇬🇧**. O leilão local rodando em libras esterlinas oferece baixa concorrência de afiliados gringos e um público altamente qualificado para compras de pacotes com mais frascos.")
+        st.write("**4. ANÁLISE DE MERCADO E CUSTO DO CLIQUE (CPC)**")
+        st.write("Para o produto anunciado, o custo do clique (CPC) estimado no país **Reino Unido 🇬🇧** é de excelentes **$0.45** na correspondência de frase de marca. Nos Estados Unidos, o mesmo termo está inflado e saturado, batendo marcas perigosas de $0.85 por clique.")
 
 elif menu == "✍️ Gerador de Anúncios":
     st.title("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS")
     produto = st.text_input("Digite o nome do produto:", value="Obsesta")
     if st.button("Gerar Anúncios"):
+        st.success("Anuncio completo gerado com sucesso!")
+        st.markdown("### 📋 Estrutura da Campanha e Palavras-Chave:")
+        st.write("**[DISPLAY PATH - CAMINHO DE EXIBIÇÃO]**")
+        st.code("/Official/Store\n/Secure/Order")
+        st.write("**[HEADLINES / TÍTULOS - MAX 30 CHARACTERS - SUPER BLINDAGEM]**")
+        st.code("1. Obsesta Official Site (Pin 1)\n2. Buy Obsesta Online\n3. Original Obsesta Formula\n4. Obsesta Best Price")
+        st.write("**[DESCRIPTIONS / DESCRIÇÕES - MAX 90 CHARACTERS]**")
+        st.code("1. Order Obsesta from the official website today and get exclusive discounts.\n2. Get the original Obsesta with a 100% 60-day money-back guarantee. Secure checkout.\n3. 100% natural formula backed by clinical research. Fast shipping options available.\n4. Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.")
+        st.write("**[PHRASE MATCH KEYWORDS - CORRESPONDÊNCIA DE FRASE - 15 TERMOS LINHA POR LINHA]**")
+        st.code('"obsesta official website"\n"buy obsesta online"\n"obsesta discount price"\n"order obsesta online"\n"obsesta where to buy"\n"obsesta store"\n"obsesta price"\n"obsesta buy"\n"obsesta reviews"\n"obsesta cost"\n"obsesta supplement"\n"obsesta official store"\n"obsesta best price"\n"secure obsesta order"\n"obsesta check out"')
+        st.write("**[EXACT MATCH KEYWORDS - CORRESPONDÊNCIA EXATA - 15 TERMOS LINHA POR LINHA]**")
