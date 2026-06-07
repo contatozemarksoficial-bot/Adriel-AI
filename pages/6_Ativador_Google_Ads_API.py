@@ -78,7 +78,7 @@ if st.session_state.passo_atual == 1:
         st.session_state.orcamento = st.number_input("Orçamento Diário da Campanha ($):", value=st.session_state.orcamento, step=5.0)
 
     st.write("")
-    if st.button("PROSSEGUIR PARA AS PALAVRAS-CHAVE ➔"):
+    if st.button("PROSSEGUIR PARA AS PALAVRAS-CHAVE ➔", key="btn_p1_next"):
         st.session_state.passo_atual = 2
         st.rerun()
 
@@ -92,48 +92,43 @@ elif st.session_state.passo_atual == 2:
     col_kw1, col_kw2 = st.columns(2)
     
     with col_kw1:
-        lista_frase_padrao = f'"{prod} official website"\n"buy {prod} online"\n"{prod} discount price"\n"order {prod} online"'
-        st.session_state.kw_frase = st.text_area("✏️ Palavras-Chave de Frase (Edite se quiser):", value=st.session_state.get("kw_frase", lista_frase_padrao), height=200)
+        lista_frase_padrao = f'"{prod} official website"\n"buy {prod} online"\n"order {prod} online"'
+        st.session_state.kw_frase = st.text_area("Palavras-Chave de Frase:", value=st.session_state.get("kw_frase", lista_frase_padrao), height=200)
         
     with col_kw2:
-        lista_neg_padrao = "scam\ncomplaints\ningredients\nside effects\nrefund\nfree pdf\namazon\nebay"
-        st.session_state.kw_negativa = st.text_area("✏️ Palavras Negativas de Proteção (Edite se quiser):", value=st.session_state.get("kw_negativa", lista_neg_padrao), height=200)
+        lista_neg_padrao = "scam\ncomplaints\ningredients\nside effects\nrefund"
+        st.session_state.kw_negativa = st.text_area("Palavras Negativas de Proteção:", value=st.session_state.get("kw_negativa", lista_neg_padrao), height=200)
 
     st.write("")
-    col_btn1, col_btn2 = st.columns(2)
-    with col_btn1:
-        if st.button("⬅ Voltar"):
-            st.session_state.passo_atual = 1
-            st.rerun()
-    with col_btn2:
-        if st.button("IR PARA O ANÚNCIO ➔"):
-            st.session_state.passo_atual = 3
-            st.rerun()
+    if st.button("⬅ Voltar para Passo 1", key="btn_p2_back"):
+        st.session_state.passo_atual = 1
+        st.rerun()
+    if st.button("PROSSEGUIR PARA O ANÚNCIO ➔", key="btn_p2_next"):
+        st.session_state.passo_atual = 3
+        st.rerun()
 
 # =============================================================================================================
-# PASSO 3: REDAÇÃO DO ANÚNCIO COM CORREÇÃO DE PALAVRAS INTEIRAS (ANTI-LOOPS)
+# PASSO 3: REDAÇÃO DO ANÚNCIO COM BOTÕES CORRIGIDOS E RENDERIZAÇÃO GARANTIDA
 # =============================================================================================================
 elif st.session_state.passo_atual == 3:
     st.markdown("### 📝 PASSO 3: REDAÇÃO DO ANÚNCIO (RESPONSIVO RSA) & PROTOCOLO DE COMPLIANCE")
-    st.markdown("Escreva ou modifique os textos abaixo. O scanner Adriel AI caça violações isoladas e as corrige de forma estável!")
     
     col_t1, col_t2 = st.columns(2)
     with col_t1:
-        t1 = st.text_input("Título Principal 1 (Pin 1):", value=st.session_state.t1_val, key="t1_input_box")
-        t2 = st.text_input("Título Principal 2 (Pin 2):", value=st.session_state.t2_val, key="t2_input_box")
-        t3 = st.text_input("Título Principal 3 (Pin 3):", value=st.session_state.t3_val, key="t3_input_box")
+        t1 = st.text_input("Título Principal 1 (Pin 1):", value=st.session_state.t1_val, key="t1_box")
+        t2 = st.text_input("Título Principal 2 (Pin 2):", value=st.session_state.t2_val, key="t2_box")
+        t3 = st.text_input("Título Principal 3 (Pin 3):", value=st.session_state.t3_val, key="t3_box")
     with col_t2:
-        d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=st.session_state.d1_val, max_chars=90, key="d1_input_box")
-        d2 = st.text_input("Descrição Secundária:", value=st.session_state.d2_val, max_chars=90, key="d2_input_box")
+        d1 = st.text_input("Descrição do Anúncio (Análise de 90 letras):", value=st.session_state.d1_val, max_chars=90, key="d1_box")
+        d2 = st.text_input("Descrição Secundária:", value=st.session_state.d2_val, max_chars=90, key="d2_box")
 
-    # Salva na memória ativa o que o usuário alterou na hora
+    # Armazena as reedições imediatas
     st.session_state.t1_val, st.session_state.t2_val, st.session_state.t3_val = t1, t2, t3
     st.session_state.d1_val, st.session_state.d2_val = d1, d2
 
     st.write("---")
     st.markdown("#### 🔍 DIAGNÓSTICO DO RASTREADOR DE POLÍTICAS (RAIO-X DE BLOQUEIO)")
     
-    # Dicionário de regras mapeando [Termo Proibido] -> [Substituto Seguro de Compliance]
     regras_correcao = {
         "cure": "support formula",
         "heals": "supports health",
@@ -149,7 +144,6 @@ elif st.session_state.passo_atual == 3:
     violacao_capital = False
     gatilho_detalhado = ""
     
-    # 🎯 BLINDAGEM DA API: Varre caçando apenas palavras exatas isoladas usando limites (\b) para não travar em 'Secure'
     for termo_ruim in regras_correcao.keys():
         padrao_palavra_exata = r'\b' + re.escape(termo_ruim) + r'\b'
         if re.search(padrao_palavra_exata, texto_completo_original):
@@ -157,23 +151,31 @@ elif st.session_state.passo_atual == 3:
             gatilho_detalhado = termo_ruim
             break
             
-    # Varre caçando o uso proibido de Letras Maiúsculas Excessivas (BUY NOW)
     letras_grandes = re.findall(r'\b[A-Z]{3,}\b', t1 + " " + t2 + " " + t3)
     if not violacao_termo and letras_grandes:
         violacao_capital = True
         gatilho_detalhado = f"Letras Maiúsculas Abusivas: {letras_grandes}"
 
-    # Retorno visual inteligente na tela baseado na detecção de violações reais
     if violacao_termo or violacao_capital:
         st.error(f"❌ RISCO DE BLOQUEIO DETECTADO! Motivo: '{gatilho_detalhado}'. Esta estrutura quebra as regras do Google Ads.")
-        
         st.markdown("**💡 O Robô Adriel AI estruturou a correção segura para você. Clique abaixo para aplicar:**")
-        if st.button("⚡ CORRIGIR TEXTO AUTOMATICAMENTE (ANTI-BLOQUEIO)"):
-            
-            # Limpa e substitui todas as palavras ruins isoladas pelas seguras usando sub limite
+        if st.button("⚡ CORRIGIR TEXTO AUTOMATICAMENTE (ANTI-BLOQUEIO)", key="btn_autocorrect"):
             for ruim, seguro in regras_correcao.items():
                 padrao_sub = r'\b' + re.escape(ruim) + r'\b'
                 st.session_state.t1_val = re.sub(padrao_sub, seguro, st.session_state.t1_val, flags=re.IGNORECASE)
                 st.session_state.t2_val = re.sub(padrao_sub, seguro, st.session_state.t2_val, flags=re.IGNORECASE)
                 st.session_state.t3_val = re.sub(padrao_sub, seguro, st.session_state.t3_val, flags=re.IGNORECASE)
                 st.session_state.d1_val = re.sub(padrao_sub, seguro, st.session_state.d1_val, flags=re.IGNORECASE)
+                st.session_state.d2_val = re.sub(padrao_sub, seguro, st.session_state.d2_val, flags=re.IGNORECASE)
+            if violacao_capital:
+                st.session_state.t1_val = st.session_state.t1_val.title()
+                st.session_state.t2_val = st.session_state.t2_val.title()
+                st.session_state.t3_val = st.session_state.t3_val.title()
+            st.success("🔄 Ajuste de Compliance concluído!")
+            time.sleep(0.3)
+            st.rerun()
+        botao_bloqueado = True
+    else:
+        st.success("✅ ANÚNCIO 100% LIMPO! Nenhuma violação editorial encontrada. Padrão de conformidade anti-bloqueio atingido!")
+        botao_bloqueado = False
+
