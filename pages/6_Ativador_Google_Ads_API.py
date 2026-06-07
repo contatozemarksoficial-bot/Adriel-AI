@@ -147,9 +147,14 @@ st.write("---")
 # =============================================================================================================
 st.markdown("#### 🔍 DIAGNÓSTICO DO RASTREADOR DE POLÍTICAS (RAIO-X DE BLOQUEIO)")
 
+# Regras de termos proibidos corrigidas e travadas de forma plana
 regras_correcao = {
-    "cure": "support formula", "heals": "supports health", "weight loss instantly": "natural weight support",
-    "cura": "formula de suporte", "cura mesmo": "auxilia na saude", "emagrece imediato": "emagrecimento saudavel"
+    "cure": "support formula", 
+    "heals": "supports health", 
+    "weight loss instantly": "natural weight support",
+    "cura": "formula de suporte", 
+    "cura mesmo": "auxilia na saude", 
+    "emagrece imediato": "emagrecimento saudavel"
 }
 
 texto_completo_original = (t1 + " " + t2 + " " + t3 + " " + d1 + " " + d2).lower()
@@ -189,11 +194,10 @@ st.bar_chart(df_envio, use_container_width=True, color="#00E5FF")
 st.write("---")
 
 # =============================================================================================================
-# SEÇÃO 6: DISPARO REAL DA CAMPANHA DIRETO FIXADO NO RODAPÉ FINAL (BLINDAGEM CONTRA SUMIÇOS)
+# SEÇÃO 6: DISPARO REAL DA CAMPANHA DIRETO FIXADO NO RODAPÉ FINAL
 # =============================================================================================================
 st.markdown("### 🚀 5. TRANSMISSÃO DA CAMPANHA CONFIGURADA")
 st.markdown("Revise todos os blocos acima e clique no botão verde abaixo para empurrar os dados validados:")
 st.write("")
 
-# REMOVIDA QUALQUER DEPENDÊNCIA DE DA MEMÓRIA ATIVA. BOTÃO TOTALMENTE FIXO.
 if botao_bloqueado:
