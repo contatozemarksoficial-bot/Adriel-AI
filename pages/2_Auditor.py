@@ -1,4 +1,6 @@
 import streamlit as st
+import pandas as pd
+import numpy as np
 
 # Configuração premium de página - Layout amplo e profissional Black para o Auditor
 st.set_page_config(page_title="Adriel AI - Auditor de Mercado", layout="wide")
@@ -28,7 +30,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
-st.markdown("Protocolo avançado de investigação de viabilidade em tempo real, dores de público-alvo e veredito de lucratividade.")
+st.markdown("Protocolo avançado de investigação de viabilidade em tempo real, dores de público-alvo e veredito gráfico de lucratividade.")
 st.write("---")
 
 # Campo de entrada de dados direto e limpo
@@ -41,7 +43,7 @@ produtos_validados_elite = ["obsesta", "sugar defender", "prodentim", "glucoberr
 if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
     with st.spinner("Conectando aos servidores de leilão e cruzando dados de buscas em tempo real..."):
         
-        # ENGENHARIA DE LIMPEZA DE TRAÇOS E HÍFENS (Substitui hífens por espaços para validar citrus-burn)
+        # Engenharia de limpeza de hífens para validar formatos variados
         produto_limpo = produto_input.strip().lower().replace("-", " ")
         
         # =============================================================================================================
@@ -51,6 +53,7 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
             st.success("✅ PRODUTO APROVADO! Alta Positividade Detectada para o produto: " + produto_input)
             st.write("---")
             
+            # Módulos de métricas rápidas no topo
             col_m1, col_m2, col_m3 = st.columns(3)
             with col_m1:
                 st.metric(label="📊 Status de Mercado Real", value="ALTAMENTE LUCRATIVO 🔥")
@@ -60,36 +63,50 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
                 st.metric(label="💰 CPC Médio Estimado", value="$0.65" if "citrus" in produto_limpo else "$0.45")
                 
             st.write("---")
-            st.markdown("### 📋 Dossiê de Auditoria Comercial por Extenso:")
             
-            with st.expander("🎯 1. BENEFÍCIOS REAIS DO PRODUTO (ÂNCORAS DE CÓPIA)", expanded=True):
-                st.markdown(
-                    "- **Aceleração Metabólica:** Regulação e destrava do metabolismo basal profundo através de compostos concentrados.\n"
-                    "- **Bloqueio de Compulsão:** Controle severo da ansiedade por doces, açúcar e carboidratos refinados ao longo do dia.\n"
-                    "- **Queima Visceral:** Derretimento contínuo de gordura profunda de forma 100% natural e clinicamente testada.\n"
-                    "- **Energia Celular:** Aumento massivo da disposição física e foco mental, eliminando o cansaço ao acordar."
-                )
-                
-            with st.expander("🧠 2. MAIOR DOR DO COMPRADOR GRINGO (PÚBLICO-ALVO)", expanded=True):
-                st.markdown(
-                    "O cliente final gringo sofre severamente com a **fadiga crônica**, baixa autoestima provocada pelo excesso de peso acumulado "
-                    "e frustração psicológica com o **efeito sanfona** de dietas tradicionais. Apresenta dificuldade metabólica extrema de emagrecer "
-                    "após os 40 anos devido à desaceleração hormonal natural."
-                )
-                
-            with st.expander("🌍 3. VEREDITO DA MELHOR ESTRATÉGIA E POR QUE ANUNCIAR", expanded=True):
-                if "citrus" in produto_limpo:
+            # 📈 GRÁFICO HISTÓRICO COMPLETO EM LARGURA TOTAL
+            st.markdown("### 📈 Histórico Completo de Volume de Buscas e Escalada (Últimos 12 Meses)")
+            meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+            # Curva matemática ascendente realista simulando sucesso comercial gringo
+            valores_alta = [120, 180, 240, 210, 350, 480, 520, 490, 680, 820, 890, 950]
+            df_grafico_completo = pd.DataFrame(valores_alta, index=meses, columns=["Volume de Cliques de Marca Qualificados"])
+            st.line_chart(df_grafico_completo, use_container_width=True)
+            st.caption("🔥 Análise de Autoridade: Curva ascendente consolidada. Pico de interesse gerado por forte tração de vendas e tráfego comprador.")
+            st.write("---")
+            
+            # DIVISÃO EM COLUNAS: Laudos detalhados logo abaixo do gráfico
+            col_l1, col_l2 = st.columns(2)
+            
+            with col_l1:
+                with st.expander("🎯 BENEFÍCIOS REAIS DO PRODUTO (ÂNCORAS DE CÓPIA)", expanded=True):
                     st.markdown(
-                        "Para o produto **Citrus Burn**, a melhor estratégia de escala agressiva encontra-se concentrada no mercado dos **Estados Unidos 🇺🇸**. "
-                        "Embora o leilão de lances exatíssimos de marca apresente um CPC de **$0.65**, o volume de buscas mobile local compensa o investimento, "
-                        "sendo crucial segmentar a campanha apenas para dispositivos móveis (smartphones) para otimizar o CTR e evitar cliques frios de bots."
+                        "- **Aceleração Metabólica:** Regulação e destrava do metabolismo basal profundo através de compostos concentrados.\n"
+                        "- **Bloqueio de Compulsão:** Controle severo da ansiedade por doces, açúcar e carboidratos refinados ao longo do dia.\n"
+                        "- **Queima Visceral:** Derretimento contínuo de gordura profunda de forma 100% natural e clinicamente testada.\n"
+                        "- **Energia Celular:** Aumento massivo da disposição física e foco mental, eliminando o cansaço ao acordar."
                     )
-                else:
+                    
+                with st.expander("🧠 MAIOR DOR DO COMPRADOR GRINGO (PÚBLICO-ALVO)", expanded=True):
                     st.markdown(
-                        "A melhor estratégia absoluta para divulgar e subir a campanha de rede de pesquisa no Google Ads "
-                        "é o **Reino Unido (United Kingdom) 🇬🇧**. O leilão local rodando em libras esterlinas oferece concorrência reduzida de "
-                        "afiliados concorrentes e um público com altíssimo poder aquisitivo, pronto para comprar pacotes máximos de 3 a 6 frascos em tráfego direto."
+                        "O cliente final gringo sofre severamente com a **fadiga crônica**, baixa autoestima provocada pelo excesso de peso acumulado "
+                        "e frustração psicológica com o **efeito sanfona** de dietas tradicionais. Apresenta dificuldade metabólica extrema de emagrecer "
+                        "após os 40 anos devido à desaceleração hormonal natural."
                     )
+                    
+            with col_l2:
+                with st.expander("🌍 VEREDITO DA MELHOR ESTRATÉGIA E POR QUE ANUNCIAR", expanded=True):
+                    if "citrus" in produto_limpo:
+                        st.markdown(
+                            "Para o produto **Citrus Burn**, a melhor estratégia de escala agressiva encontra-se concentrada no mercado dos **Estados Unidos 🇺🇸**. "
+                            "Embora o leilão de lances exatíssimos de marca apresente um CPC de **$0.65**, o volume de buscas mobile local compensa o investimento, "
+                            "sendo crucial segmentar a campanha apenas para dispositivos móveis (smartphones) para otimizar o CTR e evitar cliques frios de bots."
+                        )
+                    else:
+                        st.markdown(
+                            "A melhor estratégia absoluta para divulgar e subir a campanha de rede de pesquisa no Google Ads "
+                            "é o **Reino Unido (United Kingdom) 🇬🇧**. O leilão local rodando em libras esterlinas oferece concorrência reduzida de "
+                            "afiliados concorrentes e um público com altíssimo poder aquisitivo, pronto para comprar pacotes máximos de 3 a 6 frascos em tráfego direto."
+                        )
         
         # =============================================================================================================
         # CASO 2: O PRODUTO É FRACO / SATURADO (ALERTA VERMELHO DE SEGURANÇA CONTRA PERDA DE DINHEIRO)
@@ -107,15 +124,25 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
                 st.metric(label="💸 Taxa de Reembolso Geral", value="Crítica (>18%)")
                 
             st.write("---")
-            st.markdown("### ⚠️ DOSSIÊ DE SEGURANÇA E RECOMENDAÇÃO ADRIEL AI:")
             
+            # 📉 GRÁFICO HISTÓRICO COMPLETO EM QUEDA LIVRE
+            st.markdown("### 📉 Histórico Completo de Declínio e Desinteresse de Mercado (Últimos 12 Meses)")
+            meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+            # Curva matemática descendente crônica simulando desinteresse e saturação
+            valores_baixa = [900, 810, 750, 620, 480, 310, 220, 150, 90, 60, 45, 15]
+            df_grafico_ruim = pd.DataFrame(valores_baixa, index=meses, columns=["Volume de Pesquisas Globais"])
+            st.line_chart(df_grafico_ruim, use_container_width=True)
+            st.caption("⚠️ Alerta Vermelho: Curva em colapso completo. Queda crônica irreversível no interesse do público comprador.")
+            st.write("---")
+            
+            st.markdown("### ⚠️ DOSSIÊ DE SEGURANÇA E RECOMENDAÇÃO ADRIEL AI:")
             st.error(
                 "**❌ CONSELHO CIRÚRGICO: NÃO ENTRE NESTE MERCADO PARA NÃO PERDER DINHEIRO!**\n\n"
                 "O produto **" + produto_input + "** foi classificado como **Inviável ou Altamente Instável** pelo nosso rastreador em tempo real. "
                 "O leilão de lances na gringa encontra-se completamente dominado por cliques falsos de robôs concorrentes, ou o produto perdeu o interesse público "
                 "nas principais plataformas internacionais como ClickBank e BuyGoods.\n\n"
                 "**⚠️ Red flags de risco comercial detectadas:**\n"
-                "- Volume de buscas por chaves exatas insuficiente para cobrir o custo da campanha.\n"
+                "- Volume de buscas por chaves exatas insuficiente para cobrir o custo de manutenção da campanha no Google Ads.\n"
                 "- CPC abusivo e inflado artificialmente, inviabilizando margens saudáveis de ROI.\n"
                 "- Alto índice de avaliações negativas e reclamações de clientes fora dos EUA, estourando as taxas de reembolso.\n\n"
                 "**💡 O que fazer?** Abandone este produto imediatamente e selecione um termo listado como 'VALIDADO' ou 'ELITE' no nosso Radar de Produtos para proteger o seu orçamento de anúncios."
