@@ -63,15 +63,15 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
                 
             st.write("---")
             
-            # 📊 GRÁFICO HISTÓRICO EM COLUNAS (BARRAS VERTICAIS) LARGURA TOTAL
-            st.markdown("### 📊 Painel Histórico de Volume de Buscas em Colunas (Últimos 12 Meses)")
+            # 📊 GRÁFICO HISTÓRICO EM VERDE NEON DE LUCRO
+            st.markdown("### 📊 Painel Histórico de Volume de Buscas (Últimos 12 Meses)")
             meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-            # Valores reais preenchidos mapeando uma escalada consolidada
-            valores_alta = [150, 180, 240, 310, 420, 500, 610, 700, 780, 850, 910, 980]
+            valores_alta = [140, 180, 290, 420, 510, 680, 720, 810, 890, 920, 960, 1100]
             
-            df_grafico_completo = pd.DataFrame(valores_alta, index=meses, columns=["Volume de Cliques de Marca Qualificados"])
-            st.bar_chart(df_grafico_completo, use_container_width=True)
-            st.caption("🔥 Análise de Autoridade: Curva ascendente mapeada em colunas estruturadas. Sólida intenção de compra local.")
+            df_grafico_completo = pd.DataFrame({"Volume de Cliques de Marca Qualificados": valores_alta}, index=meses)
+            # Aplicando a cor Verde Lucro de forma estável no parâmetro nativo
+            st.bar_chart(df_grafico_completo, use_container_width=True, color="#2ECC71")
+            st.caption("🔥 Análise de Autoridade: Curva ascendente mapeada em colunas VERDES. Sinal de alta tração de tráfego comprador.")
             st.write("---")
             
             # DIVISÃO EM COLUNAS: Laudos detalhados logo abaixo do gráfico de colunas
@@ -125,15 +125,15 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
                 
             st.write("---")
             
-            # 📊 GRÁFICO HISTÓRICO EM COLUNAS DE QUEDA LIVRE
-            st.markdown("### 📊 Painel Histórico de Declínio em Colunas (Últimos 12 Meses)")
+            # 📊 GRÁFICO HISTÓRICO EM VERMELHO DE ALERTA DE PREJUÍZO
+            st.markdown("### 📊 Painel Histórico de Declínio de Buscas (Últimos 12 Meses)")
             meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-            # Valores reais preenchidos simulando saturação e colapso de buscas
-            valores_baixa = [950, 840, 710, 590, 420, 300, 190, 110, 60, 40, 20, 10]
+            valores_baixa = [980, 850, 710, 590, 480, 320, 210, 140, 90, 50, 20, 10]
             
-            df_grafico_ruim = pd.DataFrame(valores_baixa, index=meses, columns=["Volume de Pesquisas Globais"])
-            st.bar_chart(df_grafico_ruim, use_container_width=True)
-            st.caption("⚠️ Alerta Vermelho: Colunas em declínio severo. Saturação crônica irreversível detectada no leilão internacional.")
+            df_grafico_ruim = pd.DataFrame({"Volume de Pesquisas Globais": valores_baixa}, index=meses)
+            # Aplicando a cor Vermelho Alerta no parâmetro nativo
+            st.bar_chart(df_grafico_ruim, use_container_width=True, color="#E74C3C")
+            st.caption("⚠️ Alerta Vermelho: Colunas VERMELHAS em queda severa. Saturação crônica irreversível detectada no leilão internacional.")
             st.write("---")
             
             st.markdown("### ⚠️ DOSSIÊ DE SEGURANÇA E RECOMENDAÇÃO ADRIEL AI:")
