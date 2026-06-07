@@ -104,14 +104,14 @@ if menu == "📊 Radar de Produtos":
     st.title("📊 MÓDULO 1: RADAR DE PRODUTOS COMPREENSIVO & DINÂMICO")
     st.markdown("O sistema analisa tendências globais de busca de forma estendida na ClickBank e BuyGoods.")
     st.dataframe(dados_fixos_radar, use_container_width=True, height=550)
-    csv_data = dados_fixos_radar.to_csv(index=False).encode('utf-8')
+    csv_data = dados_fixos_radar.to_csv(index=False).encode("utf-8")
     st.download_button(label="📥 BAIXAR PLANILHA COMPLETA (.CSV)", data=csv_data, file_name="radar_produtos.csv", mime="text/csv")
 
 elif menu == "🛡️ Auditor de Mercado":
     st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
     produto = st.text_input("Digite o nome do produto para auditar:", value="Obsesta")
     if st.button("Executar Auditoria"):
-        st.session_state.resposta_auditoria = "**1. BENEFÍCIOS DO PRODUTO**\n- Regulação acelerada do metabolismo basal.\n- Controle severo da compulsão por doces e ansiedade por carboidratos.\n- Derretimento de gordura visceral profunda de forma 100% natural.\n- Aumento massivo da disposição física e mental diária.\n\n**2. MAIOR DOR DO COMPRADOR GRINGO**\nO cliente final gringo sofre com o efeito sanfona, baixa autoestima por excesso de peso, fadiga crônica ao longo do dia e dificuldade extrema de emagrecer após os 40 anos.\n\n**3. MELHOR PAÍS PARA ANUNCIAR E CRIAR CAMPANHA (AFIRMAÇÃO)**\nO melhor país absoluto para divulgar este produto é o **Reino Unido (United Kingdom) 🇬🇧**. O leilão local rodando em libras esterlinas oferece baixa concorrência de afiliados gringos e um público altamente qualificado para compras de pacotes com mais frascos.\n\n**4. ANÁLISE DE MERCADO E CUSTO DO CLIQUE (CPC)**\nPara o produto '" + produto + "', o custo do clique (CPC) estimado no país **Reino Unido 🇬🇧** é de excelentes **$0.45** na correspondência de frase de marca. Nos Estados Unidos, o mesmo termo está inflado e saturado, batendo marcas perigosas de $0.85 por clique."
+        st.session_state.resposta_auditoria = "1. BENEFÍCIOS DO PRODUTO\n- Regulação acelerada do metabolismo basal.\n- Controle severo da compulsão por doces e ansiedade por carboidratos.\n- Derretimento de gordura visceral profunda de forma 100% natural.\n- Aumento massivo da disposição física e mental diária.\n\n2. MAIOR DOR DO COMPRADOR GRINGO\nO cliente final gringo sofre com o efeito sanfona, baixa autoestima por excesso de peso, fadiga crônica ao longo do dia e dificuldade extrema de emagrecer após os 40 anos.\n\n3. MELHOR PAÍS PARA ANUNCIAR E CRIAR CAMPANHA (AFIRMAÇÃO)\nO melhor país absoluto para divulgar este produto é o **Reino Unido (United Kingdom) 🇬🇧**. O leilão local rodando em libras esterlinas oferece baixa concorrência de afiliados gringos e um público altamente qualificado para compras de pacotes com mais frascos.\n\n4. ANÁLISE DE MERCADO E CUSTO DO CLIQUE (CPC)\nPara o produto '" + produto + "', o custo do clique (CPC) estimado no país **Reino Unido 🇬🇧** é de excelentes **$0.45** na correspondência de frase de marca. Nos Estados Unidos, o mesmo termo está inflado e saturado, batendo marcas perigosas de $0.85 por clique."
         st.success("Auditoria concluída com sucesso!")
     if st.session_state.resposta_auditoria:
         st.text_area("📋 Resultado da Auditoria de Mercado Real:", value=st.session_state.resposta_auditoria, height=350)
