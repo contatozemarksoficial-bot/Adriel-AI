@@ -1,5 +1,3 @@
-⚙️ Configurações
-AQUE TEMOS QUE CRIAR A AREA DE ASSINANTE E PAINEL TU MUITO BONITO PARA O AdrielAI
 import streamlit as st
 import pandas as pd
 
@@ -48,7 +46,7 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
         produto_limpo = produto_input.strip().lower().replace("-", " ")
         
         # =============================================================================================================
-        # CASO 1: O PRODUTO É ALTAMENTE LUCRATIVO (POSITIVIDADE MÁXIMA E GEOLOCALIZAÇÃO)
+        # CASO 1: O PRODUTO É ALTAMENTE LUCRATIVO (GRAFICO 100% VERDE NEON DE LUZ)
         # =============================================================================================================
         if produto_limpo in produtos_validados_elite:
             st.success("✅ PRODUTO APROVADO! Alta Positividade Detectada para o produto: " + produto_input)
@@ -65,13 +63,15 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
                 
             st.write("---")
             
-            # 📊 GRÁFICO HISTÓRICO EM VERDE NEON DE LUCRO
+            # 📊 GRÁFICO HISTÓRICO DE COLUNAS — 100% VERDE DE APURAÇÃO (COR ÚNICA SÓLIDA SOLICITADA)
             st.markdown("### 📊 Painel Histórico de Volume de Buscas (Últimos 12 Meses)")
             meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-            valores_alta = [140, 180, 290, 420, 510, 680, 720, 810, 890, 920, 960, 1100]
+            
+            # Valores matemáticos progressivos gerados automaticamente via list range por extenso (Inquebrável)
+            valores_alta = list(range(150, 1230, 90))
             
             df_grafico_completo = pd.DataFrame({"Volume de Cliques de Marca Qualificados": valores_alta}, index=meses)
-            # Aplicando a cor Verde Lucro de forma estável no parâmetro nativo
+            # EXIBIÇÃO EM VERDE SÓLIDO PREMIUM NO ESTILO DE COLUNA SOLICITADO
             st.bar_chart(df_grafico_completo, use_container_width=True, color="#2ECC71")
             st.caption("🔥 Análise de Autoridade: Curva ascendente mapeada em colunas VERDES. Sinal de alta tração de tráfego comprador.")
             st.write("---")
@@ -111,7 +111,7 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
                         )
         
         # =============================================================================================================
-        # CASO 2: O PRODUTO É FRACO / SATURADO (ALERTA VERMELHO DE SEGURANÇA CONTRA PERDA DE DINHEIRO)
+        # CASO 2: O PRODUTO É FRACO / SATURADO (GRAFICO 100% VERMELHO ALERTA)
         # =============================================================================================================
         else:
             st.error("🚨 ALERTA VERMELHO! Risco de Prejuízo Detectado para o produto: " + produto_input)
@@ -127,13 +127,15 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
                 
             st.write("---")
             
-            # 📊 GRÁFICO HISTÓRICO EM VERMELHO DE ALERTA DE PREJUÍZO
+            # 📊 GRÁFICO HISTÓRICO EM VERMELHO DE ALERTA DE PREJUÍZO (100% MANDATÓRIO)
             st.markdown("### 📊 Painel Histórico de Declínio de Buscas (Últimos 12 Meses)")
-            meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-            valores_baixa = [980, 850, 710, 590, 480, 320, 210, 140, 90, 50, 20, 10]
+            meses_ruins = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
             
-            df_grafico_ruim = pd.DataFrame({"Volume de Pesquisas Globais": valores_baixa}, index=meses)
-            # Aplicando a cor Vermelho Alerta no parâmetro nativo
+            # Valores automáticos via list range reversos (Sem riscos de cortes textuais)
+            valores_baixa = list(range(1000, 40, -80))
+            
+            df_grafico_ruim = pd.DataFrame({"Volume de Pesquisas Globais": valores_baixa}, index=meses_ruins)
+            # EXIBIÇÃO LIMPA: Força todas as colunas a ficarem na cor Vermelha de Perigo (#E74C3C)
             st.bar_chart(df_grafico_ruim, use_container_width=True, color="#E74C3C")
             st.caption("⚠️ Alerta Vermelho: Colunas VERMELHAS em queda severa. Saturação crônica irreversível detectada no leilão internacional.")
             st.write("---")
@@ -148,4 +150,3 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
                 "- Volume de buscas por chaves exatas insuficiente para cobrir o custo de manutenção da campanha no Google Ads.\n"
                 "- CPC abusivo e inflado artificialmente, inviabilizando margens saudáveis de ROI.\n"
                 "- Alto índice de avaliações negativas e reclamações de clientes fora dos EUA, estourando as taxas de reembolso.\n\n"
-                "**💡 O que fazer?** Abandone este produto imediatamente e selecione um termo listado como 'VALIDADO' ou 'ELITE' no nosso Radar de Produtos para proteger o seu orçamento de anúncios."
