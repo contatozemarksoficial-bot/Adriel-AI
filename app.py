@@ -53,7 +53,7 @@ dados_fixos_radar = pd.DataFrame({
         "VALIDADO: Oceano azul dental. Altíssima conversão na Irlanda por falta de anúncios locais.",
         "VALIDADO: CPC baratíssimo. Nova Zelândia apresenta o tráfego de público idoso mais barato do ano.",
         "VALIDADO: Leilão forte apenas Mobile. Segmentar campanha direto para smartphones nos EUA.",
-        "VALIDADO:精确匹配 lances exatos no Canadá. Correspondência de frase convertendo muito.",
+        "VALIDADO: Lançamento escalando no Canadá. Correspondência de frase convertendo muito.",
         "VALIDADO: Conformidade total na Europa. Público comprador maduro buscando queima rápida.",
         "VALIDADO: Poder de compra alto na Austrália. Oferta de conversão imediata misturada com café.",
         "VALIDADO: Leilão livre de lances agressivos no Canadá. Correspondência de frase convertendo muito.",
