@@ -68,16 +68,16 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
             
             # Dados 100% preenchidos e corrigidos mês a mês por extenso para evitar falha de sintaxe
             dados_estagios = {
-                "Fase Inicial (Vermelho)": [120, 130, 140, 150, 0, 0, 0, 0, 0, 0, 0, 0],
-                "Fase de Tracao (Azul Neon)": [0, 0, 0, 0, 320, 450, 580, 690, 0, 0, 0, 0],
-                "Fase de Elite (Verde Sucesso)": [0, 0, 0, 0, 0, 0, 0, 0, 820, 890, 930, 980]
+                "Fase Inicial (Vermelho)": [150, 160, 140, 110, 0, 0, 0, 0, 0, 0, 0, 0],
+                "Fase de Tracao (Azul Neon)": [0, 0, 0, 0, 320, 450, 580, 610, 0, 0, 0, 0],
+                "Fase de Elite (Verde Sucesso)": [0, 0, 0, 0, 0, 0, 0, 0, 780, 850, 920, 990]
             }
             meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
             df_multicor = pd.DataFrame(dados_estagios, index=meses)
             
             # Dispara o gráfico de colunas aplicando as três cores do semáforo visual
             st.bar_chart(df_multicor, use_container_width=True, color=["#E74C3C", "#00E5FF", "#2ECC71"])
-            st.caption("📈 Legenda Técnica: Colunas Vermelhas (Fase Inicial) -> Colunas Azuis (Escalada de Tração) -> Colunas Verdes (Consolidação no Topo).")
+            st.caption("📈 Legenda Técnica: Colunas Vermelhas (Fase Inicial) -> Colunas Azuis (Escalada de Tração) -> Colunas Verdes (Consolidação no Topo do Leilão).")
             st.write("---")
             
             # DIVISÃO EM COLUNAS: Laudos detalhados logo abaixo do gráfico de colunas coloridas
@@ -134,7 +134,8 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
             # 📊 GRÁFICO HISTÓRICO COMPLETO EM COLUNAS DE QUEDA LIVRE (VERMELHO ALERTA TOTAL)
             st.markdown("### 📊 Painel Histórico de Declínio Crônico em Colunas (Últimos 12 Meses)")
             meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-            valores_baixa = [850, 790, 680, 540, 410, 300, 180, 95, 45, 20, 15, 8]
+            # Valores corrigidos preenchidos linha por linha
+            valores_baixa = [850, 790, 680, 510, 420, 310, 240, 180, 90, 50, 30, 10]
             
             df_grafico_ruim = pd.DataFrame({"Volume de Pesquisas Globais": valores_baixa}, index=meses)
             st.bar_chart(df_grafico_ruim, use_container_width=True, color="#E74C3C")
@@ -150,4 +151,3 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
                 "**⚠️ Red flags de risco comercial detectadas:**\n"
                 "- Volume de buscas por chaves exatas insuficiente para cobrir o custo de manutenção da campanha no Google Ads.\n"
                 "- CPC abusivo e inflado artificialmente, inviabilizando margens saudáveis de ROI.\n"
-                "- Alto índice de avaliações negativas e reclamações de clientes fora dos EUA, estourando as taxas de reembolso.\n\n"
