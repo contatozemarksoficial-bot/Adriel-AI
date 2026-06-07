@@ -66,11 +66,11 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
             # 📊 GRÁFICO HISTÓRICO MULTICOR EVOLUTIVO POR ESTÁGIOS (RACIOCÍNIO DO JOSÉ)
             st.markdown("### 📊 Painel de Histórico Volumétrico Multi-Estágios (Últimos 12 Meses)")
             
-            # Dados 100% preenchidos com números reais sem deixar lacunas vazias
+            # Dados 100% preenchidos de ponta a ponta sem cortes
             dados_estagios = {
-                "Fase Inicial (Vermelho)": [120, 140, 110, 130, 0, 0, 0, 0, 0, 0, 0, 0],
-                "Fase de Tracao (Azul Neon)": [0, 0, 0, 0, 310, 450, 520, 590, 0, 0, 0, 0],
-                "Fase de Elite (Verde Sucesso)": [0, 0, 0, 0, 0, 0, 0, 0, 780, 850, 920, 990]
+                "Fase Inicial (Vermelho)": [150, 160, 140, 180, 0, 0, 0, 0, 0, 0, 0, 0],
+                "Fase de Tracao (Azul Neon)": [0, 0, 0, 0, 320, 450, 510, 580, 0, 0, 0, 0],
+                "Fase de Elite (Verde Sucesso)": [0, 0, 0, 0, 0, 0, 0, 0, 720, 850, 910, 980]
             }
             meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
             df_multicor = pd.DataFrame(dados_estagios, index=meses)
@@ -134,7 +134,7 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
             # 📊 GRÁFICO HISTÓRICO COMPLETO EM COLUNAS DE QUEDA LIVRE (VERMELHO ALERTA TOTAL)
             st.markdown("### 📊 Painel Histórico de Declínio Crônico em Colunas (Últimos 12 Meses)")
             meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-            valores_baixa = [950, 810, 730, 620, 510, 430, 310, 220, 140, 90, 40, 10]
+            valores_baixa = [890, 820, 750, 610, 480, 350, 210, 150, 90, 60, 40, 20]
             
             df_grafico_ruim = pd.DataFrame({"Volume de Pesquisas Globais": valores_baixa}, index=meses)
             st.bar_chart(df_grafico_ruim, use_container_width=True, color="#E74C3C")
