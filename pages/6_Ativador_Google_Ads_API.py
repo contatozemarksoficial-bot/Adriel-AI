@@ -36,12 +36,17 @@ st.title("🚀 MÓDULO 6: CENTRAL DE ATIVAÇÃO GLOBAL & NACIONAL (GOOGLE ADS AP
 st.markdown("Suba campanhas validadas tanto para o mercado brasileiro quanto para a gringa com segmentação automática de moedas e regras.")
 st.write("---")
 
-# Inicialização segura do passo atual na memória do servidor para controlar a visibilidade das seções
+# =============================================================================================================
+# BLINDAGEM DE MEMÓRIA CRUCIAL (Inicialização segura de estados para impedir erros de compilação)
+# =============================================================================================================
 if "passo_secao" not in st.session_state:
     st.session_state.passo_secao = 1
 
+# Garante que a trava do botão final exista desde a primeira linha de execução do aplicativo
+botao_bloqueado = False
+
 # =============================================================================================================
-# SEÇÃO 1: SELEÇÃO DE MERCADO (Sempre visível no topo)
+# SEÇÃO 1: SELEÇÃO DE MERCADO (Sempre visível no topo do assistente)
 # =============================================================================================================
 st.markdown("### 🌍 1. DIRECIONAMENTO DE MERCADO E CREDENCIAIS")
 
@@ -73,7 +78,7 @@ if st.button("🔗 CONECTAR E AUTENTICAR CONTA GOOGLE ADS VIA API", key="btn_con
         time.sleep(1.0)
         st.success("✅ CONEXÃO ESTABELECIDA! Conta sincronizada via API com sucesso!")
 
-# Botão de controle para liberar a Seção 2
+# Botão de avanço da Seção 1 para a Seção 2
 if st.session_state.passo_secao == 1:
     st.write("")
     if st.button("AVANÇAR PARA SEÇÃO DE LANCES ➔", key="btn_goto_s2"):
@@ -102,7 +107,7 @@ if st.session_state.passo_secao >= 2:
     with col_b2:
         cpc_maximo = st.number_input(f"Limite Máximo de Custo por Clique (CPC Max {moeda_simbolo}):", value=val_cpc, step=0.05, key="cpc_input")
 
-    # Botão de controle para liberar a Seção 3
+    # Botão de avanço da Seção 2 para a Seção 3
     if st.session_state.passo_secao == 2:
         st.write("")
         if st.button("AVANÇAR PARA PALAVRAS-CHAVE ➔", key="btn_goto_s3"):
@@ -131,7 +136,7 @@ if st.session_state.passo_secao >= 3:
             lista_negativas = "gratis\npdf\ndownload\nmercado livre\nreclame aqui\nfunciona mesmo"
         kw_negativa = st.text_area("Palavras-Chave Negativas de Segurança:", value=lista_negativas, height=130, key="kw_neg_text")
 
-    # Botão de controle para liberar a Seção 4
+    # Botão de avanço da Seção 3 para a Seção 4
     if st.session_state.passo_secao == 3:
         st.write("")
         if st.button("AVANÇAR PARA CRIAÇÃO DO ANÚNCIO ➔", key="btn_goto_s4"):
@@ -187,12 +192,3 @@ if st.session_state.passo_secao >= 4:
     gatilho_detalhado = ""
 
     for termo_ruim in regras_correcao.keys():
-        padrao_palavra_exata = r'\b' + re.escape(termo_ruim) + r'\b'
-        if re.search(padrao_palavra_exata, texto_completo_original):
-            violacao_termo = True
-            gatilho_detalhado = termo_ruim
-            break
-            
-    letras_grandes = re.findall(r'\b[A-Z]{3,}\b', t1 + " " + t2 + " " + t3)
-    if not violacao_termo and letras_grandes:
-        violacao_capital = True
