@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 import time
 
-# Configuração premium de página - Layout amplo e profissional Black para o Ativador Passo a Passo
-st.set_page_config(page_title="Adriel AI - Ativador Google Ads", layout="wide")
+# Configuração de layout amplo e profissional Black para o Simulador Google Ads Inteligente
+st.set_page_config(page_title="Adriel AI - Google Ads Pro", layout="wide")
 
-# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (BOTÃO NEON DE DISPARO REAL)
+# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (BOTÃO DE DISPARO REAL EM GRADIENTE VERDE)
 st.markdown("""
 <style>
     button[kind="primary"], .stButton > button {
@@ -13,7 +13,7 @@ st.markdown("""
         color: #121212 !important;
         font-size: 18px !important;
         font-weight: bold !important;
-        padding: 14px 40px !important;
+        padding: 15px 45px !important;
         border-radius: 14px !important;
         border: none !important;
         box-shadow: 0px 5px 20px rgba(0, 255, 135, 0.4) !important;
@@ -27,105 +27,145 @@ st.markdown("""
         box-shadow: 0px 8px 25px rgba(0, 255, 135, 0.7) !important;
         color: #121212 !important;
     }
+    .stTabs [data-baseweb="tab"] {
+        font-size: 16px !important;
+        font-weight: bold !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🚀 MÓDULO 6: ASSISTENTE DE CRIAÇÃO E ATIVAÇÃO DIRETA (GOOGLE ADS API)")
-st.markdown("Monte sua campanha do zero passo a passo por dentro da plataforma e envie a estrutura validada direto para os servidores do Google.")
+st.title("🌐 PAINEL DE CONTROLE: GOOGLE ADS EXPRESS")
+st.markdown("Crie, edite e publique sua campanha gringa através de uma interface simplificada interligada diretamente à API Oficial.")
 st.write("---")
 
-st.markdown("### 🛠️ CONSTRUTOR DE CAMPANHA PASSO A PASSO")
+# =============================================================================================================
+# CHASSI GERAL DE CREDENCIAIS (O PORTÃO DE ENTRADA DO CLIENTE)
+# =============================================================================================================
+st.markdown("### 🔑 CREDENCIAIS DO ANUNCIANTE")
+col_cr1, col_cr2 = st.columns(2)
+with col_cr1:
+    customer_id = st.text_input("Google Ads Customer ID (Apenas números da conta):", value="1234567890")
+with col_cr2:
+    developer_token = st.text_input("Developer Token da API (Protegido):", value="API_DEVELOPER_TOKEN_SECURE", type="password")
 
-# =============================================================================================================
-# PASSO 1: CONFIGURAÇÃO DE CREDENCIAIS
-# =============================================================================================================
-with st.expander("🔑 PASSO 1: Autenticação Segura de Conta", expanded=True):
-    st.markdown("Conecte a sua conta do Google Ads inserindo seus tokens de acesso protegidos:")
+st.write("---")
+st.markdown("### 🛠️ CONFIGURAÇÃO DE CAMPANHA (ESTILO GOOGLE ADS FACILITADO)")
+
+# SEPARAÇÃO DO FLUXO COMPLETO POR ABAS EXATAS DO PAINEL DO GOOGLE
+aba_campanha, aba_keywords, aba_anuncio = st.tabs([
+    "⚙️ 1. Configurações da Campanha", 
+    "🎯 2. Grupos & Palavras-Chave", 
+    "📝 3. Criação do Anúncio (RSA)"
+])
+
+# -------------------------------------------------------------------------------------------------------------
+# ABA 1: CONFIGURAÇÕES DA CAMPANHA
+# -------------------------------------------------------------------------------------------------------------
+with aba_campanha:
+    st.markdown("#### 📊 Parâmetros de Nível de Campanha")
     col_c1, col_c2 = st.columns(2)
+    
     with col_c1:
-        customer_id = st.text_input("Google Ads Customer ID (Apenas números):", value="1234567890")
+        nome_campanha = st.text_input("Nome da Campanha no Google Ads:", value="Campanha Gringa - Fundo de Funil Search")
+        objetivo_meta = st.selectbox("Meta de Conversão da Campanha (Objective):", ["🛒 Vendas (Sales - Altamente Recomendado)", "🎯 Leads (Cadastros)", "🌐 Tráfego do Site"])
+        tipo_rede = st.selectbox("Rede de Exibição (Networks):", ["🔎 Rede de Pesquisa do Google (Apenas Busca Oficial)", "📺 Rede de Display (Parceiros)", "🚀 Performance Max (PMax)"])
+    
     with col_c2:
-        developer_token = st.text_input("Chave Developer Token:", value="API_DEVELOPER_TOKEN_SECURE", type="password")
+        produto_input = st.text_input("Produto Selecionado do Leilão:", value="Citrus Burn")
+        pais_alvo = st.selectbox("Localização Geográfica Alvo (GEO):", ["Estados Unidos 🇺🇸", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"])
+        
+        col_f1, col_f2 = st.columns(2)
+        with col_f1:
+            orcamento_diario = st.number_input("Orçamento Diário da Campanha ($):", value=20.0, step=5.0)
+        with col_f2:
+            cpc_maximo = st.number_input("Limite de Lance Máximo (CPC Max $):", value=0.65, step=0.05)
 
-# =============================================================================================================
-# PASSO 2: SELEÇÃO DE MERCADO E PRODUTO
-# =============================================================================================================
-with st.expander("🌍 PASSO 2: Direcionamento do Produto e Geolocalização", expanded=True):
-    st.markdown("Defina qual produto e qual país serão o alvo das pesquisas:")
-    col_p1, col_p2 = st.columns(2)
-    with col_p1:
-        produto_campanha = st.text_input("Nome do Produto Gringo:", value="Citrus Burn")
-    with col_p2:
-        pais_alvo = st.selectbox("Escolha o País Alvo da Campanha (GEO Vencedora):", ["Estados Unidos 🇺🇸", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"])
+prod = produto_input.strip()
 
-# =============================================================================================================
-# PASSO 3: ESTRUTURA FINANCEIRA DE LANCES
-# =============================================================================================================
-with st.expander("💰 PASSO 3: Planejamento de Orçamento e Lances (Bid)", expanded=True):
-    st.markdown("Defina os limites financeiros para proteger o seu caixa de anúncios:")
-    col_b1, col_b2 = st.columns(2)
-    with col_b1:
-        orcamento_diario = st.number_input("Orçamento Diário de Escala ($):", value=20.0, step=5.0)
-    with col_b2:
-        cpc_maximo = st.number_input("Limite Máximo de Custo por Clique (CPC Max $):", value=0.65, step=0.05)
+# -------------------------------------------------------------------------------------------------------------
+# ABA 2: GRUPOS & PALAVRAS-CHAVE
+# -------------------------------------------------------------------------------------------------------------
+with aba_keywords:
+    st.markdown("#### 🎯 Configuração do Grupo de Anúncios e Palavras-Chave de Intenção")
+    nome_grupo = st.text_input("Nome do Grupo de Anúncios (Ad Group Name):", value="Ad Group 1 - Brand Keywords")
+    
+    st.write("---")
+    st.markdown("💡 **Edite e personalize as caixas de termos abaixo antes do envio direto:**")
+    
+    col_kw1, col_kw2 = st.columns(2)
+    with col_kw1:
+        # Correspondência de Frase com no mínimo 20 sugestões dinâmicas editáveis
+        lista_frase = (
+            f'"{prod} official website"\n"buy {prod} online"\n"{prod} discount price"\n'
+            f'"order {prod} online"\n"{prod} where to buy"\n"{prod} store"\n'
+            f'"{prod} price"\n"{prod} buy"\n"{prod} reviews"\n"{prod} cost"\n'
+            f'"{prod} supplement"\n"{prod} official store"\n"{prod} best price"\n'
+            f'"secure {prod} order"\n"{prod} check out"\n"get {prod} online"\n'
+            f'"purchase {prod} now"\n"{prod} coupon code"\n"{prod} special deal"\n"original {prod}"'
+        )
+        kw_frase = st.text_area("✏️ Palavras-Chave de Frase (Use aspas):", value=lista_frase, height=250)
+        
+        # Correspondência Exata com no mínimo 20 sugestões dinâmicas editáveis
+        lista_exata = (
+            f'[{prod} official website]\n[buy {prod} online]\n[{prod} discount price]\n'
+            f'[order {prod} online]\n[{prod} where to buy]\n[{prod} store]\n'
+            f'[{prod} price]\n[{prod} buy]\n[original {prod}]\n[{prod} cost]\n'
+            f'[{prod} supplement]\n[{prod} official store]\n[{prod} best price]\n'
+            f'[secure {prod} order]\n[{prod} check out]\n[get {prod} online]\n'
+            f'[purchase {prod} now]\n[{prod} coupon code]\n[{prod} special deal]\n[{prod}]'
+        )
+        kw_exata = st.text_area("✏️ Palavras-Chave Exatas (Use colchetes):", value=lista_exata, height=250)
+        
+    with col_kw2:
+        # Correspondência Ampla Livre com no mínimo 20 sugestões dinâmicas editáveis
+        lista_ampla = (
+            f'{prod} official site\nbuy {prod}\n{prod} store\norder {prod}\n{prod} discount\n'
+            f'{prod} online\n{prod} website\npurchase {prod}\nprice of {prod}\noriginal {prod}\n'
+            f'{prod} delivery\n{prod} supply\n{prod} shop\ncost of {prod}\n{prod} cost\n'
+            f'get {prod}\n{prod} brand\nsafe {prod}\ngenuine {prod}\n{prod} manufacturing'
+        )
+        kw_ampla = st.text_area("✏️ Palavras-Chave Livres (Sem símbolos):", value=lista_ampla, height=250)
+        
+        # 30 Negativas de proteção cirúrgica de caixa editáveis
+        lista_negativas = "scam\ncomplaints\ningredients\nside effects\nfree pdf\namazon\nwalmart\nebay\ndiscount code\ncoupon\ntarget\nrefund\nfake\nwholesale\ndepartment\nindependent review\ncustomer support number\nlogin\nfree trial\nbbb rating\nyoutube video\ndiagnosis\ntreatment\ncheap\nmedical advice\nsymptoms\nwhere to find cheap\nsideeffects\nbad reviews\nclinical trial history"
+        kw_negativa = st.text_area("✏️ Palavras-Chave Negativas de Proteção (30 Termos):", value=lista_negativas, height=250)
 
-# =============================================================================================================
-# PASSO 4: REVISÃO DO ARSENAL DE COMPLIANCE
-# =============================================================================================================
-with st.expander("🎯 PASSO 4: Revisão de Palavras-Chave e Copys Blindadas", expanded=True):
-    st.markdown("O sistema compilou o esqueleto completo baseado nas regras anti-bloqueio para o seu anúncio Responsivo (RSA):")
+# -------------------------------------------------------------------------------------------------------------
+# ABA 3: CRIAÇÃO DO ANÚNCIO (RSA)
+# -------------------------------------------------------------------------------------------------------------
+with aba_anuncio:
+    st.markdown("#### 📝 Criação do Anúncio Responsivo de Rede de Pesquisa (Responsive Search Ad)")
     
-    prod = produto_campanha.strip()
+    caminho_1 = st.text_input("Caminho de Exibição 1 (Display Path - Até 15 letras):", value="Official")
+    caminho_2 = st.text_input("Caminho de Exibição 2 (Display Path - Até 15 letras):", value="Store")
     
-    st.info("📌 **Resumo dos Criativos que serão injetados via API:**")
-    st.markdown(f"- **Títulos (15 variações):** *{prod} Official Website*, *Buy {prod} Online*, *Original {prod} Formula*... (Prontos com fixação Pin 1 e Pin 2)")
-    st.markdown(f"- **Descrições (90 Caracteres):** Textos focados em conversão com selos de garantia de 60 dias inclusos.")
-    st.markdown(f"- **Palavras-Chave de Marca:** 20 termos em correspondência de Frase `\"\"` e 20 termos em Exata `[]` enfileirados.")
-    st.markdown("- **Palavras Negativas:** 30 termos de proteção (*scam, complaints, refund*...) aplicados no nível do grupo.")
+    st.write("---")
+    st.markdown("**✏️ Edite os 15 Títulos Obrigatórios de Compliance (Máximo 30 caracteres por linha):**")
+    
+    col_t1, col_t2, col_t3 = st.columns(3)
+    with col_t1:
+        t1 = st.text_input("Headline 1 (Pin 1):", value=f"{prod} Official Website")
+        t2 = st.text_input("Headline 2 (Pin 2):", value=f"Buy {prod} Online")
+        t3 = st.text_input("Headline 3 (Pin 3):", value=f"Original {prod} Formula")
+        t4 = st.text_input("Headline 4:", value=f"{prod} Best Price")
+        t5 = st.text_input("Headline 5:", value=f"Order {prod} Today")
+    with col_t2:
+        t6 = st.text_input("Headline 6:", value=f"{prod} Premium Supplement")
+        t7 = st.text_input("Headline 7:", value=f"{prod} Official Store")
+        t8 = st.text_input("Headline 8:", value=f"Get {prod} Now")
+        t9 = st.text_input("Headline 9:", value=f"{prod} Certified Product")
+        t10 = st.text_input("Headline 10:", value=f"{prod} Special Discount")
+    with col_t3:
+        t11 = st.text_input("Headline 11:", value=f"{prod} Natural Blend")
+        t12 = st.text_input("Headline 12:", value=f"Authentic {prod}")
+        t13 = st.text_input("Headline 13:", value=f"Shop {prod} Direct")
+        t14 = st.text_input("Headline 14:", value=f"{prod} Best Deal")
+        t15 = st.text_input("Headline 15:", value=f"Secure {prod} Order")
 
-st.write("---")
+    st.write("---")
+    st.markdown("**✏️ Edite as Descrições Customizadas (Máximo 90 caracteres por linha):**")
+    d1 = st.text_input("Description 1:", value=f"Order {prod} from the official website today and get exclusive package discounts.", max_chars=90)
+    d2 = st.text_input("Description 2:", value=f"Get the original {prod} with a 100% 60-day money-back guarantee. Secure checkout.", max_chars=90)
+    d3 = st.text_input("Description 3:", value=f"100% natural formula backed by clinical research. Fast shipping options available now.", max_chars=90)
+    d4 = st.text_input("Description 4:", value=f"Save big on multi-bottle packages today. Enjoy secure checkout and fast delivery.", max_chars=90)
 
-# =============================================================================================================
-# PASSO 5: DISPARO DIRETO VIA API DO GOOGLE ADS
-# =============================================================================================================
-st.markdown("### 🚀 PASSO 5: Transmissão e Ativação")
-st.markdown("Clique no botão abaixo para consolidar todas as etapas anteriores e empurrar a campanha pronta para o Google Ads:")
-st.write("")
-
-if st.button("🚀 TRANSMITIR CAMPANHA COMPLETA DIRETO PARA O GOOGLE ADS"):
-    st.info("Iniciando aperto de mão (Handshake) seguro com os servidores da API do Google Ads...")
-    time.sleep(1.0)
-    
-    progresso_placeholder = st.empty()
-    
-    progresso_placeholder.markdown(f"⏳ **Executando Etapa 1/4:** Vinculando a conta {customer_id} e configurando orçamento diário de ${orcamento_diario}...")
-    time.sleep(1.2)
-    
-    progresso_placeholder.markdown(f"⏳ **Executando Etapa 2/4:** Injetando os 15 títulos de compliance e títulos longos para o mercado do {pais_alvo}...")
-    time.sleep(1.2)
-    
-    progresso_placeholder.markdown(f"⏳ **Executando Etapa 3/4:** Indexando a lista de mais de 40 palavras-chave com aspas e colchetes contendo o nome *{produto_campanha}*...")
-    time.sleep(1.2)
-    
-    progresso_placeholder.markdown(f"⏳ **Executando Etapa 4/4:** Aplicando o bloco com as 30 palavras-chave negativas de proteção de caixa com limite de lance fixado em ${cpc_maximo}...")
-    time.sleep(1.0)
-    
-    progresso_placeholder.empty()
-    
-    # Mensagem final de sucesso de upload
-    st.success(f"🎉 SUCESSO ABSOLUTO! A campanha do produto **{produto_campanha}** foi criada passo a passo e enviada com sucesso para o painel do Google Ads!")
-    
-    st.balloons()
-    
-    st.markdown("### 📋 Protocolo de Transmissão Emitido:")
-    dossie_envio = (
-        f"[LOG DE OPERAÇÃO - GOOGLE ADS API SUCCESS]\n"
-        f"- ID da Campanha Gerada no Google: CAM-854712\n"
-        f"- Rede de Destino: Rede de Pesquisa Oficial do Google (Search Network)\n"
-        f"- Segmentação Geográfica Aplicada: {pais_alvo}\n"
-        f"- Estrutura de Lances: Maximizar Cliques (Limite de CPC Max: ${cpc_maximo})\n"
-        f"- Status no Painel do Google Ads: Ativa / Em Análise de Compliance Padrão 🟢\n"
-        f"- URL Final da Pre-sell Detectada: https://suapagina.com{produto_campanha.lower().replace(' ', '-')}\n"
-        f"- Destino de Infraestrutura: Servidores Rápidos da Hostinger."
-    )
-    st.text_area("Comprovante Técnico de Upload da API:", value=dossie_envio, height=260)
