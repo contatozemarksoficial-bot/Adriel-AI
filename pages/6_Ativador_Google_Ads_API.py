@@ -83,7 +83,6 @@ if st.session_state.passo_secao == 1:
     st.write("")
     if st.button("AVANÇAR PARA SEÇÃO DE LANCES ➔", key="btn_goto_s2"):
         st.session_state.passo_secao = 2
-        st.grid = True
         st.rerun()
 
 # =============================================================================================================
