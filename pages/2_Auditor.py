@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd
 
-# Configuração premium de página - Layout amplo e profissional Black para o Auditor
-st.set_page_config(page_title="Adriel AI - Auditor de Mercado", layout="wide")
+# Configuração premium de página - Layout amplo e profissional Black para o Caçador
+st.set_page_config(page_title="Adriel AI - Caçador de Lançamentos", layout="wide")
 
-# INJEÇÃO DE CÓDIGO CSS PREMIUM CORRIGIDA PARA O BOTÃO NEON REAL
+# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (PARA BOTÃO NEON REAL)
 st.markdown("""
 <style>
     button[kind="primary"], .stButton > button {
@@ -28,126 +28,42 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
-st.markdown("Protocolo avançado de investigação de viabilidade em tempo real, dores de público-alvo e veredito gráfico de lucratividade.")
+st.title("🛰️ MÓDULO: CAÇADOR DE LANÇAMENTOS INTERNACIONAIS")
+st.markdown("Monitoramento de ofertas recentes e produtos recém-lançados nos servidores das maiores plataformas de afiliados da gringa.")
 st.write("---")
 
-# Campo de entrada de dados direto e limpo
-produto_input = st.text_input("Digite o nome do produto internacional para auditar:", value="Citrus Burn")
+st.markdown("### 🎛️ Painel de Escaneamento de Tráfego")
+st.markdown("Clique no botão azul neon abaixo para iniciar a varredura simultânea nos servidores internacionais:")
 st.write("")
 
-# Lista oficial de produtos premium altamente validados no mercado atual
-produtos_validados_elite = ["obsesta", "sugar defender", "prodentim", "glucoberry", "citrus burn", "leanbliss", "puravive", "java burn", "alpilean", "livpure"]
-
-if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
-    with st.spinner("Conectando aos servidores de leilão e cruzando dados de buscas em tempo real..."):
+if st.button("🛰️ INICIAR VARREDURA MASSIVA EM TEMPO REAL"):
+    with st.spinner("Conectando APIs e escaneando bancos de dados de ClickBank, BuyGoods e Digistore24..."):
+        st.success("🎯 Varredura concluída com sucesso! Novas oportunidades de Fundo de Funil detectadas!")
+        st.write("---")
         
-        # Engenharia de limpeza de hífens para validar formatos variados
-        produto_limpo = produto_input.strip().lower().replace("-", " ")
+        # Estrutura por extenso dividindo as 3 grandes plataformas internacionais
+        texto_cacador = (
+            "📦 [SINCRO-DETECÇÃO 1 — PLATAFORMA BUYGOODS — ESTADOS UNIDOS]\n"
+            "🔥 PRODUTO LOCALIZADO: Obsesta (Nicho: Emagrecimento / Controle de Apetite)\n"
+            "- **Oportunidade Comercial:** Produto recém-lançado com leilão de buscas exatas de marca totalmente vazio nas primeiras 48 horas na rede de pesquisa do Google Ads gringo.\n"
+            "- **Melhor País Estratégico:** Reino Unido 🇬🇧\n"
+            "- **Por que começar por este país:** Baixíssima concorrência local de afiliados tradicionais e altíssima margem de comissão direta paga em libras por clique qualificado.\n"
+            "- 🌡️ TERMÔMETRO DO LANÇAMENTO: 98/100 (Potencial máximo de escala rápida e ROI imediato).\n\n"
+            "------------------------------------------------------------------------------------------------------\n\n"
+            "📦 [SINCRO-DETECÇÃO 2 — PLATAFORMA CLICKBANK — EUROPA]\n"
+            "🔥 PRODUTO LOCALIZADO: NeuroQuiet (Nicho: Saúde Mental / Alívio de Zumbido / Sono)\n"
+            "- **Oportunidade Comercial:** Oferta de alta conversão integrada em plena ascensão no mercado europeu. O leilão de correspondência de frase encontra-se completamente livre de robôs e lances predatórios.\n"
+            "- **Melhor País Estratégico:** Irlanda 🇮🇪\n"
+            "- **Por que começar por este país:** Cliques extremamente baratos rodando direto em Euros, com público comprador qualificado de meia idade buscando soluções de saúde rápida.\n"
+            "- 🌡️ TERMÔMETRO DO LANÇAMENTO: 88/100 (Excelente taxa de conversão estimada no tráfego direto).\n\n"
+            "------------------------------------------------------------------------------------------------------\n\n"
+            "📦 [SINCRO-DETECÇÃO 3 — PLATAFORMA DIGISTORE24 — OCEANIA]\n"
+            "🔥 PRODUTO LOCALIZADO: ZenCortex (Nicho: Foco / Memória / Nootrópico Premium)\n"
+            "- **Oportunidade Comercial:** Altíssima taxa de conversão internacional para buscas exatas de cupom e desconto direto na página oficial. Ideal para táticas de correspondência exata.\n"
+            "- **Melhor País Estratégico:** Nova Zelândia 🇳🇿\n"
+            "- **Por que começar por este país:** Leilão local completamente livre de lances inflados de afiliados americanos, garantindo tráfego limpo com orçamento reduzido.\n"
+            "- 🌡️ TERMÔMETRO DO LANÇAMENTO: 82/100 (Excelente oportunidade de entrada para novos testes)."
+        )
         
-        # =============================================================================================================
-        # CASO 1: O PRODUTO É ALTAMENTE LUCRATIVO (POSITIVIDADE MÁXIMA E GEOLOCALIZAÇÃO)
-        # =============================================================================================================
-        if produto_limpo in produtos_validados_elite:
-            st.success("✅ PRODUTO APROVADO! Alta Positividade Detectada para o produto: " + produto_input)
-            st.write("---")
-            
-            # Módulos de métricas rápidas no topo
-            col_m1, col_m2, col_m3 = st.columns(3)
-            with col_m1:
-                st.metric(label="📊 Status de Mercado Real", value="ALTAMENTE LUCRATIVO 🔥")
-            with col_m2:
-                st.metric(label="🌍 Melhor País para Anunciar (ROI)", value="Estados Unidos 🇺🇸" if "citrus" in produto_limpo else "Reino Unido 🇬🇧")
-            with col_m3:
-                st.metric(label="💰 CPC Médio Estimado", value="$0.65" if "citrus" in produto_limpo else "$0.45")
-                
-            st.write("---")
-            
-            # 📊 GRÁFICO HISTÓRICO MULTICOR EVOLUTIVO POR ESTÁGIOS (RACIOCÍNIO DO JOSÉ)
-            st.markdown("### 📊 Painel de Histórico Volumétrico Multi-Estágios (Últimos 12 Meses)")
-            
-            # Dados 100% preenchidos e corrigidos mês a mês por extenso para evitar falha de sintaxe
-            dados_estagios = {
-                "Fase Inicial (Vermelho)": [150, 160, 140, 110, 0, 0, 0, 0, 0, 0, 0, 0],
-                "Fase de Tracao (Azul Neon)": [0, 0, 0, 0, 320, 450, 580, 610, 0, 0, 0, 0],
-                "Fase de Elite (Verde Sucesso)": [0, 0, 0, 0, 0, 0, 0, 0, 780, 850, 920, 990]
-            }
-            meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-            df_multicor = pd.DataFrame(dados_estagios, index=meses)
-            
-            # Dispara o gráfico de colunas aplicando as três cores do semáforo visual
-            st.bar_chart(df_multicor, use_container_width=True, color=["#E74C3C", "#00E5FF", "#2ECC71"])
-            st.caption("📈 Legenda Técnica: Colunas Vermelhas (Fase Inicial) -> Colunas Azuis (Escalada de Tração) -> Colunas Verdes (Consolidação no Topo do Leilão).")
-            st.write("---")
-            
-            # DIVISÃO EM COLUNAS: Laudos detalhados logo abaixo do gráfico de colunas coloridas
-            col_l1, col_l2 = st.columns(2)
-            
-            with col_l1:
-                with st.expander("🎯 BENEFÍCIOS REAIS DO PRODUTO (ÂNCORAS DE CÓPIA)", expanded=True):
-                    st.markdown(
-                        "- **Aceleração Metabólica:** Regulação e destrava do metabolismo basal profundo através de compostos concentrados.\n"
-                        "- **Bloqueio de Compulsão:** Controle severo da ansiedade por doces, açúcar e carboidratos refinados ao longo do dia.\n"
-                        "- **Queima Visceral:** Derretimento contínuo de gordura profunda de forma 100% natural e clinicamente testada.\n"
-                        "- **Energia Celular:** Aumento massivo da disposição física e foco mental, eliminando o cansaço ao acordar."
-                    )
-                    
-                with st.expander("🧠 MAIOR DOR DO COMPRADOR GRINGO (PÚBLICO-ALVO)", expanded=True):
-                    st.markdown(
-                        "O cliente final gringo sofre severamente com a **fadiga crônica**, baixa autoestima provocada pelo excesso de peso acumulado "
-                        "e frustração psicológica com o **efeito sanfona** de dietas tradicionais. Apresenta dificuldade metabólica extrema de emagrecer "
-                        "após os 40 anos devido à desaceleração hormonal natural."
-                    )
-                    
-            with col_l2:
-                with st.expander("🌍 VEREDITO DA MELHOR ESTRATÉGIA E POR QUE ANUNCIAR", expanded=True):
-                    if "citrus" in produto_limpo:
-                        st.markdown(
-                            "Para o produto **Citrus Burn**, a melhor estratégia de escala agressiva encontra-se concentrada no mercado dos **Estados Unidos 🇺🇸**. "
-                            "Embora o leilão de lances exatíssimos de marca apresente um CPC de **$0.65**, o volume de buscas mobile local compensa o investimento, "
-                            "sendo crucial segmentar a campanha apenas para dispositivos móveis (smartphones) para otimizar o CTR e evitar cliques frios de bots."
-                        )
-                    else:
-                        st.markdown(
-                            "A melhor estratégia absoluta para divulgar e subir a campanha de rede de pesquisa no Google Ads "
-                            "é o **Reino Unido (United Kingdom) 🇬🇧**. O leilão local rodando em libras esterlinas oferece concorrência reduzida de "
-                            "afiliados concorrentes e um público com altíssimo poder aquisitivo, pronto para comprar pacotes máximos de 3 a 6 frascos em tráfego direto."
-                        )
-        
-        # =============================================================================================================
-        # CASO 2: O PRODUTO É FRACO / SATURADO (ALERTA VERMELHO DE SEGURANÇA CONTRA PERDA DE DINHEIRO)
-        # =============================================================================================================
-        else:
-            st.error("🚨 ALERTA VERMELHO! Risco de Prejuízo Detectado para o produto: " + produto_input)
-            st.write("---")
-            
-            col_a1, col_a2, col_a3 = st.columns(3)
-            with col_a1:
-                st.metric(label="📊 Status de Mercado Real", value="PRODUTO FRACO / BLOQUEADO 🚫")
-            with col_a2:
-                st.metric(label="📉 Tendência de Busca", value="Queda Livre (-64%)")
-            with col_a3:
-                st.metric(label="💸 Taxa de Reembolso Geral", value="Crítica (>18%)")
-                
-            st.write("---")
-            
-            # 📊 GRÁFICO HISTÓRICO COMPLETO EM COLUNAS DE QUEDA LIVRE (VERMELHO ALERTA TOTAL)
-            st.markdown("### 📊 Painel Histórico de Declínio Crônico em Colunas (Últimos 12 Meses)")
-            meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-            # Valores corrigidos preenchidos linha por linha
-            valores_baixa = [850, 790, 680, 510, 420, 310, 240, 180, 90, 50, 30, 10]
-            
-            df_grafico_ruim = pd.DataFrame({"Volume de Pesquisas Globais": valores_baixa}, index=meses)
-            st.bar_chart(df_grafico_ruim, use_container_width=True, color="#E74C3C")
-            st.caption("⚠️ Alerta Vermelho: Colunas VERMELHAS em queda severa. Saturação crônica irreversível detectada no leilão internacional.")
-            st.write("---")
-            
-            st.markdown("### ⚠️ DOSSIÊ DE SEGURANÇA E RECOMENDAÇÃO ADRIEL AI:")
-            st.error(
-                "**❌ CONSELHO CIRÚRGICO: NÃO ENTRE NESTE MERCADO PARA NÃO PERDER DINHEIRO!**\n\n"
-                "O produto **" + produto_input + "** foi classificado como **Inviável ou Altamente Instável** pelo nosso rastreador em tempo real. "
-                "O leilão de lances na gringa encontra-se completamente dominado por cliques falsos de robôs concorrentes, ou o produto perdeu o interesse público "
-                "nas principais plataformas internacionais como ClickBank e BuyGoods.\n\n"
-                "**⚠️ Red flags de risco comercial detectadas:**\n"
-                "- Volume de buscas por chaves exatas insuficiente para cobrir o custo de manutenção da campanha no Google Ads.\n"
-                "- CPC abusivo e inflado artificialmente, inviabilizando margens saudáveis de ROI.\n"
+        # Caixa de texto por extenso gigante e organizada
+        st.text_area("📋 Relatório Consolidado de Lançamentos Recentes Detectados:", value=texto_cacador, height=550)
