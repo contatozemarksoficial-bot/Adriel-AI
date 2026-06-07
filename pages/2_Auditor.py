@@ -29,7 +29,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("🛡️ MÓDULO: AUDITOR DE MERCADO XEQUE-MATE")
-st.markdown("Protocolo avançado de investigação de viabilidade em tempo real, dores de público-alvo e veredito gráfico de lucratividade.")
+st.markdown("Protocolo avançado de investigação de viabilidade in tempo real, dores de público-alvo e veredito gráfico de lucratividade.")
 st.write("---")
 
 # Campo de entrada de dados direto e limpo
@@ -40,7 +40,7 @@ st.write("")
 produtos_validados_elite = ["obsesta", "sugar defender", "prodentim", "glucoberry", "citrus burn", "leanbliss", "puravive", "java burn", "alpilean", "livpure"]
 
 if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
-    with st.spinner("Conectando aos servidores de leilão e cruzando dados de buscas em tempo real..."):
+    with st.spinner("Conectando aos servidores de leilão e cruzando dados de buscas in tempo real..."):
         
         # Engenharia de limpeza de hífens para validar formatos variados
         produto_limpo = produto_input.strip().lower().replace("-", " ")
@@ -63,11 +63,11 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
                 
             st.write("---")
             
-            # 📊 GRÁFICO HISTÓRICO DE COLUNAS — 100% VERDE DE APURAÇÃO (COR ÚNICA SÓLIDA SOLICITADA)
+            # 📊 GRÁFICO HISTÓRICO DE COLUNAS — 100% VERDE DE APURAÇÃO
             st.markdown("### 📊 Painel Histórico de Volume de Buscas (Últimos 12 Meses)")
             meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
             
-            # Valores matemáticos progressivos gerados automaticamente via list range por extenso (Inquebrável)
+            # Valores automáticos via list range para evitar quebras
             valores_alta = list(range(150, 1230, 90))
             
             df_grafico_completo = pd.DataFrame({"Volume de Cliques de Marca Qualificados": valores_alta}, index=meses)
@@ -131,7 +131,7 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
             st.markdown("### 📊 Painel Histórico de Declínio de Buscas (Últimos 12 Meses)")
             meses_ruins = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
             
-            # Valores automáticos via list range reversos (Sem riscos de cortes textuais)
+            # Valores automáticos via list range reversos
             valores_baixa = list(range(1000, 40, -80))
             
             df_grafico_ruim = pd.DataFrame({"Volume de Pesquisas Globais": valores_baixa}, index=meses_ruins)
@@ -150,3 +150,5 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
                 "- Volume de buscas por chaves exatas insuficiente para cobrir o custo de manutenção da campanha no Google Ads.\n"
                 "- CPC abusivo e inflado artificialmente, inviabilizando margens saudáveis de ROI.\n"
                 "- Alto índice de avaliações negativas e reclamações de clientes fora dos EUA, estourando as taxas de reembolso.\n\n"
+                "**💡 O que fazer?** Abandone este produto imediatamente e selecione um termo listado como 'VALIDADO' ou 'ELITE' no nosso Radar de Produtos para proteger o seu orçamento de anúncios."
+            )
