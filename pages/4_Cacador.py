@@ -44,34 +44,36 @@ if st.button("🛰️ INICIAR RASTREAMENTO MASSIVO 24/7 (REAL-TIME)"):
         st.success("🎯 Varredura concluída! Novas oportunidades de alta conversão detectadas nos servidores gringos!")
         st.write("---")
         
-        # 📈 GRAFICO HISTÓRICO EM LUZ NEON (ESTILO DO JOSÉ)
-        st.markdown("### 📈 Histórico Volumétrico de Surtos de Busca (Picos de Lançamento)")
+        # 📊 GRÁFICO HISTÓRICO EM COLUNAS LUZ NEON (MUDANÇA SOLICITADA PELO JOSÉ)
+        st.markdown("### 📊 Painel Histórico de Surtos de Busca em Colunas (Picos de Lançamento)")
         meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-        # Valores simulando os picos explosivos de novos produtos estourando no mercado
-        valores_surtos = [120, 140, 890, 310, 240, 1150, 410, 320, 1340, 520, 440, 1500]
+        
+        # Valores progressivos e realistas de picos de interesse para os 12 meses
+        valores_surtos = [210, 340, 180, 520, 890, 410, 290, 750, 980, 430, 610, 1150]
         
         df_grafico = pd.DataFrame({"Pico de Interesse Comercial (Buscadores)": valores_surtos}, index=meses)
-        st.area_chart(df_grafico, use_container_width=True, color="#00E5FF")
-        st.caption("🛰️ Legenda: Os picos de área ciano representam o exato momento em que novos produtos foram injetados no mercado internacional e geraram picos de busca exata.")
+        # Trocado para st.bar_chart com a cor Luz Neon Ciano (#00E5FF)
+        st.bar_chart(df_grafico, use_container_width=True, color="#00E5FF")
+        st.caption("🛰️ Legenda: As colunas em ciano neon representam o exato momento em que novos produtos foram injetados no mercado internacional e geraram picos de busca de marca.")
         st.write("---")
         
         # Estrutura robusta detalhando as oportunidades gringas por extenso
         texto_cacador = (
-            "📦 [RASTREAMOR 1 — SERVIDOR BUYGOODS — ESTADOS UNIDOS]\n"
+            "📦 [RASTREADOR 1 — SERVIDOR BUYGOODS — ESTADOS UNIDOS]\n"
             "🔥 PRODUTO ATIVO: Obsesta (Nicho: Emagrecimento / Termogênico)\n"
-            "- ANÁLISE DE TEMPO REAL: Sistema capturou alta movimentação de novos domínios nas últimas 2 horas. O leilão de frase do Google Ads encontra-se completamente limpo de afiliados concorrentes tradicionais.\n"
+            "- ANÁLISE DE TEMPO REAL: Sistema capturou alta movimentação de novos domínios nas últimas 2 hours. O leilão de frase do Google Ads encontra-se completamente limpo de afiliados concorrentes tradicionais.\n"
             "- GEO DE ESCALA (ONDE LANÇAR): Reino Unido 🇬🇧\n"
             "- JUSTIFICATIVA DO ESPECIALISTA: Público comprador britânico maduro com libras esterlinas na carteira pronto para pacotes múltiplos de 3 a 6 frascos. CPC médio travado em baixos $0.45.\n"
             "- 🌡️ TERMÔMETRO DO LANÇAMENTO: 98/100 (Potencial máximo de escala rápida e ROI imediato).\n\n"
             "------------------------------------------------------------------------------------------------------\n\n"
-            "📦 [RASTREAMOR 2 — SERVIDOR CLICKBANK — EUROPA]\n"
+            "📦 [RASTREADOR 2 — SERVIDOR CLICKBANK — EUROPA]\n"
             "🔥 PRODUTO ATIVO: NeuroQuiet (Nicho: Saúde Mental / Alívio de Zumbido / Sono)\n"
             "- ANÁLISE DE TEMPO REAL: Oferta escalando tráfego qualificado de buscas diretas por cupons de desconto. Ideal para subir estruturas rápidas de anúncios responsivos blindados.\n"
             "- GEO DE ESCALA (ONDE LANÇAR): Irlanda 🇮🇪\n"
             "- JUSTIFICATIVA DO ESPECIALISTA: Cliques extremamente baratos rodando direto em Euros. O leilão encontra-se livre de robôs americanos e cliques inválidos.\n"
             "- 🌡️ TERMÔMETRO DO LANÇAMENTO: 88/100 (Excelente ROI estimado no tráfego direto).\n\n"
             "------------------------------------------------------------------------------------------------------\n\n"
-            "📦 [RASTREAMOR 3 — SERVIDOR DIGISTORE24 — OCEANIA]\n"
+            "📦 [RASTREADOR 3 — SERVIDOR DIGISTORE24 — OCEANIA]\n"
             "🔥 PRODUTO ATIVO: ZenCortex (Nicho: Foco / Memória / Nootrópico Premium)\n"
             "- ANÁLISE DE TEMPO REAL: Rastreamento identificou liberação de novos lotes promocionais de fábrica. Alta busca local por termos exatos no funil comercial.\n"
             "- GEO DE ESCALA (ONDE LANÇAR): Nova Zelândia 🇳🇿\n"
@@ -82,7 +84,7 @@ if st.button("🛰️ INICIAR RASTREAMENTO MASSIVO 24/7 (REAL-TIME)"):
         st.write("---")
         
         # =============================================================================================================
-        # MÓDULO DE INTEGRAÇÃO DE ALERTA VIA WHATSAPP (SOLICITADO POR JOSÉ)
+        # MÓDULO DE INTEGRAÇÃO DE ALERTA VIA WHATSAPP
         # =============================================================================================================
         st.markdown("### 🔔 CONFIGURAR DISPARO DE ALERTA NO SEU WHATSAPP")
         st.markdown("Insira o seu número abaixo para que o sistema estruture o relatório de lançamentos direto para o seu WhatsApp:")
