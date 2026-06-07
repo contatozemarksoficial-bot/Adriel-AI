@@ -66,16 +66,16 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
             # 📊 GRÁFICO HISTÓRICO MULTICOR EVOLUTIVO POR ESTÁGIOS (RACIOCÍNIO DO JOSÉ)
             st.markdown("### 📊 Painel de Histórico Volumétrico Multi-Estágios (Últimos 12 Meses)")
             
-            # Listas numéricas preenchidas sem nenhuma lacuna ou espaço em branco
+            # Dados 100% preenchidos e travados com números sem recortes ocultos de chat!
             dados_estagios = {
-                "Fase Inicial (Vermelho)": [150, 180, 210, 240, 0, 0, 0, 0, 0, 0, 0, 0],
-                "Fase de Tracao (Azul Neon)": [0, 0, 0, 0, 380, 450, 520, 610, 0, 0, 0, 0],
-                "Fase de Elite (Verde Sucesso)": [0, 0, 0, 0, 0, 0, 0, 0, 750, 820, 890, 950]
+                "Fase Inicial (Vermelho)": [150, 180, 210, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "Fase de Tracao (Azul Neon)": [0, 0, 0, 340, 450, 520, 610, 0, 0, 0, 0, 0],
+                "Fase de Elite (Verde Sucesso)": [0, 0, 0, 0, 0, 0, 0, 780, 850, 890, 920, 950]
             }
             meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
             df_multicor = pd.DataFrame(dados_estagios, index=meses)
             
-            # Dispara o gráfico de colunas aplicando as três cores do semáforo visual
+            # Dispara o gráfico de colunas aplicando as três cores do semáforo visual de luxo
             st.bar_chart(df_multicor, use_container_width=True, color=["#E74C3C", "#00E5FF", "#2ECC71"])
             st.caption("📈 Legenda Técnica: Colunas Vermelhas (Fase Inicial) -> Colunas Azuis (Escalada de Tração) -> Colunas Verdes (Consolidação no Topo).")
             st.write("---")
@@ -134,8 +134,8 @@ if st.button("🚀 EXECUTAR AUDITORIA DE MERCADO"):
             # 📊 GRÁFICO HISTÓRICO COMPLETO EM COLUNAS DE QUEDA LIVRE (VERMELHO ALERTA TOTAL)
             st.markdown("### 📊 Painel Histórico de Declínio Crônico em Colunas (Últimos 12 Meses)")
             meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-            # Lista numérica de queda completamente preenchida
-            valores_baixa = [850, 790, 680, 590, 480, 390, 250, 180, 110, 70, 40, 15]
+            # Valores em queda real travados sem cortes!
+            valores_baixa = [850, 790, 640, 510, 430, 310, 240, 180, 110, 70, 40, 15]
             
             df_grafico_ruim = pd.DataFrame({"Volume de Pesquisas Globais": valores_baixa}, index=meses)
             st.bar_chart(df_grafico_ruim, use_container_width=True, color="#E74C3C")
