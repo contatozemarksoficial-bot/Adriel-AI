@@ -45,22 +45,22 @@ st.markdown("### 🌍 1. DIRECIONAMENTO DE MERCADO E CREDENCIAIS")
 tipo_mercado = st.radio(
     "Escolha o Tipo de Campanha que deseja criar:",
     ["🇺🇸 Campanhas Internacionais (Gringa - ClickBank/BuyGoods/Digistore)", "🇧🇷 Campanhas Nacionais (Brasil - Hotmart/Monetizze/Braip)"],
-    index=0
+    key="mercado_radio_select"
 )
 
 col_c1, col_c2 = st.columns(2)
 with col_c1:
-    customer_id = st.text_input("Google Ads Customer ID (Somente numbers):", value="1234567890")
+    customer_id = st.text_input("Google Ads Customer ID (Somente números):", value="1234567890", key="cust_id_input")
     if "🇺🇸" in tipo_mercado:
-        produto_input = st.text_input("Nome do Produto Gringo:", value="Citrus Burn")
+        produto_input = st.text_input("Nome do Produto Gringo:", value="Citrus Burn", key="prod_input_gringa")
     else:
-        produto_input = st.text_input("Nome do Produto Nacional:", value="Protocolo Zero Gordura")
+        produto_input = st.text_input("Nome do Produto Nacional:", value="Protocolo Zero Gordura", key="prod_input_nacional")
 with col_c2:
-    developer_token = st.text_input("Chave Developer Token (API):", value="API_DEVELOPER_TOKEN_SECURE", type="password")
+    developer_token = st.text_input("Chave Developer Token (API):", value="API_DEVELOPER_TOKEN_SECURE", type="password", key="dev_token_input")
     if "🇺🇸" in tipo_mercado:
-        pais_alvo = st.selectbox("País Alvo do Leilão (GEO):", ["Estados Unidos 🇺🇸", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"])
+        pais_alvo = st.selectbox("País Alvo do Leilão (GEO):", ["Estados Unidos 🇺🇸", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"], key="geo_gringa")
     else:
-        pais_alvo = st.selectbox("País Alvo do Leilão (GEO):", ["Brasil 🇧🇷"])
+        pais_alvo = st.selectbox("País Alvo do Leilão (GEO):", ["Brasil 🇧🇷"], key="geo_nacional")
 
 st.write("")
 st.markdown("""
@@ -79,7 +79,6 @@ st.write("---")
 st.markdown("### 💰 2. CONFIGURAÇÃO FINANCEIRA DE LANCES (BID)")
 col_b1, col_b2 = st.columns(2)
 
-# Define automaticamente os símbolos e valores baseados na moeda nacional ou gringa
 if "🇺🇸" in tipo_mercado:
     moeda_simbolo = "$"
     val_orc = 20.0
@@ -90,9 +89,9 @@ else:
     val_cpc = 1.50
 
 with col_b1:
-    orcamento_diario = st.number_input(f"Orçamento Diário de Escala ({moeda_simbolo}):", value=val_orc, step=5.0)
+    orcamento_diario = st.number_input(f"Orçamento Diário de Escala ({moeda_simbolo}):", value=val_orc, step=5.0, key="orc_input")
 with col_b2:
-    cpc_maximo = st.number_input(f"Limite Máximo de Custo por Clique (CPC Max {moeda_simbolo}):", value=val_cpc, step=0.05)
+    cpc_maximo = st.number_input(f"Limite Máximo de Custo por Clique (CPC Max {moeda_simbolo}):", value=val_cpc, step=0.05, key="cpc_input")
 
 st.write("---")
 
@@ -108,13 +107,13 @@ with col_kw1:
         lista_frase = f'"{prod} official website"\n"buy {prod} online"\n"{prod} discount price"'
     else:
         lista_frase = f'"{prod} site oficial"\n"comprar {prod} original"\n"{prod} desconto hoje"'
-    kw_frase = st.text_area("Palavras-Chave de Frase (Use aspas):", value=lista_frase, height=130)
+    kw_frase = st.text_area("Palavras-Chave de Frase (Use aspas):", value=lista_frase, height=130, key="kw_frase_text")
 with col_kw2:
     if "🇺🇸" in tipo_mercado:
         lista_negativas = "scam\ncomplaints\ningredients\nside effects\nrefund"
     else:
         lista_negativas = "gratis\npdf\ndownload\nmercado livre\nreclame aqui\nfunciona mesmo"
-    kw_negativa = st.text_area("Palavras-Chave Negativas de Segurança:", value=lista_negativas, height=130)
+    kw_negativa = st.text_area("Palavras-Chave Negativas de Segurança:", value=lista_negativas, height=130, key="kw_neg_text")
 
 st.write("---")
 
@@ -123,7 +122,6 @@ st.write("---")
 # =============================================================================================================
 st.markdown("### 📝 4. REDAÇÃO DO ANÚNCIO RESPONSIVO (RSA) & PROTOCOLO DE COMPLIANCE")
 
-# Controla as sugestões iniciais se o usuário alternar o mercado
 if "🇺🇸" in tipo_mercado:
     s_t1, s_t2, s_t3 = f"{prod} Official Website", f"Buy {prod} Online", f"Original {prod} Formula"
     s_d1 = f"Order {prod} from the official website today and get exclusive package discounts."
@@ -133,34 +131,22 @@ else:
     s_d1 = f"Adquira o {prod} direto no site oficial do fabricante com desconto exclusivo."
     s_d2 = "Garantia de satisfação total ou seu dinheiro de volta. Parcelamento em até 12x no cartão."
 
-# Inicialização das chaves dinâmicas na memória persistente para suportar a reedição estável
-if "t1_val" not in st.session_state: st.session_state.t1_val = s_t1
-if "t2_val" not in st.session_state: st.session_state.t2_val = s_t2
-if "t3_val" not in st.session_state: st.session_state.t3_val = s_t3
-if "d1_val" not in st.session_state: st.session_state.d1_val = s_d1
-if "d2_val" not in st.session_state: st.session_state.d2_val = s_d2
-
 col_t1, col_t2 = st.columns(2)
 with col_t1:
-    t1 = st.text_input("Título Principal 1 (Pin 1):", value=st.session_state.t1_val, key="t1_box")
-    t2 = st.text_input("Título Principal 2 (Pin 2):", value=st.session_state.t2_val, key="t2_box")
-    t3 = st.text_input("Título Principal 3 (Pin 3):", value=st.session_state.t3_val, key="t3_box")
+    t1 = st.text_input("Título Principal 1 (Pin 1):", value=s_t1, key="t1_box_edit")
+    t2 = st.text_input("Título Principal 2 (Pin 2):", value=s_t2, key="t2_box_edit")
+    t3 = st.text_input("Título Principal 3 (Pin 3):", value=s_t3, key="t3_box_edit")
 with col_t2:
-    d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=st.session_state.d1_val, max_chars=90, key="d1_box")
-    d2 = st.text_input("Descrição Secundária:", value=st.session_state.d2_val, max_chars=90, key="d2_box")
-
-# Atualiza os estados na memória a cada modificação na tela
-st.session_state.t1_val, st.session_state.t2_val, st.session_state.t3_val = t1, t2, t3
-st.session_state.d1_val, st.session_state.d2_val = d1, d2
+    d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=s_d1, max_chars=90, key="d1_box_edit")
+    d2 = st.text_input("Descrição Secundária:", value=s_d2, max_chars=90, key="d2_box_edit")
 
 st.write("---")
 
 # =============================================================================================================
-# SEÇÃO 5: SCANNER DE POLÍTICAS INTERNACIONAIS E NACIONAIS COM TRAVA CORRIGIDA
+# SEÇÃO 5: SCANNER DE POLÍTICAS INTERNACIONAIS E NACIONAIS
 # =============================================================================================================
 st.markdown("#### 🔍 DIAGNÓSTICO DO RASTREADOR DE POLÍTICAS (RAIO-X DE BLOQUEIO)")
 
-# Regras de termos proibidos mapeadas para os dois idiomas
 regras_correcao = {
     "cure": "support formula", "heals": "supports health", "weight loss instantly": "natural weight support",
     "cura": "formula de suporte", "cura mesmo": "auxilia na saude", "emagrece imediato": "emagrecimento saudavel"
@@ -171,7 +157,6 @@ violacao_termo = False
 violacao_capital = False
 gatilho_detalhado = ""
 
-# Varre caçando termos proibidos isolados
 for termo_ruim in regras_correcao.keys():
     padrao_palavra_exata = r'\b' + re.escape(termo_ruim) + r'\b'
     if re.search(padrao_palavra_exata, texto_completo_original):
@@ -179,7 +164,6 @@ for termo_ruim in regras_correcao.keys():
         gatilho_detalhado = termo_ruim
         break
         
-# Varre caçando letras maiúsculas proibidas
 letras_grandes = re.findall(r'\b[A-Z]{3,}\b', t1 + " " + t2 + " " + t3)
 if not violacao_termo and letras_grandes:
     violacao_capital = True
@@ -200,3 +184,16 @@ st.markdown("### 📊 Histórico Volumétrico Estimado Pré-Upload")
 meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
 valores_envio = [180 + (i * 75) for i in range(12)]
 df_envio = pd.DataFrame({"Volume Analisado": valores_envio}, index=meses)
+st.bar_chart(df_envio, use_container_width=True, color="#00E5FF")
+
+st.write("---")
+
+# =============================================================================================================
+# SEÇÃO 6: DISPARO REAL DA CAMPANHA DIRETO FIXADO NO RODAPÉ FINAL (BLINDAGEM CONTRA SUMIÇOS)
+# =============================================================================================================
+st.markdown("### 🚀 5. TRANSMISSÃO DA CAMPANHA CONFIGURADA")
+st.markdown("Revise todos os blocos acima e clique no botão verde abaixo para empurrar os dados validados:")
+st.write("")
+
+# REMOVIDA QUALQUER DEPENDÊNCIA DE DA MEMÓRIA ATIVA. BOTÃO TOTALMENTE FIXO.
+if botao_bloqueado:
