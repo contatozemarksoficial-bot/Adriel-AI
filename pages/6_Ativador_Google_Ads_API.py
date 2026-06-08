@@ -40,24 +40,21 @@ st.write("---")
 if st.session_state.ads_passo == 1:
     st.markdown("### 🎯 PASSO 1: ESCOLHER SEU OBJETIVO")
     obj_sel = st.radio("Selecione a meta:", OBJETIVOS_CAMPANHA)
-    st.write("Objetivo selecionado:", obj_sel)  # Debug
     if st.button("PRÓXIMO PASSO ➔"):
         st.session_state.v_objetivo = obj_sel
         st.session_state.ads_passo = 2
-        st.experimental_rerun()  # Usar experimental_rerun para forçar a atualização
+        st.experimental_rerun()  # Força a atualização
 
 # Passo 2: Selecionar tipo de campanha
 elif st.session_state.ads_passo == 2:
     st.markdown("### 🔎 PASSO 2: SELECIONE UM TIPO DE CAMPANHA")
     
     if st.session_state.v_objetivo is None:
-        st.error("⚠️ Por favor, selecione um objetivo primeiro.")  # Validação
+        st.error("⚠️ Por favor, selecione um objetivo primeiro.")
     else:
         tipo_sel = st.radio("Escolha o formato:", TIPOS_CAMPANHA)
-        st.write("Tipo de campanha selecionado:", tipo_sel)  # Debug
-        
         if st.button("PRÓXIMO PASSO ➔"):
             st.session_state.ads_passo = 3
-            st.experimental_rerun()
+            st.experimental_rerun()  # Força a atualização
 
-# Continue adicionando passos conforme necessário...
+# Passo 3: Adicione seu código aqui para o próximo passo...
