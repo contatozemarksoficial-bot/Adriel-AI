@@ -1,50 +1,37 @@
 import streamlit as st
+import time
 
-# Configuração premium de layout amplo Black para a Identidade Visual do Robô
-st.set_page_config(
-    page_title="Adriel AI - Core System", 
-    layout="wide", 
-    initial_sidebar_state="expanded"
-)
+# Configuração de layout amplo e profissional Black para a Base do SaaS
+st.set_page_config(page_title="Adriel AI - Core System", layout="wide")
 
-# =============================================================================================================
-# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (IDENTIDADE VISUAL DA PLATAFORMA)
-# =============================================================================================================
+# INJEÇÃO DO CHASSI DE ESTILO DA FAMÍLIA (BOTÕES CRESCENTES COM SELETOR HOVER)
 st.markdown("""
 <style>
-    /* 🌌 Fundo Escuro Espacial do SaaS */
-    .stApp {
-        background-color: #050811 !important;
-        color: #ffffff !important;
-    }
-    
-    /* 📟 Estilização de Títulos e Textos Principais */
+    /* 📟 Estilização de Títulos Principais em Gradiente Líquido */
     h1, h2, h3 {
-        font-family: 'Inter', sans-serif !important;
         background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 800 !important;
     }
     
-    /* 🤖 Card de Apresentação da Inteligência Artificial */
-    .robo-chassi {
+    /* 🤖 Card do Chassi do Robô com Animação de Entrada */
+    .robo-card-main {
         background: radial-gradient(circle at top left, #0e172a, #050811);
         border: 2px solid #00E5FF;
         border-radius: 16px;
         padding: 25px;
         box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.15);
-        margin-bottom: 30px;
-        animation: surgir 1s ease-out;
+        margin-bottom: 25px;
+        animation: flutuar 1.5s ease-out;
     }
     
-    /* 📈 Efeito de Animação de Entrada do Robô na Tela */
-    @keyframes surgir {
-        from { opacity: 0; transform: translateY(20px); }
+    @keyframes flutuar {
+        from { opacity: 0; transform: translateY(15px); }
         to { opacity: 1; transform: translateY(0); }
     }
     
-    /* 🕹️ MENU DE BOTÕES CRESCENTES (EFEITO HOVER ZOOM AUTOMÁTICO) */
+    /* 🕹️ OS BOTÕES CRESCENTES DA FAMÍLIA (ZOOM HOVER AUTOMÁTICO) */
     div.stButton > button {
         background: linear-gradient(135deg, #091124 0%, #050811 100%) !important;
         color: #00FF87 !important;
@@ -57,9 +44,10 @@ st.markdown("""
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
         width: 100% !important;
         cursor: pointer !important;
+        text-align: left !important;
     }
     
-    /* 🔥 O Crescimento do Botão quando o Usuário passa o Mouse */
+    /* 🔥 O efeito onde o botão cresce e acende em verde neon */
     div.stButton > button:hover {
         background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%) !important;
         color: #050811 !important;
@@ -70,62 +58,50 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# =============================================================================================================
-# ESTRUTURA VISUAL CENTRAL DA HOME PAGE (ROBÔ CHEGANDO NA TELA)
-# =============================================================================================================
-st.markdown("🛸 ADRIEL AI — CENTRAL SUPREMA DE AUTOMAÇÃO")
-st.markdown("Controle o leilão do Google Ads com inteligência artificial para produtos nacionais e internacionais.")
+st.title("🛸 ADRIEL AI — ECOSSISTEMA REVOLUCIONÁRIO DE TRÁFEGO")
+st.markdown("Central automatizada de inteligência para gerenciamento de campanhas fundo de funil nacionais e internacionais.")
 st.write("---")
 
-# Layout assimétrico para destacar o robô animado
-col_avatar, col_interface = st.columns([1.3, 1])
+# Divisão de tela: Robô se apresentando vs Menu da Esteira Crescente
+col_avatar, col_botoes = st.columns([1.3, 1])
 
 with col_avatar:
-    # Renderização do Chassi do Robô com o texto de boas-vindas oficial
     st.markdown("""
-    <div class="robo-chassi">
-        <h2 style='margin-top: 0;'>🤖 SYSTEM ONLINE: ADRIEL AI</h2>
+    <div class="robo-card-main">
+        <h2 style='margin-top: 0;'>🤖 CAPACIDADE DE IA INSTALADA</h2>
         <p style='font-size: 16px; line-height: 1.6; color: #cbd5e1;'>
-            "Olá, Comandante José Marques da Silva! Meus motores de busca, 
-            auditoria e envio direto de campanhas foram carregados com sucesso. 
-            A esteira operacional está calibrada com a Google Ads API."
+            "Olá, Comandante José Marques! A estrutura visual mestre da nossa família de módulos está 
+            fixada no servidor de produção. Estou pronto para rodar os scanners de conformidade, 
+            geração de pre-sells e envio automatizado via Google Ads API."
         </p>
-        <span style='background: #00FF87; color: #050811; padding: 4px 10px; font-weight: bold; border-radius: 20px; font-size: 12px;'>
-            PROTEÇÃO ANTI-BLOQUEIO ATIVA 🛡️
+        <span style='background: #00FF87; color: #050811; padding: 5px 12px; font-weight: bold; border-radius: 20px; font-size: 13px;'>
+            ESTEIRA DE CONVENÇÃO HOMOLOGADA 🟢
         </span>
     </div>
     """, unsafe_allow_html=True)
     
-    # Grid de status em tempo real da aplicação
-    col_st1, col_st2 = st.columns(2)
-    with col_st1:
-        st.metric(label="Latência do Servidor", value="14ms", delta="Excelente")
-    with col_st2:
-        st.metric(label="Handshake OAuth 2.0", value="Pronto", delta="Síncrono")
+    # KPIs de controle do SaaS
+    c_st1, c_st2 = st.columns(2)
+    with c_st1: st.metric(label="Integridade do Servidor GitHub", value="100% Conectado", delta="Estável")
+    with c_st2: st.metric(label="Família de Páginas Ativas", value="7 Módulos", delta="Operacionais")
 
-with col_interface:
-    st.markdown("### 🕹️ ACESSO CRESCENTE AOS MÓDULOS")
-    st.markdown("Passe o mouse sobre os botões para expandir o módulo e iniciar a operação:")
+with col_botoes:
+    st.markdown("### 🕹️ ESTEIRA DE COMANDO CRESCENTE")
+    st.markdown("Navegue pelos módulos de luxo da plataforma utilizando os botões de atalho ou a barra lateral:")
     st.write("")
     
-    # Lista de botões crescentes de controle da esteira de automação
-    if st.button("🛰️ MÓDULO 1: Radar de Produtos", key="b_m1"):
-        st.info("Acesse a página **1_Radar** na barra lateral para abrir.")
-        
-    if st.button("📊 MÓDULO 2: Auditor de Mercado", key="b_m2"):
-        st.info("Acesse a página **2_Auditor** na barra lateral para abrir.")
-        
-    if st.button("📝 MÓDULO 3: Gerador de Anúncios", key="b_m3"):
-        st.info("Acesse a página **3_Gerador** na barra lateral para abrir.")
-        
-    if st.button("🏹 MÓDULO 4: Caçador de Lançamentos", key="b_m4"):
-        st.info("Acesse a página **4_Cacador** na barra lateral para abrir.")
-        
-    if st.button("🌐 MÓDULO 5: Construtor Pre-Sell", key="b_m5"):
-        st.info("Acesse a página **5_Presell** na barra lateral para abrir.")
-        
-    if st.button("🚀 MÓDULO 6: Ativador Google Ads", key="b_m6"):
-        st.info("Acesse a página **6_Ativador_Google_Ads** na barra lateral para abrir.")
-        
-    if st.button("💎 MÓDULO 7: Gestão de Assinantes", key="b_m7"):
-        st.info("Acesse a página **7_Area_Assinantes** na barra lateral para abrir.")
+    # Botões que crescem ao passar o mouse e indicam qual página abrir
+    if st.button("🛰️ MÓDULO 1: Radar de Produtos", key="h_m1"):
+        st.info("Acesse a página **1_Radar** no menu esquerdo para operar.")
+    if st.button("📊 MÓDULO 2: Auditor de Mercado", key="h_m2"):
+        st.info("Acesse a página **2_Auditor** no menu esquerdo para operar.")
+    if st.button("📝 MÓDULO 3: Gerador de Anúncios", key="h_m3"):
+        st.info("Acesse a página **3_Gerador** no menu esquerdo para operar.")
+    if st.button("🏹 MÓDULO 4: Caçador Ativo", key="h_m4"):
+        st.info("Acesse a página **4_Cacador** no menu esquerdo para operar.")
+    if st.button("🌐 MÓDULO 5: Construtor Pre-Sell", key="h_m5"):
+        st.info("Acesse a página **5_Presell** no menu esquerdo para operar.")
+    if st.button("🚀 MÓDULO 6: Ativador Google Ads", key="h_m6"):
+        st.info("Acesse a página **6_Ativador_Google_Ads** no menu esquerdo para operar.")
+    if st.button("💎 MÓDULO 7: Gestão de Assinantes", key="h_m7"):
+        st.info("Acesse a página **7_Area_Assinantes** no menu esquerdo para operar.")
