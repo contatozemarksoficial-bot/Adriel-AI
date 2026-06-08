@@ -2,66 +2,39 @@ import streamlit as st
 import pandas as pd
 import time
 
-# Configuração premium de layout amplo (Força o app a ocupar toda a largura da tela)
+# Configuração premium de layout amplo (Ocupa 100% da largura da tela)
 st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", initial_sidebar_state="collapsed")
 
-# =============================================================================================================
-# INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO CLICAR NA TELA)
-# =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! Painel de controle estruturado em três colunas simultâneas. Todos os sinais e botões estão operacionais."
-
-st.markdown(f"""
-<script>
-    document.addEventListener('click', function() {{
-        if (!window.audioDisparado) {{
-            var msg = new SpeechSynthesisUtterance();
-            msg.text = "{texto_boas_vindas}";
-            msg.lang = "pt-BR";
-            msg.rate = 1.0;
-            msg.pitch = 0.9;
-            window.speechSynthesis.speak(msg);
-            window.audioDisparado = true;
-        }}
-    }});
-</script>
-""", unsafe_allow_html=True)
-
-# =============================================================================================================
-# INJEÇÃO DE CSS DE ALTA PERFORMANCE (DESATIVA SIDEBAR NATIVA E TRAVA AS 3 COLUNAS DO PRINT)
-# =============================================================================================================
+# INJEÇÃO DE CSS DE ALTA PERFORMANCE (PADRÃO VISUAL UNIFICADO DA FAMÍLIA ADRIEL AI)
 st.markdown("""
 <style>
-    /* 🌌 Fundo Escuro Idêntico ao do Print da Imagem */
+    /* Fundo Escuro Fiel ao Print da Imagem */
     .stApp {
         background-color: #0b111e !important;
         color: #ffffff !important;
     }
     
-    /* Oculta as bordas padrão do Streamlit para dar o visual plano limpo */
-    [data-testid="stSidebar"] {
-        display: none !important;
-    }
-    [data-testid="stHeader"] {
-        display: none !important;
-    }
+    /* Oculta as bordas e menus padrão nativos do Streamlit */
+    [data-testid="stSidebar"] { display: none !important; }
+    [data-testid="stHeader"] { display: none !important; }
     
-    /* 🚨 ANIMAÇÃO DE SINAL: ALTERNA AS BORDAS (CIANO <-> VERDE NEON) */
+    /* ANIMAÇÃO DE SINAL: ALTERNA AS BORDAS DO BOTÃO SELECIONADO (CIANO <-> VERDE) */
     @keyframes sinal-pulsante {
         0% { border-color: #00E5FF; box-shadow: 0 0 8px rgba(0, 229, 255, 0.2); }
         50% { border-color: #00FF87; box-shadow: 0 0 18px rgba(0, 255, 135, 0.4); }
         100% { border-color: #00E5FF; box-shadow: 0 0 8px rgba(0, 229, 255, 0.2); }
     }
 
-    /* Estilização para as linhas divisórias e blocos */
+    /* Linhas divisórias das 3 colunas verticais */
     .coluna-container {
         background-color: transparent;
         border-right: 1px solid #1e293b;
         padding-right: 20px;
         padding-left: 10px;
-        height: 100vh;
+        min-height: 85vh;
     }
     
-    /* Caixa de texto superior horizontal */
+    /* Caixas horizontais superiores de logs */
     .header-box-real {
         background-color: #0f172a !important;
         border: 1px solid #1e293b !important;
@@ -80,7 +53,7 @@ st.markdown("""
         text-transform: uppercase;
     }
 
-    /* 🟢 CUSTOMIZAÇÃO DOS BOTÕES COM EFEITO DE SINAL NO MOUSE (HOVER) */
+    /* BOTÕES DA ESTEIRA QUE DISPARAM O SINAL PISCANTE NEON */
     div.stButton > button {
         background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
         color: white !important;
@@ -94,7 +67,7 @@ st.markdown("""
         transition: all 0.3s ease-in-out !important;
     }
     
-    /* Quando a pessoa passa o mouse ou clica, aciona o sinal pulsante idêntico */
+    /* Ativa o sinal piscante na interação do mouse */
     div.stButton > button:hover {
         animation: sinal-pulsante 2s infinite ease-in-out !important;
         background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%) !important;
@@ -102,7 +75,7 @@ st.markdown("""
         transform: scale(1.02) !important;
     }
     
-    /* Botões pretos simples do menu lateral esquerdo */
+    /* Customização dos botões pretos chapados do menu esquerdo */
     .menu-lateral-btn > div.stButton > button {
         background: transparent !important;
         color: #94a3b8 !important;
@@ -120,98 +93,100 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Inicialização segura do controle do roteamento do menu na memória do servidor
+if "pagina_atual" not in st.session_state:
+    st.session_state.pagina_atual = "Dashboard"
+
 # =============================================================================================================
-# MONTAGEM DAS 3 COLUNAS HORIZONTAIS COMPLETAS (O CLONE REAL DA IMAGEM)
+# MONTAGEM RIGOROSA DA ESTRUTURA DE 3 COLUNAS SIMULTÂNEAS
 # =============================================================================================================
 col_esquerda, col_centro, col_direita = st.columns([0.75, 1.4, 1])
 
-# 🏢 COLUNA 1 (ESQUERDA): A LOGO DO ADRIEL AI + MENU DO PAINEL DE CONTROLE
+# 🏢 COLUNA 1 (FIXA E IMUTÁVEL): LOGO ADRIEL AI + BOTÕES DO MENU LATERAL
 with col_esquerda:
-    st.markdown('<div class="coluna-container" style="border-right: 1px solid #1e293b;">', unsafe_allow_html=True)
-    
-    # 🛰️ Clone da Logo Superior do Print
+    st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
     st.markdown("<h2 style='color: #60a5fa; font-size: 24px; font-weight: 800; margin-bottom:0;'>🤖 Adriel AI</h2>", unsafe_allow_html=True)
     st.markdown("<p style='color: #64748b; font-size: 11px; margin-top:-5px; letter-spacing:1px;'>PAINEL DE CONTROLE</p>", unsafe_allow_html=True)
     st.write("---")
     
-    # Lista de Menus em formato de botões funcionais para as páginas
     st.markdown('<div class="menu-lateral-btn">', unsafe_allow_html=True)
-    st.button("🎛️ Dashboard", key="m_dash")
-    st.button("🛰️ Radar de Produtos", key="m_radar")
-    st.button("🔬 Auditor de Mercado", key="m_auditor")
-    st.button("📝 Gerador de Anúncios", key="m_gerador")
-    st.button("🏹 Caçador de Lançamentos", key="m_cacador")
-    st.button("🌐 Construtor Pre-Sell", key="m_presell")
-    st.button("🚀 Ativador Google Ads", key="m_ativador")
-    st.button("💎 Gestão de Assinantes", key="m_assinantes")
+    if st.button("🎛️ Dashboard", key="btn_nav_dash"): st.session_state.pagina_atual = "Dashboard"; st.rerun()
+    if st.button("🛰️ Radar de Produtos", key="btn_nav_radar"): st.session_state.pagina_atual = "Radar"; st.rerun()
+    if st.button("🚀 Ativador Google Ads", key="btn_nav_google"): st.session_state.pagina_atual = "GoogleAds"; st.rerun()
     st.write("---")
-    st.button("⚙️ Configurações", key="m_config")
-    st.button("🚪 Sair", key="m_sair")
+    st.caption("⚙️ Configurações Gerais")
+    st.caption("🚪 Sair")
     st.markdown('</div></div>', unsafe_allow_html=True)
 
-# 📊 COLUNA 2 (CENTRO): MÓDULO 1 RADAR DE PRODUTOS [FILTRO XEQUE-MATE]
-with col_centro:
-    st.markdown('<div class="coluna-container" style="border-right: 1px solid #1e293b;">', unsafe_allow_html=True)
-    
-    # Card de identificação do comandante do topo
-    st.markdown('<div class="header-box-real">👤 Olá, <b>José Marques</b>, Comandante do Adriel AI!</div>', unsafe_allow_html=True)
-    
-    st.markdown('<p class="subtitulo-bloco-real">MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</p>', unsafe_allow_html=True)
-    
-    # Listagem de dados milimétrica da tabela da imagem original
-    dados_tabela = {
-        "Name": [f"Produto-acanodiano {i}" for i in range(1, 10)],
-        "Comissões": ["3,00%", "2,00%", "1,00%", "1,00%", "1,00%", "2,00%", "2,00%", "1,00%", "1,00%"],
-        "Comissão": ["R$,15%", "R$,75%", "R$,25%", "R$,35%", "R$,25%", "R$,25%", "R$,25%", "R$,60%", "R$,60%"],
-        "Veredito da IA": [
-            "APROVADO (Risco Baixo)", 
-            "APROVADO (Risco Baixo)", 
-            "REVISAR (Risco Médio)", 
-            "REVISAR (Risco Médio)", 
-            "APROVADO (Risco Baixo)",
-            "APROVADO (Risco Baixo)",
-            "APROVADO (Risco Baixo)",
-            "REVISAR (Risco Médio)",
-            "REVISAR (Risco Médio)"
-        ]
-    }
-    df_painel = pd.DataFrame(dados_tabela)
-    st.dataframe(df_painel, use_container_width=True, hide_index=True)
-    
-    st.write("")
-    # Botão de exportação que dispara o sinal neon quando passa o mouse por cima
-    if st.button("📄 [BAIXAR PLANILHA DE INTELIGÊNCIA (.CSV)]", key="btn_csv_real"):
-        st.success("Planilha processada com sucesso!")
-    st.markdown('</div>', unsafe_allow_html=True)
+# =============================================================================================================
+# ROTEAMENTO DA FAMÍLIA DE PÁGINAS (MANTENDO O MESMO CORTE SEM MUDAR O ESTILO)
+# =============================================================================================================
 
-# 📝 COLUNA 3 (DIREITA): MÓDULO 2 GERADOR DE ANÚNCIOS MASTER & PRE-SELL
-with col_direita:
-    st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
-    
-    # Card de status online do topo
-    st.markdown('<div class="header-box-real" style="text-align: right;">🟢 Status: <span style="color: #10b981; font-weight:bold;">Sistema Online</span> | Chave Mestre Ativa</div>', unsafe_allow_html=True)
-    
-    st.markdown('<p class="subtitulo-bloco-real">MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & PRE-SELL</p>', unsafe_allow_html=True)
-    
-    # Inputs organizados do print
-    p_gringo = st.text_input("PROD_GRINGO:", value="Sugar Defender", key="p_gringo_in")
-    p_resumo = st.text_area("RESUMO (Niche/Dores):", value="Suplemento natural para equilíbrio do metabolismo.", height=68, key="p_resumo_in")
-    
-    st.write("")
-    # Botões verdes de ação que dão o sinal interativo ao focar
-    if st.button("🔥 (A) GERAR ANÚNCIOS ADSMaster (Copy + Roteiro Vídeo)", key="btn_gen_ads_real"):
-        st.success("Campanha de copy estruturada com sucesso!")
+# 🏠 INTERFACE 1: DASHBOARD COMPLETO (PADRÃO DE INSTALAÇÃO DO SEU PRINT)
+if st.session_state.pagina_atual == "Dashboard":
+    with col_centro:
+        st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real">👤 Olá, <b>José Marques</b>, Comandante do Adriel AI!</div>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitulo-bloco-real">MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</p>', unsafe_allow_html=True)
         
-    st.write("")
-    if st.button("🔥 [B] FABRICAR PRE-SELL (Landing Page Text) </>", key="btn_gen_html_real"):
-        st.success("HTML da Landing Page pronto na área de transferência!")
-        
-    # Caixa preta de propriedades exatas da imagem
-    st.markdown('<div style="background-color: #0f172a; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; margin-top: 14px; font-size: 13px; color: #94a3b8; font-family: monospace;"><b>image_7be312.png (Títulos, Descrições, Palavras-chave)</b><br>Títulos 15 blocks<br>Títulos, Descrições<br>Palavras-chave<br>Formatas de blocks<br>Salvar campanha no blocks</div>', unsafe_allow_html=True)
-    
-    st.write("")
-    if st.button("💾 [SALVAR CAMPANHA NO HISTÓRICO]", key="btn_save_history_real"):
-        st.info("Campanha guardada no histórico da base de dados.")
-    st.markdown('</div>', unsafe_allow_html=True)
+        dados_tabela = {
+            "Name": [f"Produto-acanodiano {i}" for i in range(1, 8)],
+            "Comissões": ["3,00%", "2,00%", "1,00%", "1,00%", "1,00%", "2,00%", "2,00%"],
+            "Comissão": ["R$,15%", "R$,75%", "R$,25%", "R$,35%", "R$,25%", "R$,25%", "R$,25%"],
+            "Veredito da IA": ["APROVADO (Risco Baixo)"] * 7
+        }
+        st.dataframe(pd.DataFrame(dados_tabela), use_container_width=True, hide_index=True)
+        st.write("")
+        st.button("📄 [BAIXAR PLANILHA DE INTELIGÊNCIA (.CSV)]", key="btn_csv_dash")
+        st.markdown('</div>', unsafe_allow_html=True)
 
-# Rodapé oficial idêntico ao rodapé da imagem
+    with col_direita:
+        st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real" style="text-align: right;">🟢 Status: <span style="color: #10b981; font-weight:bold;">Sistema Online</span> | Chave Mestre Ativa</div>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitulo-bloco-real">MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & PRE-SELL</p>', unsafe_allow_html=True)
+        
+        st.text_input("PROD_GRINGO:", value="Sugar Defender", key="p_gringo_dash")
+        st.text_area("RESUMO (Niche/Dores):", value="Suplemento natural para equilíbrio do metabolismo.", height=68, key="p_resumo_dash")
+        st.write("")
+        st.button("🔥 (A) GERAR ANÚNCIOS ADSMaster", key="btn_ads_dash")
+        st.markdown('</div>', unsafe_allow_html=True)
+
+# 🛰️ INTERFACE 2: PÁGINA RECORTE DO RADAR DE PRODUTOS COMPLETO
+elif st.session_state.pagina_atual == "Radar":
+    with col_centro:
+        st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real">🛰️ Filtros de Mineração Ativos no Servidor</div>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitulo-bloco-real">🔬 PARÂMETROS DO SCANNER AVANÇADO</p>', unsafe_allow_html=True)
+        
+        st.selectbox("Selecione a Origem das Ofertas:", ["ClickBank 🇺🇸", "BuyGoods 🇺🇸", "Hotmart 🇧🇷"])
+        st.slider("Filtrar por Gravidade Mínima:", 0, 300, 150)
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    with col_direita:
+        st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real" style="text-align: right;">Volume Escaneado: <b>1.420 Produtos</b></div>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitulo-bloco-real">🏆 AS 3 OFERTAS DE MAIOR GRAVIDADE</p>', unsafe_allow_html=True)
+        st.info("🔥 1. Java Burn - Gravidade 240\n\n⭐ 2. Puravive - Gravidade 190\n\n⚡ 3. Sugar Defender - Gravidade 180")
+        st.markdown('</div>', unsafe_allow_html=True)
+
+# 🚀 INTERFACE 3: PÁGINA RECORTE DO ATIVADOR GOOGLE ADS API
+elif st.session_state.pagina_atual == "GoogleAds":
+    with col_centro:
+        st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real">🚀 Painel de Conexão com os Servidores de Tráfego</div>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitulo-bloco-real">🤖 CONFIGURAÇÕES DA CAMPANHA (GOOGLE ADS API)</p>', unsafe_allow_html=True)
+        
+        st.text_input("Nome Técnico da Campanha:", value="Sales-Search-2026")
+        st.selectbox("Métrica de Foco do Leilão:", ["Conversões", "Cliques", "Parcela de impressões"])
+        st.number_input("Orçamento Financeiro Diário (R$):", min_value=10.0, value=50.0, step=5.0)
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    with col_direita:
+        st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real" style="text-align: right;">Handshake: <span style="color:#10b981;">Aprovado 🟢</span></div>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitulo-bloco-real">📡 PROTOCOLO DE TRANSMISSÃO EM LOTE</p>', unsafe_allow_html=True)
+        
+        st.text_input("Google Ads ID do Cliente:", value="123-456-7890")
+        st.write("")
+        if st.button("🚀 TRANSMITIR CAMPANHA COMPLETA DIRETO VIA API", key="btn_disparo_api"):
+            st.success("🎉 Campanha enviada com sucesso para os servidores do Google Ads!")
