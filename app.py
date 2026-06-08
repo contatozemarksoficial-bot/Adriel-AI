@@ -2,13 +2,13 @@ import streamlit as st
 import pandas as pd
 import time
 
-# Configuração de Layout Amplo Premium Black de Alta Tecnologia
-st.set_page_config(page_title="Adriel AI - Core Dashboard", layout="wide", initial_sidebar_state="collapsed")
+# Configuração premium de layout amplo (Ocupa 100% da largura da tela)
+st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", initial_sidebar_state="collapsed")
 
 # =============================================================================================================
 # INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO CLICAR NA TELA)
 # =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! O núcleo de Inteligência Artificial tridimensional está ativo nos servidores do Adriel A I. Handshake concluído."
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! O painel de controle do Adriel A I está ativo e sincronizado em três colunas."
 
 st.markdown(f"""
 <script>
@@ -18,7 +18,7 @@ st.markdown(f"""
             msg.text = "{texto_boas_vindas}";
             msg.lang = "pt-BR";
             msg.rate = 1.0;
-            msg.pitch = 0.85;
+            msg.pitch = 0.9;
             window.speechSynthesis.speak(msg);
             window.audioDisparado = true;
         }}
@@ -27,13 +27,13 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DE CÓDIGO CSS PREMIUM DE ELITE (ESTILO DE LUXO 3 COLUNAS E BOTÕES INTERATIVOS)
+# INJEÇÃO DE CSS DE ALTO PADRÃO (DESATIVA SIDEBAR CINZA DA GEMINI E ADICIONA O SINAL PISCANTE)
 # =============================================================================================================
 st.markdown("""
 <style>
-    /* 🌌 Fundo Escuro Espacial do SaaS */
+    /* 🌌 Fundo Escuro Fiel ao Print da Imagem */
     .stApp {
-        background-color: #050814 !important;
+        background-color: #0b111e !important;
         color: #ffffff !important;
     }
     
@@ -45,24 +45,24 @@ st.markdown("""
         padding-right: 2rem !important;
     }
     
-    /* Oculta as bordas e menus padrão nativos do Streamlit */
+    /* Força a barra cinza lateral e cabeçalhos a sumirem para sempre */
     [data-testid="stSidebar"] { display: none !important; }
     [data-testid="stHeader"] { display: none !important; }
     
-    /* 🚨 ANIMAÇÃO DE SINAL NEON: ALTERNA AS BORDAS DO BOTÃO SELECIONADO (CIANO <-> VERDE) */
+    /* 🚨 ANIMAÇÃO DE SINAL: ALTERNA AS BORDAS DO BOTÃO SELECIONADO (CIANO <-> VERDE) */
     @keyframes sinal-pulsante {
-        0% { border-color: #00E5FF; box-shadow: 0 0 5px rgba(0, 229, 255, 0.2); }
-        50% { border-color: #00FF87; box-shadow: 0 0 15px rgba(0, 255, 135, 0.4); }
-        100% { border-color: #00E5FF; box-shadow: 0 0 5px rgba(0, 229, 255, 0.2); }
+        0% { border-color: #00E5FF; box-shadow: 0 0 8px rgba(0, 229, 255, 0.2); }
+        50% { border-color: #00FF87; box-shadow: 0 0 18px rgba(0, 255, 135, 0.4); }
+        100% { border-color: #00E5FF; box-shadow: 0 0 8px rgba(0, 229, 255, 0.2); }
     }
-    
+
     /* Linhas divisórias das 3 colunas verticais */
     .coluna-container {
         background-color: transparent;
         border-right: 1px solid #1e293b;
-        padding-right: 18px;
+        padding-right: 15px;
         padding-left: 10px;
-        min-height: 85vh;
+        min-height: 80vh;
     }
     
     /* Caixas horizontais superiores de logs e mini-dashboards */
@@ -75,16 +75,14 @@ st.markdown("""
         font-size: 13px !important;
     }
     
-    /* KPI Mini Box Estilo Vidro de alta tecnologia */
+    /* KPI Mini Box de alta tecnologia */
     .kpi-box {
-        background: linear-gradient(135deg, rgba(15,23,42,0.6) 0%, rgba(7,12,22,0.8) 100%); 
-        backdrop-filter: blur(4px);
-        padding: 12px 15px; 
+        background: #0f172a; 
+        padding: 10px 15px; 
         border-radius: 8px; 
         border: 1px solid #1e293b; 
         text-align: center;
         box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-        animation: sinal-pulsante 5s infinite ease-in-out !important;
     }
     
     .subtitulo-bloco-real {
@@ -107,21 +105,20 @@ st.markdown("""
         border-radius: 6px !important;
         width: 100% !important;
         cursor: pointer !important;
-        animation: sinal-pulsante 3s infinite ease-in-out !important; /* Pisca automático rápido */
+        animation: sinal-pulsante 3s infinite ease-in-out !important;
         transition: all 0.4s ease-in-out !important;
     }
     
-    /* Efeito ao passar o mouse: Desacelera a animação, dá zoom e brilha fixo */
     div.stButton > button:hover {
-        animation: none !important; /* Desacelera/para de piscar */
+        animation: none !important;
         background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%) !important;
         color: #050811 !important;
-        transform: scale(1.03) translateY(-2px) !important; /* Cresce de tamanho */
+        transform: scale(1.03) translateY(-2px) !important;
         box-shadow: 0px 10px 25px rgba(0, 255, 135, 0.6) !important;
         border-color: #ffffff !important;
     }
     
-    /* 📟 POLIMENTO EXCLUSIVO DA BARRA LATERAL ESQUERDA (MUDANÇA DE TAMANHO DELETADA) */
+    /* 📟 POLIMENTO E ALINHAMENTO DO MENU DA COLUNA 1 */
     .menu-lateral-btn {
         display: flex;
         flex-direction: column;
@@ -134,27 +131,18 @@ st.markdown("""
         color: #cbd5e1 !important;
         border: 2px solid #1e293b !important;
         text-align: left !important;
-        padding: 13px 18px !important;
+        padding: 12px 16px !important;
         font-size: 14px !important;
-        width: 98% !important; /* Obriga todas as caixas a terem o mesmo comprimento exato */
-        min-width: 98% !important;
-        max-width: 98% !important;
-        margin-bottom: 6px !important;
-        animation: sinal-pulsante 4s infinite ease-in-out !important; /* Pulsação lenta contínua */
+        width: 95% !important; 
+        margin-bottom: 5px !important;
+        animation: none !important;
     }
     
     .menu-lateral-btn div.stButton > button:hover {
-        animation: none !important;
         background: #1e293b !important;
         color: #00FF87 !important;
         border-color: #00E5FF !important;
-        box-shadow: 0 0 15px rgba(0, 229, 255, 0.5) !important;
-    }
-    
-    /* Customização fina para tabelas */
-    .stDataFrame {
-        border: 1px solid #1e293b !important;
-        border-radius: 8px !important;
+        box-shadow: 0 0 12 rgba(0, 229, 255, 0.5) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -166,9 +154,9 @@ if "pagina_atual" not in st.session_state:
 # =============================================================================================================
 # MONTAGEM RIGOROSA DA ESTRUTURA DE 3 COLUNAS SIMULTÂNEAS
 # =============================================================================================================
-col_esquerda, col_centro, col_direita = st.columns([0.8, 1.4, 1.0])
+col_esquerda, col_centro, col_direita = st.columns([0.75, 1.4, 1])
 
-# 🏢 COLUNA 1 (FIXA E IMUTÁVEL): LOGO ADRIEL AI + BOTÕES DO MENU LATERAL PADRONIZADOS
+# 🏢 COLUNA 1 (FIXA E IMUTÁVEL): LOGO ADRIEL AI + BOTÕES DO MENU LATERAL
 with col_esquerda:
     st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
     st.markdown("<h2 style='color: #60a5fa; font-size: 24px; font-weight: 800; margin-bottom:0;'>🤖 Adriel AI</h2>", unsafe_allow_html=True)
@@ -188,26 +176,35 @@ with col_esquerda:
     st.markdown('</div></div>', unsafe_allow_html=True)
 
 # =============================================================================================================
-# ROTEAMENTO DA ESTEIRA DAS PÁGINAS (COMPLETAMENTE PREENCHIDAS)
+# ROTEAMENTO DA ESTEIRA DAS PÁGINAS
 # =============================================================================================================
 
-# 🏠 PÁGINA: DASHBOARD INICIAL COMPLETO (RECHEADO CONTRA O VAZIO)
 if st.session_state.pagina_atual == "Dashboard":
     with col_centro:
         st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
-        
-        # Bloco Superior do Comandante
         st.markdown('<div class="header-box-real">👤 Olá, <b>José Marques</b>, Comandante do Adriel AI!</div>', unsafe_allow_html=True)
         
-        # 📈 INJEÇÃO DE CONTADORES EM LINHA NO MÓDULO 1 (PREENCHIMENTO VISUAL DOS MIL ACESSOS)
         col_mini1, col_mini2 = st.columns(2)
-        with col_mini1:
-            st.markdown('<div class="kpi-box"><span style="font-size: 11px; color: #64748b; font-weight: bold; text-transform: uppercase;">🔥 Cliques Analisados</span><br><span style="font-size: 20px; color: #00FF87; font-weight: 800;">14.250 mil</span></div>', unsafe_allow_html=True)
-        with col_mini2:
-            st.markdown('<div class="kpi-box"><span style="font-size: 11px; color: #64748b; font-weight: bold; text-transform: uppercase;">📡 Ofertas Ativas</span><br><span style="font-size: 20px; color: #00E5FF; font-weight: 800;">1.840 mil</span></div>', unsafe_allow_html=True)
+        with col_mini1: st.markdown('<div class="kpi-box"><span style="font-size:11px;color:#64748b;font-weight:bold;">🔥 CLIQUES HOJE</span><br><span style="font-size:20px;color:#00FF87;font-weight:800;">14.250 mil</span></div>', unsafe_allow_html=True)
+        with col_mini2: st.markdown('<div class="kpi-box"><span style="font-size:11px;color:#64748b;font-weight:bold;">📡 OFERTAS ATIVAS</span><br><span style="font-size:20px;color:#00E5FF;font-weight:800;">1.840 mil</span></div>', unsafe_allow_html=True)
         
         st.write("")
         st.markdown('<p class="subtitulo-bloco-real">MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</p>', unsafe_allow_html=True)
         
         dados_tabela = {
             "Name": [f"Produto-acanodiano {i}" for i in range(1, 10)],
+            "Comissões": ["3,00%", "2,00%", "1,00%", "1,00%", "1,00%", "2,00%", "2,00%", "1,00%", "1,00%"],
+            "Comissão": ["R$,15%", "R$,75%", "R$,25%", "R$,35%", "R$,25%", "R$,25%", "R$,25%", "R$,60%", "R$,60%"],
+            "Veredito da IA": ["APROVADO (Risco Baixo)"] * 9
+        }
+        st.dataframe(pd.DataFrame(dados_tabela), use_container_width=True, hide_index=True)
+        st.write("")
+        st.button("📄 [BAIXAR PLANILHA DE INTELIGÊNCIA (.CSV)]", key="btn_csv_dash")
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    with col_direita:
+        st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real" style="text-align: right;">🟢 Status: <span style="color: #10b981; font-weight:bold;">Sistema Online</span> | Chave Mestre Ativa</div>', unsafe_allow_html=True)
+        
+        col_mini3, col_mini4 = st.columns(2)
+        with col_mini3: st.markdown('<div class="kpi-box"><span style="font-size:11px;color:#64748b;font-weight:bold;">🛡️ PRE-SELLS NO AR</span><br><span style="font-size:20px;color:#ffffff;font-weight:800;">342 Ativas</span></div>', unsafe_allow_html=True)
