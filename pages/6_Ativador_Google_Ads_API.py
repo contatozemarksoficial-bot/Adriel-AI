@@ -3,8 +3,8 @@ import pandas as pd
 import time
 import re
 
-# Configuração premium de layout amplo Black para o Ativador Global/Nacional
-st.set_page_config(page_title="Adriel AI - Google Ads Suite Pro", layout="wide")
+# Configuração premium de layout amplo Black para o Ativador Passo a Passo Independente
+st.set_page_config(page_title="Adriel AI - Ativador Google Ads", layout="wide")
 
 # INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (BOTÕES NEON PERSONALIZADOS DE LUXO)
 st.markdown("""
@@ -29,164 +29,165 @@ st.markdown("""
         box-shadow: 0px 6px 20px rgba(0, 255, 135, 0.6) !important;
         color: #121212 !important;
     }
-    .stTabs [data-baseweb="tab"] {
-        font-size: 16px !important;
-        font-weight: bold !important;
-    }
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🚀 MÓDULO 6: CENTRAL DE ATIVAÇÃO GLOBAL & NACIONAL (GOOGLE ADS API)")
-st.markdown("Suba campanhas validadas tanto para o mercado brasileiro quanto para a gringa com segmentação automática de moedas e regras.")
+st.title("🚀 MÓDULO 6: ASSISTENTE DE CRIAÇÃO E ATIVAÇÃO (GOOGLE ADS API)")
+st.markdown("Monte sua campanha do zero passo a passo com auditoria de políticas integradas e envie direto via API.")
 st.write("---")
 
-# Inicializador seguro para controlar em qual aba o usuário está navegando
-if "aba_ativa" not in st.session_state:
-    st.session_state.aba_ativa = 0
+# Inicialização segura das etapas do funil de passos lineares na memória do servidor
+if "passo_wizard" not in st.session_state:
+    st.session_state.passo_wizard = 1
 
-# Criação das abas que imitam o mapa real e completo do Google Ads
-abas_titulos = ["🌍 1. Conexão e Mercado", "💰 2. Orçamento e Lances", "🎯 3. Palavras-Chave", "📝 4. Criar Anúncio (RSA)", "🚀 5. Enviar Campanha"]
-abas = st.tabs(abas_titulos)
+# Inicialização estável dos parâmetros globais da campanha para evitar resets indesejados
+if "wizard_mercado" not in st.session_state: st.session_state.wizard_mercado = "🇺🇸 Campanhas Internacionais (Gringa)"
+if "wizard_cust_id" not in st.session_state: st.session_state.wizard_cust_id = "1234567890"
+if "wizard_prod" not in st.session_state: st.session_state.wizard_prod = "Citrus Burn"
+if "wizard_geo" not in st.session_state: st.session_state.wizard_geo = "Estados Unidos 🇺🇸"
+if "wizard_orc" not in st.session_state: st.session_state.wizard_orc = 20.0
+if "wizard_cpc" not in st.session_state: st.session_state.wizard_cpc = 0.65
 
-# CHAVE SELETORA GLOBAL FIXA NO TOPO DA MEMÓRIA
-if "mercado_selecionado" not in st.session_state:
-    st.session_state.mercado_selecionado = "🇺🇸 Campanhas Internacionais (Gringa)"
+# Barra de progresso visual do funil sequencial no topo da página
+st.progress((st.session_state.passo_wizard - 1) / 4)
+st.markdown(f"**Progresso da Estruturação: Etapa {st.session_state.passo_wizard} de 4**")
+st.write("---")
 
 # =============================================================================================================
-# ABA 1: CONEXÃO E MERCADO
+# ETAPA 1: CONEXÃO DE CREDENCIAIS E SELEÇÃO DE MERCADO
 # =============================================================================================================
-with abas[0]:
-    st.markdown("### 🌍 PASSO 1: DIRECIONAMENTO DE MERCADO E CREDENCIAIS")
+if st.session_state.passo_wizard == 1:
+    st.markdown("### 🔑 PASSO 1: DIRECIONAMENTO DE MERCADO E CREDENCIAIS")
     
-    tipo_mercado = st.radio(
+    rad_mercado = st.radio(
         "Escolha o Tipo de Campanha que deseja criar:",
         ["🇺🇸 Campanhas Internacionais (Gringa)", "🇧🇷 Campanhas Nacionais (Brasil)"],
-        key="mercado_radio_select"
+        index=0 if "🇺🇸" in st.session_state.wizard_mercado else 1,
+        key="radio_wizard_mercado"
     )
-    st.session_state.mercado_selecionado = tipo_mercado
+    st.session_state.wizard_mercado = rad_mercado
 
     col_c1, col_c2 = st.columns(2)
     with col_c1:
-        customer_id = st.text_input("Google Ads Customer ID (Somente números):", value="1234567890", key="cust_id_input")
-        if "🇺🇸" in tipo_mercado:
-            produto_input = st.text_input("Nome do Produto Gringo:", value="Citrus Burn", key="prod_input_gringa")
+        st.session_state.wizard_cust_id = st.text_input("Google Ads Customer ID (Somente números):", value=st.session_state.wizard_cust_id)
+        if "🇺🇸" in rad_mercado:
+            st.session_state.wizard_prod = st.text_input("Nome do Produto Gringo:", value=st.session_state.wizard_prod)
         else:
-            produto_input = st.text_input("Nome do Produto Nacional:", value="Protocolo Zero Gordura", key="prod_input_nacional")
+            if st.session_state.wizard_prod == "Citrus Burn":
+                st.session_state.wizard_prod = "Protocolo Zero Gordura"
+            st.session_state.wizard_prod = st.text_input("Nome do Produto Nacional:", value=st.session_state.wizard_prod)
+            
     with col_c2:
-        developer_token = st.text_input("Chave Developer Token (API):", value="API_DEVELOPER_TOKEN_SECURE", type="password", key="dev_token_input")
-        if "🇺🇸" in tipo_mercado:
-            pais_alvo = st.selectbox("País Alvo do Leilão (GEO):", ["Estados Unidos 🇺🇸", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"], key="geo_gringa")
+        developer_token = st.text_input("Chave Developer Token (API Oculta):", value="API_DEVELOPER_TOKEN_SECURE", type="password")
+        if "🇺🇸" in rad_mercado:
+            opcoes_geo = ["Estados Unidos 🇺🇸", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"]
+            geo_idx = opcoes_geo.index(st.session_state.wizard_geo) if st.session_state.wizard_geo in opcoes_geo else 0
+            st.session_state.wizard_geo = st.selectbox("País Alvo do Leilão (GEO):", opcoes_geo, index=geo_idx)
         else:
-            pais_alvo = st.selectbox("País Alvo do Leilão (GEO):", ["Brasil 🇧🇷"], key="geo_nacional")
+            st.session_state.wizard_geo = st.selectbox("País Alvo do Leilão (GEO):", ["Brasil 🇧🇷"])
 
     st.write("")
-    # Botão de Conexão Real-Time da API
-    if st.button("🔗 CONECTAR E AUTENTICAR CONTA GOOGLE ADS VIA API", key="btn_connect_api_google"):
-        with st.spinner("Autenticando chaves de acesso com os servidores do Google Ads..."):
-            time.sleep(1.0)
-            st.success(f"✅ CONEXÃO ESTABELECIDA! Conta {customer_id} sincronizada via API com sucesso!")
+    if st.button("🔗 CONECTAR CONTA VIA API & VALIDAR", key="btn_wiz_connect"):
+        with st.spinner("Conectando..."):
+            time.sleep(0.8)
+            st.success("✅ CONEXÃO ESTABELECIDA COM A API DO GOOGLE ADS!")
             
-    st.write("---")
-    st.markdown("💡 *Clique na aba de cima '💰 2. Orçamento e Lances' para configurar os valores.*")
+    st.write("")
+    if st.button("AVANÇAR PARA FINANCEIRO / LANCES ➔", key="btn_next_to_s2"):
+        st.session_state.passo_wizard = 2
+        st.rerun()
 
 # =============================================================================================================
-# ABA 2: ORÇAMENTO E LANCES
+# ETAPA 2: CONFIGURAÇÃO DE LANCES E ORÇAMENTOS
 # =============================================================================================================
-with abas[1]:
+elif st.session_state.passo_wizard == 2:
     st.markdown("### 💰 PASSO 2: CONFIGURAÇÃO FINANCEIRA DE LANCES (BID)")
-    col_b1, col_b2 = st.columns(2)
-
-    if "🇺🇸" in st.session_state.mercado_selecionado:
-        moeda_simbolo = "$"
-        val_orc = 20.0
-        val_cpc = 0.65
+    
+    if "🇺🇸" in st.session_state.wizard_mercado:
+        moeda = "$"
+        def_orc = 20.0
+        def_cpc = 0.65
     else:
-        moeda_simbolo = "R$"
-        val_orc = 50.0
-        val_cpc = 1.50
+        moeda = "R$"
+        def_orc = 50.0
+        def_cpc = 1.50
 
+    col_b1, col_b2 = st.columns(2)
     with col_b1:
-        orcamento_diario = st.number_input(f"Orçamento Diário de Escala ({moeda_simbolo}):", value=val_orc, step=5.0, key="orc_input")
+        st.session_state.wizard_orc = st.number_input(f"Orçamento Diário de Escala ({moeda}):", value=st.session_state.wizard_orc if st.session_state.wizard_orc != 20.0 or moeda=="$" else def_orc, step=5.0)
     with col_b2:
-        cpc_maximo = st.number_input(f"Limite Máximo de Custo por Clique (CPC Max {moeda_simbolo}):", value=val_cpc, step=0.05, key="cpc_input")
+        st.session_state.wizard_cpc = st.number_input(f"Limite Máximo de Custo por Clique ({moeda}):", value=st.session_state.wizard_cpc if st.session_state.wizard_cpc != 0.65 or moeda=="$" else def_cpc, step=0.05)
 
-    st.write("---")
-    st.markdown("💡 *Clique na aba de cima '🎯 3. Palavras-Chave' para injetar os termos.*")
+    st.write("")
+    col_nav1, col_nav2 = st.columns(2)
+    with col_nav1:
+        if st.button("⬅ Voltar para Passo 1", key="btn_back_to_s1"):
+            st.session_state.passo_wizard = 1
+            st.rerun()
+    with col_nav2:
+        if st.button("AVANÇAR PARA PALAVRAS-CHAVE ➔", key="btn_next_to_s3"):
+            st.session_state.passo_wizard = 3
+            st.rerun()
 
 # =============================================================================================================
-# ABA 3: PALAVRAS-CHAVE MOLDADAS POR MERCADO
+# ETAPA 3: INJEÇÃO E GERAÇÃO DAS LISTAS DE PALAVRAS-CHAVE
 # =============================================================================================================
-with abas[2]:
+elif st.session_state.passo_wizard == 3:
     st.markdown("### 🎯 PASSO 3: ENGENHARIA DE PALAVRAS-CHAVE DO GRUPO")
-    prod = produto_input.strip()
-
+    prod = st.session_state.wizard_prod
+    
     col_kw1, col_kw2 = st.columns(2)
     with col_kw1:
-        if "🇺🇸" in st.session_state.mercado_selecionado:
+        if "🇺🇸" in st.session_state.wizard_mercado:
             lista_frase = f'"{prod} official website"\n"buy {prod} online"\n"{prod} discount price"'
         else:
             lista_frase = f'"{prod} site oficial"\n"comprar {prod} original"\n"{prod} desconto hoje"'
-        kw_frase = st.text_area("Palavras-Chave de Frase (Use aspas):", value=lista_frase, height=150, key="kw_frase_text")
+        kw_frase = st.text_area("Palavras-Chave de Frase (Use aspas):", value=lista_frase, height=180, key="wizard_kw_frase_txt")
     with col_kw2:
-        if "🇺🇸" in st.session_state.mercado_selecionado:
+        if "🇺🇸" in st.session_state.wizard_mercado:
             lista_negativas = "scam\ncomplaints\ningredients\nside_effects\nrefund"
         else:
-            lista_negativas = "gratis\npdf\ndownload\nmercado livre\nreclame aqui\nfunciona mesmo"
-        kw_negativa = st.text_area("Palavras-Chave Negativas de Segurança:", value=lista_negativas, height=150, key="kw_neg_text")
+            lista_negativas = "gratis\npdf\ndownload\nmercado livre\nreclame aqui"
+        kw_negativa = st.text_area("Palavras-Chave Negativas de Segurança:", value=lista_negativas, height=180, key="wizard_kw_neg_txt")
 
-    st.write("---")
-    st.markdown("💡 *Clique na aba de cima '📝 4. Criar Anúncio (RSA)' para redigir a copy.*")
+    st.write("")
+    col_nav1, col_nav2 = st.columns(2)
+    with col_nav1:
+        if st.button("⬅ Voltar para Passo 2", key="btn_back_to_s2"):
+            st.session_state.passo_wizard = 2
+            st.rerun()
+    with col_nav2:
+        if st.button("AVANÇAR PARA TEXTOS DO ANÚNCIO ➔", key="btn_next_to_s4"):
+            st.session_state.passo_wizard = 4
+            st.rerun()
 
 # =============================================================================================================
-# ABA 4: CONFIGURAÇÃO DE TEXTOS DO ANÚNCIO (RSA) MOLDADOS POR MERCADO
+# ETAPA 4: REDAÇÃO DO ANÚNCIO, DIAGNÓSTICO POLÍTICAS E DISPARO FINAL DA API
 # =============================================================================================================
-with abas[3]:
-    st.markdown("### 📝 PASSO 4: REDAÇÃO DO ANÚNCIO RESPONSIVO (RSA) & PROTOCOLO DE COMPLIANCE")
+elif st.session_state.passo_wizard == 4:
+    st.markdown("### 📝 PASSO 4: CRIAR ANÚNCIO RESPONSIVO & TRANSMITIR")
+    prod = st.session_state.wizard_prod
 
-    if "🇺🇸" in st.session_state.mercado_selecionado:
+    if "🇺🇸" in st.session_state.wizard_mercado:
         s_t1, s_t2, s_t3 = f"{prod} Official Website", f"Buy {prod} Online", f"Original {prod} Formula"
         s_d1 = f"Order {prod} from the official website today and get exclusive package discounts."
         s_d2 = "Get the original product with a 100% 60-day money-back guarantee. Secure checkout."
+        moeda_simbolo = "$"
     else:
         s_t1, s_t2, s_t3 = f"{prod} Site Oficial", f"Comprar {prod} Original", f"Adquira o {prod} Hoje"
         s_d1 = f"Adquira o {prod} direto no site oficial do fabricante com desconto exclusivo."
         s_d2 = "Garantia de satisfação total ou seu dinheiro de volta. Parcelamento em até 12x no cartão."
-
-    if "t1_val" not in st.session_state: st.session_state.t1_val = s_t1
-    if "t2_val" not in st.session_state: st.session_state.t2_val = s_t2
-    if "t3_val" not in st.session_state: st.session_state.t3_val = s_t3
-    if "d1_val" not in st.session_state: st.session_state.d1_val = s_d1
-    if "d2_val" not in st.session_state: st.session_state.d2_val = s_d2
+        moeda_simbolo = "R$"
 
     col_t1, col_t2 = st.columns(2)
     with col_t1:
-        t1 = st.text_input("Título Principal 1 (Pin 1):", value=st.session_state.t1_val, key="t1_box_edit")
-        t2 = st.text_input("Título Principal 2 (Pin 2):", value=st.session_state.t2_val, key="t2_box_edit")
-        t3 = st.text_input("Título Principal 3 (Pin 3):", value=st.session_state.t3_val, key="t3_box_edit")
+        t1 = st.text_input("Título Principal 1 (Pin 1):", value=s_t1, key="w_t1_box")
+        t2 = st.text_input("Título Principal 2 (Pin 2):", value=s_t2, key="w_t2_box")
+        t3 = st.text_input("Título Principal 3 (Pin 3):", value=s_t3, key="w_t3_box")
     with col_t2:
-        d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=st.session_state.d1_val, max_chars=90, key="d1_box_edit")
-        d2 = st.text_input("Descrição Secundária:", value=st.session_state.d2_val, max_chars=90, key="d2_box_edit")
-
-    st.session_state.t1_val, st.session_state.t2_val, st.session_state.t3_val = t1, t2, t3
-    st.session_state.d1_val, st.session_state.d2_val = d1, d2
+        d1 = st.text_input("Descrição do Anúncio (Máx 90 letras):", value=s_d1, max_chars=90, key="w_d1_box")
+        d2 = st.text_input("Descrição Secundária:", value=s_d2, max_chars=90, key="w_d2_box")
 
     st.write("---")
     st.markdown("#### 🔍 DIAGNÓSTICO DO RASTREADOR DE POLÍTICAS (RAIO-X DE BLOQUEIO)")
 
-    regras_correcao = {"cure": "support formula", "heals": "supports health", "weight loss instantly": "natural weight support", "cura": "formula de suporte", "cura mesmo": "auxilia na saude", "emagrece imediato": "emagrecimento saudavel"}
-
-    texto_completo_original = (t1 + " " + t2 + " " + t3 + " " + d1 + " " + d2).lower()
-    violacao_termo = False
-    violacao_capital = False
-    gatilho_detalhado = ""
-
-    for termo_ruim in regras_correcao.keys():
-        padrao_palavra_exata = r'\b' + re.escape(termo_ruim) + r'\b'
-        if re.search(padrao_palavra_exata, texto_completo_original):
-            violacao_termo = True
-            gatilho_detalhado = termo_ruim
-            break
-            
-    letras_grandes = re.findall(r'\b[A-Z]{3,}\b', t1 + " " + t2 + " " + t3)
-    if not violacao_termo and letras_grandes:
-        violacao_capital = True
