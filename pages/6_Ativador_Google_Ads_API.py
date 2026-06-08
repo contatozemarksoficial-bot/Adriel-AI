@@ -1,4 +1,4 @@
-import streamlit st as st
+import streamlit as st
 import pandas as pd
 import time
 import re
@@ -48,7 +48,14 @@ if "wizard_geo" not in st.session_state: st.session_state.wizard_geo = "Estados 
 if "wizard_orc" not in st.session_state: st.session_state.wizard_orc = 20.0
 if "wizard_cpc" not in st.session_state: st.session_state.wizard_cpc = 0.65
 
-# Barra de progresso visual do funil sequencial no topo da página (Ajustada para 4 etapas reais)
+# Inicialização segura das variáveis de controle de anúncios
+if "t1_val" not in st.session_state: st.session_state.t1_val = ""
+if "t2_val" not in st.session_state: st.session_state.t2_val = ""
+if "t3_val" not in st.session_state: st.session_state.t3_val = ""
+if "d1_val" not in st.session_state: st.session_state.d1_val = ""
+if "d2_val" not in st.session_state: st.session_state.d2_val = ""
+
+# Barra de progresso visual do funil sequencial no topo da página
 st.progress((st.session_state.passo_wizard - 1) / 3)
 st.markdown(f"**Progresso da Estruturação: Etapa {st.session_state.passo_wizard} de 4**")
 st.write("---")
@@ -162,7 +169,7 @@ elif st.session_state.passo_wizard == 3:
             st.rerun()
 
 # =============================================================================================================
-# ETAPA 4: REDAÇÃO DO ANÚNCIO, DIAGNÓSTICO POLÍTICAS E DISPARO REAL-TIME DA API NO MESMO BLOCO (CORREÇÃO DE TRAVA)
+# ETAPA 4: REDAÇÃO DO ANÚNCIO, DIAGNÓSTICO POLÍTICAS E DISPARO REAL-TIME DA API NO MESMO BLOCO
 # =============================================================================================================
 elif st.session_state.passo_wizard == 4:
     st.markdown("### 📝 PASSO 4: CRIAR ANÚNCIO RESPONSIVO (RSA) & TRANSMITIR PARA O GOOGLE ADS")
@@ -179,13 +186,7 @@ elif st.session_state.passo_wizard == 4:
         s_d2 = "Garantia de satisfação total ou seu dinheiro de volta. Parcelamento em até 12x no cartão."
         moeda_simbolo = "R$"
 
-    # Garante o preenchimento inicial limpo na troca de mercado de forma persistente
     if st.session_state.t1_val == "": st.session_state.t1_val = s_t1
     if st.session_state.t2_val == "": st.session_state.t2_val = s_t2
     if st.session_state.t3_val == "": st.session_state.t3_val = s_t3
     if st.session_state.d1_val == "": st.session_state.d1_val = s_d1
-    if st.session_state.d2_val == "": st.session_state.d2_val = s_d2
-
-    col_t1, col_t2 = st.columns(2)
-    with col_t1:
-        t1 = st.text_input("Título Principal 1 (Pin 1):", value=st.session_state.t1_val, key="w_t1_box")
