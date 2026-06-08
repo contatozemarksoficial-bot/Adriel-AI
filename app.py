@@ -6,9 +6,9 @@ import time
 st.set_page_config(page_title="Adriel AI - Core Dashboard", layout="wide", initial_sidebar_state="expanded")
 
 # =============================================================================================================
-# INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO ENTRAR NA TELA)
+# INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO CLICAR NA TELA)
 # =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! Todos os sistemas e a API do Google Ads estão prontos na memória ativa."
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! Painel holográfico tridimensional ativado. Motores e chassi síncronos na memória."
 
 st.markdown(f"""
 <script>
@@ -27,7 +27,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (ROBÔ NATIVO EM VETOR SEM LINKS EXTERNOS)
+# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (ANIMAÇÕES DOS ANÉIS HOLOGRÁFICOS E FLUTUAÇÃO)
 # =============================================================================================================
 st.markdown("""
 <style>
@@ -43,7 +43,7 @@ st.markdown("""
         border-right: 1px solid #1e293b !important;
     }
     
-    /* 🚨 ANIMAÇÃO DO MENU LATERAL PULSAR NEON */
+    /* 🚨 ANIMAÇÃO PULSAR DO MENU LATERAL */
     @keyframes pulsa-neon {
         0% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); }
         50% { border-color: #00FF87; box-shadow: 0 0 15px rgba(0, 255, 135, 0.4); }
@@ -66,7 +66,7 @@ st.markdown("""
         display: block !important;
     }
     
-    /* 🎨 ANIMAÇÃO QUE ALTERNA AS CORES DAS BORDAS (CIANO <-> VERDE) */
+    /* 🎨 ANIMAÇÃO DA CAIXA DE BOAS-VINDAS (ALTERNA CIANO <-> VERDE) */
     @keyframes alterna-cores {
         0% { border-color: #00E5FF; box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2); }
         50% { border-color: #00FF87; box-shadow: 0px 8px 32px rgba(0, 255, 135, 0.3); }
@@ -77,31 +77,33 @@ st.markdown("""
         background: linear-gradient(135deg, #0f172a 0%, #050811 100%) !important;
         border: 2px solid #00E5FF !important;
         border-radius: 16px !important;
-        padding: 30px !important;
-        margin-bottom: 35px !important;
+        padding: 25px !important;
+        margin-bottom: 25px !important;
         animation: alterna-cores 5s infinite ease-in-out !important;
     }
     
-    /* 🤖 ANIMAÇÃO DE PATRULHA DO ROBÔ REAL NO COMPRIMENTO DA TELA */
-    @keyframes patrulha-render {
-        0% { left: 5%; transform: scaleX(1) translateY(0px); }
-        25% { transform: scaleX(1) translateY(-8px); }
-        50% { left: 75%; transform: scaleX(-1) translateY(0px); }
-        75% { transform: scaleX(-1) translateY(-8px); }
-        100% { left: 5%; transform: scaleX(1) translateY(0px); }
-    }
-
-    .robo-container-fixed {
-        position: fixed;
-        bottom: 20px;
-        left: 5%;
-        width: 120px;
-        z-index: 99999;
-        pointer-events: none;
-        animation: patrulha-render 16s infinite linear !important;
+    /* 🔄 ANIMAÇÃO DE ROTAÇÃO DOS FEIXES E PAINÉIS REDONDOS DA FOTO */
+    @keyframes girar-holograma {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
     
-    /* Bloco de Monitoramento Executivo */
+    @keyframes pulsar-brilho {
+        0% { opacity: 0.4; }
+        50% { opacity: 1; }
+        100% { opacity: 0.4; }
+    }
+
+    .anel-rotativo {
+        transform-origin: center;
+        animation: girar-holograma 20s infinite linear;
+    }
+    
+    .painel-pulsante {
+        animation: pulsar-brilho 3s infinite ease-in-out;
+    }
+
+    /* Bloco dos Cards de Status */
     .status-card {
         background-color: #0f172a !important;
         border: 1px solid #1e293b !important;
@@ -114,27 +116,75 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DO ROBÔ CONSTRUÍDO VIA VETOR GEOMÉTRICO DIRETO NA TELA (SISTEMA NATIVO IMPOSSÍVEL DE QUEBRAR)
+# CLONE OPERACIONAL DA FOTO: O ROBÔ HUMANOIDE COORDENANDO OS PAINÉIS EM CAD-SVG NATIVO
 # =============================================================================================================
 st.markdown("""
-<div class="robo-container-fixed">
-    <svg viewBox="0 0 100 100" width="100" height="100" style="filter: drop-shadow(0px 0px 12px #00FF87);">
-        <!-- Cabeça Humanoide Branca do Robô -->
-        <rect x="25" y="20" width="50" height="40" rx="12" fill="#ffffff" stroke="#00E5FF" stroke-width="3"/>
-        <!-- Painéis Tecnológicos Azuis e Olhos de LED Acesos -->
-        <circle cx="42" cy="36" r="6" fill="#00E5FF"/>
-        <circle cx="58" cy="36" r="6" fill="#00E5FF"/>
-        <circle cx="42" cy="36" r="2" fill="#050811"/>
-        <circle cx="58" cy="36" r="2" fill="#050811"/>
-        <!-- Boca de Sinal de Áudio Neon -->
-        <rect x="42" y="48" width="16" height="4" fill="#00FF87" rx="2"/>
-        <!-- Antenas do Radar Holográfico do Topo -->
-        <line x1="50" y1="20" x2="50" y2="4" stroke="#00FF87" stroke-width="4"/>
-        <circle cx="50" cy="4" r="5" fill="#00FF87"/>
-        <!-- Corpo e Chassi Metálico -->
-        <rect x="36" y="60" width="28" height="20" rx="4" fill="#0f172a" stroke="#00E5FF" stroke-width="2"/>
-        <!-- Luz de Core de Energia no Peito -->
-        <circle cx="50" cy="70" r="4" fill="#00FF87"/>
+<div style="text-align: center; margin-bottom: 20px;">
+    <svg viewBox="0 0 600 240" width="100%" height="240" style="background: transparent;">
+        <!-- 🌀 ANÉIS E ARCOS HOLOGRÁFICOS ESQUERDOS (GIRANDO) -->
+        <g class="anel-rotativo" style="transform-origin: 120px 120px;">
+            <circle cx="120" cy="120" r="50" fill="none" stroke="#00E5FF" stroke-width="2" stroke-dasharray="10, 15" opacity="0.7"/>
+            <circle cx="120" cy="120" r="70" fill="none" stroke="#00FF87" stroke-width="1.5" stroke-dasharray="40, 30" opacity="0.5"/>
+            <path d="M 60,120 A 60,60 0 0,1 180,120" fill="none" stroke="#00E5FF" stroke-width="4" opacity="0.8"/>
+        </g>
+        <!-- Painel de Dados Flutuante à Esquerda -->
+        <g class="painel-pulsante">
+            <rect x="50" y="40" width="80" height="30" rx="5" fill="rgba(0,229,255,0.1)" stroke="#00E5FF" stroke-width="1"/>
+            <text x="60" y="60" fill="#00E5FF" font-size="10" font-family="sans-serif" font-weight="bold">AUDIT: OK</text>
+            <line x1="120" y1="120" x2="250" y2="100" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.6"/>
+        </g>
+
+        <!-- 🪐 PAINEL REDONDO DA DIREITA DA FOTO (A ESFERA TECNOLÓGICA) -->
+        <g class="anel-rotativo" style="transform-origin: 480px 120px;">
+            <circle cx="480" cy="120" r="55" fill="none" stroke="#00E5FF" stroke-width="2" stroke-dasharray="5, 8" opacity="0.8"/>
+            <circle cx="480" cy="120" r="40" fill="none" stroke="#00FF87" stroke-width="3" stroke-dasharray="20, 10" opacity="0.6"/>
+            <circle cx="480" cy="120" r="20" fill="none" stroke="#00E5FF" stroke-width="1" opacity="0.4"/>
+            <!-- Raios do Globo -->
+            <line x1="425" y1="120" x2="535" y2="120" stroke="#00E5FF" stroke-width="1" opacity="0.5"/>
+            <line x1="480" y1="65" x2="480" y2="175" stroke="#00E5FF" stroke-width="1" opacity="0.5"/>
+        </g>
+        <g class="painel-pulsante">
+            <line x1="480" y1="120" x2="350" y2="100" stroke="#00FF87" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.6"/>
+        </g>
+
+        <!-- 🤖 O ROBÔ HUMANOIDE CENTRAL (CORPO, BRAÇOS E MÃOS ACIONANDO OS PAINÉIS) -->
+        <g style="transform: translate(220px, 10px);">
+            <!-- Cabeça do Robô -->
+            <rect x="55" y="20" width="50" height="55" rx="15" fill="#ffffff" stroke="#00E5FF" stroke-width="3"/>
+            <!-- Orelhas / Sensores Laterais -->
+            <rect x="47" y="35" width="8" height="25" rx="4" fill="#0f172a" stroke="#00E5FF" stroke-width="1.5"/>
+            <rect x="105" y="35" width="8" height="25" rx="4" fill="#0f172a" stroke="#00E5FF" stroke-width="1.5"/>
+            <!-- Olhos de LED Ciano Acesos -->
+            <circle cx="68" cy="42" r="5" fill="#00E5FF"/>
+            <circle cx="92" cy="42" r="5" fill="#00E5FF"/>
+            <circle cx="68" cy="42" r="1.5" fill="#050811"/>
+            <circle cx="92" cy="42" r="1.5" fill="#050811"/>
+            <!-- Detalhe da Testa/Neon -->
+            <path d="M 65,20 L 80,32 L 95,20" fill="none" stroke="#00FF87" stroke-width="2"/>
+            <!-- Boca Eletrônica -->
+            <rect x="70" y="58" width="20" height="3" fill="#00FF87" rx="1.5"/>
+            
+            <!-- Pescoço Articulado -->
+            <rect x="70" y="75" width="20" height="12" fill="#334155" stroke="#1e293b"/>
+            
+            <!-- Torso / Peito Mecânico -->
+            <path d="M 40,87 L 120,87 L 110,170 L 50,170 Z" fill="#ffffff" stroke="#00E5FF" stroke-width="2.5"/>
+            <!-- Core de Energia Azul no Peito -->
+            <rect x="65" y="105" width="30" height="40" rx="6" fill="#0f172a" stroke="#00FF87" stroke-width="2"/>
+            <circle cx="80" cy="125" r="8" fill="#00E5FF" class="painel-pulsante"/>
+
+            <!-- 💪 BRAÇO ESQUERDO TOCANDO O PAINEL DE CONEXÃO -->
+            <path d="M 40,95 L -10,120 L -60,95" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 40,95 L -10,120 L -60,95" fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Mão tocando o arco holográfico -->
+            <circle cx="-60" cy="95" r="8" fill="#00E5FF" class="painel-pulsante"/>
+
+            <!-- 💪 BRAÇO DIREITO OPERANDO A ESFERA -->
+            <path d="M 120,95 L 170,120 L 220,95" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 120,95 L 170,120 L 220,95" fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Mão tocando a esfera tecnológica -->
+            <circle cx="220" cy="95" r="8" fill="#00FF87" class="painel-pulsante"/>
+        </g>
     </svg>
 </div>
 """, unsafe_allow_html=True)
@@ -144,48 +194,5 @@ st.markdown("""
 # =============================================================================================================
 st.markdown("""
 <div class="robo-card-welcome">
-    <h1 style='margin-top: 0; font-size: 27px; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>🛸 CENTRAL DE INTELIGÊNCIA: ADRIEL AI</h1>
+    <h1 style='margin-top: 0; font-size: 28px;'>🛸 INTERFACE HOLOGRÁFICA: ADRIEL AI</h1>
     <p style='margin: 15px 0 0 0; font-size: 16px; color: #cbd5e1; line-height: 1.6;'>
-        "Seja muito bem-vindo, <b>Comandante José Marques da Silva</b>! A estrutura mestre está calibrada. 
-        Observe que as bordas da central alternam de cor e o meu <b>Chassi Digitalizado</b> está navegando 
-        em patrulha e flutuando na parte inferior do software. Clique na tela para ativar os alto-falantes."
-    </p>
-    <div style='margin-top: 20px;'>
-        <span style='background: #00FF87; color: #050811; padding: 6px 14px; font-weight: bold; border-radius: 20px; font-size: 12px; box-shadow: 0px 4px 10px rgba(0,255,135,0.3);'>
-            SISTEMA COM ÁUDIO DE VOZ ATIVO 🔊
-        </span>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-st.write("")
-
-# =============================================================================================================
-# CARDS ESTATÍSTICOS GLOBAIS (REQUINTE EM TELA CHEIA)
-# =============================================================================================================
-st.markdown("### 📊 STATUS DA INFRAESTRUTURA EM TEMPO REAL")
-st.write("")
-
-col_c1, col_c2, col_c3 = st.columns(3)
-with col_c1:
-    st.markdown('<div class="status-card"><h4 style="color: #60a5fa; margin-top:0;">📡 SERVIDORES MESTRES</h4><h2 style="margin: 10px 0; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ONLINE 🟢</h2><p style="color: #94a3b8; font-size: 13px; margin:0;">Handshake síncrono com o GitHub</p></div>', unsafe_allow_html=True)
-with col_c2:
-    st.markdown('<div class="status-card" style="border-color: #00FF87;"><h4 style="color: #00FF87; margin-top:0;">🔑 GOOGLE ADS API</h4><h2 style="margin: 10px 0; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AUTENTICADA 🔗</h2><p style="color: #94a3b8; font-size: 13px; margin:0;">Protocolo OAuth 2.0 Ativo e Pronto</p></div>', unsafe_allow_html=True)
-with col_c3:
-    st.markdown('<div class="status-card"><h4 style="color: #60a5fa; margin-top:0;">💻 PÁGINAS PRE-SELL</h4><h2 style="margin: 10px 0; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PROTEGIDAS 🛡️</h2><p style="color: #94a3b8; font-size: 13px; margin:0;">Roteamento de comissão Hostinger</p></div>', unsafe_allow_html=True)
-
-st.write("---")
-
-# =============================================================================================================
-# GRÁFICO GLOBAL DE VOLUME ANALISADO
-# =============================================================================================================
-st.markdown("### 📈 MONITORAMENTO VOLUMÉTRICO DAS PLATAFORMAS (CLICKBANK / HOTMART)")
-st.write("")
-meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-valores_envio = [310 + (i * 45) for i in range(12)]
-df_envio = pd.DataFrame({"Volume de Dados Processados": valores_envio}, index=meses)
-st.bar_chart(df_envio, use_container_width=True, color="#00E5FF")
-
-# Rodapé profissional
-st.write("---")
-st.markdown("<p style='text-align: center; font-size: 11px; color: #475569;'>© 2026 Adriel AI - Ferramenta Exclusiva de Inteligência para Afiliados Elite. Todos os Direitos Reservados.</p>", unsafe_allow_html=True)
