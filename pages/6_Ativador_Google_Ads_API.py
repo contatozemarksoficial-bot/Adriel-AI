@@ -1,69 +1,28 @@
-import streamlit as st
-
-# Definições de constantes
-OBJETIVOS_CAMPANHA = [
-    "Vendas",
-    "Leads",
-    "Tráfego do site",
-    "Promoção de app",
-    "Alcance do YouTube",
-    "Visitas a lojas",
-    "Criar uma campanha sem orientação"
-]
-
-TIPOS_CAMPANHA = [
-    "Performance Max",
-    "Shopping",
-    "Geração de demanda",
-    "Pesquisar",
-    "Vídeo",
-    "Rede de Display"
-]
-
-# Configuração da página
-st.set_page_config(page_title="Adriel AI - Google Ads Pro Suite", layout="wide")
-
-# Inicialização do estado
-if "ads_passo" not in st.session_state:
-    st.session_state.ads_passo = 1
-if "v_objetivo" not in st.session_state:
-    st.session_state.v_objetivo = None
-
-# Barra de progresso
-st.progress((st.session_state.ads_passo - 1) / 6)
-st.markdown(f"**Progresso: Passo {st.session_state.ads_passo} de 6**")
-st.write("---")
-
-# Passo 1: Escolher objetivo
+# =============================================================================================================
+# PASSO 1: ESCOLHER SEU OBJETIVO DE CAMPANHA & METAS DE CONVERSÃO
+# =============================================================================================================
 if st.session_state.ads_passo == 1:
     st.markdown("### 🎯 PASSO 1: ESCOLHER SEU OBJETIVO")
-    obj_sel = st.radio("Selecione a meta:", OBJETIVOS_CAMPANHA)
-    if st.button("PRÓXIMO PASSO ➔"):
-        st.session_state.v_objetivo = obj_sel
+    st.markdown("Escolha um objetivo para personalizar a experiência de acordo com as metas e configurações mais adequadas para sua campanha.")
+    
+    obj_sel = st.radio(
+        "Selecione a meta que ajudaria esta campanha a alcançar o sucesso de acordo com seus critérios:",
+        OBJETIVOS_CAMPANHA, index=0, key="radio_step1_meta"
+    )
+    
+    st.write("---")
+    st.markdown("#### ⚙️ Usar estas metas de conversão para melhorar Vendas")
+    st.markdown("Metas de conversão identificadas como padrão da conta usarão dados de todas as suas campanhas para melhorar a estratégia de lances e o desempenho da campanha.")
+    
+    col1, col2, col3 = st.columns(3)
+    with col1: st.info("**Metas de conversão**\n\nCompras (padrão da conta)")
+    with col2: st.info("**Origem da conversão**\n\nSite")
+    with col3: st.info("**Ações de conversão**\n\n1 ação")
+    
+    st.write("")
+    if st.button("PRÓXIMO PASSO ➔", key="to_p2"):
+        st.session_state.v_objetivo = "Vendas" if "Vendas" in obj_sel else "Outros"
         st.session_state.ads_passo = 2
-        st.experimental_rerun()  # Força a atualização da página
-
-# Passo 2: Selecionar tipo de campanha
-elif st.session_state.ads_passo == 2:
-    st.markdown("### 🔎 PASSO 2: SELECIONE UM TIPO DE CAMPANHA")
-
-    if st.session_state.v_objetivo is None:
-        st.error("⚠️ Por favor, selecione um objetivo primeiro.")
-    else:
-        tipo_sel = st.radio("Escolha o formato:", TIPOS_CAMPANHA)
-        if st.button("PRÓXIMO PASSO ➔"):
-            st.session_state.ads_passo = 3
-            st.experimental_rerun()  # Força a atualização
-
-# Passo 3: Estratégia de lances
-elif st.session_state.ads_passo == 3:
-    st.markdown("### 💰 PASSO 3: ESTRATÉGIA DE LANCES")
-    # Aqui você pode adicionar suas opções de estratégia de lances
-    if st.button("PRÓXIMO PASSO ➔"):
-        st.session_state.ads_passo = 4
-        st.experimental_rerun()
-
-# Passo 4: Orçamento diário
-elif st.session_state.ads_passo == 4:
-    st.markdown("### 💵 PASSO 4: ORÇAMENTO DA CAMPANHA")
-    st
+        st.success("✅ Objetivo gravado na memória com sucesso!")
+        time.sleep(0.3)
+        st.rerun()
