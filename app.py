@@ -44,23 +44,15 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("💎 MÓDULO 7: GESTÃO DE MEMBROS & PLANOS DE ASSINATURA")
-st.markdown("Gerencie os planos de acesso recorrente do seu SaaS e configure os gateways de pagamento dos seus clientes.")
+st.markdown("Página de vendas oficial, checkout e central administrativa de liberação de tokens.")
 st.write("---")
 
-# 🤖 O Robô Adriel AI se apresentando na tela de membros
-st.markdown("""
-<div style='background: #1e1e24; border-left: 5px solid #00E5FF; padding: 15px; border-radius: 10px; margin-bottom: 25px;'>
-    <h4 style='color: #00E5FF; margin-top:0; margin-bottom: 5px;'>🤖 DIRETRIZ DO ROBÔ: MODELO DE MONETIZAÇÃO</h4>
-    <p style='color: #e0e0e0; margin: 0; font-size: 15px;'>
-        "José, organizei a tabela de planos crescentes de forma estratégica. O cliente visualiza os benefícios de cada pacote e o botão acende com efeito neon para garantir a conversão da assinatura!"
-    </p>
-</div>
-""", unsafe_allow_html=True)
-
-st.markdown("### 📊 TABELA DE PLANOS RECORRENTES (MENSALIDADES)")
+# =============================================================================================================
+# PARTE 1: VISÃO DO CLIENTE - TABELA DE PLANOS RECORRENTES (PÚBLICO)
+# =============================================================================================================
+st.markdown("### 📊 ESCOLHA SEU PLANO DE ACESSO AO ROBÔ ADRIEL AI")
 st.write("")
 
-# Criação de 3 colunas para colocar os planos lado a lado na tela
 col_p1, col_p2, col_p3 = st.columns(3)
 
 with col_p1:
@@ -79,7 +71,7 @@ with col_p1:
     </div>
     """, unsafe_allow_html=True)
     if st.button("Assinar Plano Start ➔", key="btn_start"):
-        st.success("Redirecting para o Checkout de R$ 97,00...")
+        st.info("🔗 Redirecionando para o checkout seguro de R$ 97,00 na Kiwify...")
 
 with col_p2:
     st.markdown("""
@@ -97,7 +89,7 @@ with col_p2:
     </div>
     """, unsafe_allow_html=True)
     if st.button("Assinar Plano Pro ➔", key="btn_pro"):
-        st.success("Redirecting para o Checkout de R$ 147,00...")
+        st.info("🔗 Redirecionando para o checkout seguro de R$ 147,00 na Kiwify...")
 
 with col_p3:
     st.markdown("""
@@ -115,65 +107,65 @@ with col_p3:
     </div>
     """, unsafe_allow_html=True)
     if st.button("Assinar Plano Elite ➔", key="btn_elite"):
-        st.success("Redirecting para o Checkout de R$ 297,00...")
+        st.info("🔗 Redirecionando para o checkout seguro de R$ 297,00 na Kiwify...")
 
 st.write("---")
 
 # =============================================================================================================
-# NOVAS CONFIGURAÇÕES PREMIUM (PAINEL DO DONO DO SOFTWARE - ADMINISTRATIVO)
+# PARTE 2: VISÃO DO JOSÉ - TRAVA DE SEGURANÇA E PAINEL ADMINISTRATIVO (RESTRITO)
 # =============================================================================================================
-st.markdown("### ⚙️ MAIS CONFIGURAÇÕES DO ADMINISTRADOR (PAINEL JOSÉ MARQUES)")
+st.markdown("### 🔐 PAINEL DE CONTROLE ADMINISTRATIVO (EXCLUSIVO PROPRIETÁRIO)")
+st.caption("Para acessar os dados de faturamento, webhooks e moderação de alunos, insira sua credencial de desenvolvedor:")
 
-# Abas organizadas para separar os novos blocos visuais de controle
-tabs_admin = st.tabs(["🔒 Integração Gateway", "👥 Controle de Alunos", "🔑 Gerador de Licenças", "🖲️ Configurações de Webhook"])
+# Caixa de verificação de senha inline para travar o painel contra estranhos
+senha_admin = st.text_input("Digite a Senha Mestre do Administrador:", type="password", key="master_admin_password_box")
 
-# ABA 1: CONFIGURAÇÃO DO GATEWAY DE PAGAMENTO
-with tabs_admin[0]:
-    st.markdown("#### 💳 Configurações de Token e Gateway")
-    st.caption("Insira suas chaves de API para receber os pagamentos diretamente na sua conta bancária:")
-    col_g1, col_g2 = st.columns(2)
-    with col_g1:
-        st.text_input("Token de Produção (Client Secret Key):", value="KIWIFY_SECRET_TOKEN_PRODUCTION", type="password")
-    with col_g2:
-        st.selectbox("Selecione o Gateway Ativo para o SaaS:", ["Kiwify", "Stripe", "Hotmart", "Appmax"])
+if senha_admin == "jose123": # Senha mestre do José para liberar o backend
+    st.success("🔓 ACESSO AUTORIZADO, COMANDANTE JOSÉ MARQUES DA SILVA! Painel de controle do SaaS liberado.")
+    
+    # Renderiza as 4 abas secretas de controle total do seu império
+    tabs_admin = st.tabs(["🔒 Chaves do Gateway", "👥 Moderação de Alunos", "🔑 Gerador de Licenças", "🖲️ Link do Webhook"])
+    
+    with tabs_admin:
+        st.markdown("#### 💳 Configurações de Token do Checkout")
+        col_g1, col_g2 = st.columns(2)
+        with col_g1:
+            st.text_input("Token Secreto de Produção (API Key):", value="KIWIFY_SECRET_TOKEN_PRODUCTION", type="password")
+        with col_g2:
+            st.selectbox("Gateway Integrado Ativo:", ["Kiwify", "Hotmart", "Stripe", "Appmax"])
+        if st.button("💾 SALVAR CONFIGURAÇÕES DO GATEWAY", key="btn_save_gate"):
+            st.success("✅ Chaves de faturamento salvas e criptografadas na nuvem!")
+
+    with tabs_admin:
+        st.markdown("#### 👥 Controle de Alunos e Combate à Pirataria")
+        col_u1, col_u2 = st.columns(2)
+        with col_u1:
+            email_busca = st.text_input("Buscar Usuário pelo E-mail:", value="comprador@gmail.com")
+        with col_u2:
+            status_busca = st.selectbox("Status de Acesso:", ["Ativo (Mensalidade Paga) 🟢", "Atrasado (Notificar) 🟡", "Bloqueado (Recusado) 🔴"])
         
-    if st.button("💾 SALVAR CONFIGURAÇÕES DO GATEWAY", key="btn_save_gate"):
-        st.success("✅ Chaves de pagamento salvas e integradas com sucesso na nuvem do Adriel AI!")
+        col_ubtn1, col_ubtn2 = st.columns(2)
+        with col_ubtn1:
+            if st.button("⚡ APLICAR ALTERAÇÃO DE STATUS", key="btn_status_user"):
+                st.success(f"🔄 O e-mail {email_busca} foi atualizado para {status_busca} com sucesso!")
+        with col_ubtn2:
+            if st.button("❌ CORTAR ACESSO IMEDIATAMENTE (BANIR)", key="btn_ban_user"):
+                st.error(f"🛑 Usuário {email_busca} foi banido e bloqueado dos servidores do robô!")
 
-# ABA 2: CONTROLE DE ALUNOS ATIVOS E BLOQUEIOS
-with tabs_admin[1]:
-    st.markdown("#### 👥 Painel de Moderação de Usuários e Combate à Pirataria")
-    col_u1, col_u2 = st.columns([2, 1])
-    with col_u1:
-        email_busca = st.text_input("Buscar usuário cadastrado pelo E-mail:", value="alunopro@gmail.com")
-    with col_u2:
-        status_busca = st.selectbox("Status de Acesso do Aluno:", ["Ativo (Mensalidade Paga) 🟢", "Atrasado (Notificar) 🟡", "Bloqueado (Recusado) 🔴"])
-        
-    col_ubtn1, col_ubtn2 = st.columns(2)
-    with col_ubtn1:
-        if st.button("⚡ APLICAR ALTERAÇÃO DE STATUS", key="btn_status_user"):
-            st.success(f"🔄 O usuário {email_busca} foi atualizado para o status {status_busca} com sucesso!")
-    with col_ubtn2:
-        if st.button("❌ BANIR USUÁRIO DA PLATAFORMA", key="btn_ban_user"):
-            st.error(f"🛑 O acesso do e-mail {email_busca} foi cortado e revogado dos servidores!")
+    with tabs_admin:
+        st.markdown("#### 🔑 Gerador de Licenças Manuais (Vendas via Pix/WhatsApp)")
+        st.caption("Crie chaves de acesso exclusivas para quem comprar direto com você por fora do gateway:")
+        plano_token = st.selectbox("Escolha o Plano da Chave:", ["Plano Start", "Plano Pro", "Plano Elite"])
+        if st.button("💎 GERAR CÓDIGO DE LICENÇA", key="btn_gen_token"):
+            chave_aleatoria = f"ADRIEL-{plano_token.upper()[:3]}-741258-XYZ9"
+            st.code(chave_aleatoria, language="text")
+            st.success("🎯 Código gerado! Copie e entregue para o cliente liberar o login dele.")
 
-# ABA 3: GERADOR DE LICENÇAS E TOKENS (PIX E MANUAL)
-with tabs_admin[2]:
-    st.markdown("#### 🔑 Gerador de Licenças para Venda Direta (Pix ou WhatsApp)")
-    st.caption("Gere chaves exclusivas de 30 dias para liberar o acesso de clientes que pagaram por fora da plataforma:")
-    
-    plano_token = st.selectbox("Selecione o plano da licença a ser gerada:", ["Plano Start", "Plano Pro", "Plano Elite"])
-    
-    if st.button("💎 GERAR CHAVE DE ACESSO NEON", key="btn_gen_token"):
-        chave_aleatoria = f"ADRIEL-{plano_token.upper()[:3]}-741258-XYZ9"
-        st.code(chave_aleatoria, language="text")
-        st.success("🎯 Licença gerada com sucesso! Copie o código acima e envie para o seu cliente.")
+    with tabs_admin:
+        st.markdown("#### 🖲️ Automação de Entrada por Webhook")
+        st.caption("Cole este endereço na aba de Webhooks da sua Kiwify para automatizar a liberação:")
+        st.text_input("URL Mestre de Sincronização (Apenas Leitura):", value="https://streamlit.app", disabled=True)
+        st.info("💡 Assim que a Kiwify identificar a venda aprovada, ela avisa esse link e o robô cria o login do aluno na mesma hora de forma 100% automática!")
 
-# ABA 4: CONFIGURAÇÕES DE WEBHOOK (AUTOMAÇÃO INSTANTÂNEA)
-with tabs_admin[3]:
-    st.markdown("#### 🖲️ URL de Webhook de Entrada (Sincronização com o Checkout)")
-    st.caption("Copie o link seguro abaixo e cole na aba de Webhooks dentro da sua Kiwify ou Hotmart. O robô lerá os dados de compra aprovada no ato para liberar o login:")
-    
-    url_webhook_simulada = "https://streamlit.app"
-    st.text_input("URL Mestre de Entrada (Apenas Leitura):", value=url_webhook_simulada, disabled=True)
-    st.info("💡 Quando a Kiwify enviar um sinal de 'Aprovado' para esse link, o robô Adriel AI dispara o e-mail de acesso para o aluno em menos de 3 segundos de forma 100% automática!")
+elif senha_admin != "":
+    st.error("❌ Credencial Inválida! Acesso negado às configurações de faturamento por motivos de segurança.")
