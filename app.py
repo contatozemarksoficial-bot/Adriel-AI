@@ -82,6 +82,7 @@ st.write("---")
 col_avatar, col_interface = st.columns([1.3, 1])
 
 with col_avatar:
+    # Card de boas-vindas com o robô Adriel AI se apresentando
     st.markdown("""
     <div class="robo-chassi">
         <h2 style='margin-top: 0;'>🤖 SYSTEM ONLINE: ADRIEL AI</h2>
