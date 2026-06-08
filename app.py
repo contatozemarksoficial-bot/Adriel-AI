@@ -1,254 +1,90 @@
 import streamlit as st
-import pandas as pd
 import time
 
-# Configuração de Layout Amplo Premium Black para a Entrada do SaaS
-st.set_page_config(page_title="Adriel AI - Core Dashboard", layout="wide", initial_sidebar_state="expanded")
+# Configuração de layout amplo e profissional Black de Alta Tecnologia
+st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide")
 
-# =============================================================================================================
-# INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO CLICAR NA TELA)
-# =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! O núcleo de Inteligência Artificial tridimensional está ativo nos servidores do Adriel A I. Handshake concluído."
-
-st.markdown(f"""
-<script>
-    document.addEventListener('click', function() {{
-        if (!window.audioDisparado) {{
-            var msg = new SpeechSynthesisUtterance();
-            msg.text = "{texto_boas_vindas}";
-            msg.lang = "pt-BR";
-            msg.rate = 1.0;
-            msg.pitch = 0.85;
-            window.speechSynthesis.speak(msg);
-            window.audioDisparado = true;
-        }}
-    }});
-</script>
-""", unsafe_allow_html=True)
-
-# =============================================================================================================
-# INJEÇÃO DE CÓDIGO CSS PREMIUM DE ELITE (ESTILO BLACK E PISCADO NEON DO MENU)
-# =============================================================================================================
+# INJEÇÃO DE CÓDIGO CSS PREMIUM DE ELITE (BOTÕES NEON E ANIMAÇÕES)
 st.markdown("""
 <style>
-    /* Fundo Escuro de Luxo */
-    .stApp {
-        background-color: #050811 !important;
-        color: #ffffff !important;
-    }
-    
-    /* Customização da Barra Lateral Esquerda */
-    [data-testid="stSidebar"] {
-        background-color: #02040a !important;
-        border-right: 1px solid #1e293b !important;
-    }
-    
-    /* ANIMAÇÃO PULSAR DO MENU LATERAL */
-    @keyframes pulsa-neon {
-        0% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); }
-        50% { border-color: #00FF87; box-shadow: 0 0 15px rgba(0, 255, 135, 0.4); }
-        100% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); }
-    }
-
-    [data-testid="stSidebarNav"] ul li a span {
-        color: #ffffff !important; 
+    /* Estilização dos Botões de Navegação Crescente */
+    .stButton > button {
+        background: linear-gradient(135deg, #007BFF 0%, #00E5FF 100%) !important;
+        color: white !important;
+        font-size: 16px !important;
         font-weight: bold !important;
-        font-size: 14px !important;
-    }
-    
-    [data-testid="stSidebarNav"] ul li a {
-        background-color: #0f172a !important; 
-        border: 2px solid #1e293b !important;
-        border-radius: 8px !important;
-        margin-bottom: 8px !important;
-        padding: 12px 14px !important;
-        animation: pulsa-neon 3s infinite ease-in-out !important;
-        display: block !important;
-    }
-    
-    /* ANIMAÇÃO DA CAIXA DE BOAS-VINDAS (ALTERNA CIANO <-> VERDE) */
-    @keyframes alterna-cores {
-        0% { border-color: #00E5FF; box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2); }
-        50% { border-color: #00FF87; box-shadow: 0px 8px 32px rgba(0, 255, 135, 0.3); }
-        100% { border-color: #00E5FF; box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2); }
-    }
-
-    .robo-card-welcome {
-        background: linear-gradient(135deg, #0f172a 0%, #050811 100%) !important;
-        border: 2px solid #00E5FF !important;
-        border-radius: 16px !important;
-        padding: 25px !important;
-        margin-bottom: 25px !important;
-        animation: alterna-cores 5s infinite ease-in-out !important;
-    }
-    
-    /* Bloco dos Cards de Status */
-    .status-card {
-        background-color: #0f172a !important;
-        border: 1px solid #1e293b !important;
+        padding: 15px 40px !important;
         border-radius: 12px !important;
-        padding: 20px !important;
-        text-align: center;
-        box-shadow: 0px 4px 15px rgba(0,0,0,0.3) !important;
+        border: none !important;
+        box-shadow: 0px 4px 15px rgba(0, 229, 255, 0.3) !important;
+        transition: all 0.3s ease-in-out !important;
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+    .stButton > button:hover {
+        background: linear-gradient(135deg, #00FF87 0%, #60EFFF 100%) !important;
+        color: #121212 !important;
+        transform: scale(1.02) translateY(-2px) !important;
+        box-shadow: 0px 6px 20px rgba(0, 255, 135, 0.6) !important;
+    }
+    /* Estilo do Card do Robô */
+    .robo-card {
+        background: #1e1e24;
+        border-left: 5px solid #00FF87;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
     }
 </style>
 """, unsafe_allow_html=True)
 
-# =============================================================================================================
-# 🦾 NÚCLEO REAL DE INTELIGÊNCIA ARTIFICIAL: AMBIENTE 3D ANIMADO EM CANVAS HTML5
-# =============================================================================================================
-st.markdown("### 🧬 NÚCLEO DINÂMICO DE PROCESSAMENTO DA IA")
+# 🤖 ANIMAÇÃO DO ROBÔ SURGINDO NA TELA (Simulação Inteligente)
+with st.spinner("🤖 Inicializando inteligência do Robô Adriel AI..."):
+    time.sleep(0.8)
 
-html_robo_real = """
-<div style="text-align: center; background: #070c16; padding: 20px; border-radius: 16px; border: 1px solid #1e293b; box-shadow: 0px 10px 40px rgba(0,0,0,0.5);">
-    <canvas id="canvasRobo3D" width="800" height="260" style="background: transparent; max-width: 100%;"></canvas>
-</div>
+# Cabeçalho de Impacto
+st.title("🛰️ ADRIEL AI — ECOSSISTEMA AUTOMATIZADO DE ELITE")
+st.markdown("Bem-vindo ao centro de comando. Seu robô está online e pronto para escanear, auditar e disparar campanhas.")
+st.write("---")
 
-<script>
-    const canvas = document.getElementById('canvasRobo3D');
-    const ctx = canvas.getContext('2d');
-    let angulo = 0;
+# Layout de duas colunas: Robô Chegando na Tela vs Menu Crescente de Botões
+col_robo, col_menu = st.columns([1.2, 1])
 
-    function desenharIA() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        const centroX = canvas.width / 2;
-        const centroY = canvas.height / 2;
-        
-        angulo += 0.015;
-        ctx.strokeStyle = '#00E5FF';
-        ctx.lineWidth = 1.5;
-        
-        ctx.beginPath();
-        ctx.arc(centroX, centroY, 110, 0, Math.PI * 2);
-        ctx.stroke();
-        
-        ctx.strokeStyle = '#00FF87';
-        ctx.beginPath();
-        ctx.arc(centroX, centroY, 90, angulo, angulo + Math.PI, false);
-        ctx.stroke();
+with col_robo:
+    st.markdown("""
+    <div class="robo-card">
+        <h2 style='color: #00FF87; margin-top:0;'>🤖 STATUS: ADRIEL AI EM OPERAÇÃO</h2>
+        <p style='font-size: 15px; color: #e0e0e0;'>
+            "Olá, Comandante José! Todas as minhas diretrizes de auditoria contra suspensões, 
+            criação de Pre-sells blindadas e conexão real-time com a API do Google Ads estão carregadas na memória ativa."
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.write("")
+    # Métricas rápidas de performance do SaaS
+    st.metric(label="🟢 Filtro Editorial Anti-Bloqueio", value="100% Ativo")
+    st.metric(label="⚡ Conectividade Google Ads API", value="Pronto para Handshake")
 
-        ctx.beginPath();
-        ctx.arc(centroX, centroY, 90, angulo + Math.PI, angulo, false);
-        ctx.stroke();
-
-        ctx.fillStyle = '#ffffff';
-        ctx.strokeStyle = '#00E5FF';
-        ctx.lineWidth = 3;
+with col_menu:
+    st.markdown("### 🕹️ MENU CRESCENTE DE COMANDO")
+    st.markdown("Navegue pela esteira de produção utilizando os atalhos sequenciais abaixo ou use a barra lateral:")
+    
+    # Botões sequenciais crescentes que levam o usuário na ordem correta
+    if st.button("🛰️ 1. Abrir Radar de Produtos"):
+        st.info("Utilize a barra lateral esquerda para acessar a página: **1_Radar**")
         
-        ctx.beginPath();
-        ctx.roundRect(centroX - 25, centroY - 80, 50, 55, 15);
-        ctx.fill();
-        ctx.stroke();
+    if st.button("🔍 2. Acessar Auditor de Mercado"):
+        st.info("Utilize a barra lateral esquerda para acessar a página: **2_Auditor**")
         
-        ctx.fillStyle = '#0f172a';
-        ctx.beginPath();
-        ctx.roundRect(centroX - 33, centroY - 65, 8, 25, 4);
-        ctx.roundRect(centroX + 25, centroY - 65, 8, 25, 4);
-        ctx.fill();
-        ctx.stroke();
+    if st.button("📝 3. Ir para o Gerador de Criativos"):
+        st.info("Utilize a barra lateral esquerda para acessar a página: **3_Gerador**")
         
-        ctx.fillStyle = "rgba(0, 229, 255, 0.9)";
-        ctx.beginPath();
-        ctx.arc(centroX - 12, centroY - 55, 5, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.beginPath();
-        ctx.arc(centroX + 12, centroY - 55, 5, 0, Math.PI * 2);
-        ctx.fill();
+    if st.button("🏹 4. Ativar Caçador de Lançamentos"):
+        st.info("Utilize a barra lateral esquerda para acessar a página: **4_Cacador**")
         
-        ctx.fillStyle = '#00FF87';
-        ctx.fillRect(centroX - 10, centroY - 40, 20, 3);
+    if st.button("🌐 5. Construir Página Pre-sell"):
+        st.info("Utilize a barra lateral esquerda para acessar a página: **5_Presell**")
         
-        ctx.fillStyle = '#334155';
-        ctx.fillRect(centroX - 10, centroY - 25, 20, 10);
-        
-        ctx.fillStyle = '#ffffff';
-        ctx.beginPath();
-        ctx.moveTo(centroX - 45, centroY - 15);
-        ctx.lineTo(centroX + 45, centroY - 15);
-        ctx.lineTo(centroX + 35, centroY + 65);
-        ctx.lineTo(centroX - 35, centroY + 65);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-        
-        ctx.fillStyle = '#0f172a';
-        ctx.beginPath();
-        ctx.roundRect(centroX - 15, centroY, 30, 40, 6);
-        ctx.fill();
-        ctx.stroke();
-        
-        ctx.fillStyle = "rgba(0, 255, 135, 1)";
-        ctx.beginPath();
-        ctx.arc(centroX, centroY + 20, 8, 0, Math.PI * 2);
-        ctx.fill();
-        
-        ctx.lineWidth = 12;
-        ctx.strokeStyle = '#ffffff';
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        
-        ctx.beginPath();
-        ctx.moveTo(centroX - 45, centroY - 10);
-        ctx.lineTo(centroX - 100, centroY + 15);
-        ctx.lineTo(centroX - 180, centroY - 15);
-        ctx.stroke();
-        
-        ctx.beginPath();
-        ctx.moveTo(centroX + 45, centroY - 10);
-        ctx.lineTo(centroX + 100, centroY + 15);
-        ctx.lineTo(centroX + 180, centroY - 15);
-        ctx.stroke();
-        
-        ctx.lineWidth = 4;
-        ctx.strokeStyle = '#0f172a';
-        ctx.beginPath();
-        ctx.moveTo(centroX - 45, centroY - 10);
-        ctx.lineTo(centroX - 100, centroY + 15);
-        ctx.lineTo(centroX - 180, centroY - 15);
-        ctx.moveTo(centroX + 45, centroY - 10);
-        ctx.lineTo(centroX + 100, centroY + 15);
-        ctx.lineTo(centroX + 180, centroY - 15);
-        ctx.stroke();
-        
-        ctx.fillStyle = 'rgba(0, 229, 255, 0.1)';
-        ctx.strokeStyle = '#00E5FF';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.roundRect(centroX - 280, centroY - 70, 90, 35, 5);
-        ctx.fill();
-        ctx.stroke();
-        ctx.fillStyle = '#00E5FF';
-        ctx.font = 'bold 11px sans-serif';
-        ctx.fillText('CORE: SECURE', centroX - 270, centroY - 48);
-        
-        ctx.strokeStyle = '#00E5FF';
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.arc(centroX - 180, centroY - 15, 6, 0, Math.PI * 2);
-        ctx.fillStyle = '#00E5FF';
-        ctx.fill();
-        
-        ctx.strokeStyle = '#00FF87';
-        ctx.beginPath();
-        ctx.arc(centroX + 180, centroY - 15, 6, 0, Math.PI * 2);
-        ctx.fillStyle = '#00FF87';
-        ctx.fill();
-        
-        ctx.strokeStyle = '#00FF87';
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        ctx.arc(centroX + 240, centroY + 20, 35, 0, Math.PI * 2);
-        ctx.stroke();
-        
-        requestAnimationFrame(desenharIA);
-    }
-    desenharIA();
-</script>
-"""
-st.components.v1.html(html_robo_real, height=310, scrolling=False)
-
-# =============================================================================================================
-# APRESENTAÇÃO MAJESTOSA DA CENTRAL (MOLDADA COM ABAS INTERNAS DE STRINGS SIMPLES)
-# =============================================================================================================
+    if st.button("🚀 6. Disparar Construtor Google Ads"):
+        st.info("Utilize a barra lateral esquerda para acessar a página: **6_Ativador_Google_Ads**")
