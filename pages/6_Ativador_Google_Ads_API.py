@@ -3,8 +3,8 @@ import pandas as pd
 import time
 import re
 
-# Configuração premium de layout amplo Black para o Ativador de 7 Passos Completo
-st.set_page_config(page_title="Adriel AI - Google Ads Suite 7D", layout="wide")
+# Configuração premium de layout amplo Black para o Simulador Google Ads Completo
+st.set_page_config(page_title="Adriel AI - Google Ads Pro", layout="wide")
 
 # INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (BOTÕES NEON PERSONALIZADOS DE LUXO)
 st.markdown("""
@@ -31,165 +31,155 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🚀 MÓDULO 6: CENTRAL DE ATIVAÇÃO COMPLETA (GOOGLE ADS API)")
-st.markdown("Chassi de engenharia completo estruturado em 7 etapas para publicação direta de anúncios validados.")
+st.title("🛰️ CONFIGURADOR EXECUTIVO: GOOGLE ADS WIZARD")
+st.markdown("Interface idêntica à esteira de produção oficial do Google Ads para estruturação, auditoria e envio via API.")
 st.write("---")
 
-# Inicialização segura do fluxo sequencial de 7 passos na memória do servidor
-if "passo_wizard" not in st.session_state:
-    st.session_state.passo_wizard = 1
+# Inicialização segura do controle de etapas na memória do servidor para continuidade real
+if "ads_passo" not in st.session_state: st.session_state.ads_passo = 1
 
-# Inicialização estável dos parâmetros globais da campanha para evitar resets indesejados
-if "wizard_mercado" not in st.session_state: st.session_state.wizard_mercado = "🇺🇸 Campanhas Internacionais (Gringa)"
-if "wizard_cust_id" not in st.session_state: st.session_state.wizard_cust_id = "1234567890"
-if "wizard_prod" not in st.session_state: st.session_state.wizard_prod = "Citrus Burn"
-if "wizard_geo" not in st.session_state: st.session_state.wizard_geo = "Estados Unidos 🇺🇸"
-if "wizard_orc" not in st.session_state: st.session_state.wizard_orc = 20.0
-if "wizard_cpc" not in st.session_state: st.session_state.wizard_cpc = 0.65
+# Inicialização estável dos dados capturados das caixas para a tela de revisão final
+if "v_objetivo" not in st.session_state: st.session_state.v_objetivo = "Vendas"
+if "v_tipo" not in st.session_state: st.session_state.v_tipo = "Pesquisar"
+if "v_alcance" not in st.session_state: st.session_state.v_alcance = "Visitas ao site"
+if "v_nome_campanha" not in st.session_state: st.session_state.v_nome_campanha = "Sales-Search-22"
+if "v_metrica" not in st.session_state: st.session_state.v_metrica = "Conversões"
+if "v_local" not in st.session_state: st.session_state.v_local = "Todos os países/territórios"
+if "v_idioma" not in st.session_state: st.session_state.v_idioma = "Português"
+if "v_keywords" not in st.session_state: st.session_state.v_keywords = ""
+if "v_budget_tipo" not in st.session_state: st.session_state.v_budget_tipo = "Orçamento diário médio"
+if "v_budget_val" not in st.session_state: st.session_state.v_budget_val = 0.0
 
-# Palavras-chave e Criativos persistentes na memória
-if "w_kw_frase" not in st.session_state: st.session_state.w_kw_frase = ""
-if "w_kw_exata" not in st.session_state: st.session_state.w_kw_exata = ""
-if "w_kw_neg" not in st.session_state: st.session_state.w_kw_neg = ""
-if "t1_val" not in st.session_state: st.session_state.t1_val = ""
-if "t2_val" not in st.session_state: st.session_state.t2_val = ""
-if "t3_val" not in st.session_state: st.session_state.t3_val = ""
-if "d1_val" not in st.session_state: st.session_state.d1_val = ""
-if "d2_val" not in st.session_state: st.session_state.d2_val = ""
+# Inicialização dos Títulos e Descrições do Anúncio Responsivo (RSA)
+for i in range(1, 8):
+    if f"v_t{i}" not in st.session_state: st.session_state.f"v_t{i}" = ""
+for i in range(1, 3):
+    if f"v_d{i}" not in st.session_state: st.session_state.f"v_d{i}" = ""
 
-# Barra de progresso visual do chassi de 7 passos no topo da página
-st.progress((st.session_state.passo_wizard - 1) / 6)
-st.markdown(f"**Progresso da Campanha: Etapa {st.session_state.passo_wizard} de 7**")
+# Barra de progresso baseada na esteira oficial
+st.progress((st.session_state.ads_passo - 1) / 6)
+st.markdown(f"**Progresso da Campanha: Etapa {st.session_state.ads_passo} de 6**")
 st.write("---")
 
 # =============================================================================================================
-# PASSO 1: AUTENTICAÇÃO E CONEXÃO DA API
+# PASSO 1: ESCOLHER SEU OBJETIVO DE CAMPANHA & METAS DE CONVERSÃO
 # =============================================================================================================
-if st.session_state.passo_wizard == 1:
-    st.markdown("### 🔑 PASSO 1: AUTENTICAÇÃO E CONEXÃO COM GOOGLE ADS API")
-    st.markdown("Estabeleça a conexão criptografada segura com os servidores da API do Google:")
+if st.session_state.ads_passo == 1:
+    st.markdown("### 🎯 PASSO 1: ESCOLHER SEU OBJETIVO")
+    st.markdown("Escolha um objetivo para personalizar a experiência de acordo com as metas e configurações mais adequadas para sua campanha.")
     
-    col_c1, col_c2 = st.columns(2)
-    with col_c1:
-        st.session_state.wizard_cust_id = st.text_input("Google Ads ID da sua Conta (Somente números):", value=st.session_state.wizard_cust_id)
-    with col_c2:
-        developer_token = st.text_input("Developer Token de Acesso (API Key Oculta):", value="API_DEVELOPER_TOKEN_SECURE", type="password")
-
+    obj_sel = st.radio(
+        "Selecione a meta que ajudaria esta campanha a alcançar o sucesso de acordo com seus critérios:",
+        [
+            "Vendas (Gerar vendas on-line, no aplicativo, por telefone ou na loja)",
+            "Leads (Incentivar clientes a realizar ações para gerar leads e outras conversões)",
+            "Tráfego do site (Fazer com que as pessoas certas acessem seu site)",
+            "Promoção de app (Gerar mais instalações, engajamentos e pré-registros para seu app)",
+            "Alcance, visualizações e engajamentos do YouTube (Antes conhecido como 'Reconhecimento e consideração')",
+            "Visitas a lojas locais e promoções (Impulsionar visitas a lojas locais, incluindo restaurantes e concessionárias)",
+            "Criar uma campanha sem orientação (Em seguida, escolha um tipo de campanha)"
+        ], index=0
+    )
+    
+    st.write("---")
+    st.markdown("#### ⚙️ Usar estas metas de conversão para melhorar Vendas")
+    st.markdown("Metas de conversão identificadas como padrão da conta usarão dados de todas as suas campanhas para melhorar a estratégia de lances e o desempenho da campanha.")
+    
+    col1, col2, col3 = st.columns(3)
+    with col1: st.info("**Metas de conversão**\n\nCompras (padrão da conta)")
+    with col2: st.info("**Origem da conversão**\n\nSite")
+    with col3: st.info("**Ações de conversão**\n\n1 ação")
+    
     st.write("")
-    if st.button("🔗 SOLICITAR CONEXÃO DA API DO GOOGLE ADS", key="btn_connect_step1"):
-        with st.spinner("Realizando handshake com os servidores do Google..."):
-            time.sleep(0.8)
-            st.success("✅ CONEXÃO ESTABELECIDA COM SUCESSO! Token autenticado e liberado.")
-
-    st.write("")
-    if st.button("PROSSEGUIR PARA CONFIGURAR MERCADO ➔", key="to_step2"):
-        st.session_state.passo_wizard = 2
+    if st.button("AVANÇAR PROXIO ➔", key="to_p2"):
+        st.session_state.v_objetivo = "Vendas" if "Vendas" in obj_sel else "Outros"
+        st.session_state.ads_passo = 2
         st.rerun()
 
 # =============================================================================================================
-# PASSO 2: DEFINIÇÃO DE MERCADO, PRODUTO E GEOLOCALIZAÇÃO
+# PASSO 2: SELECIOMAR TIPO DE CAMPANHA & COMO ALCANÇAR A META
 # =============================================================================================================
-elif st.session_state.passo_wizard == 2:
-    st.markdown("### 🌍 PASSO 2: DIRECIONAMENTO DE MERCADO E PRODUTO")
+elif st.session_state.ads_passo == 2:
+    st.markdown("### 🔎 PASSO 2: SELECIONE UM TIPO DE CAMPANHA")
     
-    rad_mercado = st.radio(
-        "Selecione a modalidade da campanha comercial:",
-        ["🇺🇸 Campanhas Internacionais (Gringa)", "🇧🇷 Campanhas Nacionais (Brasil)"],
-        index=0 if "🇺🇸" in st.session_state.wizard_mercado else 1,
-        key="radio_wizard_m"
+    tipo_sel = st.radio(
+        "Escolha o modelo de campanha de leilão comercial:",
+        [
+            "Performance Max (Aumente as vendas alcançando as pessoas certas com anúncios na Pesquisa Google, YouTube e Display)",
+            "Shopping (Promova seus produtos do Merchant Center na Pesquisa Google com anúncios do Shopping)",
+            "Geração de demanda (Gere demanda e conversões no YouTube, na Rede de Display do Google com anúncios gráficos e em vídeo)",
+            "Pesquisar (Aumente as vendas na Pesquisa Google com os anúncios de texto)",
+            "Vídeo (Aumente as vendas no YouTube com seus anúncios em vídeo)",
+            "Rede de Display (Alcance clientes em potencial em 3 milhões de sites e apps com seu criativo)"
+        ], index=3
     )
-    st.session_state.wizard_mercado = rad_mercado
-
-    col_p1, col_p2 = st.columns(2)
-    with col_p1:
-        if "🇺🇸" in rad_mercado:
-            st.session_state.wizard_prod = st.text_input("Nome do Produto Internacional (ClickBank/BuyGoods):", value="Citrus Burn")
-        else:
-            if st.session_state.wizard_prod == "Citrus Burn":
-                st.session_state.wizard_prod = "Protocolo Zero Gordura"
-            st.session_state.wizard_prod = st.text_input("Nome do Produto Nacional (Hotmart/Braip):", value=st.session_state.wizard_prod)
-    with col_p2:
-        if "🇺🇸" in rad_mercado:
-            opcoes_geo = ["Estados Unidos 🇺🇸", "Reino Unido 🇬🇧", "Irlanda 🇮🇪", "Canadá 🇨🇦", "Austrália 🇦🇺"]
-            geo_idx = opcoes_geo.index(st.session_state.wizard_geo) if st.session_state.wizard_geo in opcoes_geo else 0
-            st.session_state.wizard_geo = st.selectbox("Escolha a GEO de Destino (Leilão):", opcoes_geo, index=geo_idx)
-        else:
-            st.session_state.wizard_geo = st.selectbox("Escolha a GEO de Destino (Leilão):", ["Brasil 🇧🇷"])
-
-    st.write("")
-    col_nav = st.columns(2)
-    with col_nav[0]:
-        if st.button("⬅ Voltar para Passo 1", key="back_to_1"):
-            st.session_state.passo_wizard = 1
-            st.rerun()
-    with col_nav[1]:
-        if st.button("AVANÇAR PARA LANCES FINANCEIROS ➔", key="to_step3"):
-            st.session_state.passo_wizard = 3
-            st.rerun()
-
-# =============================================================================================================
-# PASSO 3: PLANEJAMENTO FINANCEIRO (ORÇAMENTO E CPC MÁXIMO)
-# =============================================================================================================
-elif st.session_state.passo_wizard == 3:
-    st.markdown("### 💰 PASSO 3: CONFIGURAÇÃO FINANCEIRA DE LANCES (BID)")
     
-    if "🇺🇸" in st.session_state.wizard_mercado:
-        moeda = "$"
-        def_orc = 20.0
-        def_cpc = 0.65
-    else:
-        moeda = "R$"
-        def_orc = 50.0
-        def_cpc = 1.50
-
-    col_b1, col_b2 = st.columns(2)
-    with col_b1:
-        st.session_state.wizard_orc = st.number_input(f"Orçamento Diário de Limite ({moeda}):", value=st.session_state.wizard_orc if st.session_state.wizard_orc != 20.0 or moeda=="$" else def_orc, step=5.0)
-    with col_b2:
-        st.session_state.wizard_cpc = st.number_input(f"Custo por Clique Máximo de Proteção (CPC Max {moeda}):", value=st.session_state.wizard_cpc if st.session_state.wizard_cpc != 0.65 or moeda=="$" else def_cpc, step=0.05)
-
-    st.write("")
-    col_nav = st.columns(2)
-    with col_nav[0]:
-        if st.button("⬅ Voltar para Passo 2", key="back_to_2"):
-            st.session_state.passo_wizard = 2
-            st.rerun()
-    with col_nav[1]:
-        if st.button("AVANÇAR PARA PALAVRAS-CHAVE DE MARCA ➔", key="to_step4"):
-            st.session_state.passo_wizard = 4
-            st.rerun()
-
-# =============================================================================================================
-# PASSO 4: PALAVRAS-CHAVE DE INTENÇÃO DE MARCA (FRASE E EXATA)
-# =============================================================================================================
-elif st.session_state.passo_wizard == 4:
-    st.markdown("### 🎯 PASSO 4: PALAVRAS-CHAVE DE INTENÇÃO DE MARCA")
-    st.markdown("O sistema gerou a engenharia por extenso. Altere as caixas linha por linha se quiser personalizar:")
-    prod = st.session_state.wizard_prod
+    st.write("---")
+    st.markdown("#### 🗺️ Selecione como você quer alcançar sua meta")
+    alcance_sel = st.radio("Selecione os canais de captação:", ["Visitas ao site", "Ligações telefônicas", "Visitas à loja"], index=0)
     
-    if "🇺🇸" in st.session_state.wizard_mercado:
-        f_p = f'"{prod} official website"\n"buy {prod} online"\n"{prod} discount price"'
-        e_p = f'[{prod} official website]\n[buy {prod} online]\n[{prod} discount price]'
-    else:
-        f_p = f'"{prod} site oficial"\n"comprar {prod} original"\n"{prod} desconto hoje"'
-        e_p = f'[{prod} site oficial]\n[comprar {prod} original]\n[{prod} desconto hoje]'
-
-    col_k1, col_k2 = st.columns(2)
-    with col_k1:
-        st.session_state.w_kw_frase = st.text_area("✏️ Palavras-Chave em Correspondência de Frase (Use aspas):", value=st.session_state.w_kw_frase if st.session_state.w_kw_frase != "" else f_p, height=220)
-    with col_k2:
-        st.session_state.w_kw_exata = st.text_area("✏️ Palavras-Chave em Correspondência Exata (Use colchetes):", value=st.session_state.w_kw_exata if st.session_state.w_kw_exata != "" else e_p, height=220)
+    st.write("---")
+    st.markdown("#### 📐 Identificação Base da Campanha")
+    st.session_state.v_nome_campanha = st.text_input("Nome da campanha:", value=st.session_state.v_nome_campanha)
 
     st.write("")
-    col_nav = st.columns(2)
-    with col_nav[0]:
-        if st.button("⬅ Voltar para Passo 3", key="back_to_3"):
-            st.session_state.passo_wizard = 3
+    col_nav2 = st.columns(2)
+    with col_nav2:
+        if st.button("⬅ Voltar", key="back_to_1"):
+            st.session_state.ads_passo = 1
             st.rerun()
-    with col_nav[1]:
-        if st.button("AVANÇAR PARA PALAVRAS-CHAVE NEGATIVAS ➔", key="to_step5"):
-            st.session_state.passo_wizard = 5
+    with col_nav2:
+        if st.button("PROXIMO PASSO CONTINUA ➔", key="to_p3"):
+            st.session_state.v_tipo = "Pesquisa" if "Pesquisar" in tipo_sel else "Outros"
+            st.session_state.v_alcance = alcance_sel
+            st.session_state.ads_passo = 3
             st.rerun()
 
 # =============================================================================================================
-# PASSO 5: PALAVRAS-CHAVE NEGATIVAS (PROTEÇÃO DE CAIXA)
+# PASSO 3: LANCES FINANCEIROS & CONFIGURAÇÕES DA CAMPANHA (REDES, LOCAIS, IDIOMAS)
+# =============================================================================================================
+elif st.session_state.ads_passo == 3:
+    st.markdown("### 💰 PASSO 3: LANCES E CONFIGURAÇÕES DA CAMPANHA")
+    
+    st.markdown("#### 📊 Lances")
+    st.session_state.v_metrica = st.selectbox("Em qual métrica você quer focar?", ["Conversões", "Cliques", "Parcela de impressões"], index=0)
+    st.checkbox("Definir um custo por ação desejado (opcional)", value=False)
+    st.caption("ℹ️ Estratégias de lances alternativas, como portfólios, são disponibilizadas nas configurações depois que você cria sua campanha.")
+    
+    st.write("---")
+    st.markdown("#### 👥 Aquisição do cliente")
+    st.checkbox("Ajustar seus lances para conquistar novos clientes", value=True)
+    st.caption("Por padrão, os lances da sua campanha são divididos igualmente entre os clientes novos e atuais. Mas você pode direcionar suas configurações de aquisição de clientes apenas para os novos.")
+    
+    st.write("---")
+    st.markdown("#### 🌐 Configurações da campanha (Redes e Geotargeting)")
+    st.checkbox("Rede de parceiros de pesquisa do Google (Recomendado)", value=True)
+    st.checkbox("Rede de Display do Google (Recomendado)", value=False)
+    
+    st.write("---")
+    st.markdown("#### 📍 Locais")
+    st.session_state.v_local = st.radio("Selecione os locais para esta campanha:", ["Todos os países/territórios", "Brasil", "Inserir outro local"], index=0)
+    
+    st.write("---")
+    st.markdown("#### 🗣️ Idiomas")
+    st.session_state.v_idioma = st.selectbox("Selecione os idiomas que seus clientes falam:", ["Português", "Inglês", "Todos os idiomas"], index=2)
+    
+    st.write("---")
+    st.markdown("#### 🇪🇺 Anúncios políticos na UE")
+    st.radio("Sua campanha tem anúncios políticos na União Europeia? (Obrigatório)", ["Não, esta campanha não tem anúncios políticos na UE", "Sim, esta campanha tem anúncios políticos na UE"], index=0)
+
+    st.write("")
+    col_nav3 = st.columns(2)
+    with col_nav3:
+        if st.button("⬅ Voltar", key="back_to_2"):
+            st.session_state.ads_passo = 2
+            st.rerun()
+    with col_nav3:
+        if st.button("VEM AVANÇA ➔", key="to_p4"):
+            st.session_state.ads_passo = 4
+            st.rerun()
+
+# =============================================================================================================
+# PASSO 4: AI MAX PARA CAMPANHAS DE PESQUISA (A LOGÍSTICA INTELIGENTE DO GOOGLE)
+# =============================================================================================================
+elif st.session_state.ads_passo == 4:
