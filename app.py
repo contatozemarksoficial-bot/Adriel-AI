@@ -8,7 +8,7 @@ st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", i
 # =============================================================================================================
 # INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO CLICAR NA TELA)
 # =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! Identidade visual consolidada com o robô integrado. Todos os sistemas prontos na memória."
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! Painel estruturado com a esteira completa de seis módulos operacionais. Todos os sistemas prontos."
 
 st.markdown(f"""
 <script>
@@ -27,7 +27,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DE CSS DE ALTO PADRÃO (ALINHAMENTO CIRÚRGICO DA LOGO COM O ROBÔ E MENUS)
+# INJEÇÃO DE CSS DE ALTO PADRÃO (PADRONIZAÇÃO EXATA DE TODA A FAMÍLIA DE PÁGINAS)
 # =============================================================================================================
 st.markdown("""
 <style>
@@ -83,7 +83,7 @@ st.markdown("""
         text-transform: uppercase;
     }
 
-    /* 🟢 1. BOTÕES GERAIS DO MEIO E DA PLANILHA (PISCANTES E RESPONSIVOS) */
+    /* 🟢 BOTÕES DA ESTEIRA QUE DISPARAM O SINAL PISCANTE NEON COM ZOOM NO MOUSE */
     div.stButton > button {
         background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
         color: white !important;
@@ -104,7 +104,7 @@ st.markdown("""
         transform: scale(1.02) !important;
     }
     
-    /* 📟 2. POLIMENTO E ALINHAMENTO CIRÚRGICO DA COLUNA ESQUERDA */
+    /* 📟 ALINHAMENTO CIRÚRGICO DA COLUNA ESQUERDA */
     .menu-lateral-btn {
         display: flex;
         flex-direction: column;
@@ -119,7 +119,7 @@ st.markdown("""
         text-align: left !important;
         padding: 12px 16px !important;
         font-size: 14px !important;
-        width: 95% !important; /* Trava todos com a mesma largura milimétrica */
+        width: 95% !important; 
         margin-bottom: 5px !important;
         animation: none !important; 
     }
@@ -142,30 +142,29 @@ if "pagina_atual" not in st.session_state:
 # =============================================================================================================
 col_esquerda, col_centro, col_direita = st.columns([0.75, 1.4, 1])
 
-# 🏢 COLUNA 1 (FIXA E IMUTÁVEL): LOGO INTEGRADA COM O ROBÔ + BOTÕES DO MENU LATERAL
+# 🏢 COLUNA 1 (FIXA E IMUTÁVEL): LOGO ADRIEL AI + BOTÕES DO MENU DE NAVEGAÇÃO
 with col_esquerda:
     st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
-    
-    # 🤖 INTEGRADO: Robozinho junto do nome Adriel AI de forma imponente
     st.markdown("<h2 style='color: #60a5fa; font-size: 24px; font-weight: 800; margin-bottom:0;'>🤖 Adriel AI</h2>", unsafe_allow_html=True)
     st.markdown("<p style='color: #64748b; font-size: 11px; margin-top:-5px; letter-spacing:1px;'>PAINEL DE CONTROLE</p>", unsafe_allow_html=True)
     st.write("---")
     
-    # Todos organizados com a mesma largura e alinhados na vertical
     st.markdown('<div class="menu-lateral-btn">', unsafe_allow_html=True)
     if st.button("🎛️ Dashboard", key="btn_nav_dash"): st.session_state.pagina_atual = "Dashboard"; st.rerun()
-    if st.button("🛰️ Radar de Produtos", key="btn_nav_radar"): st.session_state.pagina_atual = "Radar"; st.rerun()
-    if st.button("🚀 Ativador Google Ads", key="btn_nav_google"): st.session_state.pagina_atual = "GoogleAds"; st.rerun()
+    if st.button("🛰️ 1. Radar de Produtos", key="btn_nav_m1"): st.session_state.pagina_atual = "M1_Radar"; st.rerun()
+    if st.button("🔬 2. Auditor de Mercado", key="btn_nav_m2"): st.session_state.pagina_atual = "M2_Auditor"; st.rerun()
+    if st.button("📝 3. Gerador de Anúncios", key="btn_nav_m3"): st.session_state.pagina_atual = "M3_Gerador"; st.rerun()
+    if st.button("🏹 4. Caçador Ativo", key="btn_nav_m4"): st.session_state.pagina_atual = "M4_Cacador"; st.rerun()
+    if st.button("🌐 5. Construtor Pre-Sell", key="btn_nav_m5"): st.session_state.pagina_atual = "M5_Presell"; st.rerun()
     st.write("---")
-    st.caption("⚙️ Configurações Gerais")
-    st.caption("🚪 Sair")
+    st.caption("⚙ ... Configurações SaaS")
     st.markdown('</div></div>', unsafe_allow_html=True)
 
 # =============================================================================================================
-# ROTEAMENTO DA FAMÍLIA DE PÁGINAS
+# ROTEAMENTO DA ESTEIRA DAS 6 PÁGINAS (MANTENDO O MESMO PADRÃO SEM DESORGANIZAR)
 # =============================================================================================================
 
-# 🏠 INTERFACE 1: DASHBOARD COMPLETO (PADRÃO DE INSTALAÇÃO DO SEU PRINT)
+# 🏠 PÁGINA: DASHBOARD INICIAL COMPLETO
 if st.session_state.pagina_atual == "Dashboard":
     with col_centro:
         st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
@@ -194,17 +193,14 @@ if st.session_state.pagina_atual == "Dashboard":
         st.button("🔥 (A) GERAR ANÚNCIOS ADSMaster", key="btn_ads_dash")
         st.markdown('</div>', unsafe_allow_html=True)
 
-# 🛰️ INTERFACE 2: PÁGINA RECORTE DO RADAR DE PRODUTOS COMPLETO
-elif st.session_state.pagina_atual == "Radar":
+# 🛰️ PÁGINA: MÓDULO 1 RADAR DE PRODUTOS
+elif st.session_state.pagina_atual == "M1_Radar":
     with col_centro:
         st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
-        st.markdown('<div class="header-box-real">🛰️ Filtros de Mineração Ativos no Servidor</div>', unsafe_allow_html=True)
-        st.markdown('<p class="subtitulo-bloco-real">🔬 PARÂMETROS DO SCANNER AVANÇADO</p>', unsafe_allow_html=True)
-        
-        st.selectbox("Selecione a Origem das Ofertas:", ["ClickBank 🇺🇸", "BuyGoods 🇺🇸", "Hotmart 🇧🇷"])
-        st.slider("Filtrar por Gravidade Mínima:", 0, 300, 150)
+        st.markdown('<div class="header-box-real">🔬 Parâmetros Ativos de Mineração na Gringa</div>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitulo-bloco-real">🛰️ RADAR: EXTRAÇÃO DE PRODUTOS</p>', unsafe_allow_html=True)
+        st.selectbox("Selecione a Plataforma Espião:", ["ClickBank 🇺🇸", "BuyGoods 🇺🇸", "Digistore24 🇩🇪"])
+        st.slider("Filtrar por Gravidade:", 0, 300, 140)
         st.markdown('</div>', unsafe_allow_html=True)
-
     with col_direita:
         st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
-        st.markdown('<div class="header-box-real" style="text-align: right;">Volume Escaneado: <b>1.420 Produtos</b></div>', unsafe_allow_html=True)
