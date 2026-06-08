@@ -1,6 +1,8 @@
 import streamlit as st
 
-# Constantes de configuração
+# =============================================================================================================
+# CONSTANTES DE CONFIGURAÇÃO
+# =============================================================================================================
 OBJETIVOS_CAMPANHA = [
     "Vendas",
     "Leads",
@@ -27,7 +29,7 @@ st.set_page_config(page_title="Adriel AI - Google Ads Pro Suite", layout="wide")
 if "ads_passo" not in st.session_state:
     st.session_state.ads_passo = 1
 if "v_objetivo" not in st.session_state:
-    st.session_state.v_objetivo = "Vendas"
+    st.session_state.v_objetivo = None  # Inicializar como None para evitar erros
 
 # Barra de progresso
 st.progress((st.session_state.ads_passo - 1) / 6)
@@ -47,10 +49,15 @@ if st.session_state.ads_passo == 1:
 # Passo 2: Selecionar tipo de campanha
 elif st.session_state.ads_passo == 2:
     st.markdown("### 🔎 PASSO 2: SELECIONE UM TIPO DE CAMPANHA")
-    tipo_sel = st.radio("Escolha o formato:", TIPOS_CAMPANHA)
-    st.write("Tipo de campanha selecionado:", tipo_sel)  # Debug
-    if st.button("PRÓXIMO PASSO ➔"):
-        st.session_state.ads_passo = 3
-        st.experimental_rerun()
+    
+    if st.session_state.v_objetivo is None:
+        st.error("⚠️ Por favor, selecione um objetivo primeiro.")  # Validação
+    else:
+        tipo_sel = st.radio("Escolha o formato:", TIPOS_CAMPANHA)
+        st.write("Tipo de campanha selecionado:", tipo_sel)  # Debug
+        
+        if st.button("PRÓXIMO PASSO ➔"):
+            st.session_state.ads_passo = 3
+            st.experimental_rerun()
 
 # Continue adicionando passos conforme necessário...
