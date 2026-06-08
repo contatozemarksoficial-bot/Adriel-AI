@@ -6,7 +6,7 @@ import time
 st.set_page_config(page_title="Adriel AI - Core Dashboard", layout="wide", initial_sidebar_state="expanded")
 
 # =============================================================================================================
-# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (ANIMAÇÕES CONTÍNUAS: PISCADO NEON & FLUTUAÇÃO DO ROBÔ)
+# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (ROBÔ NAVEGANDO NO RODAPÉ & ALTERNAÇÃO DE CORES NEON)
 # =============================================================================================================
 st.markdown("""
 <style>
@@ -22,20 +22,11 @@ st.markdown("""
         border-right: 1px solid #1e293b !important;
     }
     
-    /* 🚨 1. ANIMAÇÃO DO MENU LATERAL PISCANDO EM LINHA (PULSAR NEON CONTÍNUO) */
+    /* 🚨 ANIMAÇÃO DO MENU LATERAL PULSAR NEON */
     @keyframes pulsa-neon {
-        0% {
-            border-color: #1e293b;
-            box-shadow: 0 0 5px rgba(0, 229, 255, 0.1);
-        }
-        50% {
-            border-color: #00FF87;
-            box-shadow: 0 0 15px rgba(0, 255, 135, 0.6);
-        }
-        100% {
-            border-color: #1e293b;
-            box-shadow: 0 0 5px rgba(0, 229, 255, 0.1);
-        }
+        0% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); }
+        50% { border-color: #00FF87; box-shadow: 0 0 15px rgba(0, 255, 135, 0.4); }
+        100% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); }
     }
 
     [data-testid="stSidebarNav"] ul li a span {
@@ -50,31 +41,15 @@ st.markdown("""
         border-radius: 8px !important;
         margin-bottom: 8px !important;
         padding: 12px 14px !important;
-        animation: pulsa-neon 3s infinite ease-in-out !important; /* Faz o menu piscar sempre */
+        animation: pulsa-neon 3s infinite ease-in-out !important;
         display: block !important;
     }
     
-    [data-testid="stSidebarNav"] ul li a:hover {
-        background-color: #1e293b !important;
-        animation: none !important; /* Trava aceso no mouse */
-        border-color: #00E5FF !important;
-        box-shadow: 0 0 20px rgba(0, 229, 255, 0.8) !important;
-    }
-    
-    /* 🛸 2. ANIMAÇÃO DO ROBÔ FLUTUANDO NA TELA DA FRENTE (EFEITO 3D ULTRA CHAMATIVO) */
-    @keyframes flutuar-continuo {
-        0% {
-            transform: translateY(0px);
-            box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2);
-        }
-        50% {
-            transform: translateY(-12px); /* Ele se eleva suavemente */
-            box-shadow: 0px 18px 45px rgba(0, 255, 135, 0.4); /* O neon brilha mais embaixo */
-        }
-        100% {
-            transform: translateY(0px);
-            box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2);
-        }
+    /* 🎨 ANIMAÇÃO QUE ALTERNA AS CORES DAS BORDAS (CIANO <-> VERDE) */
+    @keyframes alterna-cores {
+        0% { border-color: #00E5FF; box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2); }
+        50% { border-color: #00FF87; box-shadow: 0px 8px 32px rgba(0, 255, 135, 0.3); }
+        100% { border-color: #00E5FF; box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2); }
     }
 
     .robo-card-welcome {
@@ -83,10 +58,30 @@ st.markdown("""
         border-radius: 16px !important;
         padding: 30px !important;
         margin-bottom: 35px !important;
-        animation: flutuar-continuo 4s infinite ease-in-out !important; /* Flutuação contínua infinita */
+        animation: alterna-cores 5s infinite ease-in-out !important; /* Alterna de cor automaticamente */
     }
     
-    /* 🏛️ Bloco de Monitoramento Executivo */
+    /* 🤖 3. O ROBÔ NAVEGADOR FLUTUANDO REAL NO RODAPÉ DA PÁGINA (PATRULHA DE TELA) */
+    @keyframes patrulha-robo {
+        0% { left: 10%; transform: scaleX(1) translateY(0px); }
+        45% { transform: scaleX(1) translateY(-8px); }
+        50% { left: 80%; transform: scaleX(-1) translateY(0px); } /* Gira o robô para voltar */
+        95% { transform: scaleX(-1) translateY(-8px); }
+        100% { left: 10%; transform: scaleX(1) translateY(0px); }
+    }
+
+    .robo-navegador-real {
+        position: fixed;
+        bottom: 40px; /* Fixado na parte de baixo da tela */
+        left: 10%;
+        font-size: 50px; /* Robô grande e bem chamativo */
+        z-index: 99999;
+        pointer-events: none;
+        animation: patrulha-robo 12s infinite linear !important; /* Navega pela tela continuamente */
+        filter: drop-shadow(0px 0px 15px #00FF87);
+    }
+    
+    /* Bloco de Monitoramento Executivo */
     .status-card {
         background-color: #0f172a !important;
         border: 1px solid #1e293b !important;
@@ -107,15 +102,20 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# 🤖 APRESENTAÇÃO MAJESTOSA DO ROBOZINHO NA CENTRAL (FLUTUANDO NA TELA DA FRENTE)
+# INJEÇÃO DO ROBÔ REAL FLUTUANDO E NAVEGANDO NA PARTE DE BAIXO
+# =============================================================================================================
+st.markdown('<div class="robo-navegador-real">🛸🤖</div>', unsafe_allow_html=True)
+
+# =============================================================================================================
+# APRESENTAÇÃO MAJESTOSA DA CENTRAL (ALTERANDO DE COR AUTOMATICAMENTE)
 # =============================================================================================================
 st.markdown("""
 <div class="robo-card-welcome">
     <h1 style='margin-top: 0; font-size: 28px;'>🛸 CENTRAL DE INTELIGÊNCIA: ADRIEL AI</h1>
     <p style='margin: 15px 0 0 0; font-size: 16px; color: #cbd5e1; line-height: 1.6;'>
-        "Seja muito bem-vindo, <b>Comandante José Marques da Silva</b>! Os sistemas centrais do robô foram inicializados. 
-        Estou flutuando na interface principal e aguardando suas ordens. Nossos bancos de dados estão 100% síncronos 
-        com as APIs de mineração global e automação de tráfego pago."
+        "Seja muito bem-vindo, <b>Comandante José Marques da Silva</b>! A estrutura mestre está calibrada. 
+        Observe que minhas bordas alternam de cor automaticamente e meu chassi autônomo está navegando em patrulha pela 
+        parte inferior do software, garantindo a integridade dos servidores."
     </p>
     <div style='margin-top: 20px;'>
         <span style='background: #00FF87; color: #050811; padding: 6px 14px; font-weight: bold; border-radius: 20px; font-size: 12px; box-shadow: 0px 4px 10px rgba(0,255,135,0.3);'>
@@ -125,8 +125,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Espaçador estratégico para o gráfico não bater no card flutuante
-st.write("")
 st.write("")
 
 # =============================================================================================================
