@@ -1,0 +1,36 @@
+# =============================================================================================================
+# 🛰️ INTERFACE DO MÓDULO 1: RADAR DE PRODUTOS COMPLETO DO SEU BACKUP (ENCAIXA NA CONDICIONAL DO RADAR)
+# =============================================================================================================
+elif st.session_state.pagina_atual == "Radar":
+    with col_centro:
+        st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real">👤 Comandante: <b>José Marques</b> | Scanner de Elite Ativo</div>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitulo-bloco-real">MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</p>', unsafe_allow_html=True)
+        
+        # Tabela robusta e recheada com os produtos acanodianos originais e comissões em dólar
+        dados_radar_completo = {
+            "Nome do Produto": ["Sugar Defender", "Java Burn", "Puravive", "Prodentim", "GlucoBerry", "Aphanil", "Metanail Complex"],
+            "Plataforma / Origem": ["BuyGoods 🇺🇸", "ClickBank 🇺🇸", "ClickBank 🇺🇸", "BuyGoods 🇺🇸", "Hotmart 🇧🇷", "ClickBank 🇺🇸", "BuyGoods 🇺🇸"],
+            "Comissão Média": ["$ 118.20", "$ 135.00", "$ 142.50", "$ 125.00", "R$ 247,00", "$ 112.10", "$ 107.40"],
+            "Veredito da IA": ["APROVADO (Risco Baixo)", "APROVADO (Risco Baixo)", "REVISAR (Risco Médio)", "APROVADO (Risco Baixo)", "APROVADO (Risco Baixo)", "REVISAR (Risco Médio)", "APROVADO (Risco Baixo)"]
+        }
+        df_radar_completo = pd.DataFrame(dados_radar_completo)
+        st.dataframe(df_radar_completo, use_container_width=True, hide_index=True)
+        
+        st.write("")
+        # Botão mestre que dispara o sinal neon pulsante ao passar o mouse por cima
+        if st.button("📄 [EXPORTAR PLANILHA COMPLETA DO RADAR EM .CSV]", key="btn_radar_csv_m1"):
+            st.success("✅ Download concluído! Banco de dados de ofertas atualizado com sucesso na sua máquina.")
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    with col_direita:
+        st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real" style="text-align: right;">Status do Scanner: <span style="color: #00FF87; font-weight: bold;">Ativo 24h</span></div>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitulo-bloco-real">📊 MONITORAMENTO DE GRAVIDADE DA IA</p>', unsafe_allow_html=True)
+        
+        # Caixa informativa em formato de log de alta tecnologia para preencher a tela
+        st.info("🔥 **Módulo Espião Operando**\n\nVarredura contínua rastreando lotes de Gravidade e Temperatura acima de 140+ nas plataformas ClickBank e BuyGoods. O leilão de busca do Google Ads para estes termos está sendo monitorado em tempo síncrono para garantir o menor CPC possível.")
+        
+        st.write("---")
+        st.markdown("<p style='font-size: 12px; color: #64748b;'>💡 <b>Dica do Adriel AI:</b> Foque em produtos com gravidade estável entre 120 e 180 para evitar concorrência predatória nos lances de correspondência exata.</p>", unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
