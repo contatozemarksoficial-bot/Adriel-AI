@@ -2,13 +2,13 @@ import streamlit as st
 import pandas as pd
 import time
 
-# Configuração premium de layout amplo para colar perfeitamente o clone
-st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", initial_sidebar_state="expanded")
+# Configuração premium de layout amplo (Força o app a ocupar toda a largura da tela)
+st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", initial_sidebar_state="collapsed")
 
 # =============================================================================================================
-# INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO ENTRAR NA TELA)
+# INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO CLICAR NA TELA)
 # =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! Painel de controle totalmente carregado. Todos os botões integrados com sinal dinâmico e prontos para a operação."
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! Painel de controle estruturado em três colunas simultâneas. Todos os sinais e botões estão operacionais."
 
 st.markdown(f"""
 <script>
@@ -27,60 +27,50 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DE CSS AVANÇADO (CLONE EXATO DO DESIGN DA IMAGEM + EFEITO PISCADO DE SINAL NOS BOTÕES)
+# INJEÇÃO DE CSS DE ALTA PERFORMANCE (DESATIVA SIDEBAR NATIVA E TRAVA AS 3 COLUNAS DO PRINT)
 # =============================================================================================================
 st.markdown("""
 <style>
-    /* 🌌 Fundo Escuro Idêntico ao do Print */
+    /* 🌌 Fundo Escuro Idêntico ao do Print da Imagem */
     .stApp {
         background-color: #0b111e !important;
         color: #ffffff !important;
     }
     
-    /* Customização de Luxo da Barra Lateral (Sidebar) */
+    /* Oculta as bordas padrão do Streamlit para dar o visual plano limpo */
     [data-testid="stSidebar"] {
-        background-color: #070c16 !important;
-        border-right: 1px solid #1e293b !important;
+        display: none !important;
+    }
+    [data-testid="stHeader"] {
+        display: none !important;
     }
     
-    /* 🚨 ANIMAÇÃO DE SINAL: ALTERNA AS CORES DAS BORDAS (CIANO <-> VERDE NEON) */
+    /* 🚨 ANIMAÇÃO DE SINAL: ALTERNA AS BORDAS (CIANO <-> VERDE NEON) */
     @keyframes sinal-pulsante {
         0% { border-color: #00E5FF; box-shadow: 0 0 8px rgba(0, 229, 255, 0.2); }
-        50% { border-color: #00FF87; box-shadow: 0 0 18px rgba(0, 255, 135, 0.5); }
+        50% { border-color: #00FF87; box-shadow: 0 0 18px rgba(0, 255, 135, 0.4); }
         100% { border-color: #00E5FF; box-shadow: 0 0 8px rgba(0, 229, 255, 0.2); }
     }
 
-    /* Links da Sidebar */
-    [data-testid="stSidebarNav"] ul li a span {
-        color: #ffffff !important; 
-        font-weight: bold !important;
-        font-size: 14px !important;
+    /* Estilização para as linhas divisórias e blocos */
+    .coluna-container {
+        background-color: transparent;
+        border-right: 1px solid #1e293b;
+        padding-right: 20px;
+        padding-left: 10px;
+        height: 100vh;
     }
-    [data-testid="stSidebarNav"] ul li a {
-        background-color: #0f172a !important; 
-        border: 2px solid #1e293b !important;
-        border-radius: 8px !important;
-        margin-bottom: 8px !important;
-        padding: 12px 14px !important;
-        transition: all 0.3s ease !important;
-    }
-    [data-testid="stSidebarNav"] ul li a:hover {
-        background-color: #1e293b !important;
-        border-color: #00FF87 !important;
-        box-shadow: 0 0 15px rgba(0, 255, 135, 0.6) !important;
-    }
-
-    /* Caixas de Texto Superiores da Imagem */
+    
+    /* Caixa de texto superior horizontal */
     .header-box-real {
         background-color: #0f172a !important;
         border: 1px solid #1e293b !important;
         border-radius: 8px !important;
-        padding: 14px 20px !important;
+        padding: 12px 18px !important;
         margin-bottom: 20px !important;
-        font-size: 14px !important;
+        font-size: 13px !important;
     }
     
-    /* Títulos Principais dos Módulos */
     .subtitulo-bloco-real {
         font-size: 13px !important;
         font-weight: bold !important;
@@ -90,55 +80,85 @@ st.markdown("""
         text-transform: uppercase;
     }
 
-    /* 🟢 OS BOTÕES DO MÓDULO 2 QUE DÃO O SINAL PISCANTE E DE DESTAQUE */
+    /* 🟢 CUSTOMIZAÇÃO DOS BOTÕES COM EFEITO DE SINAL NO MOUSE (HOVER) */
     div.stButton > button {
         background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
         color: white !important;
         font-weight: bold !important;
-        font-size: 15px !important;
+        font-size: 14px !important;
         border: 2px solid #1e293b !important;
-        padding: 13px 20px !important;
+        padding: 12px 15px !important;
         border-radius: 6px !important;
         width: 100% !important;
         cursor: pointer !important;
-        transition: all 0.4s ease-in-out !important;
+        transition: all 0.3s ease-in-out !important;
     }
     
-    /* 🔥 O SINAL ATIVO: Quando a pessoa mexe ou foca, o botão pisca e altera de cor na hora */
+    /* Quando a pessoa passa o mouse ou clica, aciona o sinal pulsante idêntico */
     div.stButton > button:hover {
-        animation: sinal-pulsante 2s infinite ease-in-out !important; /* Dispara o sinal piscante */
+        animation: sinal-pulsante 2s infinite ease-in-out !important;
         background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%) !important;
         color: #050811 !important;
         transform: scale(1.02) !important;
     }
     
-    /* Customização das Tabelas Dataframe */
-    .stDataFrame {
-        border: 1px solid #1e293b !important;
-        border-radius: 8px !important;
+    /* Botões pretos simples do menu lateral esquerdo */
+    .menu-lateral-btn > div.stButton > button {
+        background: transparent !important;
+        color: #94a3b8 !important;
+        border: 1px solid transparent !important;
+        text-align: left !important;
+        padding: 10px 15px !important;
+        font-size: 14px !important;
+    }
+    .menu-lateral-btn > div.stButton > button:hover {
+        animation: none !important;
+        background: #1e293b !important;
+        color: #00FF87 !important;
+        border-color: #1e293b !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# BARRA SUPERIOR DE INFORMAÇÕES (MANDATORIO IGUAL AO PRINT)
+# MONTAGEM DAS 3 COLUNAS HORIZONTAIS COMPLETAS (O CLONE REAL DA IMAGEM)
 # =============================================================================================================
-col_top1, col_top2 = st.columns(2)
-with col_top1:
+col_esquerda, col_centro, col_direita = st.columns([0.75, 1.4, 1])
+
+# 🏢 COLUNA 1 (ESQUERDA): A LOGO DO ADRIEL AI + MENU DO PAINEL DE CONTROLE
+with col_esquerda:
+    st.markdown('<div class="coluna-container" style="border-right: 1px solid #1e293b;">', unsafe_allow_html=True)
+    
+    # 🛰️ Clone da Logo Superior do Print
+    st.markdown("<h2 style='color: #60a5fa; font-size: 24px; font-weight: 800; margin-bottom:0;'>🤖 Adriel AI</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #64748b; font-size: 11px; margin-top:-5px; letter-spacing:1px;'>PAINEL DE CONTROLE</p>", unsafe_allow_html=True)
+    st.write("---")
+    
+    # Lista de Menus em formato de botões funcionais para as páginas
+    st.markdown('<div class="menu-lateral-btn">', unsafe_allow_html=True)
+    st.button("🎛️ Dashboard", key="m_dash")
+    st.button("🛰️ Radar de Produtos", key="m_radar")
+    st.button("🔬 Auditor de Mercado", key="m_auditor")
+    st.button("📝 Gerador de Anúncios", key="m_gerador")
+    st.button("🏹 Caçador de Lançamentos", key="m_cacador")
+    st.button("🌐 Construtor Pre-Sell", key="m_presell")
+    st.button("🚀 Ativador Google Ads", key="m_ativador")
+    st.button("💎 Gestão de Assinantes", key="m_assinantes")
+    st.write("---")
+    st.button("⚙️ Configurações", key="m_config")
+    st.button("🚪 Sair", key="m_sair")
+    st.markdown('</div></div>', unsafe_allow_html=True)
+
+# 📊 COLUNA 2 (CENTRO): MÓDULO 1 RADAR DE PRODUTOS [FILTRO XEQUE-MATE]
+with col_centro:
+    st.markdown('<div class="coluna-container" style="border-right: 1px solid #1e293b;">', unsafe_allow_html=True)
+    
+    # Card de identificação do comandante do topo
     st.markdown('<div class="header-box-real">👤 Olá, <b>José Marques</b>, Comandante do Adriel AI!</div>', unsafe_allow_html=True)
-with col_top2:
-    st.markdown('<div class="header-box-real" style="text-align: right;">🟢 Status: <span style="color: #10b981; font-weight:bold;">Sistema Online</span> | Chave Mestre Ativa | Data: 06/06/2026</div>', unsafe_allow_html=True)
-
-# =============================================================================================================
-# CORPO EM DUAS COLUNAS GIGANTES (RADAR DE PRODUTOS VS GERADOR RSA)
-# =============================================================================================================
-col_esq, col_dir = st.columns([1.35, 1])
-
-# 📊 COLUNA ESQUERDA: CLONE DO MÓDULO 1 RADAR DE PRODUTOS [FILTRO XEQUE-MATE]
-with col_esq:
+    
     st.markdown('<p class="subtitulo-bloco-real">MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</p>', unsafe_allow_html=True)
     
-    # Listagem de dados milimétrica com base na tabela da imagem
+    # Listagem de dados milimétrica da tabela da imagem original
     dados_tabela = {
         "Name": [f"Produto-acanodiano {i}" for i in range(1, 10)],
         "Comissões": ["3,00%", "2,00%", "1,00%", "1,00%", "1,00%", "2,00%", "2,00%", "1,00%", "1,00%"],
@@ -159,35 +179,39 @@ with col_esq:
     st.dataframe(df_painel, use_container_width=True, hide_index=True)
     
     st.write("")
-    # Botão de exportar do Módulo 1 (Dá sinal de pulso ao passar o mouse!)
+    # Botão de exportação que dispara o sinal neon quando passa o mouse por cima
     if st.button("📄 [BAIXAR PLANILHA DE INTELIGÊNCIA (.CSV)]", key="btn_csv_real"):
-        st.success("Planilha processada e exportada com sucesso!")
+        st.success("Planilha processada com sucesso!")
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# 📝 COLUNA DIREITA: CLONE DO MÓDULO 2 GERADOR DE ANÚNCIOS MASTER & PRE-SELL
-with col_dir:
+# 📝 COLUNA 3 (DIREITA): MÓDULO 2 GERADOR DE ANÚNCIOS MASTER & PRE-SELL
+with col_direita:
+    st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
+    
+    # Card de status online do topo
+    st.markdown('<div class="header-box-real" style="text-align: right;">🟢 Status: <span style="color: #10b981; font-weight:bold;">Sistema Online</span> | Chave Mestre Ativa</div>', unsafe_allow_html=True)
+    
     st.markdown('<p class="subtitulo-bloco-real">MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & PRE-SELL</p>', unsafe_allow_html=True)
     
-    # Caixas de digitação idênticas às da imagem
+    # Inputs organizados do print
     p_gringo = st.text_input("PROD_GRINGO:", value="Sugar Defender", key="p_gringo_in")
     p_resumo = st.text_area("RESUMO (Niche/Dores):", value="Suplemento natural para equilíbrio do metabolismo.", height=68, key="p_resumo_in")
     
     st.write("")
-    # Botões Principais que piscam e dão sinal contínuo na interação do mouse!
+    # Botões verdes de ação que dão o sinal interativo ao focar
     if st.button("🔥 (A) GERAR ANÚNCIOS ADSMaster (Copy + Roteiro Vídeo)", key="btn_gen_ads_real"):
-        st.success("Campanha estruturada com exito editorial!")
+        st.success("Campanha de copy estruturada com sucesso!")
         
     st.write("")
     if st.button("🔥 [B] FABRICAR PRE-SELL (Landing Page Text) </>", key="btn_gen_html_real"):
-        st.success("Código limpo da Landing Page copiado!")
+        st.success("HTML da Landing Page pronto na área de transferência!")
         
-    # Bloco cinza de propriedades do blocks exatamente como no print
+    # Caixa preta de propriedades exatas da imagem
     st.markdown('<div style="background-color: #0f172a; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; margin-top: 14px; font-size: 13px; color: #94a3b8; font-family: monospace;"><b>image_7be312.png (Títulos, Descrições, Palavras-chave)</b><br>Títulos 15 blocks<br>Títulos, Descrições<br>Palavras-chave<br>Formatas de blocks<br>Salvar campanha no blocks</div>', unsafe_allow_html=True)
     
     st.write("")
-    # Botão secundário de histórico
     if st.button("💾 [SALVAR CAMPANHA NO HISTÓRICO]", key="btn_save_history_real"):
-        st.info("Parâmetros do lote salvos com sucesso!")
+        st.info("Campanha guardada no histórico da base de dados.")
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Rodapé oficial idêntico ao rodapé da imagem
-st.write("---")
-st.markdown('<p style="text-align: center; font-size: 11px; color: #475569;">© 2026 Adriel AI - Ferramenta Exclusiva de Inteligência para Afiliados Elite. Todos os Direitos Reservados.</p>', unsafe_allow_html=True)
