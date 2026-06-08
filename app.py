@@ -6,7 +6,28 @@ import time
 st.set_page_config(page_title="Adriel AI - Core Dashboard", layout="wide", initial_sidebar_state="expanded")
 
 # =============================================================================================================
-# INJEÇÃO DE CSS DE ALTO PADRÃO (SISTEMA DE CORES BLACK, CIANO NEON E ACENDIMENTO DE MENUS)
+# INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO ENTRAR NA TELA)
+# =============================================================================================================
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! Seja bem-vindo à central ultra Adriel A I. Todos os sistemas de inteligência e a API do Google Ads estão carregados na memória ativa e prontos para a operação."
+
+# Código oculto que força o navegador a falar em português do Brasil
+st.markdown(f"""
+<script>
+    window.onload = function() {{
+        setTimeout(function() {{
+            var msg = new SpeechSynthesisUtterance();
+            msg.text = "{texto_boas_vindas}";
+            msg.lang = "pt-BR";
+            msg.rate = 1.0; // Velocidade da fala
+            msg.pitch = 0.9; // Tom da voz (mais robótico e imponente)
+            window.speechSynthesis.speak(msg);
+        }}, 1000); // Dispara 1 segundo após carregar a tela
+    }};
+</script>
+""", unsafe_allow_html=True)
+
+# =============================================================================================================
+# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (IMAGEM DO ROBÔ 3D FLUTUANDO E NAVEGANDO NO RODAPÉ)
 # =============================================================================================================
 st.markdown("""
 <style>
@@ -22,36 +43,66 @@ st.markdown("""
         border-right: 1px solid #1e293b !important;
     }
     
-    /* 🔥 FIXAÇÃO DE COR NAS PÁGINAS DO MENU LATERAL (PAGES) */
+    /* 🚨 ANIMAÇÃO DO MENU LATERAL PULSAR NEON */
+    @keyframes pulsa-neon {
+        0% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); }
+        50% { border-color: #00FF87; box-shadow: 0 0 15px rgba(0, 255, 135, 0.4); }
+        100% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); }
+    }
+
     [data-testid="stSidebarNav"] ul li a span {
         color: #ffffff !important; 
         font-weight: bold !important;
         font-size: 14px !important;
     }
+    
     [data-testid="stSidebarNav"] ul li a {
         background-color: #0f172a !important; 
-        border: 1px solid #1e293b !important;
+        border: 2px solid #1e293b !important;
         border-radius: 8px !important;
-        margin-bottom: 6px !important;
-        padding: 10px 14px !important;
-        transition: all 0.3s ease !important;
-    }
-    [data-testid="stSidebarNav"] ul li a:hover {
-        background-color: #1e293b !important;
-        border-color: #00FF87 !important; /* Borda acende em verde neon */
+        margin-bottom: 8px !important;
+        padding: 12px 14px !important;
+        animation: pulsa-neon 3s infinite ease-in-out !important;
+        display: block !important;
     }
     
-    /* 🤖 Caixa Central de Apresentação do Robô */
+    /* 🎨 ANIMAÇÃO QUE ALTERNA AS CORES DAS BORDAS (CIANO <-> VERDE) */
+    @keyframes alterna-cores {
+        0% { border-color: #00E5FF; box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2); }
+        50% { border-color: #00FF87; box-shadow: 0px 8px 32px rgba(0, 255, 135, 0.3); }
+        100% { border-color: #00E5FF; box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2); }
+    }
+
     .robo-card-welcome {
         background: linear-gradient(135deg, #0f172a 0%, #050811 100%) !important;
         border: 2px solid #00E5FF !important;
         border-radius: 16px !important;
         padding: 30px !important;
-        margin-bottom: 30px !important;
-        box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2) !important;
+        margin-bottom: 35px !important;
+        animation: alterna-cores 5s infinite ease-in-out !important;
     }
     
-    /* 🏛️ Bloco de Monitoramento Executivo */
+    /* 🤖 ANIMAÇÃO DO ROBÔ HUMANOIDE NAVEGANDO E FLUTUANDO (EFEITO HOLOGRAMA REAL) */
+    @keyframes patrulha-holograma {
+        0% { left: 5%; transform: scaleX(1) translateY(0px); }
+        25% { transform: scaleX(1) translateY(-10px); } 
+        50% { left: 75%; transform: scaleX(-1) translateY(0px); } 
+        75% { transform: scaleX(-1) translateY(-10px); }
+        100% { left: 5%; transform: scaleX(1) translateY(0px); }
+    }
+
+    .robo-holograma-3d {
+        position: fixed;
+        bottom: 20px; 
+        left: 5%;
+        width: 180px; 
+        z-index: 99999;
+        pointer-events: none;
+        animation: patrulha-holograma 15s infinite linear !important; 
+        filter: drop-shadow(0px 0px 20px rgba(0, 229, 255, 0.6)); 
+    }
+    
+    /* Bloco de Monitoramento Executivo */
     .status-card {
         background-color: #0f172a !important;
         border: 1px solid #1e293b !important;
@@ -72,23 +123,31 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# 🤖 APRESENTAÇÃO MAJESTOSA DO ROBOZINHO NA CENTRAL (VISUAL REQUINTADO DE IMPACTO)
+# INJEÇÃO DA IMAGEM BANCO DE DADOS DIRETO DA INFRAESTRUTURA COMPACTA
+# =============================================================================================================
+st.markdown('<img src="https://unsplash.com" class="robo-holograma-3d">', unsafe_allow_html=True)
+
+# =============================================================================================================
+# APRESENTAÇÃO MAJESTOSA DA CENTRAL (ALTERANDO DE COR AUTOMATICAMENTE)
 # =============================================================================================================
 st.markdown("""
 <div class="robo-card-welcome">
     <h1 style='margin-top: 0; font-size: 28px;'>🛸 CENTRAL DE INTELIGÊNCIA: ADRIEL AI</h1>
     <p style='margin: 15px 0 0 0; font-size: 16px; color: #cbd5e1; line-height: 1.6;'>
-        "Seja muito bem-vindo, <b>Comandante José Marques da Silva</b>! Os sistemas centrais do robô foram inicializados. 
-        Aguardando suas ordens estratégicas. Nossos bancos de dados estão sincronizados com as APIs de mineração global 
-        e proteção de tráfego pago."
+        "Seja muito bem-vindo, <b>Comandante José Marques da Silva</b>! A estrutura mestre está calibrada. 
+        Observe que as bordas da central alternam de cor e o meu <b>Holograma Humanoide 3D</b> está navegando 
+        em patrulha e flutuando na parte inferior do software, inspecionando o tráfego do painel."
     </p>
-    <div style='margin-top: 15px;'>
+    <div style='margin-top: 20px;'>
         <span style='background: #00FF87; color: #050811; padding: 6px 14px; font-weight: bold; border-radius: 20px; font-size: 12px; box-shadow: 0px 4px 10px rgba(0,255,135,0.3);'>
-            MÁQUINA EM OPERAÇÃO 🛡️
+            SISTEMA COM ÁUDIO DE VOZ ATIVO 🔊
         </span>
     </div>
 </div>
 """, unsafe_allow_html=True)
+
+st.write("")
+st.write("")
 
 # =============================================================================================================
 # CARDS ESTATÍSTICOS GLOBAIS (REQUINTE EM TELA CHEIA)
@@ -128,7 +187,7 @@ with col_c3:
 st.write("---")
 
 # =============================================================================================================
-# GRÁFICO GLOBAL DE VOLUME ANALISADO (AUMENTANDO O REQUINTE VISUAL)
+# GRÁFICO GLOBAL DE VOLUME ANALISADO
 # =============================================================================================================
 st.markdown("### 📈 MONITORAMENTO VOLUMÉTRICO DAS PLATAFORMAS (CLICKBANK / HOTMART)")
 st.caption("Visão macro do tráfego e mineração de ofertas rastreadas nas últimas horas:")
