@@ -8,7 +8,7 @@ st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", i
 # =============================================================================================================
 # INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO CLICAR NA TELA)
 # =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! Menu lateral alinhado e botões padronizados. Pronto para operação."
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! Identidade visual consolidada com o robô integrado. Todos os sistemas prontos na memória."
 
 st.markdown(f"""
 <script>
@@ -27,7 +27,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DE CSS DE ALTO PADRÃO (ALINHAMENTO CIRÚRGICO DO MENU ESQUERDO E DOS BOTÕES)
+# INJEÇÃO DE CSS DE ALTO PADRÃO (ALINHAMENTO CIRÚRGICO DA LOGO COM O ROBÔ E MENUS)
 # =============================================================================================================
 st.markdown("""
 <style>
@@ -104,7 +104,7 @@ st.markdown("""
         transform: scale(1.02) !important;
     }
     
-    /* 📟 2. POLIMENTO E ALINHAMENTO CIRÚRGICO DA COLUNA ESQUERDA (MUDANÇA DE COR CORRIGIDA) */
+    /* 📟 2. POLIMENTO E ALINHAMENTO CIRÚRGICO DA COLUNA ESQUERDA */
     .menu-lateral-btn {
         display: flex;
         flex-direction: column;
@@ -113,7 +113,7 @@ st.markdown("""
     }
     
     .menu-lateral-btn div.stButton > button {
-        background: #0f172a !important; /* Cor idêntica às caixas do print */
+        background: #0f172a !important; 
         color: #cbd5e1 !important;
         border: 2px solid #1e293b !important;
         text-align: left !important;
@@ -121,10 +121,9 @@ st.markdown("""
         font-size: 14px !important;
         width: 95% !important; /* Trava todos com a mesma largura milimétrica */
         margin-bottom: 5px !important;
-        animation: none !important; /* Remove o piscar automático da esquerda */
+        animation: none !important; 
     }
     
-    /* Quando o mouse passa nos botões da esquerda: Acende Ciano de alta tecnologia */
     .menu-lateral-btn div.stButton > button:hover {
         background: #1e293b !important;
         color: #00FF87 !important;
@@ -143,9 +142,11 @@ if "pagina_atual" not in st.session_state:
 # =============================================================================================================
 col_esquerda, col_centro, col_direita = st.columns([0.75, 1.4, 1])
 
-# 🏢 COLUNA 1 (FIXA E IMUTÁVEL): LOGO ADRIEL AI + BOTÕES DO MENU LATERAL ORGANIZADOS
+# 🏢 COLUNA 1 (FIXA E IMUTÁVEL): LOGO INTEGRADA COM O ROBÔ + BOTÕES DO MENU LATERAL
 with col_esquerda:
     st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
+    
+    # 🤖 INTEGRADO: Robozinho junto do nome Adriel AI de forma imponente
     st.markdown("<h2 style='color: #60a5fa; font-size: 24px; font-weight: 800; margin-bottom:0;'>🤖 Adriel AI</h2>", unsafe_allow_html=True)
     st.markdown("<p style='color: #64748b; font-size: 11px; margin-top:-5px; letter-spacing:1px;'>PAINEL DE CONTROLE</p>", unsafe_allow_html=True)
     st.write("---")
@@ -161,7 +162,7 @@ with col_esquerda:
     st.markdown('</div></div>', unsafe_allow_html=True)
 
 # =============================================================================================================
-# ROTEAMENTO DA FAMÍLIA DE PÁGINAS (MANTENDO O MESMO CORTE SEM MUDAR O ESTILO)
+# ROTEAMENTO DA FAMÍLIA DE PÁGINAS
 # =============================================================================================================
 
 # 🏠 INTERFACE 1: DASHBOARD COMPLETO (PADRÃO DE INSTALAÇÃO DO SEU PRINT)
@@ -206,3 +207,4 @@ elif st.session_state.pagina_atual == "Radar":
 
     with col_direita:
         st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real" style="text-align: right;">Volume Escaneado: <b>1.420 Produtos</b></div>', unsafe_allow_html=True)
