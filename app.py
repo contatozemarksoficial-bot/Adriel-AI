@@ -31,19 +31,19 @@ st.markdown(f"""
 # =============================================================================================================
 st.markdown("""
 <style>
-    /* 🌌 Fundo Escuro de Luxo */
+    /* Fundo Escuro de Luxo */
     .stApp {
         background-color: #050811 !important;
         color: #ffffff !important;
     }
     
-    /* 📟 Customização da Barra Lateral Esquerda */
+    /* Customização da Barra Lateral Esquerda */
     [data-testid="stSidebar"] {
         background-color: #02040a !important;
         border-right: 1px solid #1e293b !important;
     }
     
-    /* 🚨 ANIMAÇÃO PULSAR DO MENU LATERAL */
+    /* ANIMAÇÃO PULSAR DO MENU LATERAL */
     @keyframes pulsa-neon {
         0% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); }
         50% { border-color: #00FF87; box-shadow: 0 0 15px rgba(0, 255, 135, 0.4); }
@@ -66,7 +66,7 @@ st.markdown("""
         display: block !important;
     }
     
-    /* 🎨 ANIMAÇÃO DA CAIXA DE BOAS-VINDAS (ALTERNA CIANO <-> VERDE) */
+    /* ANIMAÇÃO DA CAIXA DE BOAS-VINDAS (ALTERNA CIANO <-> VERDE) */
     @keyframes alterna-cores {
         0% { border-color: #00E5FF; box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2); }
         50% { border-color: #00FF87; box-shadow: 0px 8px 32px rgba(0, 255, 135, 0.3); }
@@ -95,7 +95,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# 🦾 NÚCLEO REAL DE INTELIGÊNCIA ARTIFICIAL: AMBIENTE 3D ANIMADO EM CANVAS HTML5 (CORREÇÃO DE SINTAXE)
+# NÚCLEO REAL DE INTELIGÊNCIA ARTIFICIAL: AMBIENTE 3D ANIMADO EM CANVAS HTML5
 # =============================================================================================================
 st.markdown("### 🧬 NÚCLEO DINÂMICO DE PROCESSAMENTO DA IA")
 
@@ -148,7 +148,6 @@ html_robo_real = """
         ctx.fill();
         ctx.stroke();
         
-        let brilhoLed = Math.abs(Math.sin(angulo * 2));
         ctx.fillStyle = "rgba(0, 229, 255, 0.9)";
         ctx.beginPath();
         ctx.arc(centroX - 12, centroY - 55, 5, 0, Math.PI * 2);
@@ -259,3 +258,6 @@ st.markdown("""
     <p style='margin: 15px 0 0 0; font-size: 16px; color: #cbd5e1; line-height: 1.6;'>
         "Seja muito bem-vindo, <b>Comandante José Marques da Silva</b>! Como você instruiu, ativei o núcleo real de 
         Inteligência Artificial na cara do painel de controle. Meu chassi tridimensional e os painéis circulares de LED 
+        estão operando em tempo real por engenharia síncrona. Dê um clique na tela para ativar o canal de voz."
+    </p>
+    <div style='margin-top: 20px;'>
