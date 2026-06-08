@@ -73,14 +73,17 @@ if "v_keywords" not in st.session_state: st.session_state.v_keywords = ""
 if "v_budget_tipo" not in st.session_state: st.session_state.v_budget_tipo = "Orçamento diário médio"
 if "v_budget_val" not in st.session_state: st.session_state.v_budget_val = 0.0
 
-# Inicialização persistente das variáveis de criativos (RSA)
-if "v_t1" not in st.session_state: st.session_state.v_t1 = ""
-if "v_t2" not in st.session_state: st.session_state.v_t2 = ""
-if "v_d1" not in st.session_state: st.session_state.v_d1 = ""
+# Inicialização segura por colchetes para suportar a re-renderização inline sem erros sintáticos
+for i in range(1, 8):
+    chave_t = f"v_t{i}"
+    if chave_t not in st.session_state: st.session_state[chave_t] = ""
+for i in range(1, 3):
+    chave_d = f"v_d{i}"
+    if chave_d not in st.session_state: st.session_state[chave_d] = ""
 
-# Barra de progresso visual (Aprimoramento de UX para acompanhamento de etapas)
+# Barra de progresso visual baseada na esteira oficial
 st.progress((st.session_state.ads_passo - 1) / 5)
-st.markdown(f"**Progresso do Setup Google Ads: Passo {st.session_state.ads_passo} de 6**")
+st.markdown(f"**Mapeamento de Produção: Etapa {st.session_state.ads_passo} de 6**")
 st.write("---")
 
 # =============================================================================================================
@@ -111,7 +114,7 @@ if st.session_state.ads_passo == 1:
         st.rerun()
 
 # =============================================================================================================
-# PASSO 2: SELECIONAR TIPO DE CAMPANHA & VALIDAÇÃO DO NOME
+# PASSO 2: SELECIONAR TIPO DE CAMPANHA & VALIDAÇÃO DO NOME (CORREÇÃO DA TRAVA DA BASE)
 # =============================================================================================================
 elif st.session_state.ads_passo == 2:
     st.markdown("### 🔎 PASSO 2: SELECIONE UM TIPO DE CAMPANHA")
@@ -122,7 +125,6 @@ elif st.session_state.ads_passo == 2:
     )
     
     st.write("---")
-    # CORRIGIDO: Removida a duplicação de "####" apontada no feedback técnico
     st.markdown("#### Selecione como você quer alcançar sua meta")
     st.session_state.v_alcance = st.radio("Selecione os canais de captação desejados:", ["Visitas ao site", "Ligações telefônicas", "Visitas à loja"], index=0, help="Determina qual ação prioritária o lead deve executar.")
     
