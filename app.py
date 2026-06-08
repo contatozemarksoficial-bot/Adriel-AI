@@ -1,122 +1,171 @@
 import streamlit as st
+import pandas as pd
 import time
 
-# Configuração premium de layout amplo Black para a Identidade Visual do Robô
-st.set_page_config(
-    page_title="Adriel AI - Core System", 
-    layout="wide", 
-    initial_sidebar_state="expanded"
-)
+# Configuração de Layout Amplo Premium Black
+st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", initial_sidebar_state="expanded")
 
 # =============================================================================================================
-# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (IDENTIDADE VISUAL UNIFICADA DA FAMÍLIA)
+# INJEÇÃO DE CSS DE ALTA PERFORMANCE (CLONE EXATO DO LAYOUT PREMIUM)
 # =============================================================================================================
 st.markdown("""
 <style>
-    /* 🌌 Fundo Escuro Espacial do SaaS */
+    /* Fundo Escuro Espacial */
     .stApp {
-        background-color: #050811 !important;
+        background-color: #0b111e !important;
         color: #ffffff !important;
     }
     
-    /* 📟 Estilização de Títulos e Textos Principais em Gradiente Líquido */
-    h1, h2, h3 {
-        font-family: 'Inter', sans-serif !important;
-        background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 800 !important;
+    /* Customização Absoluta da Barra Lateral */
+    [data-testid="stSidebar"] {
+        background-color: #070c16 !important;
+        border-right: 1px solid #1e293b !important;
     }
     
-    /* 🤖 Card de Apresentação da Inteligência Artificial */
-    .robo-chassi {
-        background: radial-gradient(circle at top left, #0e172a, #050811);
-        border: 2px solid #00E5FF;
-        border-radius: 16px;
-        padding: 25px;
-        box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.15);
-        margin-bottom: 30px;
-        animation: surgir 1s ease-out;
+    /* Caixa do Cabeçalho de Boas-Vindas */
+    .header-box {
+        background-color: #0f172a !important;
+        border: 1px solid #1e293b !important;
+        border-radius: 8px !important;
+        padding: 12px 20px !important;
+        margin-bottom: 20px !important;
     }
     
-    /* 📈 Efeito de Animação de Entrada do Robô na Tela */
-    @keyframes surgir {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* 🕹️ MENU DE BOTÕES CRESCENTES (EFEITO HOVER ZOOM AUTOMÁTICO) */
-    div.stButton > button {
-        background: linear-gradient(135deg, #091124 0%, #050811 100%) !important;
-        color: #00FF87 !important;
-        border: 2px solid #00E5FF !important;
-        font-size: 16px !important;
+    /* Títulos dos Módulos Principais */
+    .modulo-titulo {
+        font-size: 14px !important;
         font-weight: bold !important;
-        padding: 14px 28px !important;
-        border-radius: 12px !important;
-        box-shadow: 0px 4px 12px rgba(0, 229, 255, 0.1) !important;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-        width: 100% !important;
-        cursor: pointer !important;
-        text-align: left !important;
+        color: #60a5fa !important;
+        letter-spacing: 0.5px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
     }
     
-    /* 🔥 O Crescimento do Botão quando o Usuário passa o Mouse */
+    /* Botões Dinâmicos Estilo Neon (Módulo 2) */
+    div.stButton > button {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+        color: white !important;
+        font-weight: bold !important;
+        border: none !important;
+        padding: 10px 20px !important;
+        border-radius: 6px !important;
+        width: 100% !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0px 4px 10px rgba(16, 185, 129, 0.2) !important;
+    }
     div.stButton > button:hover {
-        background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%) !important;
-        color: #050811 !important;
-        transform: scale(1.04) translateY(-3px) !important;
-        box-shadow: 0px 10px 30px rgba(0, 255, 135, 0.4) !important;
-        border-color: #ffffff !important;
+        transform: scale(1.02) !important;
+        box-shadow: 0px 6px 15px rgba(16, 185, 129, 0.4) !important;
+    }
+    
+    /* Botões Secundários de Histórico/Planilha */
+    .stButton-sec > button {
+        background: #1e293b !important;
+        color: #cbd5e1 !important;
+        border: 1px solid #334155 !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# ESTRUTURA VISUAL CENTRAL DA HOME PAGE (PÁGINA INICIAL DO PRODUTO)
+# BARRA LATERAL (MENU COMPLETO DE PROVOCAÇÃO DO SAAS)
 # =============================================================================================================
-st.markdown("<h1>🛸 ADRIEL AI — CENTRAL SUPREMA DE AUTOMAÇÃO</h1>", unsafe_allow_html=True)
-st.markdown("Controle o leilão do Google Ads com inteligência artificial para produtos nacionais e internacionais.")
-st.write("---")
+with st.sidebar:
+    st.markdown("<h2 style='color: #60a5fa; font-size: 22px; font-weight: 800;'>🌌 Adriel AI</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #64748b; font-size: 12px; margin-top:-15px;'>PAINEL DE CONTROLE</p>", unsafe_allow_html=True)
+    st.write("---")
+    
+    # Links visuais simulando o menu profissional do print
+    st.markdown("🖥️ **Dashboard**")
+    st.caption("🛰️ Radar de Produtos")
+    st.caption("🔬 Auditor de Mercado")
+    st.caption("📝 Gerador de Anúncios")
+    st.caption("🏹 Caçador de Lançamentos")
+    st.write("---")
+    st.caption("⚙️ Configurações")
+    st.caption("🚪 Sair")
 
-col_avatar, col_interface = st.columns([1.3, 1])
-
-with col_avatar:
-    # Card de boas-vindas com o robô Adriel AI se apresentando
+# =============================================================================================================
+# CABEÇALHO HORIZONTAL DE BOAS-VINDAS
+# =============================================================================================================
+col_h1, col_h2 = st.columns([2, 1])
+with col_h1:
     st.markdown("""
-    <div class="robo-chassi">
-        <h2 style='margin-top: 0;'>🤖 SYSTEM ONLINE: ADRIEL AI</h2>
-        <p style='font-size: 16px; line-height: 1.6; color: #cbd5e1;'>
-            "Olá, Comandante José Marques da Silva! Meus motores de busca, 
-            auditoria e envio direto de campanhas foram carregados com sucesso. 
-            A nossa esteira operacional de luxo está calibrada com a Google Ads API."
-        </p>
-        <span style='background: #00FF87; color: #050811; padding: 4px 10px; font-weight: bold; border-radius: 20px; font-size: 12px;'>
-            PROTEÇÃO ANTI-BLOQUEIO ATIVA 🛡️
-        </span>
+    <div class="header-box">
+        <span style="font-size: 14px; color: #94a3b8;">👨‍✈️ Olá, <b>José Marques</b>, Comandante do Adriel AI!</span>
+    </div>
+    """, unsafe_allow_html=True)
+with col_h2:
+    st.markdown("""
+    <div class="header-box" style="text-align: right;">
+        <span style="font-size: 12px; color: #10b981;">● Status: <b>Sistema Online</b></span>
+    </div>
+    """, unsafe_allow_html=True)
+
+# =============================================================================================================
+# DUAS COLUNAS PRINCIPAIS DO CHASSI (REDUÇÃO E CRIAÇÃO EM PARALELO)
+# =============================================================================================================
+col_modulo1, col_modulo2 = st.columns([1.4, 1])
+
+# 📊 COLUNA 1: MÓDULO RADAR DE PRODUTOS (FILTRO XEQUE-MATE)
+with col_modulo1:
+    st.markdown('<p class="modulo-titulo">🛰️ MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</p>', unsafe_allow_html=True)
+    
+    # Criando a tabela idêntica à do print com badges coloridos de aprovação da IA
+    dados_produtos = {
+        "Name": [f"Produto-acanodiano {i}" for i in range(1, 8)],
+        "Comissões": ["3,00%", "2,00%", "1,00%", "1,00%", "1,00%", "2,00%", "2,00%"],
+        "Comissão": ["R$ 15% ", "R$ 75% ", "R$ 25% ", "R$ 35% ", "R$ 25% ", "R$ 25% ", "R$ 25% "],
+        "Veredito da IA": [
+            "APROVADO (Risco Baixo)", 
+            "APROVADO (Risco Baixo)", 
+            "REVISAR (Risco Médio)", 
+            "REVISAR (Risco Médio)", 
+            "APROVADO (Risco Baixo)",
+            "APROVADO (Risco Baixo)",
+            "APROVADO (Risco Baixo)"
+        ]
+    }
+    df = pd.DataFrame(dados_produtos)
+    st.dataframe(df, use_container_width=True, hide_index=True)
+    
+    st.write("")
+    # Botão de download da planilha estilo o do print
+    st.button("📥 [BAIXAR PLANILHA DE INTELIGÊNCIA (.CSV)]", key="btn_csv_download")
+
+# 📝 COLUNA 2: GERADOR DE ANÚNCIOS MASTER & PRE-SELL
+with col_modulo2:
+    st.markdown('<p class="modulo-titulo">📝 MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & PRE-SELL</p>', unsafe_allow_html=True)
+    
+    # Campos de Entrada Estilizados do Print
+    prod_gringo = st.text_input("PROD_GRINGO:", value="Sugar Defender")
+    resumo_niche = st.text_area("RESUMO (Niche/Dores):", value="Suplemento natural para equilíbrio do metabolismo.", height=68)
+    
+    st.write("")
+    # Botões Verdes Grandes de Ação do Software
+    if st.button("🟢 (A) GERAR ANÚNCIOS ADSMaster (Copy + Roteiro Vídeo)", key="btn_ads_master"):
+        st.success("Anúncios estruturados com sucesso!")
+        
+    st.write("")
+    if st.button("🟢 [B] FABRICAR PRE-SELL (Landing Page Text) </>", key="btn_fabricar_presell"):
+        st.success("Estrutura HTML da Pre-sell copiada!")
+        
+    # Caixa cinza simulando o bloco de propriedades do criativo
+    st.markdown("""
+    <div style="background-color: #0f172a; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; margin-top: 15px; font-size: 13px; color: #94a3b8;">
+        <b>image_7be312.png (Títulos, Descrições, Palavras-chave)</b><br>
+        Títulos 15 blocks<br>
+        Títulos, Descrições<br>
+        Palavras-chave<br>
+        Formatas de blocks<br>
+        Salvar campanha no blocks
     </div>
     """, unsafe_allow_html=True)
     
-    col_st1, col_st2 = st.columns(2)
-    with col_st1: st.metric(label="Latência do Servidor", value="14ms", delta="Excelente")
-    with col_st2: st.metric(label="Handshake OAuth 2.0", value="Pronto", delta="Síncrono")
-
-with col_interface:
-    st.markdown("### 🕹️ ACESSO CRESCENTE AOS MÓDULOS")
-    st.markdown("Passe o mouse sobre os botões para expandir o módulo e iniciar a operação:")
     st.write("")
-    
-    if st.button("🛰️ MÓDULO 1: Radar de Produtos", key="b_m1"):
-        st.info("Acesse a página **1_Radar** na barra lateral esquerda para abrir.")
-    if st.button("📊 MÓDULO 2: Auditor de Mercado", key="b_m2"):
-        st.info("Acesse a página **2_Auditor** na barra lateral esquerda para abrir.")
-    if st.button("📝 MÓDULO 3: Gerador de Anúncios", key="b_m3"):
-        st.info("Acesse a página **3_Gerador** na barra lateral esquerda para abrir.")
-    if st.button("🏹 MÓDULO 4: Caçador de Lançamentos", key="b_m4"):
-        st.info("Acesse a página **4_Cacador** na barra lateral esquerda para abrir.")
-    if st.button("🌐 MÓDULO 5: Construtor Pre-Sell", key="b_m5"):
-        st.info("Acesse a página **5_Presell** na barra lateral esquerda para abrir.")
-    if st.button("🚀 MÓDULO 6: Ativador Google Ads", key="b_m6"):
-        st.info("Acesse a página **6_Ativador_Google_Ads** na barra lateral esquerda para abrir.")
-    if st.button("💎 MÓDULO 7: Gestão de Assinantes", key="b_m7"):
-        st.info("Acesse a página **7_Area_Assinantes** na barra lateral esquerda para abrir.")
+    # Botão de salvar no histórico da base
+    st.button("💾 [SALVAR CAMPANHA NO HISTÓRICO]", key="btn_save_history")
+
+# Rodapé institucional do Print
+st.write("---")
+st.markdown("<p style='text-align: center; font-size: 11px; color: #475569;'>© 2026 Adriel AI - Ferramenta Exclusiva de Inteligência para Afiliados Elite. Todos os Direitos Reservados.</p>", unsafe_allow_html=True)
