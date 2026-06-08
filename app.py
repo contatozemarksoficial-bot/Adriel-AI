@@ -5,33 +5,41 @@ import time
 # Configuração premium de layout amplo (Ocupa 100% da largura da tela)
 st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", initial_sidebar_state="collapsed")
 
-# INJEÇÃO DE CSS DE ALTA PERFORMANCE (PADRÃO VISUAL UNIFICADO DA FAMÍLIA ADRIEL AI)
+# INJEÇÃO DE CSS DE ALTA PERFORMANCE (CORREÇÃO DE ESPAÇAMENTO FANTASMA E ALINHAMENTO NO TETO)
 st.markdown("""
 <style>
-    /* Fundo Escuro Fiel ao Print da Imagem */
+    /* 🌌 Fundo Escuro Fiel ao Print da Imagem */
     .stApp {
         background-color: #0b111e !important;
         color: #ffffff !important;
     }
     
-    /* Oculta as bordas e menus padrão nativos do Streamlit */
+    /* Remove o preenchimento e margens do topo padrão do Streamlit */
+    .block-container {
+        padding-top: 1rem !important;
+        padding-bottom: 0rem !important;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
+    
+    /* Oculta as bordas e menus nativos */
     [data-testid="stSidebar"] { display: none !important; }
     [data-testid="stHeader"] { display: none !important; }
     
-    /* ANIMAÇÃO DE SINAL: ALTERNA AS BORDAS DO BOTÃO SELECIONADO (CIANO <-> VERDE) */
+    /* 🚨 ANIMAÇÃO DE SINAL: ALTERNA AS BORDAS DO BOTÃO SELECIONADO (CIANO <-> VERDE) */
     @keyframes sinal-pulsante {
         0% { border-color: #00E5FF; box-shadow: 0 0 8px rgba(0, 229, 255, 0.2); }
         50% { border-color: #00FF87; box-shadow: 0 0 18px rgba(0, 255, 135, 0.4); }
         100% { border-color: #00E5FF; box-shadow: 0 0 8px rgba(0, 229, 255, 0.2); }
     }
 
-    /* Linhas divisórias das 3 colunas verticais */
+    /* Linhas divisórias das 3 colunas verticais (CORRIGIDO SEM HEIGHT FIXO) */
     .coluna-container {
         background-color: transparent;
         border-right: 1px solid #1e293b;
-        padding-right: 20px;
+        padding-right: 15px;
         padding-left: 10px;
-        min-height: 85vh;
+        margin-top: 0px !important;
     }
     
     /* Caixas horizontais superiores de logs */
@@ -119,7 +127,7 @@ with col_esquerda:
     st.markdown('</div></div>', unsafe_allow_html=True)
 
 # =============================================================================================================
-# ROTEAMENTO DA FAMÍLIA DE PÁGINAS (MANTENDO O MESMO CORTE SEM MUDAR O ESTILO)
+# ROTEAMENTO DA FAMÍLIA DE PÁGINAS (MANTENDO O MESMO CORTE SEM MUDAR O ESTLO)
 # =============================================================================================================
 
 # 🏠 INTERFACE 1: DASHBOARD COMPLETO (PADRÃO DE INSTALAÇÃO DO SEU PRINT)
@@ -130,10 +138,10 @@ if st.session_state.pagina_atual == "Dashboard":
         st.markdown('<p class="subtitulo-bloco-real">MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</p>', unsafe_allow_html=True)
         
         dados_tabela = {
-            "Name": [f"Produto-acanodiano {i}" for i in range(1, 8)],
-            "Comissões": ["3,00%", "2,00%", "1,00%", "1,00%", "1,00%", "2,00%", "2,00%"],
-            "Comissão": ["R$,15%", "R$,75%", "R$,25%", "R$,35%", "R$,25%", "R$,25%", "R$,25%"],
-            "Veredito da IA": ["APROVADO (Risco Baixo)"] * 7
+            "Name": [f"Produto-acanodiano {i}" for i in range(1, 10)],
+            "Comissões": ["3,00%", "2,00%", "1,00%", "1,00%", "1,00%", "2,00%", "2,00%", "1,00%", "1,00%"],
+            "Comissão": ["R$,15%", "R$,75%", "R$,25%", "R$,35%", "R$,25%", "R$,25%", "R$,25%", "R$,60%", "R$,60%"],
+            "Veredito da IA": ["APROVADO (Risco Baixo)"] * 9
         }
         st.dataframe(pd.DataFrame(dados_tabela), use_container_width=True, hide_index=True)
         st.write("")
@@ -184,9 +192,3 @@ elif st.session_state.pagina_atual == "GoogleAds":
     with col_direita:
         st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
         st.markdown('<div class="header-box-real" style="text-align: right;">Handshake: <span style="color:#10b981;">Aprovado 🟢</span></div>', unsafe_allow_html=True)
-        st.markdown('<p class="subtitulo-bloco-real">📡 PROTOCOLO DE TRANSMISSÃO EM LOTE</p>', unsafe_allow_html=True)
-        
-        st.text_input("Google Ads ID do Cliente:", value="123-456-7890")
-        st.write("")
-        if st.button("🚀 TRANSMITIR CAMPANHA COMPLETA DIRETO VIA API", key="btn_disparo_api"):
-            st.success("🎉 Campanha enviada com sucesso para os servidores do Google Ads!")
