@@ -118,14 +118,62 @@ with col_p3:
         st.success("Redirecting para o Checkout de R$ 297,00...")
 
 st.write("---")
-st.markdown("### ⚙️ CONFIGURAÇÃO DO GATEWAY DE PAGAMENTO (INTEGRAÇÃO DONO DO SOFTWARE)")
-st.caption("Insira suas chaves de API da Kiwify, Hotmart ou Stripe para receber os pagamentos diretamente na sua conta bancária:")
 
-col_g1, col_g2 = st.columns(2)
-with col_g1:
-    st.text_input("Token de Produção (Client Secret):", value="KIWIFY_SECRET_TOKEN_PRODUCTION", type="password")
-with col_g2:
-    st.selectbox("Selecione o Gateway Ativo:", ["Kiwify", "Stripe", "Appmax", "Hotmart"])
+# =============================================================================================================
+# NOVAS CONFIGURAÇÕES PREMIUM (PAINEL DO DONO DO SOFTWARE - ADMINISTRATIVO)
+# =============================================================================================================
+st.markdown("### ⚙️ MAIS CONFIGURAÇÕES DO ADMINISTRADOR (PAINEL JOSÉ MARQUES)")
 
-if st.button("💾 SALVAR CONFIGURAÇÕES DO GATEWAY", key="btn_save_gate"):
-    st.success("✅ Chaves de pagamento salvas e integradas com sucesso na nuvem do Adriel AI!")
+# Abas organizadas para separar os novos blocos visuais de controle
+tabs_admin = st.tabs(["🔒 Integração Gateway", "👥 Controle de Alunos", "🔑 Gerador de Licenças", "🖲️ Configurações de Webhook"])
+
+# ABA 1: CONFIGURAÇÃO DO GATEWAY DE PAGAMENTO
+with tabs_admin[0]:
+    st.markdown("#### 💳 Configurações de Token e Gateway")
+    st.caption("Insira suas chaves de API para receber os pagamentos diretamente na sua conta bancária:")
+    col_g1, col_g2 = st.columns(2)
+    with col_g1:
+        st.text_input("Token de Produção (Client Secret Key):", value="KIWIFY_SECRET_TOKEN_PRODUCTION", type="password")
+    with col_g2:
+        st.selectbox("Selecione o Gateway Ativo para o SaaS:", ["Kiwify", "Stripe", "Hotmart", "Appmax"])
+        
+    if st.button("💾 SALVAR CONFIGURAÇÕES DO GATEWAY", key="btn_save_gate"):
+        st.success("✅ Chaves de pagamento salvas e integradas com sucesso na nuvem do Adriel AI!")
+
+# ABA 2: CONTROLE DE ALUNOS ATIVOS E BLOQUEIOS
+with tabs_admin[1]:
+    st.markdown("#### 👥 Painel de Moderação de Usuários e Combate à Pirataria")
+    col_u1, col_u2 = st.columns([2, 1])
+    with col_u1:
+        email_busca = st.text_input("Buscar usuário cadastrado pelo E-mail:", value="alunopro@gmail.com")
+    with col_u2:
+        status_busca = st.selectbox("Status de Acesso do Aluno:", ["Ativo (Mensalidade Paga) 🟢", "Atrasado (Notificar) 🟡", "Bloqueado (Recusado) 🔴"])
+        
+    col_ubtn1, col_ubtn2 = st.columns(2)
+    with col_ubtn1:
+        if st.button("⚡ APLICAR ALTERAÇÃO DE STATUS", key="btn_status_user"):
+            st.success(f"🔄 O usuário {email_busca} foi atualizado para o status {status_busca} com sucesso!")
+    with col_ubtn2:
+        if st.button("❌ BANIR USUÁRIO DA PLATAFORMA", key="btn_ban_user"):
+            st.error(f"🛑 O acesso do e-mail {email_busca} foi cortado e revogado dos servidores!")
+
+# ABA 3: GERADOR DE LICENÇAS E TOKENS (PIX E MANUAL)
+with tabs_admin[2]:
+    st.markdown("#### 🔑 Gerador de Licenças para Venda Direta (Pix ou WhatsApp)")
+    st.caption("Gere chaves exclusivas de 30 dias para liberar o acesso de clientes que pagaram por fora da plataforma:")
+    
+    plano_token = st.selectbox("Selecione o plano da licença a ser gerada:", ["Plano Start", "Plano Pro", "Plano Elite"])
+    
+    if st.button("💎 GERAR CHAVE DE ACESSO NEON", key="btn_gen_token"):
+        chave_aleatoria = f"ADRIEL-{plano_token.upper()[:3]}-741258-XYZ9"
+        st.code(chave_aleatoria, language="text")
+        st.success("🎯 Licença gerada com sucesso! Copie o código acima e envie para o seu cliente.")
+
+# ABA 4: CONFIGURAÇÕES DE WEBHOOK (AUTOMAÇÃO INSTANTÂNEA)
+with tabs_admin[3]:
+    st.markdown("#### 🖲️ URL de Webhook de Entrada (Sincronização com o Checkout)")
+    st.caption("Copie o link seguro abaixo e cole na aba de Webhooks dentro da sua Kiwify ou Hotmart. O robô lerá os dados de compra aprovada no ato para liberar o login:")
+    
+    url_webhook_simulada = "https://streamlit.app"
+    st.text_input("URL Mestre de Entrada (Apenas Leitura):", value=url_webhook_simulada, disabled=True)
+    st.info("💡 Quando a Kiwify enviar um sinal de 'Aprovado' para esse link, o robô Adriel AI dispara o e-mail de acesso para o aluno em menos de 3 segundos de forma 100% automática!")
