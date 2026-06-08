@@ -6,7 +6,7 @@ import time
 st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", initial_sidebar_state="expanded")
 
 # =============================================================================================================
-# INJEÇÃO DE CSS DE ALTA PERFORMANCE (POLIMENTO DO DASHBOARD E RECURSOS DO ROBOZINHO)
+# INJEÇÃO DE CSS DE ALTA PERFORMANCE (FORÇANDO COR NOS LINKS APAGADOS DA SIDEBAR)
 # =============================================================================================================
 st.markdown("""
 <style>
@@ -22,14 +22,33 @@ st.markdown("""
         border-right: 1px solid #1e293b !important;
     }
     
+    /* 🔥 FIXAÇÃO DE COR PARA CORRIGIR OS LINKS APAGADOS DA BARRA LATERAL (PAGES) */
+    [data-testid="stSidebarNav"] ul li a span {
+        color: #ffffff !important; /* Força o texto das páginas a ficar Branco Puro */
+        font-weight: bold !important;
+        font-size: 14px !important;
+    }
+    [data-testid="stSidebarNav"] ul li a {
+        background-color: #0f172a !important; /* Coloca um fundo cinza escuro nos links */
+        border: 1px solid #1e293b !important;
+        border-radius: 6px !important;
+        margin-bottom: 5px !important;
+        padding: 8px 12px !important;
+        transition: all 0.3s ease !important;
+    }
+    [data-testid="stSidebarNav"] ul li a:hover {
+        background-color: #1e293b !important;
+        border-color: #00FF87 !important; /* Acende borda verde no mouse */
+    }
+    
     /* 🤖 Caixa Premium do Robozinho Inteligente */
     .robo-card-top {
-        background: linear-gradient(135deg, #111b35 0%, #070c16 100%) !important;
-        border: 2px solid #00E5FF !important;
+        background: linear-gradient(135deg, #0f172a 0%, #070c16 100%) !important;
+        border: 2px solid #00FF87 !important;
         border-radius: 12px !important;
-        padding: 15px !important;
-        margin-bottom: 25px !important;
-        box-shadow: 0px 4px 15px rgba(0, 229, 255, 0.2) !important;
+        padding: 16px !important;
+        margin-bottom: 20px !important;
+        box-shadow: 0px 4px 15px rgba(0, 255, 135, 0.15) !important;
     }
     
     /* 👨‍✈️ Caixa do Cabeçalho de Boas-Vindas */
@@ -37,11 +56,8 @@ st.markdown("""
         background-color: #0f172a !important;
         border: 1px solid #1e293b !important;
         border-radius: 8px !important;
-        padding: 14px 20px !important;
-        margin-bottom: 25px !important;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        padding: 12px 20px !important;
+        margin-bottom: 20px !important;
     }
     
     /* 🎯 Títulos dos Módulos Principais */
@@ -63,73 +79,31 @@ st.markdown("""
         padding: 12px 20px !important;
         border-radius: 8px !important;
         width: 100% !important;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        transition: all 0.3s ease !important;
         box-shadow: 0px 4px 10px rgba(16, 185, 129, 0.2) !important;
         cursor: pointer !important;
     }
     div.stButton > button:hover {
-        transform: scale(1.03) !important;
-        box-shadow: 0px 6px 20px rgba(16, 185, 129, 0.5) !important;
-        background: linear-gradient(135deg, #00FF87 0%, #10b981 100%) !important;
-    }
-    
-    /* 🛠️ Botões de Navegação Lateral */
-    .sidebar-btn > button {
-        background: #0f172a !important;
-        color: #cbd5e1 !important;
-        border: 1px solid #1e293b !important;
-        padding: 8px 15px !important;
-        font-size: 14px !important;
-        text-align: left !important;
-        margin-bottom: 5px !important;
-    }
-    .sidebar-btn > button:hover {
-        background: #1e293b !important;
-        color: #00FF87 !important;
-        border-color: #00E5FF !important;
+        transform: scale(1.02) !important;
+        box-shadow: 0px 6px 15px rgba(16, 185, 129, 0.4) !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# BARRA LATERAL (MENU COMPLETO DA PLATAFORMA COM ACESSO DIRETO)
-# =============================================================================================================
-with st.sidebar:
-    st.markdown("<h2 style='color: #60a5fa; font-size: 24px; font-weight: 800; margin-bottom:0;'>🤖 Adriel AI</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='color: #64748b; font-size: 11px; margin-top:-5px; letter-spacing:1px;'>PAINEL DE CONTROLE</p>", unsafe_allow_html=True)
-    st.write("---")
-    
-    st.markdown("<p style='color: #94a3b8; font-size: 12px; font-weight: bold;'>🎛️ NAVEGAÇÃO</p>", unsafe_allow_html=True)
-    
-    # Botões rápidos na barra lateral para direcionar o cliente
-    st.button("🖥️ Dashboard Geral", key="nav_dash", help="Página Inicial")
-    st.button("🛰️ Módulo 1: Radar", key="nav_m1")
-    st.button("🔬 Módulo 2: Auditor", key="nav_m2")
-    st.button("📝 Módulo 3: Gerador RSA", key="nav_m3")
-    st.button("🏹 Módulo 4: Caçador", key="nav_m4")
-    st.button("🌐 Módulo 5: Pre-Sell", key="nav_m5")
-    st.button("🚀 Módulo 6: Ativador Google", key="nav_m6")
-    st.button("💎 Módulo 7: Assinantes", key="nav_m7")
-    
-    st.write("---")
-    st.caption("⚙️ Configurações do SaaS")
-    st.caption("🚪 Sair do Sistema")
-
-# =============================================================================================================
-# 🤖 APRESENTAÇÃO DO ROBOZINHO NA CENTRAL SUPERIOR (FIM DO VISUAL VAZIO!)
+# 🤖 APRESENTAÇÃO DO ROBOZINHO NA CENTRAL SUPERIOR
 # =============================================================================================================
 st.markdown("""
 <div class="robo-card-top">
     <h3 style='margin: 0; color: #00FF87; font-size: 18px;'>🤖 SYSTEM MONITOR: ROBÔ ADRIEL AI</h3>
-    <p style='margin: 5px 0 0 0; font-size: 14px; color: #94a3b8; line-height: 1.5;'>
-        "Olá, Comandante José Marques! Estou posicionado no topo da infraestrutura. 
-        Meus motores de varredura contra fraudes e o chassi de integração da Google Ads API estão 100% síncronos e prontos."
+    <p style='margin: 5px 0 0 0; font-size: 14px; color: #cbd5e1; line-height: 1.5;'>
+        "Olá, Comandante José Marques! Estou posicionado no topo da infraestrutura. Meus motores de varredura contra fraudes e o chassi de integração da Google Ads API estão 100% síncronos e prontos."
     </p>
 </div>
 """, unsafe_allow_html=True)
 
 # CABEÇALHO HORIZONTAL DE INFORMAÇÕES DO USUÁRIO
-col_h1, col_h2 = st.columns([2, 1])
+col_h1, col_h2 = st.columns(2)
 with col_h1:
     st.markdown("""
     <div class="header-box">
@@ -152,7 +126,6 @@ col_modulo1, col_modulo2 = st.columns([1.4, 1])
 with col_modulo1:
     st.markdown('<p class="modulo-titulo">🛰️ MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</p>', unsafe_allow_html=True)
     
-    # Dataframe alinhado perfeitamente
     dados_produtos = {
         "Name": [f"Produto-acanodiano {i}" for i in range(1, 8)],
         "Comissões": ["3,00%", "2,00%", "1,00%", "1,00%", "1,00%", "2,00%", "2,00%"],
@@ -188,7 +161,6 @@ with col_modulo2:
     if st.button("🟢 [B] FABRICAR PRE-SELL (Landing Page Text) </>", key="btn_fabricar_presell"):
         st.success("Layout HTML estruturado com sucesso!")
         
-    # Caixa cinza informativa de propriedades do criativo
     st.markdown("""
     <div style="background-color: #0f172a; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; margin-top: 15px; font-size: 13px; color: #94a3b8;">
         <b>image_7be312.png (Títulos, Descrições, Palavras-chave)</b><br>
