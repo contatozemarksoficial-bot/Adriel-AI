@@ -8,26 +8,26 @@ st.set_page_config(page_title="Adriel AI - Core Dashboard", layout="wide", initi
 # =============================================================================================================
 # INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO ENTRAR NA TELA)
 # =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! Seja bem-vindo à central ultra Adriel A I. Todos os sistemas de inteligência e a API do Google Ads estão carregados na memória ativa e prontos para a operação."
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! Todos os sistemas e a API do Google Ads estão prontos na memória ativa."
 
-# Código oculto que força o navegador a falar em português do Brasil
 st.markdown(f"""
 <script>
-    window.onload = function() {{
-        setTimeout(function() {{
+    document.addEventListener('click', function() {{
+        if (!window.audioDisparado) {{
             var msg = new SpeechSynthesisUtterance();
             msg.text = "{texto_boas_vindas}";
             msg.lang = "pt-BR";
-            msg.rate = 1.0; // Velocidade da fala
-            msg.pitch = 0.9; // Tom da voz (mais robótico e imponente)
+            msg.rate = 1.0;
+            msg.pitch = 0.9;
             window.speechSynthesis.speak(msg);
-        }}, 1000); // Dispara 1 segundo após carregar a tela
-    }};
+            window.audioDisparado = true;
+        }}
+    }});
 </script>
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (IMAGEM DO ROBÔ 3D FLUTUANDO E NAVEGANDO NO RODAPÉ)
+# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (ROBÔ NATIVO EM VETOR SEM LINKS EXTERNOS)
 # =============================================================================================================
 st.markdown("""
 <style>
@@ -82,24 +82,23 @@ st.markdown("""
         animation: alterna-cores 5s infinite ease-in-out !important;
     }
     
-    /* 🤖 ANIMAÇÃO DO ROBÔ HUMANOIDE NAVEGANDO E FLUTUANDO (EFEITO HOLOGRAMA REAL) */
-    @keyframes patrulha-holograma {
+    /* 🤖 ANIMAÇÃO DE PATRULHA DO ROBÔ REAL NO COMPRIMENTO DA TELA */
+    @keyframes patrulha-render {
         0% { left: 5%; transform: scaleX(1) translateY(0px); }
-        25% { transform: scaleX(1) translateY(-10px); } 
-        50% { left: 75%; transform: scaleX(-1) translateY(0px); } 
-        75% { transform: scaleX(-1) translateY(-10px); }
+        25% { transform: scaleX(1) translateY(-8px); }
+        50% { left: 75%; transform: scaleX(-1) translateY(0px); }
+        75% { transform: scaleX(-1) translateY(-8px); }
         100% { left: 5%; transform: scaleX(1) translateY(0px); }
     }
 
-    .robo-holograma-3d {
+    .robo-container-fixed {
         position: fixed;
-        bottom: 20px; 
+        bottom: 20px;
         left: 5%;
-        width: 180px; 
+        width: 120px;
         z-index: 99999;
         pointer-events: none;
-        animation: patrulha-holograma 15s infinite linear !important; 
-        filter: drop-shadow(0px 0px 20px rgba(0, 229, 255, 0.6)); 
+        animation: patrulha-render 16s infinite linear !important;
     }
     
     /* Bloco de Monitoramento Executivo */
@@ -111,32 +110,45 @@ st.markdown("""
         text-align: center;
         box-shadow: 0px 4px 15px rgba(0,0,0,0.3) !important;
     }
-    
-    /* Gradientes nos Títulos */
-    h1, h2 {
-        background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 800 !important;
-    }
 </style>
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DA IMAGEM BANCO DE DADOS DIRETO DA INFRAESTRUTURA COMPACTA
+# INJEÇÃO DO ROBÔ CONSTRUÍDO VIA VETOR GEOMÉTRICO DIRETO NA TELA (SISTEMA NATIVO IMPOSSÍVEL DE QUEBRAR)
 # =============================================================================================================
-st.markdown('<img src="https://unsplash.com" class="robo-holograma-3d">', unsafe_allow_html=True)
+st.markdown("""
+<div class="robo-container-fixed">
+    <svg viewBox="0 0 100 100" width="100" height="100" style="filter: drop-shadow(0px 0px 12px #00FF87);">
+        <!-- Cabeça Humanoide Branca do Robô -->
+        <rect x="25" y="20" width="50" height="40" rx="12" fill="#ffffff" stroke="#00E5FF" stroke-width="3"/>
+        <!-- Painéis Tecnológicos Azuis e Olhos de LED Acesos -->
+        <circle cx="42" cy="36" r="6" fill="#00E5FF"/>
+        <circle cx="58" cy="36" r="6" fill="#00E5FF"/>
+        <circle cx="42" cy="36" r="2" fill="#050811"/>
+        <circle cx="58" cy="36" r="2" fill="#050811"/>
+        <!-- Boca de Sinal de Áudio Neon -->
+        <rect x="42" y="48" width="16" height="4" fill="#00FF87" rx="2"/>
+        <!-- Antenas do Radar Holográfico do Topo -->
+        <line x1="50" y1="20" x2="50" y2="4" stroke="#00FF87" stroke-width="4"/>
+        <circle cx="50" cy="4" r="5" fill="#00FF87"/>
+        <!-- Corpo e Chassi Metálico -->
+        <rect x="36" y="60" width="28" height="20" rx="4" fill="#0f172a" stroke="#00E5FF" stroke-width="2"/>
+        <!-- Luz de Core de Energia no Peito -->
+        <circle cx="50" cy="70" r="4" fill="#00FF87"/>
+    </svg>
+</div>
+""", unsafe_allow_html=True)
 
 # =============================================================================================================
-# APRESENTAÇÃO MAJESTOSA DA CENTRAL (ALTERANDO DE COR AUTOMATICAMENTE)
+# APRESENTAÇÃO MAJESTOSA DA CENTRAL
 # =============================================================================================================
 st.markdown("""
 <div class="robo-card-welcome">
-    <h1 style='margin-top: 0; font-size: 28px;'>🛸 CENTRAL DE INTELIGÊNCIA: ADRIEL AI</h1>
+    <h1 style='margin-top: 0; font-size: 27px; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>🛸 CENTRAL DE INTELIGÊNCIA: ADRIEL AI</h1>
     <p style='margin: 15px 0 0 0; font-size: 16px; color: #cbd5e1; line-height: 1.6;'>
         "Seja muito bem-vindo, <b>Comandante José Marques da Silva</b>! A estrutura mestre está calibrada. 
-        Observe que as bordas da central alternam de cor e o meu <b>Holograma Humanoide 3D</b> está navegando 
-        em patrulha e flutuando na parte inferior do software, inspecionando o tráfego do painel."
+        Observe que as bordas da central alternam de cor e o meu <b>Chassi Digitalizado</b> está navegando 
+        em patrulha e flutuando na parte inferior do software. Clique na tela para ativar os alto-falantes."
     </p>
     <div style='margin-top: 20px;'>
         <span style='background: #00FF87; color: #050811; padding: 6px 14px; font-weight: bold; border-radius: 20px; font-size: 12px; box-shadow: 0px 4px 10px rgba(0,255,135,0.3);'>
@@ -147,7 +159,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.write("")
-st.write("")
 
 # =============================================================================================================
 # CARDS ESTATÍSTICOS GLOBAIS (REQUINTE EM TELA CHEIA)
@@ -156,33 +167,12 @@ st.markdown("### 📊 STATUS DA INFRAESTRUTURA EM TEMPO REAL")
 st.write("")
 
 col_c1, col_c2, col_c3 = st.columns(3)
-
 with col_c1:
-    st.markdown("""
-    <div class="status-card">
-        <h4 style='color: #60a5fa; margin-top:0;'>📡 SERVIDORES MESTRES</h4>
-        <h2 style='margin: 10px 0;'>ONLINE 🟢</h2>
-        <p style='color: #94a3b8; font-size: 13px; margin:0;'>Handshake síncrono com o GitHub</p>
-    </div>
-    """, unsafe_allow_html=True)
-
+    st.markdown('<div class="status-card"><h4 style="color: #60a5fa; margin-top:0;">📡 SERVIDORES MESTRES</h4><h2 style="margin: 10px 0; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ONLINE 🟢</h2><p style="color: #94a3b8; font-size: 13px; margin:0;">Handshake síncrono com o GitHub</p></div>', unsafe_allow_html=True)
 with col_c2:
-    st.markdown("""
-    <div class="status-card" style="border-color: #00FF87;">
-        <h4 style='color: #00FF87; margin-top:0;'>🔑 GOOGLE ADS API</h4>
-        <h2 style='margin: 10px 0;'>AUTENTICADA 🔗</h2>
-        <p style='color: #94a3b8; font-size: 13px; margin:0;'>Protocolo OAuth 2.0 Ativo e Pronto</p>
-    </div>
-    """, unsafe_allow_html=True)
-
+    st.markdown('<div class="status-card" style="border-color: #00FF87;"><h4 style="color: #00FF87; margin-top:0;">🔑 GOOGLE ADS API</h4><h2 style="margin: 10px 0; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AUTENTICADA 🔗</h2><p style="color: #94a3b8; font-size: 13px; margin:0;">Protocolo OAuth 2.0 Ativo e Pronto</p></div>', unsafe_allow_html=True)
 with col_c3:
-    st.markdown("""
-    <div class="status-card">
-        <h4 style='color: #60a5fa; margin-top:0;'>💻 PÁGINAS PRE-SELL</h4>
-        <h2 style='margin: 10px 0;'>PROTEGIDAS 🛡️</h2>
-        <p style='color: #94a3b8; font-size: 13px; margin:0;'>Roteamento de comissão Hostinger</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown('<div class="status-card"><h4 style="color: #60a5fa; margin-top:0;">💻 PÁGINAS PRE-SELL</h4><h2 style="margin: 10px 0; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">PROTEGIDAS 🛡️</h2><p style="color: #94a3b8; font-size: 13px; margin:0;">Roteamento de comissão Hostinger</p></div>', unsafe_allow_html=True)
 
 st.write("---")
 
@@ -190,9 +180,7 @@ st.write("---")
 # GRÁFICO GLOBAL DE VOLUME ANALISADO
 # =============================================================================================================
 st.markdown("### 📈 MONITORAMENTO VOLUMÉTRICO DAS PLATAFORMAS (CLICKBANK / HOTMART)")
-st.caption("Visão macro do tráfego e mineração de ofertas rastreadas nas últimas horas:")
 st.write("")
-
 meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
 valores_envio = [310 + (i * 45) for i in range(12)]
 df_envio = pd.DataFrame({"Volume de Dados Processados": valores_envio}, index=meses)
