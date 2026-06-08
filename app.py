@@ -6,7 +6,7 @@ import time
 st.set_page_config(page_title="Adriel AI - Core Dashboard", layout="wide", initial_sidebar_state="expanded")
 
 # =============================================================================================================
-# INJEÇÃO DE CSS DE ALTO PADRÃO (SISTEMA DE CORES BLACK, CIANO NEON E ACENDIMENTO DE MENUS)
+# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (ANIMAÇÕES CONTÍNUAS: PISCADO NEON & FLUTUAÇÃO DO ROBÔ)
 # =============================================================================================================
 st.markdown("""
 <style>
@@ -22,33 +22,68 @@ st.markdown("""
         border-right: 1px solid #1e293b !important;
     }
     
-    /* 🔥 FIXAÇÃO DE COR NAS PÁGINAS DO MENU LATERAL (PAGES) */
+    /* 🚨 1. ANIMAÇÃO DO MENU LATERAL PISCANDO EM LINHA (PULSAR NEON CONTÍNUO) */
+    @keyframes pulsa-neon {
+        0% {
+            border-color: #1e293b;
+            box-shadow: 0 0 5px rgba(0, 229, 255, 0.1);
+        }
+        50% {
+            border-color: #00FF87;
+            box-shadow: 0 0 15px rgba(0, 255, 135, 0.6);
+        }
+        100% {
+            border-color: #1e293b;
+            box-shadow: 0 0 5px rgba(0, 229, 255, 0.1);
+        }
+    }
+
     [data-testid="stSidebarNav"] ul li a span {
         color: #ffffff !important; 
         font-weight: bold !important;
         font-size: 14px !important;
     }
+    
     [data-testid="stSidebarNav"] ul li a {
         background-color: #0f172a !important; 
-        border: 1px solid #1e293b !important;
+        border: 2px solid #1e293b !important;
         border-radius: 8px !important;
-        margin-bottom: 6px !important;
-        padding: 10px 14px !important;
-        transition: all 0.3s ease !important;
-    }
-    [data-testid="stSidebarNav"] ul li a:hover {
-        background-color: #1e293b !important;
-        border-color: #00FF87 !important; /* Borda acende em verde neon */
+        margin-bottom: 8px !important;
+        padding: 12px 14px !important;
+        animation: pulsa-neon 3s infinite ease-in-out !important; /* Faz o menu piscar sempre */
+        display: block !important;
     }
     
-    /* 🤖 Caixa Central de Apresentação do Robô */
+    [data-testid="stSidebarNav"] ul li a:hover {
+        background-color: #1e293b !important;
+        animation: none !important; /* Trava aceso no mouse */
+        border-color: #00E5FF !important;
+        box-shadow: 0 0 20px rgba(0, 229, 255, 0.8) !important;
+    }
+    
+    /* 🛸 2. ANIMAÇÃO DO ROBÔ FLUTUANDO NA TELA DA FRENTE (EFEITO 3D ULTRA CHAMATIVO) */
+    @keyframes flutuar-continuo {
+        0% {
+            transform: translateY(0px);
+            box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2);
+        }
+        50% {
+            transform: translateY(-12px); /* Ele se eleva suavemente */
+            box-shadow: 0px 18px 45px rgba(0, 255, 135, 0.4); /* O neon brilha mais embaixo */
+        }
+        100% {
+            transform: translateY(0px);
+            box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2);
+        }
+    }
+
     .robo-card-welcome {
         background: linear-gradient(135deg, #0f172a 0%, #050811 100%) !important;
         border: 2px solid #00E5FF !important;
         border-radius: 16px !important;
         padding: 30px !important;
-        margin-bottom: 30px !important;
-        box-shadow: 0px 8px 32px rgba(0, 229, 255, 0.2) !important;
+        margin-bottom: 35px !important;
+        animation: flutuar-continuo 4s infinite ease-in-out !important; /* Flutuação contínua infinita */
     }
     
     /* 🏛️ Bloco de Monitoramento Executivo */
@@ -72,23 +107,27 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# 🤖 APRESENTAÇÃO MAJESTOSA DO ROBOZINHO NA CENTRAL (VISUAL REQUINTADO DE IMPACTO)
+# 🤖 APRESENTAÇÃO MAJESTOSA DO ROBOZINHO NA CENTRAL (FLUTUANDO NA TELA DA FRENTE)
 # =============================================================================================================
 st.markdown("""
 <div class="robo-card-welcome">
     <h1 style='margin-top: 0; font-size: 28px;'>🛸 CENTRAL DE INTELIGÊNCIA: ADRIEL AI</h1>
     <p style='margin: 15px 0 0 0; font-size: 16px; color: #cbd5e1; line-height: 1.6;'>
         "Seja muito bem-vindo, <b>Comandante José Marques da Silva</b>! Os sistemas centrais do robô foram inicializados. 
-        Aguardando suas ordens estratégicas. Nossos bancos de dados estão sincronizados com as APIs de mineração global 
-        e proteção de tráfego pago."
+        Estou flutuando na interface principal e aguardando suas ordens. Nossos bancos de dados estão 100% síncronos 
+        com as APIs de mineração global e automação de tráfego pago."
     </p>
-    <div style='margin-top: 15px;'>
+    <div style='margin-top: 20px;'>
         <span style='background: #00FF87; color: #050811; padding: 6px 14px; font-weight: bold; border-radius: 20px; font-size: 12px; box-shadow: 0px 4px 10px rgba(0,255,135,0.3);'>
             MÁQUINA EM OPERAÇÃO 🛡️
         </span>
     </div>
 </div>
 """, unsafe_allow_html=True)
+
+# Espaçador estratégico para o gráfico não bater no card flutuante
+st.write("")
+st.write("")
 
 # =============================================================================================================
 # CARDS ESTATÍSTICOS GLOBAIS (REQUINTE EM TELA CHEIA)
@@ -128,7 +167,7 @@ with col_c3:
 st.write("---")
 
 # =============================================================================================================
-# GRÁFICO GLOBAL DE VOLUME ANALISADO (AUMENTANDO O REQUINTE VISUAL)
+# GRÁFICO GLOBAL DE VOLUME ANALISADO
 # =============================================================================================================
 st.markdown("### 📈 MONITORAMENTO VOLUMÉTRICO DAS PLATAFORMAS (CLICKBANK / HOTMART)")
 st.caption("Visão macro do tráfego e mineração de ofertas rastreadas nas últimas horas:")
