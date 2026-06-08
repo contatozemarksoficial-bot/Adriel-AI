@@ -6,7 +6,7 @@ import time
 st.set_page_config(page_title="Adriel AI - Core Dashboard", layout="wide", initial_sidebar_state="expanded")
 
 # =============================================================================================================
-# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (ROBÔ NAVEGANDO NO RODAPÉ & ALTERNAÇÃO DE CORES NEON)
+# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (IMAGEM DO ROBÔ 3D FLUTUANDO E NAVEGANDO NO RODAPÉ)
 # =============================================================================================================
 st.markdown("""
 <style>
@@ -58,27 +58,27 @@ st.markdown("""
         border-radius: 16px !important;
         padding: 30px !important;
         margin-bottom: 35px !important;
-        animation: alterna-cores 5s infinite ease-in-out !important; /* Alterna de cor automaticamente */
+        animation: alterna-cores 5s infinite ease-in-out !important;
     }
     
-    /* 🤖 3. O ROBÔ NAVEGADOR FLUTUANDO REAL NO RODAPÉ DA PÁGINA (PATRULHA DE TELA) */
-    @keyframes patrulha-robo {
-        0% { left: 10%; transform: scaleX(1) translateY(0px); }
-        45% { transform: scaleX(1) translateY(-8px); }
-        50% { left: 80%; transform: scaleX(-1) translateY(0px); } /* Gira o robô para voltar */
-        95% { transform: scaleX(-1) translateY(-8px); }
-        100% { left: 10%; transform: scaleX(1) translateY(0px); }
+    /* 🤖 ANIMAÇÃO DO ROBÔ HUMANOIDE NAVEGANDO E FLUTUANDO (EFEITO HOLOGRAMA REAL) */
+    @keyframes patrulha-holograma {
+        0% { left: 5%; transform: scaleX(1) translateY(0px); }
+        25% { transform: scaleX(1) translateY(-10px); } /* Flutua subindo de leve */
+        50% { left: 75%; transform: scaleX(-1) translateY(0px); } /* Vira de lado para voltar */
+        75% { transform: scaleX(-1) translateY(-10px); }
+        100% { left: 5%; transform: scaleX(1) translateY(0px); }
     }
 
-    .robo-navegador-real {
+    .robo-holograma-3d {
         position: fixed;
-        bottom: 40px; /* Fixado na parte de baixo da tela */
-        left: 10%;
-        font-size: 50px; /* Robô grande e bem chamativo */
+        bottom: 20px; /* Posicionado perfeitamente no rodapé */
+        left: 5%;
+        width: 180px; /* Tamanho requintado para o robô aparecer bem na tela */
         z-index: 99999;
         pointer-events: none;
-        animation: patrulha-robo 12s infinite linear !important; /* Navega pela tela continuamente */
-        filter: drop-shadow(0px 0px 15px #00FF87);
+        animation: patrulha-holograma 15s infinite linear !important; /* Movimento contínuo de patrulha */
+        filter: drop-shadow(0px 0px 20px rgba(0, 229, 255, 0.6)); /* Brilho neon azul ao redor da imagem */
     }
     
     /* Bloco de Monitoramento Executivo */
@@ -102,9 +102,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DO ROBÔ REAL FLUTUANDO E NAVEGANDO NA PARTE DE BAIXO
+# INJEÇÃO DA IMAGEM REAL DO ROBÔ FUTURISTA FLUTUANDO E NAVEGANDO NO RODAPÉ
 # =============================================================================================================
-st.markdown('<div class="robo-navegador-real">🛸🤖</div>', unsafe_allow_html=True)
+st.markdown('<img src="https://postimg.co" class="robo-holograma-3d">', unsafe_allow_html=True)
 
 # =============================================================================================================
 # APRESENTAÇÃO MAJESTOSA DA CENTRAL (ALTERANDO DE COR AUTOMATICAMENTE)
@@ -114,8 +114,8 @@ st.markdown("""
     <h1 style='margin-top: 0; font-size: 28px;'>🛸 CENTRAL DE INTELIGÊNCIA: ADRIEL AI</h1>
     <p style='margin: 15px 0 0 0; font-size: 16px; color: #cbd5e1; line-height: 1.6;'>
         "Seja muito bem-vindo, <b>Comandante José Marques da Silva</b>! A estrutura mestre está calibrada. 
-        Observe que minhas bordas alternam de cor automaticamente e meu chassi autônomo está navegando em patrulha pela 
-        parte inferior do software, garantindo a integridade dos servidores."
+        Observe que as bordas da central alternam de cor e o meu <b>Holograma Humanoide 3D</b> está navegando 
+        em patrulha e flutuando na parte inferior do software, inspecionando o tráfego do painel."
     </p>
     <div style='margin-top: 20px;'>
         <span style='background: #00FF87; color: #050811; padding: 6px 14px; font-weight: bold; border-radius: 20px; font-size: 12px; box-shadow: 0px 4px 10px rgba(0,255,135,0.3);'>
@@ -125,6 +125,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+st.write("")
 st.write("")
 
 # =============================================================================================================
