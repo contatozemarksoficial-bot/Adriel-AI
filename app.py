@@ -1,51 +1,42 @@
 import streamlit as st
 
-# 1. Configuração do ambiente profissional
-st.set_page_config(page_title="AdrielAI - Elite", layout="wide", page_icon="⚡")
+# 1. Configuração do ambiente "Dark Tech"
+st.set_page_config(page_title="AdrielAI - Painel", layout="wide")
 
-# 2. Estilização CSS para o visual 'Dark Tech'
+# CSS para bordas arredondadas e estilo Dark
 st.markdown("""
     <style>
-    /* Fundo escuro elegante */
-    .stApp { background-color: #050505; }
-    /* Estilo das caixas (Containers) */
-    [data-testid="stVerticalBlockBorderWrapper"] {
-        background-color: #111111;
-        border: 1px solid #333333;
-        border-radius: 12px;
-        padding: 20px;
+    .stApp { background-color: #0d1117; color: white; }
+    div[data-testid="stVerticalBlockBorderWrapper"] { 
+        background-color: #161b22; border-radius: 15px; border: 1px solid #30363d; 
     }
-    /* Estilo dos títulos */
-    h1, h2, h3 { color: #ffffff !important; }
+    .stButton>button { width: 100%; border-radius: 8px; background-color: #238636; color: white; }
     </style>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-# 3. Cabeçalho Minimalista
-st.title("⚡ AdrielAI")
-st.markdown("### A Inteligência de Elite para Google Ads")
+# 2. Cabeçalho do Dashboard
+st.title("🚀 AdrielAI | PAINEL DE CONTROLE")
+st.markdown("---")
 
-# 4. Layout em Colunas (O design da imagem)
+# 3. Layout Principal: Duas colunas grandes
 col1, col2 = st.columns([2, 1])
 
 with col1:
     with st.container(border=True):
-        st.subheader("📊 Módulo de Radar")
-        st.write("Varredura de mercado em tempo real ativa.")
-        if st.button("Executar Radar Completo"):
-            st.info("Varredura iniciada...")
+        st.subheader("📊 MÓDULO 1: RADAR DE PRODUTOS")
+        # Aqui você pode chamar uma função que gera sua tabela
+        st.write("Tabela de produtos e comissões sendo carregada...")
+        st.button("📥 BAIXAR PLANILHA DE INTELIGÊNCIA (.CSV)")
 
 with col2:
     with st.container(border=True):
-        st.subheader("⚙️ Configurações")
-        st.toggle("API Google Ads Ativa")
-        st.toggle("Modo de Performance")
-        st.button("Resetar Sistema")
+        st.subheader("✍️ MÓDULO 2: GERADOR DE ANÚNCIOS")
+        produto = st.text_input("PRODUTO Gringo:")
+        resumo = st.text_area("RESUMO (Nicho/Dores):")
+        st.button("🚀 (A) GERAR ANÚNCIOS ADSMASTER")
+        st.button("🌐 (B) FABRICAR PRE-SELL")
+        st.text_area("Resultado do Gerador:", height=150)
+        st.button("💾 [SALVAR CAMPANHA NO HISTÓRICO]")
 
-# 5. Área de Acesso Rápido (Estilo ícones)
-st.markdown("---")
-cols = st.columns(5)
-with cols[0]: st.button("📊 Radar")
-with cols[1]: st.button("🛡️ Auditor")
-with cols[2]: st.button("✍️ Gerador")
-with cols[3]: st.button("🔍 Caçador")
-with cols[4]: st.button("🌐 Pre-sell")
+# 4. Rodapé Profissional
+st.markdown("<br><center>© 2026 AdrielAI - Ferramenta Exclusiva de Inteligência para Afiliados Elite.</center>", unsafe_allow_html=True)
