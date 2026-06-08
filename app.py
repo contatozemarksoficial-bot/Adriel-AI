@@ -8,7 +8,7 @@ st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", i
 # =============================================================================================================
 # INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO CLICAR NA TELA)
 # =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! Menu lateral alinhado e botões padronizados no padrão executivo. Pronto para operação."
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! Painel operacional atualizado com os módulos volumétricos e contadores de mil acessos ativos."
 
 st.markdown(f"""
 <script>
@@ -27,11 +27,11 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DE CSS DE ALTO PADRÃO (ALINHAMENTO SEVERO DOS BOTÕES DA ESQUERDA)
+# INJEÇÃO DE CSS PREMIUM (BOTÕES QUE PISCAM AUTOMÁTICO, MUDAM DE COR E GANHAM TRACÇÃO NO MOUSE)
 # =============================================================================================================
 st.markdown("""
 <style>
-    /* 🌌 Fundo Escuro Fiel ao Print da Imagem */
+    /* 🌌 Fundo Escuro do Painel Principal */
     .stApp {
         background-color: #0b111e !important;
         color: #ffffff !important;
@@ -49,11 +49,11 @@ st.markdown("""
     [data-testid="stSidebar"] { display: none !important; }
     [data-testid="stHeader"] { display: none !important; }
     
-    /* 🚨 ANIMAÇÃO DE SINAL: ALTERNA AS BORDAS DO BOTÃO SELECIONADO (CIANO <-> VERDE) */
+    /* 🚨 ANIMAÇÃO DE SINAL NEON: ALTERNA AS BORDAS DO BOTÃO SELECIONADO (CIANO <-> VERDE) */
     @keyframes sinal-pulsante {
-        0% { border-color: #00E5FF; box-shadow: 0 0 8px rgba(0, 229, 255, 0.2); }
-        50% { border-color: #00FF87; box-shadow: 0 0 18px rgba(0, 255, 135, 0.4); }
-        100% { border-color: #00E5FF; box-shadow: 0 0 8px rgba(0, 229, 255, 0.2); }
+        0% { border-color: #00E5FF; box-shadow: 0 0 5px rgba(0, 229, 255, 0.2); }
+        50% { border-color: #00FF87; box-shadow: 0 0 15px rgba(0, 255, 135, 0.5); }
+        100% { border-color: #00E5FF; box-shadow: 0 0 5px rgba(0, 229, 255, 0.2); }
     }
 
     /* Linhas divisórias das 3 colunas verticais */
@@ -64,14 +64,24 @@ st.markdown("""
         padding-left: 10px;
     }
     
-    /* Caixas horizontais superiores de logs */
+    /* Caixas horizontais superiores de logs e mini-dashboards */
     .header-box-real {
         background-color: #0f172a !important;
         border: 1px solid #1e293b !important;
         border-radius: 8px !important;
         padding: 12px 18px !important;
-        margin-bottom: 20px !important;
+        margin-bottom: 15px !important;
         font-size: 13px !important;
+    }
+    
+    /* KPI Mini Box de alta tecnologia */
+    .kpi-box {
+        background: #0f172a; 
+        padding: 10px 15px; 
+        border-radius: 8px; 
+        border: 1px solid #1e293b; 
+        text-align: center;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
     }
     
     .subtitulo-bloco-real {
@@ -83,8 +93,8 @@ st.markdown("""
         text-transform: uppercase;
     }
 
-    /* 🟢 1. BOTÕES GERAIS DO MEIO E DA PLANILHA (PISCANTES VERDES DO PRINT) */
-    .coluna-container div.stButton > button {
+    /* 🟢 BOTÕES CENTRAIS PISCANTES QUE DESACELERAM E CRESCEM NO MOUSE */
+    div.stButton > button {
         background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
         color: white !important;
         font-weight: bold !important;
@@ -94,44 +104,46 @@ st.markdown("""
         border-radius: 6px !important;
         width: 100% !important;
         cursor: pointer !important;
-        transition: all 0.3s ease-in-out !important;
-    }
-    .coluna-container div.stButton > button:hover {
-        animation: sinal-pulsante 2s infinite ease-in-out !important;
-        background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%) !important;
-        color: #050811 !important;
-        transform: scale(1.02) !important;
+        animation: sinal-pulsante 3s infinite ease-in-out !important; /* Pisca automático rápido */
+        transition: all 0.4s ease-in-out !important;
     }
     
-    /* 📟 2. EXTRAORDINÁRIO POLIMENTO DA COLUNA ESQUERDA (ESTILO BRUTO CLONE DO PRINT) */
-    .menu-lateral-container {
-        display: flex !important;
-        flex-direction: column !important;
+    /* Efeito ao passar o mouse: Desacelera a animação, dá zoom e brilha fixo */
+    div.stButton > button:hover {
+        animation: none !important; /* Desacelera/para de piscar */
+        background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%) !important;
+        color: #050811 !important;
+        transform: scale(1.03) translateY(-2px) !important; /* Cresce de tamanho */
+        box-shadow: 0px 10px 25px rgba(0, 255, 135, 0.6) !important;
+        border-color: #ffffff !important;
+    }
+    
+    /* 📟 POLIMENTO DA BARRA LATERAL ESQUERDA */
+    .menu-lateral-btn {
+        display: flex;
+        flex-direction: column;
+        gap: 2px !important;
         width: 100% !important;
     }
     
-    .menu-lateral-container div.stButton > button {
-        background: #0f172a !important; /* Fundo escuro premium idêntico ao print */
+    .menu-lateral-btn div.stButton > button {
+        background: #0f172a !important; 
         color: #cbd5e1 !important;
         border: 2px solid #1e293b !important;
         text-align: left !important;
-        padding: 14px 20px !important;
+        padding: 12px 16px !important;
         font-size: 14px !important;
-        font-weight: bold !important;
-        width: 100% !important; /* Trava todos rigidamente com a mesma largura */
-        margin-bottom: 8px !important;
-        border-radius: 8px !important;
-        animation: none !important;
-        box-shadow: none !important;
+        width: 95% !important; 
+        margin-bottom: 5px !important;
+        animation: sinal-pulsante 4s infinite ease-in-out !important; /* Pulsação lenta contínua */
     }
     
-    /* Sinal Ativo do Menu Lateral: Acende em Ciano Neon com zoom cirúrgico */
-    .menu-lateral-container div.stButton > button:hover {
+    .menu-lateral-btn div.stButton > button:hover {
+        animation: none !important;
         background: #1e293b !important;
         color: #00FF87 !important;
         border-color: #00E5FF !important;
-        box-shadow: 0 0 15px rgba(0, 229, 255, 0.4) !important;
-        transform: scale(1.02) !important;
+        box-shadow: 0 0 12px rgba(0, 229, 255, 0.5) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -145,15 +157,14 @@ if "pagina_atual" not in st.session_state:
 # =============================================================================================================
 col_esquerda, col_centro, col_direita = st.columns([0.75, 1.4, 1])
 
-# 🏢 COLUNA 1 (FIXA E IMUTÁVEL): LOGO ADRIEL AI + BOTÕES DO MENU LATERAL PADRONIZADOS
+# 🏢 COLUNA 1 (FIXA E IMUTÁVEL): LOGO ADRIEL AI + BOTÕES DO MENU LATERAL
 with col_esquerda:
     st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
     st.markdown("<h2 style='color: #60a5fa; font-size: 24px; font-weight: 800; margin-bottom:0;'>🤖 Adriel AI</h2>", unsafe_allow_html=True)
     st.markdown("<p style='color: #64748b; font-size: 11px; margin-top:-5px; letter-spacing:1px;'>PAINEL DE CONTROLE</p>", unsafe_allow_html=True)
     st.write("---")
     
-    # Caixa container que trava o alinhamento plano por extenso
-    st.markdown('<div class="menu-lateral-container">', unsafe_allow_html=True)
+    st.markdown('<div class="menu-lateral-btn">', unsafe_allow_html=True)
     if st.button("🎛️ Dashboard", key="btn_nav_dash"): st.session_state.pagina_atual = "Dashboard"; st.rerun()
     if st.button("🛰️ 1. Radar de Produtos", key="btn_nav_m1"): st.session_state.pagina_atual = "M1_Radar"; st.rerun()
     if st.button("🔬 2. Auditor de Mercado", key="btn_nav_m2"): st.session_state.pagina_atual = "M2_Auditor"; st.rerun()
@@ -166,14 +177,25 @@ with col_esquerda:
     st.markdown('</div></div>', unsafe_allow_html=True)
 
 # =============================================================================================================
-# ROTEAMENTO DA ESTEIRA DAS PÁGINAS
+# ROTEAMENTO DA ESTEIRA DAS PÁGINAS (ADICIONADOS OS MENUS VOLUMÉTRICOS DE TOPO CONTRA O VAZIO)
 # =============================================================================================================
 
-# 🏠 PÁGINA: DASHBOARD INICIAL COMPLETO (PADRÃO DE INSTALAÇÃO DO SEU PRINT)
+# 🏠 PÁGINA: DASHBOARD INICIAL COMPLETO (RECHEADO CONTRA O VAZIO)
 if st.session_state.pagina_atual == "Dashboard":
     with col_centro:
         st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
+        
+        # Bloco Superior do Comandante
         st.markdown('<div class="header-box-real">👤 Olá, <b>José Marques</b>, Comandante do Adriel AI!</div>', unsafe_allow_html=True)
+        
+        # 📈 INJEÇÃO DE CONTADORES EM LINHA NO MÓDULO 1 (PREENCHIMENTO VISUAL DOS MIL ACESSOS)
+        col_mini1, col_mini2 = st.columns(2)
+        with col_mini1:
+            st.markdown('<div class="kpi-box"><span style="font-size: 11px; color: #64748b; font-weight: bold; text-transform: uppercase;">🔥 Cliques Analisados</span><br><span style="font-size: 20px; color: #00FF87; font-weight: 800;">14.250 mil</span></div>', unsafe_allow_html=True)
+        with col_mini2:
+            st.markdown('<div class="kpi-box"><span style="font-size: 11px; color: #64748b; font-weight: bold; text-transform: uppercase;">📡 Ofertas Ativas</span><br><span style="font-size: 20px; color: #00E5FF; font-weight: 800;">1.840 mil</span></div>', unsafe_allow_html=True)
+        
+        st.write("")
         st.markdown('<p class="subtitulo-bloco-real">MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</p>', unsafe_allow_html=True)
         
         dados_tabela = {
@@ -188,18 +210,3 @@ if st.session_state.pagina_atual == "Dashboard":
         st.markdown('</div>', unsafe_allow_html=True)
 
     with col_direita:
-        st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
-        st.markdown('<div class="header-box-real" style="text-align: right;">🟢 Status: <span style="color: #10b981; font-weight:bold;">Sistema Online</span> | Chave Mestre Ativa</div>', unsafe_allow_html=True)
-        st.markdown('<p class="subtitulo-bloco-real">MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & PRE-SELL</p>', unsafe_allow_html=True)
-        
-        st.text_input("PROD_GRINGO:", value="Sugar Defender", key="p_gringo_dash")
-        st.text_area("RESUMO (Niche/Dores):", value="Suplemento natural para equilíbrio do metabolismo.", height=68, key="p_resumo_dash")
-        st.write("")
-        st.button("🔥 (A) GERAR ANÚNCIOS ADSMaster", key="btn_ads_dash")
-        st.markdown('</div>', unsafe_allow_html=True)
-
-# 🛰️ PÁGINA: MÓDULO 1 RADAR DE PRODUTOS
-elif st.session_state.pagina_atual == "M1_Radar":
-    with col_centro:
-        st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
-        st.markdown('<div class="header-box-real">🔬 Parâmetros Ativos de Mineração na Gringa</div>', unsafe_allow_html=True)
