@@ -2,13 +2,13 @@ import streamlit as st
 import pandas as pd
 import time
 
-# Configuração de Layout Amplo Premium Black para a Entrada do SaaS
-st.set_page_config(page_title="Adriel AI - Core Dashboard", layout="wide", initial_sidebar_state="expanded")
+# Configuração de Layout Amplo Executivo Premium Black
+st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", initial_sidebar_state="expanded")
 
 # =============================================================================================================
-# INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO CLICAR NA TELA)
+# INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO ENTRAR/CLICAR NA TELA)
 # =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! Os sistemas de inteligência e o painel de conformidade estão online nos servidores ativos."
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! Painel de controle Adriel A I totalmente carregado. Todos os botões operacionais e a API do Google Ads estão prontos para o disparo."
 
 st.markdown(f"""
 <script>
@@ -27,151 +27,151 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (ANIMAÇÕES: PISCADO NEON E CARDS DE LUXO)
+# INJEÇÃO DE CSS AVANÇADO (BOTÕES PISCANDO EM LINHA E CORREÇÃO DE COR DO MENU LATERAL)
 # =============================================================================================================
 st.markdown("""
 <style>
-    /* 🌌 Fundo Escuro de Luxo */
+    /* 🌌 Fundo Escuro do Painel do Print */
     .stApp {
-        background-color: #050814 !important;
+        background-color: #0b111e !important;
         color: #ffffff !important;
     }
     
-    /* 📟 Customização da Barra Lateral Esquerda */
+    /* Customização da Barra Lateral */
     [data-testid="stSidebar"] {
-        background-color: #02050a !important;
+        background-color: #070c16 !important;
         border-right: 1px solid #1e293b !important;
     }
     
-    /* 🚨 1. ANIMAÇÃO DE PULSAR E PISCAR OS MENUS LATERAIS AUTOMATICAMENTE */
-    @keyframes pisca-neon-fluxo {
-        0% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); color: #94a3b8; }
-        50% { border-color: #00FF87; box-shadow: 0 0 15px rgba(0, 255, 135, 0.5); color: #00FF87; }
-        100% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); color: #94a3b8; }
+    /* 🚨 ANIMAÇÃO DE PISCAR DOS BOTÕES EM NEON (VERDE/CIANO) */
+    @keyframes pisca-botoes {
+        0% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); }
+        50% { border-color: #00FF87; box-shadow: 0 0 15px rgba(0, 255, 135, 0.4); }
+        100% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); }
     }
 
     [data-testid="stSidebarNav"] ul li a span {
+        color: #ffffff !important; 
         font-weight: bold !important;
         font-size: 14px !important;
-        transition: color 0.3s ease;
     }
-    
     [data-testid="stSidebarNav"] ul li a {
         background-color: #0f172a !important; 
         border: 2px solid #1e293b !important;
         border-radius: 8px !important;
         margin-bottom: 8px !important;
         padding: 12px 14px !important;
-        animation: pisca-neon-fluxo 3s infinite ease-in-out !important; /* Faz piscar sempre */
+        animation: pisca-botoes 3s infinite ease-in-out !important; /* Faz o menu lateral piscar */
         display: block !important;
     }
-    
-    [data-testid="stSidebarNav"] ul li a:hover {
-        background-color: #1e293b !important;
-        animation: none !important; /* Trava estático ao passar o mouse */
-        border-color: #00E5FF !important;
-        box-shadow: 0 0 20px rgba(0, 229, 255, 0.7) !important;
+
+    /* Caixa Superior de Informações */
+    .header-box-real {
+        background-color: #0f172a !important;
+        border: 1px solid #1e293b !important;
+        border-radius: 8px !important;
+        padding: 14px 20px !important;
+        margin-bottom: 20px !important;
     }
     
-    /* 🎨 2. ANIMAÇÃO QUE ALTERNA AS CORES DAS BORDAS DOS CARDS DA FRENTE */
-    @keyframes alterna-caixas {
-        0% { border-color: #00E5FF; box-shadow: 0px 4px 20px rgba(0, 229, 255, 0.15); }
-        50% { border-color: #00FF87; box-shadow: 0px 4px 20px rgba(0, 255, 135, 0.25); }
-        100% { border-color: #00E5FF; box-shadow: 0px 4px 20px rgba(0, 229, 255, 0.15); }
+    /* Cabeçalhos Clones da Imagem */
+    .subtitulo-bloco {
+        font-size: 13px !important;
+        font-weight: bold !important;
+        color: #60a5fa !important;
+        letter-spacing: 0.5px;
+        margin-bottom: 12px;
+        text-transform: uppercase;
     }
 
-    .robo-card-welcome {
-        background: linear-gradient(135deg, #0f172a 0%, #050811 100%) !important;
-        border: 2px solid #00E5FF !important;
-        border-radius: 16px !important;
-        padding: 30px !important;
-        margin-bottom: 35px !important;
-        animation: alterna-caixas 4s infinite ease-in-out !important;
-    }
-    
-    /* 🏛️ Bloco de Monitoramento Executivo */
-    .status-card {
-        background-color: #0f172a !important;
+    /* 🟢 Customização dos Botões Verdes Piscando (Módulo 2) */
+    div.stButton > button {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+        color: white !important;
+        font-weight: bold !important;
         border: 2px solid #1e293b !important;
-        border-radius: 12px !important;
-        padding: 20px !important;
-        text-align: center;
-        box-shadow: 0px 4px 15px rgba(0,0,0,0.4) !important;
-        animation: alterna-caixas 4s infinite ease-in-out !important;
+        padding: 11px 20px !important;
+        border-radius: 6px !important;
+        width: 100% !important;
+        animation: pisca-botoes 4s infinite ease-in-out !important; /* Faz os botões centrais piscarem */
+        cursor: pointer !important;
+        transition: transform 0.2s ease !important;
+    }
+    div.stButton > button:hover {
+        transform: scale(1.02) !important;
+        border-color: #00E5FF !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# APRESENTAÇÃO MAJESTOSA DA CENTRAL (VISUAL REQUINTADO FLUIDO)
+# BARRA SUPERIOR DE LOG E HISTÓRICO (EXATAMENTE COMO NO SEU PRINT)
 # =============================================================================================================
-st.markdown("""
-<div class="robo-card-welcome">
-    <h1 style='margin-top: 0; font-size: 28px; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>🛸 CENTRAL OPERACIONAL: ADRIEL AI</h1>
-    <p style='margin: 15px 0 0 0; font-size: 16px; color: #cbd5e1; line-height: 1.6;'>
-        "Seja muito bem-vindo, <b>Comandante José Marques da Silva</b>! A interface executiva está calibrada de forma limpa. 
-        Observe que as bordas de controle alternam de cor e os menus da lateral esquerda piscam de forma contínua, indicando 
-        sincronismo de rede. Clique em qualquer lugar da tela para ativar o sistema de voz."
-    </p>
-    <div style='margin-top: 20px;'>
-        <span style='background: #00FF87; color: #050811; padding: 6px 14px; font-weight: bold; border-radius: 20px; font-size: 12px; box-shadow: 0px 4px 10px rgba(0,255,135,0.3);'>
-            NÚCLEO DE INTELIGÊNCIA ONLINE 🛡️
-        </span>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-st.write("")
+col_top1, col_top2 = st.columns(2)
+with col_top1:
+    st.markdown('<div class="header-box-real">👤 Olá, <b>José Marques</b>, Comandante do Adriel AI!</div>', unsafe_allow_html=True)
+with col_top2:
+    st.markdown('<div class="header-box-real" style="text-align: right;">🟢 Status: <span style="color: #10b981; font-weight:bold;">Sistema Online</span> | Chave Mestre Ativa | Data: 06/06/2026</div>', unsafe_allow_html=True)
 
 # =============================================================================================================
-# CARDS ESTATÍSTICOS GLOBAIS (REQUINTE EM TELA CHEIA)
+# ESTRUTURA GIGANTE EM PARALELO (COLUNA 1: RADAR DE PRODUTOS | COLUNA 2: GERADOR RSA)
 # =============================================================================================================
-st.markdown("### 📊 STATUS DA INFRAESTRUTURA EM TEMPO REAL")
-st.write("")
+col_esq, col_dir = st.columns([1.35, 1])
 
-col_c1, col_c2, col_c3 = st.columns(3)
+# 📊 COLUNA ESQUERDA: CLONE DO MÓDULO 1 RADAR DE PRODUTOS [FILTRO XEQUE-MATE]
+with col_esq:
+    st.markdown('<p class="subtitulo-bloco">MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</p>', unsafe_allow_html=True)
+    
+    # Lista fiel ao seu print de produtos acanodianos validados com badge colorido
+    dados_tabela = {
+        "Name": [f"Produto-acanodiano {i}" for i in range(1, 10)],
+        "Comissões": ["3,00%", "2,00%", "1,00%", "1,00%", "1,00%", "2,00%", "2,00%", "1,00%", "1,00%"],
+        "Comissão": ["R$,15%", "R$,75%", "R$,25%", "R$,35%", "R$,25%", "R$,25%", "R$,25%", "R$,60%", "R$,60%"],
+        "Veredito da IA": [
+            "APROVADO (Risco Baixo)", 
+            "APROVADO (Risco Baixo)", 
+            "REVISAR (Risco Médio)", 
+            "REVISAR (Risco Médio)", 
+            "APROVADO (Risco Baixo)",
+            "APROVADO (Risco Baixo)",
+            "APROVADO (Risco Baixo)",
+            "REVISAR (Risco Médio)",
+            "REVISAR (Risco Médio)"
+        ]
+    }
+    df_painel = pd.DataFrame(dados_tabela)
+    st.dataframe(df_painel, use_container_width=True, hide_index=True)
+    
+    st.write("")
+    # Botão de exportação da base
+    if st.button("📄 [BAIXAR PLANILHA DE INTELIGÊNCIA (.CSV)]", key="btn_csv_real"):
+        st.success("Planilha processada e pronta na nuvem!")
 
-with col_c1:
-    st.markdown("""
-    <div class="status-card">
-        <h4 style='color: #60a5fa; margin-top:0;'>📡 SERVIDORES MESTRES</h4>
-        <h2 style='margin: 10px 0; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>ONLINE 🟢</h2>
-        <p style='color: #94a3b8; font-size: 13px; margin:0;'>Handshake síncrono com o GitHub</p>
-    </div>
-    """, unsafe_allow_html=True)
+# 📝 COLUNA DIREITA: CLONE DO MÓDULO 2 GERADOR DE ANÚNCIOS MASTER & PRE-SELL
+with col_dir:
+    st.markdown('<p class="subtitulo-bloco">MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & PRE-SELL</p>', unsafe_allow_html=True)
+    
+    # Inputs organizados do print
+    p_gringo = st.text_input("PROD_GRINGO:", value="Sugar Defender", key="p_gringo_in")
+    p_resumo = st.text_area("RESUMO (Niche/Dores):", value="Suplemento natural para equilíbrio do metabolismo.", height=68, key="p_resumo_in")
+    
+    st.write("")
+    # Botões Verdes Grandes Piscando e Executando
+    if st.button("⚡ (A) GERAR ANÚNCIOS ADSMaster (Copy + Roteiro Vídeo)", key="btn_gen_ads_real"):
+        st.success("Campanha e copys estruturadas com sucesso!")
+        
+    st.write("")
+    if st.button("⚡ [B] FABRICAR PRE-SELL (Landing Page Text) </>", key="btn_gen_html_real"):
+        st.success("Código da Landing Page limpo e gerado com sucesso!")
+        
+    # Caixa preta de parâmetros exatos da imagem
+    st.markdown('<div style="background-color: #0f172a; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; margin-top: 14px; font-size: 13px; color: #94a3b8; font-family: monospace;"><b>image_7be312.png (Títulos, Descrições, Palavras-chave)</b><br>Títulos 15 blocks<br>Títulos, Descrições<br>Palavras-chave<br>Formatas de blocks<br>Salvar campanha no blocks</div>', unsafe_allow_html=True)
+    
+    st.write("")
+    # Botão de histórico final
+    if st.button("💾 [SALVAR CAMPANHA NO HISTÓRICO]", key="btn_save_history_real"):
+        st.info("Campanha de lote salva na base de dados.")
 
-with col_c2:
-    st.markdown("""
-    <div class="status-card">
-        <h4 style='color: #00FF87; margin-top:0;'>🔑 GOOGLE ADS API</h4>
-        <h2 style='margin: 10px 0; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>AUTENTICADA 🔗</h2>
-        <p style='color: #94a3b8; font-size: 13px; margin:0;'>Protocolo OAuth 2.0 Ativo e Pronto</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col_c3:
-    st.markdown("""
-    <div class="status-card">
-        <h4 style='color: #60a5fa; margin-top:0;'>💻 PÁGINAS PRE-SELL</h4>
-        <h2 style='margin: 10px 0; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>PROTEGIDAS 🛡️</h2>
-        <p style='color: #94a3b8; font-size: 13px; margin:0;'>Roteamento de comissão Hostinger</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.write("---")
-
-# =============================================================================================================
-# GRÁFICO GLOBAL DE VOLUME ANALISADO
-# =============================================================================================================
-st.markdown("### 📈 MONITORAMENTO VOLUMÉTRICO DAS PLATAFORMAS (CLICKBANK / HOTMART)")
-st.caption("Visão macro do tráfego e mineração de ofertas rastreadas nas últimas horas:")
-st.write("")
-
-meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
-valores_envio = [310 + (i * 45) for i in range(12)]
-df_envio = pd.DataFrame({"Volume de Dados Processados": valores_envio}, index=meses)
-st.bar_chart(df_envio, use_container_width=True, color="#00E5FF")
-
-# Rodapé profissional com string simples limpa em linha única
+# Rodapé de cópia idêntico ao rodapé do print
 st.write("---")
 st.markdown('<p style="text-align: center; font-size: 11px; color: #475569;">© 2026 Adriel AI - Ferramenta Exclusiva de Inteligência para Afiliados Elite. Todos os Direitos Reservados.</p>', unsafe_allow_html=True)
