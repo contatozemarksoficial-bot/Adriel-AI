@@ -95,7 +95,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# 🦾 NÚCLEO REAL DE INTELIGÊNCIA ARTIFICIAL: AMBIENTE 3D ANIMADO EM CANVAS HTML5 / JS DIRECT
+# 🦾 NÚCLEO REAL DE INTELIGÊNCIA ARTIFICIAL: AMBIENTE 3D ANIMADO EM CANVAS HTML5 (CORREÇÃO DE SINTAXE)
 # =============================================================================================================
 st.markdown("### 🧬 NÚCLEO DINÂMICO DE PROCESSAMENTO DA IA")
 
@@ -115,41 +115,32 @@ html_robo_real = """
         const centroX = canvas.width / 2;
         const centroY = canvas.height / 2;
         
-        // 1. Renderização das Partículas de Dados e Conectividade ao redor do Robô
         angulo += 0.015;
         ctx.strokeStyle = '#00E5FF';
         ctx.lineWidth = 1.5;
         
-        // Círculo Holográfico Externo Transmitindo Lotes
         ctx.beginPath();
         ctx.arc(centroX, centroY, 110, 0, Math.PI * 2);
-        ctx.setLineDash([15, 25]);
         ctx.stroke();
         
-        // Anel Interno em Rotação Inversa (Verde Neon)
         ctx.strokeStyle = '#00FF87';
         ctx.beginPath();
         ctx.arc(centroX, centroY, 90, angulo, angulo + Math.PI, false);
-        ctx.setLineDash([40, 30]);
         ctx.stroke();
 
         ctx.beginPath();
         ctx.arc(centroX, centroY, 90, angulo + Math.PI, angulo, false);
         ctx.stroke();
-        ctx.setLineDash([]); // Reseta traço
 
-        // 2. CHASSI DO ROBÔ HUMANOIDE (Mapeamento Vetorial Complexo)
         ctx.fillStyle = '#ffffff';
         ctx.strokeStyle = '#00E5FF';
         ctx.lineWidth = 3;
         
-        // Cabeça
         ctx.beginPath();
         ctx.roundRect(centroX - 25, centroY - 80, 50, 55, 15);
         ctx.fill();
         ctx.stroke();
         
-        // Orelhas / Sensores Dinâmicos
         ctx.fillStyle = '#0f172a';
         ctx.beginPath();
         ctx.roundRect(centroX - 33, centroY - 65, 8, 25, 4);
@@ -157,23 +148,22 @@ html_robo_real = """
         ctx.fill();
         ctx.stroke();
         
-        // Olhos Acesos de LED (Pulsando)
         let brilhoLed = Math.abs(Math.sin(angulo * 2));
-        ctx.fillStyle = `rgba(0, 229, 255, ${brilhoLed * 0.7 + 0.3})`;
+        ctx.fillStyle = "rgba(0, 229, 255, 0.9)";
         ctx.beginPath();
-        ctx.arc(centroX - 12, cy = centroY - 55, 5, 0, Math.PI * 2);
-        ctx.arc(centroX + 12, cy, 5, 0, Math.PI * 2);
+        ctx.arc(centroX - 12, centroY - 55, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(centroX + 12, centroY - 55, 5, 0, Math.PI * 2);
         ctx.fill();
         
-        // Boca Eletrônica de Grade Criptografada
         ctx.fillStyle = '#00FF87';
         ctx.fillRect(centroX - 10, centroY - 40, 20, 3);
         
-        // Pescoço
         ctx.fillStyle = '#334155';
         ctx.fillRect(centroX - 10, centroY - 25, 20, 10);
         
-        // Peito / Armadura do Torso
         ctx.fillStyle = '#ffffff';
         ctx.beginPath();
         ctx.moveTo(centroX - 45, centroY - 15);
@@ -184,39 +174,34 @@ html_robo_real = """
         ctx.fill();
         ctx.stroke();
         
-        // Reator / Núcleo de Energia (Pulsando em Verde Neon)
         ctx.fillStyle = '#0f172a';
         ctx.beginPath();
         ctx.roundRect(centroX - 15, centroY, 30, 40, 6);
         ctx.fill();
         ctx.stroke();
         
-        ctx.fillStyle = `rgba(0, 255, 135, ${brilhoLed})`;
+        ctx.fillStyle = "rgba(0, 255, 135, 1)";
         ctx.beginPath();
         ctx.arc(centroX, centroY + 20, 8, 0, Math.PI * 2);
         ctx.fill();
         
-        // 3. BRAÇOS CONECTADOS DIRETAMENTE NAS TELAS LATERAIS DA FOTO
         ctx.lineWidth = 12;
         ctx.strokeStyle = '#ffffff';
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
         
-        // Braço Esquerdo Operando Painel de Dados
         ctx.beginPath();
         ctx.moveTo(centroX - 45, centroY - 10);
         ctx.lineTo(centroX - 100, centroY + 15);
         ctx.lineTo(centroX - 180, centroY - 15);
         ctx.stroke();
         
-        // Braço Direito Operando Esfera
         ctx.beginPath();
         ctx.moveTo(centroX + 45, centroY - 10);
         ctx.lineTo(centroX + 100, centroY + 15);
         ctx.lineTo(centroX + 180, centroY - 15);
         ctx.stroke();
         
-        // Acabamento interno dos braços (Preto Tecnológico)
         ctx.lineWidth = 4;
         ctx.strokeStyle = '#0f172a';
         ctx.beginPath();
@@ -228,8 +213,6 @@ html_robo_real = """
         ctx.lineTo(centroX + 180, centroY - 15);
         ctx.stroke();
         
-        // 4. PANÉIS HOLOGRÁFICOS SECUNDÁRIOS DA FOTO (LATERAIS)
-        // Esquerda: Caixa de Monitoramento
         ctx.fillStyle = 'rgba(0, 229, 255, 0.1)';
         ctx.strokeStyle = '#00E5FF';
         ctx.lineWidth = 1;
@@ -241,7 +224,6 @@ html_robo_real = """
         ctx.font = 'bold 11px sans-serif';
         ctx.fillText('CORE: SECURE', centroX - 270, centroY - 48);
         
-        // Linhas de pulso ligando a mão do robô à tela
         ctx.strokeStyle = '#00E5FF';
         ctx.lineWidth = 1.5;
         ctx.beginPath();
@@ -249,7 +231,6 @@ html_robo_real = """
         ctx.fillStyle = '#00E5FF';
         ctx.fill();
         
-        // Direita: Esfera Tridimensional de Monitoramento
         ctx.strokeStyle = '#00FF87';
         ctx.beginPath();
         ctx.arc(centroX + 180, centroY - 15, 6, 0, Math.PI * 2);
@@ -258,7 +239,23 @@ html_robo_real = """
         
         ctx.strokeStyle = '#00FF87';
         ctx.lineWidth = 1.5;
-        ctx.setLineDash([5, 5]);
         ctx.beginPath();
         ctx.arc(centroX + 240, centroY + 20, 35, 0, Math.PI * 2);
         ctx.stroke();
+        
+        requestAnimationFrame(desenharIA);
+    }
+    desenharIA();
+</script>
+"""
+st.components.v1.html(html_robo_real, height=310, scrolling=False)
+
+# =============================================================================================================
+# APRESENTAÇÃO MAJESTOSA DA CENTRAL
+# =============================================================================================================
+st.markdown("""
+<div class="robo-card-welcome">
+    <h2 style='margin-top: 0; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>🛸 PRESENÇA DE INTELIGÊNCIA ARTIFICIAL: OPERAÇÃO ADRIEL AI</h2>
+    <p style='margin: 15px 0 0 0; font-size: 16px; color: #cbd5e1; line-height: 1.6;'>
+        "Seja muito bem-vindo, <b>Comandante José Marques da Silva</b>! Como você instruiu, ativei o núcleo real de 
+        Inteligência Artificial na cara do painel de controle. Meu chassi tridimensional e os painéis circulares de LED 
