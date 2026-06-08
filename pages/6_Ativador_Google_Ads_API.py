@@ -46,7 +46,7 @@ if st.session_state.ads_passo == 1:
 # Passo 2: Selecionar tipo de campanha
 elif st.session_state.ads_passo == 2:
     st.markdown("### 🔎 PASSO 2: SELECIONE UM TIPO DE CAMPANHA")
-    
+
     if st.session_state.v_objetivo is None:
         st.error("⚠️ Por favor, selecione um objetivo primeiro.")
     else:
@@ -66,8 +66,4 @@ elif st.session_state.ads_passo == 3:
 # Passo 4: Orçamento diário
 elif st.session_state.ads_passo == 4:
     st.markdown("### 💵 PASSO 4: ORÇAMENTO DA CAMPANHA")
-    st.session_state.v_budget_val = st.number_input("Orçamento diário:", min_value=0.0, step=0.01)
-    if st.button("PRÓXIMO PASSO ➔"):
-        if st.session_state.v_budget_val <= 0:
-            st.error("⚠️ O orçamento deve ser um valor positivo.")
-        else:
+    st
