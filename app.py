@@ -6,6 +6,27 @@ import time
 st.set_page_config(page_title="Adriel AI - Core Dashboard", layout="wide", initial_sidebar_state="expanded")
 
 # =============================================================================================================
+# INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO ENTRAR NA TELA)
+# =============================================================================================================
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! Seja bem-vindo à central ultra Adriel A I. Todos os sistemas de inteligência e a API do Google Ads estão carregados na memória ativa e prontos para a operação."
+
+# Código oculto que força o navegador a falar em português do Brasil
+st.markdown(f"""
+<script>
+    window.onload = function() {{
+        setTimeout(function() {{
+            var msg = new SpeechSynthesisUtterance();
+            msg.text = "{texto_boas_vindas}";
+            msg.lang = "pt-BR";
+            msg.rate = 1.0; // Velocidade da fala
+            msg.pitch = 0.9; // Tom da voz (mais robótico e imponente)
+            window.speechSynthesis.speak(msg);
+        }}, 1000); // Dispara 1 segundo após carregar a tela
+    }};
+</script>
+""", unsafe_allow_html=True)
+
+# =============================================================================================================
 # INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (IMAGEM DO ROBÔ 3D FLUTUANDO E NAVEGANDO NO RODAPÉ)
 # =============================================================================================================
 st.markdown("""
@@ -119,7 +140,7 @@ st.markdown("""
     </p>
     <div style='margin-top: 20px;'>
         <span style='background: #00FF87; color: #050811; padding: 6px 14px; font-weight: bold; border-radius: 20px; font-size: 12px; box-shadow: 0px 4px 10px rgba(0,255,135,0.3);'>
-            MÁQUINA EM OPERAÇÃO 🛡️
+            SISTEMA COM ÁUDIO DE VOZ ATIVO 🔊
         </span>
     </div>
 </div>
