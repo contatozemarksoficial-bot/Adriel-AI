@@ -8,7 +8,7 @@ st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", i
 # =============================================================================================================
 # INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO CLICAR NA TELA)
 # =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! Painel estruturado com a esteira completa de seis módulos operacionais. Todos os sistemas prontos."
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! Menu lateral alinhado e botões padronizados no padrão executivo. Pronto para operação."
 
 st.markdown(f"""
 <script>
@@ -27,7 +27,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DE CSS DE ALTO PADRÃO (PADRONIZAÇÃO EXATA DE TODA A FAMÍLIA DE PÁGINAS)
+# INJEÇÃO DE CSS DE ALTO PADRÃO (ALINHAMENTO SEVERO DOS BOTÕES DA ESQUERDA)
 # =============================================================================================================
 st.markdown("""
 <style>
@@ -83,8 +83,8 @@ st.markdown("""
         text-transform: uppercase;
     }
 
-    /* 🟢 BOTÕES DA ESTEIRA QUE DISPARAM O SINAL PISCANTE NEON COM ZOOM NO MOUSE */
-    div.stButton > button {
+    /* 🟢 1. BOTÕES GERAIS DO MEIO E DA PLANILHA (PISCANTES VERDES DO PRINT) */
+    .coluna-container div.stButton > button {
         background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
         color: white !important;
         font-weight: bold !important;
@@ -96,39 +96,42 @@ st.markdown("""
         cursor: pointer !important;
         transition: all 0.3s ease-in-out !important;
     }
-    
-    div.stButton > button:hover {
+    .coluna-container div.stButton > button:hover {
         animation: sinal-pulsante 2s infinite ease-in-out !important;
         background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%) !important;
         color: #050811 !important;
         transform: scale(1.02) !important;
     }
     
-    /* 📟 ALINHAMENTO CIRÚRGICO DA COLUNA ESQUERDA */
-    .menu-lateral-btn {
-        display: flex;
-        flex-direction: column;
-        gap: 2px !important;
+    /* 📟 2. EXTRAORDINÁRIO POLIMENTO DA COLUNA ESQUERDA (ESTILO BRUTO CLONE DO PRINT) */
+    .menu-lateral-container {
+        display: flex !important;
+        flex-direction: column !important;
         width: 100% !important;
     }
     
-    .menu-lateral-btn div.stButton > button {
-        background: #0f172a !important; 
+    .menu-lateral-container div.stButton > button {
+        background: #0f172a !important; /* Fundo escuro premium idêntico ao print */
         color: #cbd5e1 !important;
         border: 2px solid #1e293b !important;
         text-align: left !important;
-        padding: 12px 16px !important;
+        padding: 14px 20px !important;
         font-size: 14px !important;
-        width: 95% !important; 
-        margin-bottom: 5px !important;
-        animation: none !important; 
+        font-weight: bold !important;
+        width: 100% !important; /* Trava todos rigidamente com a mesma largura */
+        margin-bottom: 8px !important;
+        border-radius: 8px !important;
+        animation: none !important;
+        box-shadow: none !important;
     }
     
-    .menu-lateral-btn div.stButton > button:hover {
+    /* Sinal Ativo do Menu Lateral: Acende em Ciano Neon com zoom cirúrgico */
+    .menu-lateral-container div.stButton > button:hover {
         background: #1e293b !important;
         color: #00FF87 !important;
         border-color: #00E5FF !important;
-        box-shadow: 0 0 12px rgba(0, 229, 255, 0.5) !important;
+        box-shadow: 0 0 15px rgba(0, 229, 255, 0.4) !important;
+        transform: scale(1.02) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -142,14 +145,15 @@ if "pagina_atual" not in st.session_state:
 # =============================================================================================================
 col_esquerda, col_centro, col_direita = st.columns([0.75, 1.4, 1])
 
-# 🏢 COLUNA 1 (FIXA E IMUTÁVEL): LOGO ADRIEL AI + BOTÕES DO MENU DE NAVEGAÇÃO
+# 🏢 COLUNA 1 (FIXA E IMUTÁVEL): LOGO ADRIEL AI + BOTÕES DO MENU LATERAL PADRONIZADOS
 with col_esquerda:
     st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
     st.markdown("<h2 style='color: #60a5fa; font-size: 24px; font-weight: 800; margin-bottom:0;'>🤖 Adriel AI</h2>", unsafe_allow_html=True)
     st.markdown("<p style='color: #64748b; font-size: 11px; margin-top:-5px; letter-spacing:1px;'>PAINEL DE CONTROLE</p>", unsafe_allow_html=True)
     st.write("---")
     
-    st.markdown('<div class="menu-lateral-btn">', unsafe_allow_html=True)
+    # Caixa container que trava o alinhamento plano por extenso
+    st.markdown('<div class="menu-lateral-container">', unsafe_allow_html=True)
     if st.button("🎛️ Dashboard", key="btn_nav_dash"): st.session_state.pagina_atual = "Dashboard"; st.rerun()
     if st.button("🛰️ 1. Radar de Produtos", key="btn_nav_m1"): st.session_state.pagina_atual = "M1_Radar"; st.rerun()
     if st.button("🔬 2. Auditor de Mercado", key="btn_nav_m2"): st.session_state.pagina_atual = "M2_Auditor"; st.rerun()
@@ -157,14 +161,15 @@ with col_esquerda:
     if st.button("🏹 4. Caçador Ativo", key="btn_nav_m4"): st.session_state.pagina_atual = "M4_Cacador"; st.rerun()
     if st.button("🌐 5. Construtor Pre-Sell", key="btn_nav_m5"): st.session_state.pagina_atual = "M5_Presell"; st.rerun()
     st.write("---")
-    st.caption("⚙ ... Configurações SaaS")
+    st.caption("⚙️ Configurações Gerais")
+    st.caption("🚪 Sair do Sistema")
     st.markdown('</div></div>', unsafe_allow_html=True)
 
 # =============================================================================================================
-# ROTEAMENTO DA ESTEIRA DAS 6 PÁGINAS (MANTENDO O MESMO PADRÃO SEM DESORGANIZAR)
+# ROTEAMENTO DA ESTEIRA DAS PÁGINAS
 # =============================================================================================================
 
-# 🏠 PÁGINA: DASHBOARD INICIAL COMPLETO
+# 🏠 PÁGINA: DASHBOARD INICIAL COMPLETO (PADRÃO DE INSTALAÇÃO DO SEU PRINT)
 if st.session_state.pagina_atual == "Dashboard":
     with col_centro:
         st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
@@ -198,9 +203,3 @@ elif st.session_state.pagina_atual == "M1_Radar":
     with col_centro:
         st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
         st.markdown('<div class="header-box-real">🔬 Parâmetros Ativos de Mineração na Gringa</div>', unsafe_allow_html=True)
-        st.markdown('<p class="subtitulo-bloco-real">🛰️ RADAR: EXTRAÇÃO DE PRODUTOS</p>', unsafe_allow_html=True)
-        st.selectbox("Selecione a Plataforma Espião:", ["ClickBank 🇺🇸", "BuyGoods 🇺🇸", "Digistore24 🇩🇪"])
-        st.slider("Filtrar por Gravidade:", 0, 300, 140)
-        st.markdown('</div>', unsafe_allow_html=True)
-    with col_direita:
-        st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
