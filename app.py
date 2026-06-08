@@ -79,11 +79,11 @@ st.markdown("<h1>🛸 ADRIEL AI — CENTRAL SUPREMA DE AUTOMAÇÃO</h1>", unsafe
 st.markdown("Controle o leilão do Google Ads com inteligência artificial para produtos nacionais e internacionais.")
 st.write("---")
 
-# Layout assimétrico para destacar o robô animado à esquerda
+# Layout de duas colunas paralelas
 col_avatar, col_interface = st.columns([1.3, 1])
 
 with col_avatar:
-    # Renderização do Chassi do Robô com o texto de boas-vindas oficial
+    # Card preto de luxo com o robô Adriel AI se apresentando
     st.markdown("""
     <div class="robo-chassi">
         <h2 style='margin-top: 0;'>🤖 SYSTEM ONLINE: ADRIEL AI</h2>
@@ -98,7 +98,6 @@ with col_avatar:
     </div>
     """, unsafe_allow_html=True)
     
-    # Grid de status em tempo real da aplicação
     col_st1, col_st2 = st.columns(2)
     with col_st1:
         st.metric(label="Latência do Servidor", value="14ms", delta="Excelente")
@@ -110,24 +109,24 @@ with col_interface:
     st.markdown("Passe o mouse sobre os botões para expandir o módulo e iniciar a operação:")
     st.write("")
     
-    # Lista de botões crescentes de controle da esteira de assinatura
+    # Botões crescentes com link visual indicativo para as páginas
     if st.button("🛰️ MÓDULO 1: Radar de Produtos", key="b_m1"):
-        st.info("Acesse a página **1_Radar** na barra lateral para abrir.")
+        st.info("Acesse a página **1_Radar** na barra lateral esquerda para abrir.")
         
     if st.button("📊 MÓDULO 2: Auditor de Mercado", key="b_m2"):
-        st.info("Acesse a página **2_Auditor** na barra lateral para abrir.")
+        st.info("Acesse a página **2_Auditor** na barra lateral esquerda para abrir.")
         
     if st.button("📝 MÓDULO 3: Gerador de Anúncios", key="b_m3"):
-        st.info("Acesse a página **3_Gerador** na barra lateral para abrir.")
+        st.info("Acesse a página **3_Gerador** na barra lateral esquerda para abrir.")
         
     if st.button("🏹 MÓDULO 4: Caçador de Lançamentos", key="b_m4"):
-        st.info("Acesse a página **4_Cacador** na barra lateral para abrir.")
+        st.info("Acesse a página **4_Cacador** na barra lateral esquerda para abrir.")
         
     if st.button("🌐 MÓDULO 5: Construtor Pre-Sell", key="b_m5"):
-        st.info("Acesse a página **5_Presell** na barra lateral para abrir.")
+        st.info("Acesse a página **5_Presell** na barra lateral esquerda para abrir.")
         
     if st.button("🚀 MÓDULO 6: Ativador Google Ads", key="b_m6"):
-        st.info("Acesse a página **6_Ativador_Google_Ads** na barra lateral para abrir.")
+        st.info("Acesse a página **6_Ativador_Google_Ads** na barra lateral esquerda para abrir.")
         
     if st.button("💎 MÓDULO 7: Gestão de Assinantes", key="b_m7"):
-        st.info("Acesse a página **7_Area_Assinantes** na barra lateral para abrir.")
+        st.info("Acesse a página **7_Area_Assinantes** na barra lateral esquerda para abrir.")
