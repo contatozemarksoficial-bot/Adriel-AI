@@ -134,7 +134,7 @@ with col_ap2:
 st.write("")
 if st.button("🔗 SOLICITAR AUTENTICAÇÃO DO ARQUIVO GOOGLE-ADS.YAML", key="btn_yaml_auth"):
     if client_id_in == "SEU_CLIENT_ID" or customer_id_in == "1234567890":
-        st.error("❌ Falha de Credenciais: Substitua as chaves padrão pelos seus dados reais do Google Cloud Console.")
+        st.error("❌ Falha de Credenciais: Substitua as chaves padrão pelos dados reais extraídos do seu painel Cloud.")
     else:
         st.success("✅ AUTENTICAÇÃO E CHECK DE TOKEN CONCLUÍDOS VIA OAUTH 2.0!")
 
