@@ -1,35 +1,22 @@
 import streamlit as st
+import pandas as pd
 
-# Configuração global
-st.set_page_config(page_title="AdrielAI - Controle", layout="wide")
-
-# Estilo para forçar o visual escuro e profissional
+# Configuração de Layout herdado da família Adriel AI
 st.markdown("""
-    <style>
-    .stApp { background-color: #0e1117; }
-    </style>
+<style>
+    .stApp { background-color: #0b111e !important; color: #ffffff !important; }
+    h2 { background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800 !important; }
+</style>
 """, unsafe_allow_html=True)
 
-# Cabeçalho do Dashboard
-st.title("🚀 Painel de Controle AdrielAI")
-st.markdown("---")
+st.markdown("<h2>🛰️ MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</h2>", unsafe_allow_html=True)
+st.write("Filtro analítico focado na extração de ofertas de alta conversão nas plataformas internacionais.")
+st.write("---")
 
-# Métricas de Status
-col1, col2, col3 = st.columns(3)
-col1.metric("Status API", "Ativo")
-col2.metric("Oportunidades", "30")
-col3.metric("Versão", "2026.01")
-
-st.markdown("---")
-
-# Aqui entram os botões que levam para as páginas da pasta /pages/
-col_a, col_b = st.columns(2)
-with col_a:
-    st.subheader("📊 Módulos Principais")
-    st.page_link("pages/01_📊_Radar.py", label="Radar de Produtos", icon="📊")
-    st.page_link("pages/02_🛡️_Auditor.py", label="Auditor de Mercado", icon="🛡️")
-
-with col_b:
-    st.subheader("⚙️ Ações")
-    st.page_link("pages/03_✍️_Gerador.py", label="Gerador de Anúncios", icon="✍️")
-    st.page_link("pages/06_⚙️_Ativador_Google_Ads_API.py", label="Ativador API", icon="⚙️")
+# Tabela simplificada temporária para testar o funcionamento da página pages
+dados_radar = {
+    "Nome do Produto": ["Sugar Defender", "Java Burn", "Puravive"],
+    "Gravidade": ["210+", "180+", "150+"],
+    "Status": ["Livre 🟢", "Livre 🟢", "Competitivo 🟡"]
+}
+st.dataframe(pd.DataFrame(dados_radar), use_container_width=True, hide_index=True)
