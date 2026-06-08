@@ -1,15 +1,13 @@
-
 import streamlit as st
 import pandas as pd
-import time
 
-# Configuração de Layout Amplo Executivo Premium Black
-st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", initial_sidebar_state="expanded")
+# Configuração premium de layout amplo (Ocupa 100% da largura da tela)
+st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", initial_sidebar_state="collapsed")
 
 # =============================================================================================================
-# INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO ENTRAR/CLICAR NA TELA)
+# INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO CLICAR NA TELA)
 # =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! Painel de controle Adriel A I totalmente carregado. Todos os botões operacionais e a API do Google Ads estão prontos para o disparo."
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! Painel de controle Adriel A I totalmente carregado e integrado em três colunas paralelas."
 
 st.markdown(f"""
 <script>
@@ -28,151 +26,174 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DE CSS AVANÇADO (BOTÕES PISCANDO EM LINHA E CORREÇÃO DE COR DO MENU LATERAL)
+# INJEÇÃO DE CSS DE ALTO PADRÃO (ESTILO BLACK E SINAL PISCANTE HOVER NOS BOTÕES)
 # =============================================================================================================
 st.markdown("""
 <style>
-    /* 🌌 Fundo Escuro do Painel do Print */
+    /* 🌌 Fundo Escuro Fiel ao Print da Imagem */
     .stApp {
         background-color: #0b111e !important;
         color: #ffffff !important;
     }
     
-    /* Customização da Barra Lateral */
-    [data-testid="stSidebar"] {
-        background-color: #070c16 !important;
-        border-right: 1px solid #1e293b !important;
+    /* Remove as margens do topo padrão do Streamlit */
+    .block-container {
+        padding-top: 1rem !important;
+        padding-bottom: 0rem !important;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
     }
     
-    /* 🚨 ANIMAÇÃO DE PISCAR DOS BOTÕES EM NEON (VERDE/CIANO) */
-    @keyframes pisca-botoes {
-        0% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); }
+    /* Oculta as barras e menus nativos */
+    [data-testid="stSidebar"] { display: none !important; }
+    [data-testid="stHeader"] { display: none !important; }
+    
+    /* 🚨 ANIMAÇÃO DE SINAL NEON: ALTERNA AS BORDAS (CIANO <-> VERDE) */
+    @keyframes sinal-pulsante {
+        0% { border-color: #00E5FF; box-shadow: 0 0 5px rgba(0, 229, 255, 0.2); }
         50% { border-color: #00FF87; box-shadow: 0 0 15px rgba(0, 255, 135, 0.4); }
-        100% { border-color: #1e293b; box-shadow: 0 0 5px rgba(0, 229, 255, 0.1); }
+        100% { border-color: #00E5FF; box-shadow: 0 0 5px rgba(0, 229, 255, 0.2); }
     }
 
-    [data-testid="stSidebarNav"] ul li a span {
-        color: #ffffff !important; 
-        font-weight: bold !important;
-        font-size: 14px !important;
+    /* Linhas divisórias das 3 colunas verticais */
+    .coluna-container {
+        background-color: transparent;
+        border-right: 1px solid #1e293b;
+        padding-right: 15px;
+        padding-left: 10px;
+        min-height: 80vh;
     }
-    [data-testid="stSidebarNav"] ul li a {
-        background-color: #0f172a !important; 
-        border: 2px solid #1e293b !important;
-        border-radius: 8px !important;
-        margin-bottom: 8px !important;
-        padding: 12px 14px !important;
-        animation: pisca-botoes 3s infinite ease-in-out !important; /* Faz o menu lateral piscar */
-        display: block !important;
-    }
-
-    /* Caixa Superior de Informações */
+    
+    /* Caixas horizontais superiores de logs */
     .header-box-real {
         background-color: #0f172a !important;
         border: 1px solid #1e293b !important;
         border-radius: 8px !important;
-        padding: 14px 20px !important;
-        margin-bottom: 20px !important;
+        padding: 12px 18px !important;
+        margin-bottom: 15px !important;
+        font-size: 13px !important;
     }
     
-    /* Cabeçalhos Clones da Imagem */
-    .subtitulo-bloco {
+    .subtitulo-bloco-real {
         font-size: 13px !important;
         font-weight: bold !important;
         color: #60a5fa !important;
-        letter-spacing: 0.5px;
-        margin-bottom: 12px;
+        margin-bottom: 15px;
         text-transform: uppercase;
     }
 
-    /* 🟢 Customização dos Botões Verdes Piscando (Módulo 2) */
+    /* BOTÕES GERAIS QUE ENVIAM O SINAL PISCANTE E ZOOM */
     div.stButton > button {
         background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
         color: white !important;
         font-weight: bold !important;
+        font-size: 14px !important;
         border: 2px solid #1e293b !important;
-        padding: 11px 20px !important;
+        padding: 12px 15px !important;
         border-radius: 6px !important;
         width: 100% !important;
-        animation: pisca-botoes 4s infinite ease-in-out !important; /* Faz os botões centrais piscarem */
         cursor: pointer !important;
-        transition: transform 0.2s ease !important;
+        transition: all 0.3s ease-in-out !important;
     }
     div.stButton > button:hover {
+        animation: sinal-pulsante 2s infinite ease-in-out !important;
+        background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%) !important;
+        color: #050811 !important;
         transform: scale(1.02) !important;
+    }
+    
+    /* MENU DA COLUNA 1 DA ESQUERDA (TAMANHO PADRONIZADO DO PRINT) */
+    .menu-lateral-container div.stButton > button {
+        background: #0f172a !important;
+        color: #cbd5e1 !important;
+        border: 2px solid #1e293b !important;
+        text-align: left !important;
+        padding: 13px 18px !important;
+        width: 100% !important;
+        margin-bottom: 6px !important;
+        font-size: 13px !important;
+        animation: none !important;
+    }
+    .menu-lateral-container div.stButton > button:hover {
+        background: #1e293b !important;
+        color: #00FF87 !important;
         border-color: #00E5FF !important;
+        box-shadow: 0 0 12px rgba(0, 229, 255, 0.5) !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# =============================================================================================================
-# BARRA SUPERIOR DE LOG E HISTÓRICO (EXATAMENTE COMO NO SEU PRINT)
-# =============================================================================================================
-col_top1, col_top2 = st.columns(2)
-with col_top1:
-    st.markdown('<div class="header-box-real">👤 Olá, <b>José Marques</b>, Comandante do Adriel AI!</div>', unsafe_allow_html=True)
-with col_top2:
-    st.markdown('<div class="header-box-real" style="text-align: right;">🟢 Status: <span style="color: #10b981; font-weight:bold;">Sistema Online</span> | Chave Mestre Ativa | Data: 06/06/2026</div>', unsafe_allow_html=True)
+# Gerenciamento seguro de rotas de páginas na memória ativa
+if "pagina_atual" not in st.session_state:
+    st.session_state.pagina_atual = "Dashboard"
 
 # =============================================================================================================
-# ESTRUTURA GIGANTE EM PARALELO (COLUNA 1: RADAR DE PRODUTOS | COLUNA 2: GERADOR RSA)
+# CONFIGURAÇÃO DE 3 COLUNAS VERTICAIS PARALELAS (CLONE DO LEONARDO AI)
 # =============================================================================================================
-col_esq, col_dir = st.columns([1.35, 1])
+col_esquerda, col_centro, col_direita = st.columns([0.85, 1.35, 1])
 
-# 📊 COLUNA ESQUERDA: CLONE DO MÓDULO 1 RADAR DE PRODUTOS [FILTRO XEQUE-MATE]
-with col_esq:
-    st.markdown('<p class="subtitulo-bloco">MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</p>', unsafe_allow_html=True)
+# 🏢 COLUNA 1: LOGO ADRIEL AI + NOMES EXATOS EXTEMSADOS DA SUA LISTA
+with col_esquerda:
+    st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
+    st.markdown("<h2 style='color: #60a5fa; font-size: 24px; font-weight: 800; margin:0;'>🤖 Adriel AI</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #64748b; font-size: 11px; margin-top:-5px;'>PAINEL DE CONTROLE</p>", unsafe_allow_html=True)
+    st.write("---")
     
-    # Lista fiel ao seu print de produtos acanodianos validados com badge colorido
-    dados_tabela = {
-        "Name": [f"Produto-acanodiano {i}" for i in range(1, 10)],
-        "Comissões": ["3,00%", "2,00%", "1,00%", "1,00%", "1,00%", "2,00%", "2,00%", "1,00%", "1,00%"],
-        "Comissão": ["R$,15%", "R$,75%", "R$,25%", "R$,35%", "R$,25%", "R$,25%", "R$,25%", "R$,60%", "R$,60%"],
-        "Veredito da IA": [
-            "APROVADO (Risco Baixo)", 
-            "APROVADO (Risco Baixo)", 
-            "REVISAR (Risco Médio)", 
-            "REVISAR (Risco Médio)", 
-            "APROVADO (Risco Baixo)",
-            "APROVADO (Risco Baixo)",
-            "APROVADO (Risco Baixo)",
-            "REVISAR (Risco Médio)",
-            "REVISAR (Risco Médio)"
-        ]
-    }
-    df_painel = pd.DataFrame(dados_tabela)
-    st.dataframe(df_painel, use_container_width=True, hide_index=True)
-    
-    st.write("")
-    # Botão de exportação da base
-    if st.button("📄 [BAIXAR PLANILHA DE INTELIGÊNCIA (.CSV)]", key="btn_csv_real"):
-        st.success("Planilha processada e pronta na nuvem!")
+    st.markdown('<div class="menu-lateral-container">', unsafe_allow_html=True)
+    if st.button("🎛️ Dashboard Geral", key="n_dash"): st.session_state.pagina_atual = "Dashboard"; st.rerun()
+    if st.button("🛰️ 1. Radar de Produtos", key="n_m1"): st.session_state.pagina_atual = "Radar"; st.rerun()
+    if st.button("🔬 2. Auditor de Mercado", key="n_m2"): st.session_state.pagina_atual = "Auditor"; st.rerun()
+    if st.button("📝 3. Gerador de Anúncios", key="n_m3"): st.session_state.pagina_atual = "Gerador"; st.rerun()
+    if st.button("🏹 4. Caçador de Lançamentos", key="n_m4"): st.session_state.pagina_atual = "Cacador"; st.rerun()
+    if st.button("🌐 5. Gerador de Pre-Cell", key="n_m5"): st.session_state.pagina_atual = "PreCell"; st.rerun()
+    if st.button("🚀 6. Ativador Google Ads API", key="n_m6"): st.session_state.pagina_atual = "GoogleAds"; st.rerun()
+    if st.button("💎 7. Área de Assinantes", key="n_m7"): st.session_state.pagina_atual = "Assinantes"; st.rerun()
+    st.write("---")
+    st.caption("⚙️ Configurações SaaS")
+    st.markdown('</div></div>', unsafe_allow_html=True)
 
-# 📝 COLUNA DIREITA: CLONE DO MÓDULO 2 GERADOR DE ANÚNCIOS MASTER & PRE-SELL
-with col_dir:
-    st.markdown('<p class="subtitulo-bloco">MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & PRE-SELL</p>', unsafe_allow_html=True)
-    
-    # Inputs organizados do print
-    p_gringo = st.text_input("PROD_GRINGO:", value="Sugar Defender", key="p_gringo_in")
-    p_resumo = st.text_area("RESUMO (Niche/Dores):", value="Suplemento natural para equilíbrio do metabolismo.", height=68, key="p_resumo_in")
-    
-    st.write("")
-    # Botões Verdes Grandes Piscando e Executando
-    if st.button("⚡ (A) GERAR ANÚNCIOS ADSMaster (Copy + Roteiro Vídeo)", key="btn_gen_ads_real"):
-        st.success("Campanha e copys estruturadas com sucesso!")
+# =============================================================================================================
+# ROTEAMENTO SEGURO — ENCAIXANDO SEUS ARQUIVOS DE BACKUP NAS COLUNAS 2 E 3
+# =============================================================================================================
+
+# 🏠 INTERFACE: DASHBOARD GERAL E PREENCHIDO
+if st.session_state.pagina_atual == "Dashboard":
+    with col_centro:
+        st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real">👤 Olá, <b>José Marques</b>, Comandante do Adriel AI!</div>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitulo-bloco-real">MÓDULO 1: RADAR DE PRODUTOS [FILTRO XEQUE-MATE]</p>', unsafe_allow_html=True)
         
-    st.write("")
-    if st.button("⚡ [B] FABRICAR PRE-SELL (Landing Page Text) </>", key="btn_gen_html_real"):
-        st.success("Código da Landing Page limpo e gerado com sucesso!")
-        
-    # Caixa preta de parâmetros exatos da imagem
-    st.markdown('<div style="background-color: #0f172a; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; margin-top: 14px; font-size: 13px; color: #94a3b8; font-family: monospace;"><b>image_7be312.png (Títulos, Descrições, Palavras-chave)</b><br>Títulos 15 blocks<br>Títulos, Descrições<br>Palavras-chave<br>Formatas de blocks<br>Salvar campanha no blocks</div>', unsafe_allow_html=True)
-    
-    st.write("")
-    # Botão de histórico final
-    if st.button("💾 [SALVAR CAMPANHA NO HISTÓRICO]", key="btn_save_history_real"):
-        st.info("Campanha de lote salva na base de dados.")
+        # Tabela clonada fiel
+        dados_tabela = {
+            "Name": [f"Produto-acanodiano {i}" for i in range(1, 8)],
+            "Comissões": ["3,00%", "2,00%", "1,00%", "1,00%", "1,00%", "2,00%", "2,00%"],
+            "Comissão": ["R$,15%", "R$,75%", "R$,25%", "R$,35%", "R$,25%", "R$,25%", "R$,25%"],
+            "Veredito da IA": ["APROVADO (Risco Baixo)"] * 7
+        }
+        st.dataframe(pd.DataFrame(dados_tabela), use_container_width=True, hide_index=True)
+        st.write("")
+        st.button("📄 [BAIXAR PLANILHA DE INTELIGÊNCIA (.CSV)]", key="btn_csv_dash")
+        st.markdown('</div>', unsafe_allow_html=True)
 
-# Rodapé de cópia idêntico ao rodapé do print
-st.write("---")
-st.markdown('<p style="text-align: center; font-size: 11px; color: #475569;">© 2026 Adriel AI - Ferramenta Exclusiva de Inteligência para Afiliados Elite. Todos os Direitos Reservados.</p>', unsafe_allow_html=True)
+    with col_direita:
+        st.markdown('<div class="coluna-container" style="border-right: none;">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real" style="text-align: right;">🟢 Status: <span style="color: #10b981; font-weight:bold;">Online</span></div>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitulo-bloco-real">MÓDULO 2: GERADOR DE ANÚNCIOS MASTER & PRE-SELL</p>', unsafe_allow_html=True)
+        st.text_input("PROD_GRINGO:", value="Sugar Defender")
+        st.text_area("RESUMO (Niche/Dores):", value="Suplemento natural para equilíbrio do metabolismo.", height=68)
+        st.write("")
+        st.button("🔥 (A) GERAR ANÚNCIOS ADSMaster (Copy + Roteiro Vídeo)", key="btn_ads")
+        st.write("")
+        st.markdown('<div style="background-color: #0f172a; border: 1px solid #1e293b; padding: 12px; border-radius: 6px; font-size: 13px; color: #94a3b8; font-family: monospace;"><b>image_7be312.png (Títulos, Descrições)</b><br>Títulos 15 blocks | Formatas de blocks</div>', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+
+# 🛰️ INTERFACE: 1. RADAR DE PRODUTOS RESTAURADO DO SEU BACKUP
+elif st.session_state.pagina_atual == "Radar":
+    with col_centro:
+        st.markdown('<div class="coluna-container">', unsafe_allow_html=True)
+        st.markdown('<div class="header-box-real">🛰️ Filtros de Mineração Ativos no Servidor</div>', unsafe_allow_html=True)
+        st.markdown('<p class="subtitulo-bloco-real">🔬 BANCO DE DADOS: 22 PRODUTOS CAMPEÕES</p>', unsafe_allow_html=True)
+        st.write("• **Sugar Defender** (Diabetes / Açúcar)")
+        st.write("• **Obsesta** (Perda de Peso)")
+        st.write("• **ProDentim** (Saúde Dental)")
+        st.write("• **Java Burn** (Metabolismo)")
