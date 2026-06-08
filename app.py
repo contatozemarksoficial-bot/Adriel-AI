@@ -64,21 +64,21 @@ st.markdown("""
     /* 🤖 ANIMAÇÃO DO ROBÔ HUMANOIDE NAVEGANDO E FLUTUANDO (EFEITO HOLOGRAMA REAL) */
     @keyframes patrulha-holograma {
         0% { left: 5%; transform: scaleX(1) translateY(0px); }
-        25% { transform: scaleX(1) translateY(-10px); } /* Flutua subindo de leve */
-        50% { left: 75%; transform: scaleX(-1) translateY(0px); } /* Vira de lado para voltar */
+        25% { transform: scaleX(1) translateY(-10px); } 
+        50% { left: 75%; transform: scaleX(-1) translateY(0px); } 
         75% { transform: scaleX(-1) translateY(-10px); }
         100% { left: 5%; transform: scaleX(1) translateY(0px); }
     }
 
     .robo-holograma-3d {
         position: fixed;
-        bottom: 20px; /* Posicionado perfeitamente no rodapé */
+        bottom: 20px; 
         left: 5%;
-        width: 180px; /* Tamanho requintado para o robô aparecer bem na tela */
+        width: 180px; 
         z-index: 99999;
         pointer-events: none;
-        animation: patrulha-holograma 15s infinite linear !important; /* Movimento contínuo de patrulha */
-        filter: drop-shadow(0px 0px 20px rgba(0, 229, 255, 0.6)); /* Brilho neon azul ao redor da imagem */
+        animation: patrulha-holograma 15s infinite linear !important; 
+        filter: drop-shadow(0px 0px 20px rgba(0, 229, 255, 0.6)); 
     }
     
     /* Bloco de Monitoramento Executivo */
@@ -102,9 +102,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DA IMAGEM REAL DO ROBÔ FUTURISTA FLUTUANDO E NAVEGANDO NO RODAPÉ
+# INJEÇÃO DA IMAGEM BANCO DE DADOS DIRETO DA INFRAESTRUTURA COMPACTA
 # =============================================================================================================
-st.markdown('<img src="https://postimg.co" class="robo-holograma-3d">', unsafe_allow_html=True)
+st.markdown('<img src="https://unsplash.com" class="robo-holograma-3d">', unsafe_allow_html=True)
 
 # =============================================================================================================
 # APRESENTAÇÃO MAJESTOSA DA CENTRAL (ALTERANDO DE COR AUTOMATICAMENTE)
