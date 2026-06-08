@@ -250,14 +250,5 @@ html_robo_real = """
 st.components.v1.html(html_robo_real, height=310, scrolling=False)
 
 # =============================================================================================================
-# APRESENTAÇÃO MAJESTOSA DA CENTRAL
+# APRESENTAÇÃO MAJESTOSA DA CENTRAL (MOLDADA COM ABAS INTERNAS DE STRINGS SIMPLES)
 # =============================================================================================================
-st.markdown("""
-<div class="robo-card-welcome">
-    <h2 style='margin-top: 0; background: linear-gradient(135deg, #00FF87 0%, #00E5FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>🛸 PRESENÇA DE INTELIGÊNCIA ARTIFICIAL: OPERAÇÃO ADRIEL AI</h2>
-    <p style='margin: 15px 0 0 0; font-size: 16px; color: #cbd5e1; line-height: 1.6;'>
-        "Seja muito bem-vindo, <b>Comandante José Marques da Silva</b>! Como você instruiu, ativei o núcleo real de 
-        Inteligência Artificial na cara do painel de controle. Meu chassi tridimensional e os painéis circulares de LED 
-        estão operando em tempo real por engenharia síncrona. Dê um clique na tela para ativar o canal de voz."
-    </p>
-    <div style='margin-top: 20px;'>
