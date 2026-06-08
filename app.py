@@ -1,6 +1,6 @@
-
 import streamlit as st
 import pandas as pd
+import time
 
 # Configuração premium de layout amplo (Ocupa 100% da largura da tela)
 st.set_page_config(page_title="Adriel AI - Painel de Controle", layout="wide", initial_sidebar_state="collapsed")
@@ -27,7 +27,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DE CSS DE ALTO PADRÃO (DESATIVA BARRA CINZA NATIVA E FORMATA OS BOTÕES)
+# INJEÇÃO DE CSS DE ALTO PADRÃO (DESATIVA SIDEBAR CINZA DA GEMINI E ADICIONA O SINAL PISCANTE)
 # =============================================================================================================
 st.markdown("""
 <style>
@@ -65,7 +65,7 @@ st.markdown("""
         min-height: 80vh;
     }
     
-    /* Caixas horizontais superiores de logs */
+    /* Caixas horizontais superiores de logs e mini-dashboards */
     .header-box-real {
         background-color: #0f172a !important;
         border: 1px solid #1e293b !important;
@@ -142,7 +142,7 @@ st.markdown("""
         background: #1e293b !important;
         color: #00FF87 !important;
         border-color: #00E5FF !important;
-        box-shadow: 0 0 12px rgba(0, 229, 255, 0.5) !important;
+        box-shadow: 0 0 12 rgba(0, 229, 255, 0.5) !important;
     }
 </style>
 """, unsafe_allow_html=True)
