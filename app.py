@@ -8,7 +8,7 @@ st.set_page_config(page_title="Adriel AI - Core Dashboard", layout="wide", initi
 # =============================================================================================================
 # INJEÇÃO DE ÁUDIO REAL VIA JAVASCRIPT (O ROBÔ FALA AO CLICAR NA TELA)
 # =============================================================================================================
-texto_boas_vindas = "Olá, Comandante José Marques da Silva! Painel holográfico tridimensional ativado. Motores e chassi síncronos na memória."
+texto_boas_vindas = "Olá, Comandante José Marques da Silva! O núcleo de Inteligência Artificial tridimensional está ativo nos servidores do Adriel A I. Handshake concluído."
 
 st.markdown(f"""
 <script>
@@ -18,7 +18,7 @@ st.markdown(f"""
             msg.text = "{texto_boas_vindas}";
             msg.lang = "pt-BR";
             msg.rate = 1.0;
-            msg.pitch = 0.9;
+            msg.pitch = 0.85;
             window.speechSynthesis.speak(msg);
             window.audioDisparado = true;
         }}
@@ -27,7 +27,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# INJEÇÃO DE CÓDIGO CSS PREMIUM DEFINITIVO (ANIMAÇÕES DOS ANÉIS HOLOGRÁFICOS E FLUTUAÇÃO)
+# INJEÇÃO DE CÓDIGO CSS PREMIUM DE ELITE (ESTILO BLACK E PISCADO NEON DO MENU)
 # =============================================================================================================
 st.markdown("""
 <style>
@@ -82,27 +82,6 @@ st.markdown("""
         animation: alterna-cores 5s infinite ease-in-out !important;
     }
     
-    /* 🔄 ANIMAÇÃO DE ROTAÇÃO DOS FEIXES E PAINÉIS REDONDOS DA FOTO */
-    @keyframes girar-holograma {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-    
-    @keyframes pulsar-brilho {
-        0% { opacity: 0.4; }
-        50% { opacity: 1; }
-        100% { opacity: 0.4; }
-    }
-
-    .anel-rotativo {
-        transform-origin: center;
-        animation: girar-holograma 20s infinite linear;
-    }
-    
-    .painel-pulsante {
-        animation: pulsar-brilho 3s infinite ease-in-out;
-    }
-
     /* Bloco dos Cards de Status */
     .status-card {
         background-color: #0f172a !important;
@@ -116,83 +95,170 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # =============================================================================================================
-# CLONE OPERACIONAL DA FOTO: O ROBÔ HUMANOIDE COORDENANDO OS PAINÉIS EM CAD-SVG NATIVO
+# 🦾 NÚCLEO REAL DE INTELIGÊNCIA ARTIFICIAL: AMBIENTE 3D ANIMADO EM CANVAS HTML5 / JS DIRECT
 # =============================================================================================================
-st.markdown("""
-<div style="text-align: center; margin-bottom: 20px;">
-    <svg viewBox="0 0 600 240" width="100%" height="240" style="background: transparent;">
-        <!-- 🌀 ANÉIS E ARCOS HOLOGRÁFICOS ESQUERDOS (GIRANDO) -->
-        <g class="anel-rotativo" style="transform-origin: 120px 120px;">
-            <circle cx="120" cy="120" r="50" fill="none" stroke="#00E5FF" stroke-width="2" stroke-dasharray="10, 15" opacity="0.7"/>
-            <circle cx="120" cy="120" r="70" fill="none" stroke="#00FF87" stroke-width="1.5" stroke-dasharray="40, 30" opacity="0.5"/>
-            <path d="M 60,120 A 60,60 0 0,1 180,120" fill="none" stroke="#00E5FF" stroke-width="4" opacity="0.8"/>
-        </g>
-        <!-- Painel de Dados Flutuante à Esquerda -->
-        <g class="painel-pulsante">
-            <rect x="50" y="40" width="80" height="30" rx="5" fill="rgba(0,229,255,0.1)" stroke="#00E5FF" stroke-width="1"/>
-            <text x="60" y="60" fill="#00E5FF" font-size="10" font-family="sans-serif" font-weight="bold">AUDIT: OK</text>
-            <line x1="120" y1="120" x2="250" y2="100" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.6"/>
-        </g>
+st.markdown("### 🧬 NÚCLEO DINÂMICO DE PROCESSAMENTO DA IA")
 
-        <!-- 🪐 PAINEL REDONDO DA DIREITA DA FOTO (A ESFERA TECNOLÓGICA) -->
-        <g class="anel-rotativo" style="transform-origin: 480px 120px;">
-            <circle cx="480" cy="120" r="55" fill="none" stroke="#00E5FF" stroke-width="2" stroke-dasharray="5, 8" opacity="0.8"/>
-            <circle cx="480" cy="120" r="40" fill="none" stroke="#00FF87" stroke-width="3" stroke-dasharray="20, 10" opacity="0.6"/>
-            <circle cx="480" cy="120" r="20" fill="none" stroke="#00E5FF" stroke-width="1" opacity="0.4"/>
-            <!-- Raios do Globo -->
-            <line x1="425" y1="120" x2="535" y2="120" stroke="#00E5FF" stroke-width="1" opacity="0.5"/>
-            <line x1="480" y1="65" x2="480" y2="175" stroke="#00E5FF" stroke-width="1" opacity="0.5"/>
-        </g>
-        <g class="painel-pulsante">
-            <line x1="480" y1="120" x2="350" y2="100" stroke="#00FF87" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.6"/>
-        </g>
-
-        <!-- 🤖 O ROBÔ HUMANOIDE CENTRAL (CORPO, BRAÇOS E MÃOS ACIONANDO OS PAINÉIS) -->
-        <g style="transform: translate(220px, 10px);">
-            <!-- Cabeça do Robô -->
-            <rect x="55" y="20" width="50" height="55" rx="15" fill="#ffffff" stroke="#00E5FF" stroke-width="3"/>
-            <!-- Orelhas / Sensores Laterais -->
-            <rect x="47" y="35" width="8" height="25" rx="4" fill="#0f172a" stroke="#00E5FF" stroke-width="1.5"/>
-            <rect x="105" y="35" width="8" height="25" rx="4" fill="#0f172a" stroke="#00E5FF" stroke-width="1.5"/>
-            <!-- Olhos de LED Ciano Acesos -->
-            <circle cx="68" cy="42" r="5" fill="#00E5FF"/>
-            <circle cx="92" cy="42" r="5" fill="#00E5FF"/>
-            <circle cx="68" cy="42" r="1.5" fill="#050811"/>
-            <circle cx="92" cy="42" r="1.5" fill="#050811"/>
-            <!-- Detalhe da Testa/Neon -->
-            <path d="M 65,20 L 80,32 L 95,20" fill="none" stroke="#00FF87" stroke-width="2"/>
-            <!-- Boca Eletrônica -->
-            <rect x="70" y="58" width="20" height="3" fill="#00FF87" rx="1.5"/>
-            
-            <!-- Pescoço Articulado -->
-            <rect x="70" y="75" width="20" height="12" fill="#334155" stroke="#1e293b"/>
-            
-            <!-- Torso / Peito Mecânico -->
-            <path d="M 40,87 L 120,87 L 110,170 L 50,170 Z" fill="#ffffff" stroke="#00E5FF" stroke-width="2.5"/>
-            <!-- Core de Energia Azul no Peito -->
-            <rect x="65" y="105" width="30" height="40" rx="6" fill="#0f172a" stroke="#00FF87" stroke-width="2"/>
-            <circle cx="80" cy="125" r="8" fill="#00E5FF" class="painel-pulsante"/>
-
-            <!-- 💪 BRAÇO ESQUERDO TOCANDO O PAINEL DE CONEXÃO -->
-            <path d="M 40,95 L -10,120 L -60,95" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M 40,95 L -10,120 L -60,95" fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Mão tocando o arco holográfico -->
-            <circle cx="-60" cy="95" r="8" fill="#00E5FF" class="painel-pulsante"/>
-
-            <!-- 💪 BRAÇO DIREITO OPERANDO A ESFERA -->
-            <path d="M 120,95 L 170,120 L 220,95" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M 120,95 L 170,120 L 220,95" fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Mão tocando a esfera tecnológica -->
-            <circle cx="220" cy="95" r="8" fill="#00FF87" class="painel-pulsante"/>
-        </g>
-    </svg>
+html_robo_real = """
+<div style="text-align: center; background: #070c16; padding: 20px; border-radius: 16px; border: 1px solid #1e293b; box-shadow: 0px 10px 40px rgba(0,0,0,0.5);">
+    <canvas id="canvasRobo3D" width="800" height="260" style="background: transparent; max-width: 100%;"></canvas>
 </div>
-""", unsafe_allow_html=True)
 
-# =============================================================================================================
-# APRESENTAÇÃO MAJESTOSA DA CENTRAL
-# =============================================================================================================
-st.markdown("""
-<div class="robo-card-welcome">
-    <h1 style='margin-top: 0; font-size: 28px;'>🛸 INTERFACE HOLOGRÁFICA: ADRIEL AI</h1>
-    <p style='margin: 15px 0 0 0; font-size: 16px; color: #cbd5e1; line-height: 1.6;'>
+<script>
+    const canvas = document.getElementById('canvasRobo3D');
+    const ctx = canvas.getContext('2d');
+    let angulo = 0;
+
+    function desenharIA() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        const centroX = canvas.width / 2;
+        const centroY = canvas.height / 2;
+        
+        // 1. Renderização das Partículas de Dados e Conectividade ao redor do Robô
+        angulo += 0.015;
+        ctx.strokeStyle = '#00E5FF';
+        ctx.lineWidth = 1.5;
+        
+        // Círculo Holográfico Externo Transmitindo Lotes
+        ctx.beginPath();
+        ctx.arc(centroX, centroY, 110, 0, Math.PI * 2);
+        ctx.setLineDash([15, 25]);
+        ctx.stroke();
+        
+        // Anel Interno em Rotação Inversa (Verde Neon)
+        ctx.strokeStyle = '#00FF87';
+        ctx.beginPath();
+        ctx.arc(centroX, centroY, 90, angulo, angulo + Math.PI, false);
+        ctx.setLineDash([40, 30]);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(centroX, centroY, 90, angulo + Math.PI, angulo, false);
+        ctx.stroke();
+        ctx.setLineDash([]); // Reseta traço
+
+        // 2. CHASSI DO ROBÔ HUMANOIDE (Mapeamento Vetorial Complexo)
+        ctx.fillStyle = '#ffffff';
+        ctx.strokeStyle = '#00E5FF';
+        ctx.lineWidth = 3;
+        
+        // Cabeça
+        ctx.beginPath();
+        ctx.roundRect(centroX - 25, centroY - 80, 50, 55, 15);
+        ctx.fill();
+        ctx.stroke();
+        
+        // Orelhas / Sensores Dinâmicos
+        ctx.fillStyle = '#0f172a';
+        ctx.beginPath();
+        ctx.roundRect(centroX - 33, centroY - 65, 8, 25, 4);
+        ctx.roundRect(centroX + 25, centroY - 65, 8, 25, 4);
+        ctx.fill();
+        ctx.stroke();
+        
+        // Olhos Acesos de LED (Pulsando)
+        let brilhoLed = Math.abs(Math.sin(angulo * 2));
+        ctx.fillStyle = `rgba(0, 229, 255, ${brilhoLed * 0.7 + 0.3})`;
+        ctx.beginPath();
+        ctx.arc(centroX - 12, cy = centroY - 55, 5, 0, Math.PI * 2);
+        ctx.arc(centroX + 12, cy, 5, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Boca Eletrônica de Grade Criptografada
+        ctx.fillStyle = '#00FF87';
+        ctx.fillRect(centroX - 10, centroY - 40, 20, 3);
+        
+        // Pescoço
+        ctx.fillStyle = '#334155';
+        ctx.fillRect(centroX - 10, centroY - 25, 20, 10);
+        
+        // Peito / Armadura do Torso
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.moveTo(centroX - 45, centroY - 15);
+        ctx.lineTo(centroX + 45, centroY - 15);
+        ctx.lineTo(centroX + 35, centroY + 65);
+        ctx.lineTo(centroX - 35, centroY + 65);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        
+        // Reator / Núcleo de Energia (Pulsando em Verde Neon)
+        ctx.fillStyle = '#0f172a';
+        ctx.beginPath();
+        ctx.roundRect(centroX - 15, centroY, 30, 40, 6);
+        ctx.fill();
+        ctx.stroke();
+        
+        ctx.fillStyle = `rgba(0, 255, 135, ${brilhoLed})`;
+        ctx.beginPath();
+        ctx.arc(centroX, centroY + 20, 8, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // 3. BRAÇOS CONECTADOS DIRETAMENTE NAS TELAS LATERAIS DA FOTO
+        ctx.lineWidth = 12;
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        
+        // Braço Esquerdo Operando Painel de Dados
+        ctx.beginPath();
+        ctx.moveTo(centroX - 45, centroY - 10);
+        ctx.lineTo(centroX - 100, centroY + 15);
+        ctx.lineTo(centroX - 180, centroY - 15);
+        ctx.stroke();
+        
+        // Braço Direito Operando Esfera
+        ctx.beginPath();
+        ctx.moveTo(centroX + 45, centroY - 10);
+        ctx.lineTo(centroX + 100, centroY + 15);
+        ctx.lineTo(centroX + 180, centroY - 15);
+        ctx.stroke();
+        
+        // Acabamento interno dos braços (Preto Tecnológico)
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = '#0f172a';
+        ctx.beginPath();
+        ctx.moveTo(centroX - 45, centroY - 10);
+        ctx.lineTo(centroX - 100, centroY + 15);
+        ctx.lineTo(centroX - 180, centroY - 15);
+        ctx.moveTo(centroX + 45, centroY - 10);
+        ctx.lineTo(centroX + 100, centroY + 15);
+        ctx.lineTo(centroX + 180, centroY - 15);
+        ctx.stroke();
+        
+        // 4. PANÉIS HOLOGRÁFICOS SECUNDÁRIOS DA FOTO (LATERAIS)
+        // Esquerda: Caixa de Monitoramento
+        ctx.fillStyle = 'rgba(0, 229, 255, 0.1)';
+        ctx.strokeStyle = '#00E5FF';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(centroX - 280, centroY - 70, 90, 35, 5);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#00E5FF';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.fillText('CORE: SECURE', centroX - 270, centroY - 48);
+        
+        // Linhas de pulso ligando a mão do robô à tela
+        ctx.strokeStyle = '#00E5FF';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(centroX - 180, centroY - 15, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#00E5FF';
+        ctx.fill();
+        
+        // Direita: Esfera Tridimensional de Monitoramento
+        ctx.strokeStyle = '#00FF87';
+        ctx.beginPath();
+        ctx.arc(centroX + 180, centroY - 15, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#00FF87';
+        ctx.fill();
+        
+        ctx.strokeStyle = '#00FF87';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([5, 5]);
+        ctx.beginPath();
+        ctx.arc(centroX + 240, centroY + 20, 35, 0, Math.PI * 2);
+        ctx.stroke();
