@@ -121,7 +121,7 @@ col_esquerda, col_direita_conteudo = st.columns([0.22, 0.78])
 # 🏢 COLUNA 1: SEUS BOTÕES LATERAIS DE CORREÇÃO (VOLTARAM PARA O LUGAR!)
 with col_esquerda:
     st.markdown('<div class="coluna-container-lateral">', unsafe_allow_html=True)
-    st.markdown("<h2 style='color: #60a5fa; font-size: 22px; font-weight: 800; margin:0;'>🤖 Adriel-AI <span style='background:#00E5FF; color:#050814; padding:2px 6px; font-size:11px; border-radius:4px; vertical-align:middle;'>PRO</span></h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color: #60a5fa; font-size: 22px; font-weight: 800; margin:0;'>🤖 Adriel-AI <span style='background:#00E5FF; color:#050814; padding:2px 6px; font-size:12px; border-radius:4px; vertical-align:middle;'>PRO</span></h2>", unsafe_allow_html=True)
     st.markdown("<p style='color: #475569; font-size: 10px; margin-top:-3px; letter-spacing:1px;'>CONTROL PANEL</p>", unsafe_allow_html=True)
     st.write("---")
     
@@ -153,7 +153,7 @@ with col_direita_conteudo:
         </div>
         """, unsafe_allow_html=True)
         
-        # BANCO DE DADOS OFICIAL - 25 PRODUTOS REAIS (10 TOP ALTA + 15 ESTÁVEIS) 100% REVISADO E TRAVADO
+        # BANCO DE DADOS OFICIAL - 25 PRODUTOS REAIS (10 TOP ALTA + 15 ESTÁVEIS) 100% CORRIGIDO
         produtos_alta = [
             {"Produto": "Sugar Defender", "Gravidade": "284.50", "Pesquisas Mes": 142000, "Onde Anunciar": "Google Ads (Fundo)", "Porque": "VSL novo convertendo tráfego qualificado de palavra exata com alto ROI."},
             {"Produto": "Puravive", "Gravidade": "241.10", "Pesquisas Mes": 118000, "Onde Anunciar": "Bing Ads + Pre-Sell", "Porque": "Leilão menos concorrido no Bing barateia o CPC em nicho de emagrecimento gringo."},
