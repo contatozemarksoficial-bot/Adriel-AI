@@ -15,8 +15,8 @@ def main():
     estilo_luxo += "[data-testid='stSidebar'], section[data-testid='stSidebar'] div {background-color: #090d16 !important;}"
     estilo_luxo += "[data-testid='stSidebar'] nav ul li div a span {color: #00ffcc !important; font-weight: bold !important; text-shadow: 0 0 8px rgba(0,255,204,0.5) !important;}"
     estilo_luxo += ".stTextInput>div>div>input {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #1e293b !important; border-radius: 8px !important; font-size: 1.1rem !important;}"
-    estilo_luxo += ".stTextInput>div>div>input:focus {border-color: #00ffcc !important; box-shadow: 0 0 15px rgba(0,255,204,0.3) !important;}"
-    estilo_luxo += ".stButton>button {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; box-shadow: 0 0 10px rgba(0,255,204,0.15) !important; transition: all 0.3s ease-in-out !important; width: 100% !important; height: 45px !important;}"
+    estilo_luxo += ".stTextInput>div>div>input:focus {border-color: #00ffcc !important; box-shadow: 0 0 15px rgba(0, 255, 204, 0.3) !important;}"
+    estilo_luxo += ".stButton>button {background-color: #0f172a !important; color: #00ffcc !important; border: 2px solid #00ffcc !important; border-radius: 8px !important; font-weight: bold !important; box-shadow: 0 0 10px rgba(0, 255, 204, 0.15) !important; transition: all 0.3s ease-in-out !important; width: 100% !important; height: 45px !important;}"
     estilo_luxo += ".stButton>button:hover {background-color: #00ffcc !important; color: #030712 !important; box-shadow: 0 0 25px #00ffcc, 0 0 45px rgba(0,255,204,0.4) !important; transform: scale(1.01);}"
     estilo_luxo += "[data-testid='stMetricContainer'] {background: linear-gradient(135deg, #0f172a, #030712) !important; border: 1px solid #1e293b !important; border-left: 4px solid #00ffcc !important; padding: 15px !important; border-radius: 10px !important; box-shadow: 0 4px 20px rgba(0,0,0,0.6) !important;}"
     estilo_luxo += "h1, h2, h3, h4, span, p, label {color: #f3f4f6 !important;}"
@@ -47,7 +47,7 @@ def main():
     ativar_busca = st.button("🚀 PESQUISAR LANÇAMENTOS AGORA")
     st.markdown("---")
 
-    # 🪐 CORREÇÃO SUPREMA V5: Ativação dinâmica vinculada estritamente à ação do botão físico
+    # Coleta de tempo estável do servidor
     tempo_segundo = datetime.now().second
     horario_atual = datetime.now().strftime("%H:%M:%S")
 
@@ -59,6 +59,11 @@ def main():
     semente_d2 = 900 + (tempo_segundo * 9)
     semente_d3 = 1500 + (tempo_segundo * 14)
 
+    # Definição dinâmica dos status do termômetro de mercado
+    t_status1 = "QUENTE (Alta Conversao)" if tempo_segundo % 2 == 0 else "EM MUTACAO (Alta Procura)"
+    t_status2 = "EM ALTA (Oceano Azul)" if tempo_segundo % 3 == 0 else "OPORTUNIDADE (Fundo Limpo)"
+    t_status3 = "LANCAMENTO (Baixo Bid)" if tempo_segundo % 2 == 0 else "OPORTUNIDADE PREDITIVA"
+
     # 2. COLUNAS EM PARALELO DE 3 PRODUTOS REAIS COMPLETAMENTE BLINDADOS
     c_prod1, c_prod2, c_prod3 = st.columns(3)
 
@@ -67,9 +72,6 @@ def main():
         st.markdown("<div style='background:linear-gradient(135deg, #0f172a, #030712); border:1px solid #1e293b; border-top:4px solid #00ffcc; padding:15px; border-radius:10px; min-height:450px;'>", unsafe_allow_html=True)
         st.markdown("<h3 style='color:#00ffcc; margin:0;'>🔥 1. FitSpresso</h3>", unsafe_allow_html=True)
         st.write("**Plataforma:** ClickBank Real Offer")
-        
-        # Termômetro dinâmico rotativo por clique
-        t_status1 = "QUENTE (Alta Conversao)" if tempo_segundo % 2 == 0 else "EM MURAÇÃO (Alta Procura)"
         st.write("**Termometro:** " + t_status1)
         st.write("**Analise:** Oferta recente focada no nicho de perda de peso acelerada por cafe. Apresenta o menor CPC fundo de funil da categoria hoje por ser um lancamento agressivo.")
         st.write("**Melhores Paises:** USA, UK, Canada, Australia, Alemanha")
@@ -88,8 +90,6 @@ def main():
         st.markdown("<div style='background:linear-gradient(135deg, #0f172a, #030712); border:1px solid #1e293b; border-top:4px solid #ff0055; padding:15px; border-radius:10px; min-height:450px;'>", unsafe_allow_html=True)
         st.markdown("<h3 style='color:#ff0055; margin:0;'>🔥 2. Nagano Tonic</h3>", unsafe_allow_html=True)
         st.write("**Plataforma:** BuyGoods Network")
-        
-        t_status2 = "EM ALTA (Oceano Azul)" if tempo_segundo % 3 == 0 else "OPORTUNIDADE (Fundo Limpo)"
         st.write("**Termometro:** " + t_status2)
         st.write("**Analise:** Suplemento termogenico inovador japonês. Baixissima concorrencia de afiliados no leilao de rede de pesquisa gringo, ideal para estruturas de pre-sell rapidas.")
         st.write("**Melhores Paises:** USA, Canada, Reino Unido, Australia, Nova Zelandia")
@@ -108,8 +108,6 @@ def main():
         st.markdown("<div style='background:linear-gradient(135deg, #0f172a, #030712); border:1px solid #1e293b; border-top:4px solid #0066ff; padding:15px; border-radius:10px; min-height:450px;'>", unsafe_allow_html=True)
         st.markdown("<h3 style='color:#0066ff; margin:0;'>🔥 3. DentiCore</h3>", unsafe_allow_html=True)
         st.write("**Plataforma:** Digistore24 Int.")
-        
-        t_status3 = "LANCAMENTO (Baixo Bid)" if tempo_segundo % 2 == 0 else "OPORTUNIDADE PREDITIVA"
         st.write("**Termometro:** " + t_status3)
         st.write("**Analise:** Oferta recente focada na desinflamacao dental profunda e hálito gringo. Alta comissao recorrente liberada pelo produtor nas primeiras semanas de lancamento.")
         st.write("**Melhores Paises:** USA, UK, Irlanda, Australia, Canada")
@@ -129,7 +127,7 @@ def main():
     st.markdown("<h4 style='color:#00ffcc;'>📲 Compartilhar Relatorio dos 3 Lancamentos via WhatsApp</h4>", unsafe_allow_html=True)
     st.write("Dispare o dossie completo das 3 oportunidades reais para o seu telefone cadastrado:")
     
-    # Texto unificado montado linearmente de forma segura
+    # Texto unificado montado linearmente de forma estável imune a travamentos de strings
     msg_whats = "ALERTA%20DE%20LANCAMENTOS%20ADRIEL-AI%0A%0A1.%20FitSpresso%20-" + t_status1.replace(" ", "%20") + "%0A2.%20Nagano%20Tonic%20-" + t_status2.replace(" ", "%20") + "%0A3.%20DentiCore%20-" + t_status3.replace(" ", "%20") + "%0A%0A_Varredura%20viva%20executada%20as%20" + horario_atual + "_"
     
     num_destino = st.session_state.user_whatsapp_saved
